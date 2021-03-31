@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 09, 2021 at 04:41 AM
+-- Generation Time: Mar 31, 2021 at 04:41 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -581,7 +581,8 @@ CREATE TABLE `postgen` (
 --
 
 INSERT INTO `postgen` (`id_posting`, `caption`, `fileName`, `html`, `date_post`, `id_user`) VALUES
-(25, 'Ali bin Abi Thalib', '6046e7e4e0332.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/6046e7e4e0332.jpg alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 300px;\" />', '1615259620', 41);
+(25, 'Ali bin Abi Thalib', '6046e7e4e0332.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/6046e7e4e0332.jpg alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 300px;\" />', '1615259620', 41),
+(26, 'Placeat quis omnis ', '60648298928e4.png', '<img src=http://localhost/myvoqu/assets_user/file_upload/60648298928e4.png alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 300px;\" />', '1617199768', 41);
 
 -- --------------------------------------------------------
 
@@ -811,7 +812,8 @@ INSERT INTO `tasks` (`id`, `task_name`, `state`, `id_user`) VALUES
 (26, 'TA', 0, 0),
 (32, 'daily checkin', 0, 0),
 (33, 'refactor kodingan', 1, 0),
-(34, 'desform', 0, 0);
+(34, 'desform', 1, 0),
+(35, 'Beatae hic velit cup', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -919,12 +921,12 @@ INSERT INTO `user` (`id`, `name`, `gender`, `email`, `image`, `passsword`, `role
 (41, 'Jaki', 'Male', 'jaki@gmail.com', 'Zaki_Al_Faridzi_Formal_Photo.jpg', '$2y$10$VPWRjJtMRr1FLWpVAC91QuIgLOKATtll33owfV52VSJztS0Zt6Udy', 1, 1, 1579687251, 'offline-dot', '0000-00-00', '', '', '', '', '', 0),
 (65, 'zakialf', 'Male', 'zalfaridzi9@gmail.com', 'default.png', '$2y$10$vQ0mQ6jFL2XXCHIdFXlAaeiV/H0w..DDVRA4skipgBHZ6kcX2yrQ6', 3, 1, 1583292406, 'offline-dot', '0000-00-00', '', 'Hello World!', '', 'NU', '5e5f1ff6af8ae.jpg', 1),
 (74, 'Rahmat', 'Male', 'rahmatibrahim141@gmail.com', 'default.png', '$2y$10$oxVDkKT8z2tVBv3jqF6UNeRNBPNNHHTJlkp7ahB1978W2iVmCFe1e', 3, 2, 1584434428, 'online-dot', '0000-00-00', '', 'Hello World!', '', 'Instansi', '5e708cfc4fc36.png', 1),
-(77, 'enjang', 'Male', 'enjang@mail.com', 'default.png', '$2y$10$rJdGHDuFv7tknXFZgBDGmOGRkNgE6SNoscXsaSBrWM8yaoAOoQcvW', 3, 1, 1585032852, 'offline-dot', '0000-00-00', '', 'Hello World!', '', 'NU', '5e79ae9451f58.jpg', 0),
-(79, 'Kipli', 'Male', 'kipli@mail.com', 'default.png', '$2y$10$bQ0yeWos60h4ghzbabUi2uu5qjrpvkieUO1fmhOg1E5XVqohrejs.', 3, 1, 1585034822, '', '0000-00-00', '', 'Hello World!', '', 'MUI', '5e79b64623bf8.jpg', 0),
+(77, 'enjang', 'Male', 'enjang@mail.com', 'default.png', '$2y$10$rJdGHDuFv7tknXFZgBDGmOGRkNgE6SNoscXsaSBrWM8yaoAOoQcvW', 3, 1, 1585032852, 'offline-dot', '0000-00-00', '', 'Hello World!', '', 'NU', '5e79ae9451f58.jpg', 1),
+(79, 'Kipli', 'Male', 'kipli@mail.com', 'default.png', '$2y$10$bQ0yeWos60h4ghzbabUi2uu5qjrpvkieUO1fmhOg1E5XVqohrejs.', 3, 1, 1585034822, '', '0000-00-00', '', 'Hello World!', '', 'MUI', '5e79b64623bf8.jpg', 1),
 (80, 'ersa', 'Female', 'ersa@gmail.com', 'default.png', '$2y$10$gsLzDx0Dlbd/qFFEeMsOjeAwodTv6WsunmTTco4vF9T3YYoF8C.4.', 2, 1, 1586685825, 'offline-dot', '0000-00-00', '', 'Hello World!', '', '', '', 0),
 (81, 'fanny', 'Female', 'fanny@gmail.com', 'default.png', '$2y$10$OOMAeqVfV2xJqmk7lxr8hOx.XZ5cMaFZ6Wjp/UotK.QQyhiQ0pIRa', 2, 1, 1586685919, 'offline-dot', '0000-00-00', '', 'Hello World!', '', '', '', 0),
 (82, 'matt', 'Male', 'matt@mail.com', '5e9482dd5a109.jpg', '$2y$10$7VKM2pCSf5csFCECGLb7ReCbfcETY7GBqb2Rv3g0laSJI9vTS7miu', 2, 1, 1586708436, 'offline-dot', '0000-00-00', '', 'Hello World!', '', '', '', 0),
-(85, 'Muhammad Abizard Al Thareq', 'Male', 'm.abizard1123@gmail.com', 'default.png', '$2y$10$AUVpDR593bbdsQz7vOcuWuXIRmuhfLdqO7pi3SjAMKS185xbLHKpy', 2, 1, 1586782172, 'online-dot', '0000-00-00', '', 'Hello World!', '', '', '', 0);
+(85, 'Muhammad Abizard Al Thareq', 'Male', 'm.abizard1123@gmail.com', 'default.png', '$2y$10$AUVpDR593bbdsQz7vOcuWuXIRmuhfLdqO7pi3SjAMKS185xbLHKpy', 2, 1, 1586782172, 'offline-dot', '0000-00-00', '', 'Hello World!', '', '', '', 0);
 
 --
 -- Triggers `user`
@@ -1285,7 +1287,7 @@ ALTER TABLE `pesan`
 -- AUTO_INCREMENT for table `postgen`
 --
 ALTER TABLE `postgen`
-  MODIFY `id_posting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_posting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `posting`
@@ -1309,7 +1311,7 @@ ALTER TABLE `suka`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `trigger_user`
