@@ -549,17 +549,18 @@ class Admin extends CI_Controller
 
         foreach ($data['mahasiswa'] as $mhs) {
             $obj->getActiveSheet()->setCellValue('A' . $baris, $no++);
-            $obj->getActiveSheet()->setCellValue('B' . $baris, $mhs->nama);
-            $obj->getActiveSheet()->setCellValue('C' . $baris, $mhs->kode_mentor);
+            $obj->getActiveSheet()->setCellValue('B' . $baris, $mhs->name);
+            $obj->getActiveSheet()->setCellValue('C' . $baris, $mhs->id);
             $obj->getActiveSheet()->setCellValue('D' . $baris, $mhs->instansi);
             $obj->getActiveSheet()->setCellValue('E' . $baris, $mhs->email);
 
             $baris++;
         }
 
+        // $writer = PHPExcel_IOFactory::createWriter($obj, 'Excel2007');
         $filename = "Mentor Data Myvoqu" . '.xlsx';
 
-        $obj->getActiveSheet()->setTitle('Mentor Data Myvoqu');
+        $obj->getActiveSheet()->setTitle('Posting Data Myvoqu');
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename="' . $filename, '"');
@@ -597,7 +598,7 @@ class Admin extends CI_Controller
         $id_user = htmlspecialchars($this->input->post('id_user', true));
         $fileName = $this->_uploadFileMentor();
 
-        if ((substr($fileName, -3, 3) == 'mp4') || (substr($fileName, -3, 3) == 'flv')) {
+        if ((substr($fileName, -3, 3) == 'mp4') || (substr($fileName, -3, 3) == 'mkv') || (substr($fileName, -3, 3) == 'flv')) {
             $html = '<div class="video-wrapper">';
             $html .= '<video class="post-video" controls width="500" height="500">';
             $html .= '<source src=' . base_url('assets_user/file_upload/');
@@ -660,7 +661,7 @@ class Admin extends CI_Controller
             return false;
         }
 
-        $ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'mp4', 'flv'];
+        $ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'mp4', 'flv', 'mkv'];
         $ekstensiGambar = explode('.', $namaFiles);
         $ekstensiGambar = strtolower(end($ekstensiGambar));
         if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
@@ -1046,7 +1047,7 @@ class Admin extends CI_Controller
         foreach ($data['mahasiswa'] as $mhs) {
             $obj->getActiveSheet()->setCellValue('A' . $baris, $no++);
             $obj->getActiveSheet()->setCellValue('B' . $baris, $mhs->nama);
-            $obj->getActiveSheet()->setCellValue('C' . $baris, $mhs->desc);
+            $obj->getActiveSheet()->setCellValue('C' . $baris, $mhs->deskripsi);
 
             $baris++;
         }

@@ -24,11 +24,20 @@
                 <i class="fa fa-download"></i> Export
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a href="<?php echo base_url('Admin/printMentor'); ?>" target="_blank" rel="noreferrer"
+                <<<<<<< HEAD <a href="<?php echo base_url('Admin/printMentor'); ?>" target="_blank" rel="noreferrer"
                     class="dropdown-item"><i class="fa fa-print"></i> Print</a>
-                <a href="<?php echo base_url('Admin/pdfMentor'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
-                    PDF</a>
-                <!-- <a href="<?php echo base_url('Admin/excelMentor'); ?>" class="dropdown-item"><i class="fa fa-file"></i> Excel</a> -->
+                    <a href="<?php echo base_url('Admin/pdfMentor'); ?>" class="dropdown-item"><i
+                            class="fa fa-file"></i>
+                        PDF</a>
+                    <!-- <a href="<?php echo base_url('Admin/excelMentor'); ?>" class="dropdown-item"><i class="fa fa-file"></i> Excel</a> -->
+                    =======
+                    <a href="<?php echo base_url('Admin/printMentor'); ?>" target="_blank" rel="noreferrer"
+                        class="dropdown-item"><i class="fa fa-print"></i> Print</a>
+                    <a href="<?php echo base_url('Admin/pdfMentor'); ?>" class="dropdown-item"><i
+                            class="fa fa-file"></i> PDF</a>
+                    <a href="<?php echo base_url('Admin/excelMentor'); ?>" class="dropdown-item"><i
+                            class="fa fa-file"></i> Excel</a>
+                    >>>>>>> ac2b73fb8f19dc78465be31ecbc0bcd48e2c1e5a
             </div>
         </div>
 
@@ -97,7 +106,9 @@ foreach ($mentor as $m): ?>
         </table>
     </div>
 
+
 </div>
+
 
 
 <?=$this->session->flashdata('toast')?>

@@ -26,7 +26,7 @@
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a href="<?php echo base_url('Admin/printTodo'); ?>" target="_blank" rel="noreferrer" class="dropdown-item"><i class="fa fa-print"></i> Print</a>
                 <a href="<?php echo base_url('Admin/pdfTodo'); ?>" class="dropdown-item"><i class="fa fa-file"></i> PDF</a>
-                <!-- <a href="<?php echo base_url('Admin/excelTodo'); ?>" class="dropdown-item"><i class="fa fa-file"></i> Excel</a> -->
+                <a href="<?php echo base_url('Admin/excelTodo'); ?>" class="dropdown-item"><i class="fa fa-file"></i> Excel</a>
             </div>
             &emsp;
         <?php echo anchor('Admin/createTodo', '<button type="button" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> New To-Do</button>') ?>
