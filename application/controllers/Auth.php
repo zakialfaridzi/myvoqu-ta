@@ -160,7 +160,7 @@ class Auth extends CI_Controller
             $this->_sendEmail($token, 'verify');
 
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Congratulation</strong> your account has been created. Please activate yout account!
+            <strong>Congratulation</strong> your account has been created. Please activate your account!
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -451,7 +451,7 @@ class Auth extends CI_Controller
         ]);
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
         $this->form_validation->set_rules('gender', 'Gender', 'required|trim');
-        $this->form_validation->set_rules('instansi', 'Instansi', 'required|trim');
+        // $this->form_validation->set_rules('instansi', 'Instansi', 'required|trim');
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Mentor Registration';
@@ -471,36 +471,24 @@ class Auth extends CI_Controller
                 'is_active' => 0,
                 'date_created' => time(),
                 'bio' => 'Hello World!',
-                'instansi' => htmlspecialchars($this->input->post('instansi')),
-                'sertif' => $fileName
+                'sertif' => $fileName,
 
-            ];
-
-            //siapkan token
-
-            $token = base64_encode(random_bytes(32));
-            $user_token = [
-                'email' => $email,
-                'token' => $token,
-                'date_created' => time(),
             ];
 
             $this->db->insert('user', $data);
-            $this->db->insert('user_token', $user_token);
 
-            $this->_sendEmail($token, 'verify');
+            //gausah kirim aktivasi ke email, admin nge acc baru kirim aktivasi ke email
 
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Congratulation</strong> your account has been created. Please activate yout account!
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>');
+                <strong>Selamat</strong> akun berhasil didaftarkan. Tunggu aktivasi dari admin dan link aktivasi akan dikirim ke email anda.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>');
+
             redirect('auth');
         }
     }
-
-
 
     private function _uploadSertif()
     {
@@ -529,7 +517,6 @@ class Auth extends CI_Controller
 
             return false;
         }
-
 
         $ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'mp4', 'flv'];
         $ekstensiGambar = explode('.', $namaFiles);
