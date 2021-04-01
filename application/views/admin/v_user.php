@@ -26,7 +26,7 @@
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a href="<?php echo base_url('Admin/printPenghafal'); ?>" target="_blank" rel="noreferrer" class="dropdown-item"><i class="fa fa-print"></i> Print</a>
                 <a href="<?php echo base_url('Admin/pdfPenghafal'); ?>" class="dropdown-item"><i class="fa fa-file"></i> PDF</a>
-                <!-- <a href="<?php echo base_url('Admin/excelPenghafal'); ?>" class="dropdown-item"><i class="fa fa-file"></i> Excel</a> -->
+                <a href="<?php echo base_url('Admin/excelPenghafal'); ?>" class="dropdown-item"><i class="fa fa-file"></i> Excel</a>
             </div>
         </div>
 

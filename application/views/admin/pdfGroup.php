@@ -21,13 +21,13 @@
             </tr>
 
             <?php $no = 1;
-            foreach ($mahasiswa as $mhs) : ?>
+foreach ($mahasiswa as $mhs): ?>
                 <tr>
                     <td><?php echo $no++; ?></td>
                     <td><?php echo $mhs->nama ?></td>
-                    <td><?php echo $mhs->desc ?></td>
-                    <td><?php echo $mhs->group_img ?></td>
+                    <td><?php echo $mhs->deskripsi ?></td>
+                    <td><?php echo $mhs->image ?></td>
                 </tr>
-            <?php endforeach; ?>
+            <?php endforeach;?>
         </table>
     </div>

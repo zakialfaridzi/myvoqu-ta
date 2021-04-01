@@ -102,7 +102,7 @@
                         <div class="card-header">
                             <h3 class="card-title">
                                 <i class="fas fa-chart-pie mr-1"></i>
-                                Charts instansi mentor yang sudah verified
+                                Charts instansi mentor yang sudah terverifikasi
                             </h3>
                             <div class="card-body">
                                 <div class="tab-content p-0">

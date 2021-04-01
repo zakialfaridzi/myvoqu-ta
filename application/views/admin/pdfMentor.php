@@ -22,14 +22,14 @@
             </tr>
 
             <?php $no = 1;
-            foreach ($mahasiswa as $mhs) : ?>
+foreach ($mahasiswa as $mhs): ?>
                 <tr>
                     <td><?php echo $no++; ?></td>
-                    <td><?php echo $mhs->nama ?></td>
-                    <td><?php echo $mhs->kode_mentor ?></td>
+                    <td><?php echo $mhs->name ?></td>
+                    <td><?php echo $mhs->id ?></td>
                     <td><?php echo $mhs->instansi ?></td>
                     <td><?php echo $mhs->email ?></td>
                 </tr>
-            <?php endforeach; ?>
+            <?php endforeach;?>
         </table>
     </div>
