@@ -1,10 +1,10 @@
 <div class="chat-room">
 <?php foreach($pesan3 as $pst) : ?>
-    <h3><?php if ($pst->id_pengirim == $this->session->userdata('id')) : ?>
+    <h4><?php if ($pst->id_pengirim == $this->session->userdata('id')) : ?>
         <?php else : ?>
-            <?= $pst->name; ?>'s room chat
+            <?= $pst->name; ?>'s room chat yaya
         <?php endif; ?>
-        </h3>
+        </h4>
 <?php endforeach; ?>
     <div class="row">
         <div class="col-md-12">
