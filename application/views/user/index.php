@@ -22,8 +22,10 @@
 
     <?php endif;?>
 
+    <!-- <?=$pst->image?> -->
+
     <div class="post-container">
-        <img src="<?=base_url('assets_user/');?>images/<?=$pst->image;?>" alt="user"
+        <img src="<?=base_url('assets_user/');?>images/<?=$pst->image?>" alt="user"
             class="profile-photo-md pull-left" />
         <div class="post-detail">
             <div class="user-info">
