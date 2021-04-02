@@ -1,4 +1,5 @@
 <div class="chat-room">
+<<<<<<< HEAD
 <?php foreach ($pesan3 as $pst): ?>
     <h3><?php if ($pst->id_pengirim == $this->session->userdata('id')): ?>
         <?php else: ?>
@@ -6,6 +7,16 @@
         <?php endif;?>
         </h3>
 <?php endforeach;?>
+=======
+    <?php foreach ($pesan3 as $pst): ?>
+    <h3><?php if ($pst->id_pengirim == $this->session->userdata('id')): ?>
+        <?php else: ?>
+        <?=$pst->name;?>'s room chat
+        <?php endif;?>
+    </h3>
+
+    <?php endforeach;?>
+>>>>>>> fc6874f756006ab43aac064f43d4f94d0b4cfe98
     <div class="row">
         <div class="col-md-12">
 
@@ -17,6 +28,7 @@
                 <div class="tab-pane active" id="contact-1">
                     <div class="chat-body">
                         <?php foreach ($pesan3 as $pst): ?>
+<<<<<<< HEAD
                             <ul class="chat-message">
                                 <?php if ($pst->id_pengirim == $this->session->userdata('id')): ?>
                                     <li class="right">
@@ -34,15 +46,40 @@ $str = $pst->pesan;
 $str = parse_smileys($str, base_url() . 'assets/smileys/');
 echo $str;
 ?></p>
+=======
+                        <ul class="chat-message">
+                            <?php if ($pst->id_pengirim == $this->session->userdata('id')): ?>
+                            <li class="right">
+                                <?php else: ?>
+                            <li class="left">
+                                <?php endif;?>
+                                <div class="chat-item">
+                                    <div class="chat-item-header">
+                                        <h5><?=$pst->name;?></h5>
+                                        <small class="text-muted">send on
+                                            <?=date('d F Y h:m:sa ', $pst->date);?></small>
+>>>>>>> fc6874f756006ab43aac064f43d4f94d0b4cfe98
                                     </div>
-                                    </li>
+                                    <p>
+                                        <?php
+$str = $pst->pesan;
+$str = parse_smileys($str, base_url() . 'assets/smileys/');
+echo $str;
+?></p>
+                                </div>
+                            </li>
 
 
+<<<<<<< HEAD
                             </ul>
+=======
+                        </ul>
+>>>>>>> fc6874f756006ab43aac064f43d4f94d0b4cfe98
                         <?php endforeach;?>
 
                     </div>
                     <div class="send-message">
+<<<<<<< HEAD
                 <div class="post-comment">
                     <?php echo smiley_js(); ?>
                     <form method="post" action="<?=base_url('Chat/kirimPesan') . "/" . $this->uri->segment('3');?>">
@@ -54,8 +91,26 @@ echo $str;
                     <?php echo $smiley_table; ?>
                 </div>
             </div>
+=======
+                        <div class="post-comment">
+                            <?php echo smiley_js(); ?>
+                            <form method="post"
+                                action="<?=base_url('Chat/kirimPesan') . "/" . $this->uri->segment('3');?>">
+                                <input type="text" name="isi_pesan" id="comment" class="form-control"
+                                    placeholder="Type your message">
+                                <input type="hidden" name="id" value="<?=$this->session->userdata('id');?>">
+                                <input type="submit" class="btn-primary"
+                                    style="height: 45px; margin-left:460px; margin-top: 7px; background-color: #6fb8df;"
+                                    value="Send">
+                            </form>
+                            <p>Click to insert a smiley!</p>
+                            <?php echo $smiley_table; ?>
+                        </div>
+                    </div>
+>>>>>>> fc6874f756006ab43aac064f43d4f94d0b4cfe98
                 </div>
             </div>
+
 
             <!--Chat Messages in Right End-->
         </div>
