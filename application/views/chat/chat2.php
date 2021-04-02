@@ -1,6 +1,7 @@
 <div class="chat-room">
     <div class="row">
         <div class="col-md-12">
+        <p>Helmi</p>
 
 
             <!--Chat Messages in Right-->
