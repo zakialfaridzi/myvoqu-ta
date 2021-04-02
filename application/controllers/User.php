@@ -70,9 +70,9 @@ class User extends CI_Controller
             $fileName = $this->_uploadFile();
             $id_posting = '';
 
-            if ((substr($fileName, -3, 3) == 'mp4') || (substr($fileName, -3, 3) == 'flv')) {
+            if ((substr($fileName, -3, 3) == 'mp4') || (substr($fileName, -3, 3) == 'mkv') || (substr($fileName, -3, 3) == 'flv')) {
                 $html = '<div class="video-wrapper">';
-                $html .= '<video class="post-video" controls>';
+                $html .= '<video class="post-video" controls  width="500" height="500">';
                 $html .= '<source src=' . base_url('assets_user/file_upload/');
                 $html .= $fileName . ' type="video/mp4">';
                 $html .= '</video></div>';
@@ -128,7 +128,7 @@ class User extends CI_Controller
             return false;
         }
 
-        $ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'mp4', 'flv'];
+        $ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'mp4', 'flv', 'mkv'];
         $ekstensiGambar = explode('.', $namaFiles);
         $ekstensiGambar = strtolower(end($ekstensiGambar));
         if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {

@@ -47,7 +47,7 @@
                     </tr>
                     <tr>
                         <th>Count Report</th>
-                        <td><span class="badge badge-pill badge-danger"><?php echo $p->cr ?></span></td>
+                        <td><span class="badge badge-pill badge-danger"><?php echo $p->cr - 1 ?></span></td>
                     </tr>
                     <tr>
                         <th>Post Date</th>
