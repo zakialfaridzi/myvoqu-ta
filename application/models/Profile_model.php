@@ -48,12 +48,12 @@ class Profile_model extends CI_model
 
 	public function getFollowing()
 	{
-		return $this->db->query('SELECT id_usertarget, namatarget, imagetarget, biotarget FROM follow f join user u on(u.id = f.id_userfollow) where id_userfollow =' . $this->session->userdata('id') . ' and id_usertarget != ' . $this->session->userdata('id') . ' and stat = 1')->result();
+		return $this->db->query('SELECT id_usertarget, namatarget, imagetarget, biotarget FROM follow f join user u on(u.id = f.id_userfollow) where id_userfollow =' . $this->session->userdata('id') . ' and stat = 1')->result();
 	}
 
 	public function getFollowers()
 	{
-		return $this->db->query('SELECT * FROM follow f join user u on(u.id = f.id_userfollow) where id_userfollow !=' . $this->session->userdata('id') . ' and id_usertarget = ' . $this->session->userdata('id') . ' and stat = 1')->result();
+		return $this->db->query('SELECT * FROM follow f join user u on(u.id = f.id_userfollow) where id_usertarget = ' . $this->session->userdata('id') . ' and stat = 1')->result();
 	}
 
 	public function editPhoto($data)
