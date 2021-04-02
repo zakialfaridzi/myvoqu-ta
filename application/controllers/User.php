@@ -276,7 +276,7 @@ class User extends CI_Controller
           </div>');
         redirect('user');
     }
-
+ 
     public function getIdposting($id)
     {
         $data['search'] = 'none';
