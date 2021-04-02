@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2021 at 04:41 PM
+-- Generation Time: Apr 02, 2021 at 09:58 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `myvoqu-fixed`
+-- Database: `myvoqu_fixed`
 --
 
 DELIMITER $$
@@ -37,6 +37,98 @@ TRUNCATE TABLE backup_tubes.backup_pesan;
 INSERT INTO backup_tubes.backup_pesan(select id_pesan, id_pengirim, id_penerima, pesan, date, sudah_dibaca, image, now() tanggal_backup from tubes.pesan);
 
 END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `backup_semua_table` ()  begin
+
+truncate table backup_tbs.user_token;
+INSERT INTO backup_tbs.user_token(id, backup_date, email, token, date_created)
+(SELECT id, now(), email, token, date_created FROM myvoqu_fixed.user_token);
+
+truncate table backup_tbs.user_role;
+INSERT INTO backup_tbs.user_role(id, backup_date, role)
+(SELECT id, now(), role FROM myvoqu_fixed.user_role);
+
+truncate table backup_tbs.suka;
+INSERT INTO backup_tbs.suka(id_suka, backup_date, status, date, id_posting, id, id_tujuan)
+(SELECT id_suka, now(), status, date, id_posting, id, id_tujuan FROM myvoqu_fixed.suka);
+
+truncate table backup_tbs.report;
+INSERT INTO backup_tbs.report(id_report, backup_date, report, date, id_posting, id_user)
+(SELECT id_report, now(), report, date, id_posting, id_user FROM myvoqu_fixed.report);
+
+truncate table backup_tbs.posting;
+INSERT INTO backup_tbs.posting(id_posting, backup_date, caption, id_user, name, fileName, html, date_post)
+(SELECT id_posting, now(), caption, id_user, name, fileName, html, date_post FROM myvoqu_fixed.posting);
+
+truncate table backup_tbs.postgen;
+INSERT INTO backup_tbs.postgen(id_posting, backup_date, caption, fileName, html, date_post, id_user)
+(SELECT id_posting, now(), caption, fileName, html, date_post, id_user FROM myvoqu_fixed.postgen);
+
+truncate table backup_tbs.pesan;
+INSERT INTO backup_tbs.pesan(id_pesan, backup_date, id_pengirim, id_penerima, pesan, date, sudah_dibaca, image)
+(SELECT id_pesan, now(), id_pengirim, id_penerima, pesan, date, sudah_dibaca, image FROM myvoqu_fixed.pesan);
+
+truncate table backup_tbs.notification;
+INSERT INTO backup_tbs.notification(id_notification, backup_date, notif, date, id_posting, id, id_tujuan)
+(SELECT id_notification, now(), notif, date, id_posting, id, id_tujuan FROM myvoqu_fixed.notification);
+
+truncate table backup_tbs.menu_item;
+INSERT INTO backup_tbs.menu_item(id_menu_item, backup_date, icon, name_menu_item, link, id_menu)
+(SELECT id_menu_item, now(), icon, name_menu_item, link, id_menu FROM myvoqu_fixed.menu_item);
+
+truncate table backup_tbs.menu;
+INSERT INTO backup_tbs.menu(id_menu, backup_date, title_menu)
+(SELECT id_menu, now(), title_menu FROM myvoqu_fixed.menu);
+
+truncate table backup_tbs.materi;
+INSERT INTO backup_tbs.materi(id, backup_date, nama, id_surat, id_user, nama_mentor, filename, html, date_post)
+(SELECT id, now(), nama, id_surat, id_user, nama_mentor, filename, html, date_post FROM myvoqu_fixed.materi);
+
+truncate table backup_tbs.katmateri;
+INSERT INTO backup_tbs.katmateri(id, backup_date, nama, arti, ayat, suratke)
+(SELECT id, now(), nama, arti, ayat, suratke FROM myvoqu_fixed.katmateri);
+
+truncate table backup_tbs.hafalan;
+INSERT INTO backup_tbs.hafalan(id, backup_date, judul, id_user, id_group)
+(SELECT id, now(), judul, id_user, id_group FROM myvoqu_fixed.hafalan);
+
+truncate table backup_tbs.grup;
+INSERT INTO backup_tbs.grup(id, backup_date, nama, deskripsi, image, owner)
+(SELECT id, now(), nama, deskripsi, image, owner FROM myvoqu_fixed.grup);
+
+truncate table backup_tbs.group_postingan;
+INSERT INTO backup_tbs.group_postingan(id_posting, backup_date, caption, id_group, id_user, filename, html, date_post)
+(SELECT id_posting, now(), caption, id_group, id_user, filename, html, date_post FROM myvoqu_fixed.group_postingan);
+
+truncate table backup_tbs.group_notif;
+INSERT INTO backup_tbs.group_notif(id_notif, backup_date, notif, id_group, id_user, date)
+(SELECT id_notif, now(), notif, id_group, id_user, date FROM myvoqu_fixed.group_notif);
+
+truncate table backup_tbs.group_comment;
+INSERT INTO backup_tbs.group_comment(id_comment, backup_date, comment, id_posting, date, id_user)
+(SELECT id_comment, now(), comment, id_posting, date, id_user FROM myvoqu_fixed.group_comment);
+
+truncate table backup_tbs.group_information;
+INSERT INTO backup_tbs.group_information(id, backup_date, info, id_group, id_user, date_post)
+(SELECT id, now(), info, id_group, id_user, date_post FROM myvoqu_fixed.group_information);
+
+truncate table backup_tbs.follow;
+INSERT INTO backup_tbs.follow(id_follow, backup_date, stat, date, id_userfollow, id_usertarget, namatarget, biotarget, imagetarget)
+(SELECT id_follow, now(), stat, date, id_userfollow, id_usertarget, namatarget, biotarget, imagetarget FROM myvoqu_fixed.follow);
+
+truncate table backup_tbs.comment;
+INSERT INTO backup_tbs.comment(id_comment, backup_date, comment, date, id_posting, id, id_tujuan)
+(SELECT id_comment, now(), comment, date, id_posting, id, id_tujuan FROM myvoqu_fixed.comment);
+
+truncate table backup_tbs.anggota;
+INSERT INTO backup_tbs.anggota(id_anggota, backup_date, id_user, id_group)
+(SELECT id_anggota, now(), id_user, id_group FROM myvoqu_fixed.anggota);
+
+truncate table backup_tbs.user;
+INSERT INTO backup_tbs.user(id, backup_date, name, gender, email, image, passsword, role_id, is_active, date_created, status, birthdate, city, bio, work, instansi, sertif, verified)
+(SELECT id, now(), name, gender, email, image, passsword, role_id, is_active, date_created, status, birthdate, city, bio, work, instansi, sertif, verified FROM myvoqu_fixed.user);
+
+end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `chartinstansi` ()  begin
 select instansi, count(instansi) as total from user where role_id=3 and verified=1 group by instansi;
@@ -97,14 +189,6 @@ CREATE TABLE `anggota` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `anggota`
---
-
-INSERT INTO `anggota` (`id_anggota`, `id_user`, `id_group`) VALUES
-(66, 80, 24),
-(67, 81, 24);
-
---
 -- Triggers `anggota`
 --
 DELIMITER $$
@@ -142,22 +226,6 @@ CREATE TABLE `comment` (
   `id` int(11) NOT NULL,
   `id_tujuan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `comment`
---
-
-INSERT INTO `comment` (`id_comment`, `comment`, `date`, `id_posting`, `id`, `id_tujuan`) VALUES
-(110, ' :-)', '1586633198', 284, 53, 52),
-(111, ' :-)', '1586636155', 286, 52, 52),
-(112, ' :-)', '1586636226', 285, 52, 53),
-(115, ' :-)', '1586686470', 197, 81, 80),
-(116, ' :smirk:', '1586686509', 197, 81, 80),
-(117, ' %-P', '1586686695', 197, 81, 80),
-(118, 'weew', '1123', 123, 123, 123),
-(119, ' :wow:', '1586687077', 197, 80, 80),
-(120, ' :lol:', '1586687132', 197, 81, 80),
-(121, 'MABAR', '1586759377', 198, 74, 81);
 
 --
 -- Triggers `comment`
@@ -209,22 +277,6 @@ CREATE TABLE `follow` (
   `biotarget` varchar(100) NOT NULL,
   `imagetarget` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `follow`
---
-
-INSERT INTO `follow` (`id_follow`, `stat`, `date`, `id_userfollow`, `id_usertarget`, `namatarget`, `biotarget`, `imagetarget`) VALUES
-(152, 2, '1586685825', 80, 80, 'ersa', 'Hello World!', 'default.png'),
-(153, 2, '1586685919', 81, 81, 'fanny', 'Hello World!', 'default.png'),
-(155, 2, '1586708436', 82, 82, 'matt', 'Hello World!', 'default.png'),
-(161, 2, '1586711840', 83, 83, 'rintani', 'Hello World!', 'default.png'),
-(162, 1, '1586712025', 83, 82, 'matt', 'Hello World!', 'default.png'),
-(163, 2, '1586713846', 81, 82, 'matt', 'Hello World!', 'default.png'),
-(164, 2, '1586752244', 84, 84, 'Rintani', 'Hello World!', 'default.png'),
-(165, 2, '1586761845', 81, 84, 'Rintani', 'Hello World!', 'default.png'),
-(166, 2, '1586782172', 85, 85, 'Muhammad Abizard Al Thareq', 'Hello World!', 'default.png'),
-(167, 1, '1586789123', 82, 85, 'Muhammad Abizard Al Thareq', 'Hello World!', 'default.png');
 
 -- --------------------------------------------------------
 
@@ -296,7 +348,8 @@ CREATE TABLE `group_notif` (
 INSERT INTO `group_notif` (`id_notif`, `notif`, `id_group`, `id_user`, `date`) VALUES
 (4, 'Announce Information', 24, 74, '2020-04-13 15:57:01'),
 (5, 'Joined This Group', 24, 81, '2020-04-13 15:57:16'),
-(6, 'Joined This Group', 25, 85, '2020-04-13 22:24:02');
+(6, 'Joined This Group', 25, 85, '2020-04-13 22:24:02'),
+(7, 'Kicked From This Group', 24, 81, '2021-03-31 21:44:40');
 
 -- --------------------------------------------------------
 
@@ -582,7 +635,13 @@ CREATE TABLE `postgen` (
 
 INSERT INTO `postgen` (`id_posting`, `caption`, `fileName`, `html`, `date_post`, `id_user`) VALUES
 (25, 'Ali bin Abi Thalib', '6046e7e4e0332.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/6046e7e4e0332.jpg alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 300px;\" />', '1615259620', 41),
-(26, 'Placeat quis omnis ', '60648298928e4.png', '<img src=http://localhost/myvoqu/assets_user/file_upload/60648298928e4.png alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 300px;\" />', '1617199768', 41);
+(26, 'Placeat quis omnis ', '60648298928e4.png', '<img src=http://localhost/myvoqu/assets_user/file_upload/60648298928e4.png alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 300px;\" />', '1617199768', 41),
+(27, 'Quasi est quis sit ', '60648ae3c3fc7.png', '<img src=http://localhost/myvoqu/assets_user/file_upload/60648ae3c3fc7.png alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 300px;\" />', '1617201891', 41),
+(28, 'Upload Test', '6065956191487.mp4', '<div class=\"video-wrapper\"><video class=\"post-video\" controls width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/6065956191487.mp4 type=\"video/mp4\"></video></div>', '1617270113', 41),
+(30, 'test', '60659626562d7.mkv', '<div class=\"video-wrapper\"><video class=\"post-video\" controls width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/60659626562d7.mkv type=\"video/mp4\"></video></div>', '1617270310', 41),
+(31, 'Test Upload', '60659a5c6c74a.mkv', '<div class=\"video-wrapper\"><video class=\"post-video\" controls width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/60659a5c6c74a.mkv type=\"video/mp4\"></video></div>', '1617271388', 41),
+(32, 'coba', '6065de89f2a5b.mp4', '<div class=\"video-wrapper\"><video class=\"post-video\" controls width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/6065de89f2a5b.mp4 type=\"video/mp4\"> alt=\"post-video\"</video></div>', '1617288841', 41),
+(33, 'x', '6065dee0a268b.mp4', '<div class=\"video-wrapper\"><video class=\"post-video\" controls width=\"500\" height=\"500\" alt=\"post-video\"><source src=http://localhost/myvoqu/assets_user/file_upload/6065dee0a268b.mp4 type=\"video/mp4\"></video></div>', '1617288928', 41);
 
 -- --------------------------------------------------------
 
@@ -606,8 +665,7 @@ CREATE TABLE `posting` (
 
 INSERT INTO `posting` (`id_posting`, `caption`, `id_user`, `name`, `fileName`, `html`, `date_post`) VALUES
 (220, 'waw', 85, '', '5e9469e66093a.jpg', '<img src=http://localhost/tubes-ci/assets_user/file_upload/5e9469e66093a.jpg alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 350px;\" />', '1586784742'),
-(221, 'wiw', 85, '', '5e9469fb930dc.mp4', '<div class=\"video-wrapper\"><video class=\"post-video\" controls><source src=http://localhost/tubes-ci/assets_user/file_upload/5e9469fb930dc.mp4 type=\"video/mp4\"></video></div>', '1586784763'),
-(222, 'adasdas', 82, '', '5e947b5ba78a8.jpg', '<img src=http://localhost/tubes-ci/assets_user/file_upload/5e947b5ba78a8.jpg alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 500px;\" />', '1586789211');
+(221, 'wiw', 85, '', '5e9469fb930dc.mp4', '<div class=\"video-wrapper\"><video class=\"post-video\" controls><source src=http://localhost/tubes-ci/assets_user/file_upload/5e9469fb930dc.mp4 type=\"video/mp4\"></video></div>', '1586784763');
 
 --
 -- Triggers `posting`
@@ -808,12 +866,8 @@ CREATE TABLE `tasks` (
 
 INSERT INTO `tasks` (`id`, `task_name`, `state`, `id_user`) VALUES
 (23, 'cek akun penghafal', 0, 0),
-(24, 'cek postingan yang banyak reportnya', 0, 0),
-(26, 'TA', 0, 0),
-(32, 'daily checkin', 0, 0),
-(33, 'refactor kodingan', 1, 0),
-(34, 'desform', 1, 0),
-(35, 'Beatae hic velit cup', 1, 0);
+(37, 'benerin instansi sama chart instansi', 0, 0),
+(38, 'tambah kolom masing masing excel', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -885,7 +939,9 @@ INSERT INTO `trigger_user` (`no`, `id`, `name`, `email`, `role_id`, `aksi`, `tgl
 (49, 85, 'nadiem', '', 0, 'Ada yang baru delete posting', '2020-04-13 20:31:58'),
 (50, 85, 'aaa', '', 0, 'Ada yang baru delete posting', '2020-04-13 20:32:09'),
 (51, 41, 'Jeki', 'jaki@gmail.com', 1, 'Jeki yang baru melakukan update profile menjadi Jaki', '2021-03-09 09:52:16'),
-(52, 85, 'yummy', '', 0, 'Ada yang baru delete posting', '2021-03-09 10:40:10');
+(52, 85, 'yummy', '', 0, 'Ada yang baru delete posting', '2021-03-09 10:40:10'),
+(53, 41, 'Jaki', 'jaki@gmail.com', 1, 'Jaki yang baru melakukan update profile menjadi Jaki alf', '2021-03-31 21:45:22'),
+(54, 82, 'adasdas', '', 0, 'Ada yang baru delete posting', '2021-04-01 16:23:54');
 
 -- --------------------------------------------------------
 
@@ -918,13 +974,12 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `gender`, `email`, `image`, `passsword`, `role_id`, `is_active`, `date_created`, `status`, `birthdate`, `city`, `bio`, `work`, `instansi`, `sertif`, `verified`) VALUES
-(41, 'Jaki', 'Male', 'jaki@gmail.com', 'Zaki_Al_Faridzi_Formal_Photo.jpg', '$2y$10$VPWRjJtMRr1FLWpVAC91QuIgLOKATtll33owfV52VSJztS0Zt6Udy', 1, 1, 1579687251, 'offline-dot', '0000-00-00', '', '', '', '', '', 0),
+(41, 'Jaki alf', 'Male', 'jaki@gmail.com', 'avatar5.png', '$2y$10$VPWRjJtMRr1FLWpVAC91QuIgLOKATtll33owfV52VSJztS0Zt6Udy', 1, 1, 1579687251, 'offline-dot', '0000-00-00', '', '', '', '', '', 0),
 (65, 'zakialf', 'Male', 'zalfaridzi9@gmail.com', 'default.png', '$2y$10$vQ0mQ6jFL2XXCHIdFXlAaeiV/H0w..DDVRA4skipgBHZ6kcX2yrQ6', 3, 1, 1583292406, 'offline-dot', '0000-00-00', '', 'Hello World!', '', 'NU', '5e5f1ff6af8ae.jpg', 1),
 (74, 'Rahmat', 'Male', 'rahmatibrahim141@gmail.com', 'default.png', '$2y$10$oxVDkKT8z2tVBv3jqF6UNeRNBPNNHHTJlkp7ahB1978W2iVmCFe1e', 3, 2, 1584434428, 'online-dot', '0000-00-00', '', 'Hello World!', '', 'Instansi', '5e708cfc4fc36.png', 1),
 (77, 'enjang', 'Male', 'enjang@mail.com', 'default.png', '$2y$10$rJdGHDuFv7tknXFZgBDGmOGRkNgE6SNoscXsaSBrWM8yaoAOoQcvW', 3, 1, 1585032852, 'offline-dot', '0000-00-00', '', 'Hello World!', '', 'NU', '5e79ae9451f58.jpg', 1),
 (79, 'Kipli', 'Male', 'kipli@mail.com', 'default.png', '$2y$10$bQ0yeWos60h4ghzbabUi2uu5qjrpvkieUO1fmhOg1E5XVqohrejs.', 3, 1, 1585034822, '', '0000-00-00', '', 'Hello World!', '', 'MUI', '5e79b64623bf8.jpg', 1),
-(80, 'ersa', 'Female', 'ersa@gmail.com', 'default.png', '$2y$10$gsLzDx0Dlbd/qFFEeMsOjeAwodTv6WsunmTTco4vF9T3YYoF8C.4.', 2, 1, 1586685825, 'offline-dot', '0000-00-00', '', 'Hello World!', '', '', '', 0),
-(81, 'fanny', 'Female', 'fanny@gmail.com', 'default.png', '$2y$10$OOMAeqVfV2xJqmk7lxr8hOx.XZ5cMaFZ6Wjp/UotK.QQyhiQ0pIRa', 2, 1, 1586685919, 'offline-dot', '0000-00-00', '', 'Hello World!', '', '', '', 0),
+(80, 'ersa', 'Female', 'ersa@gmail.com', 'default.png', '$2y$10$gsLzDx0Dlbd/qFFEeMsOjeAwodTv6WsunmTTco4vF9T3YYoF8C.4.', 2, 2, 1586685825, 'offline-dot', '0000-00-00', '', 'Hello World!', '', '', '', 0),
 (82, 'matt', 'Male', 'matt@mail.com', '5e9482dd5a109.jpg', '$2y$10$7VKM2pCSf5csFCECGLb7ReCbfcETY7GBqb2Rv3g0laSJI9vTS7miu', 2, 1, 1586708436, 'offline-dot', '0000-00-00', '', 'Hello World!', '', '', '', 0),
 (85, 'Muhammad Abizard Al Thareq', 'Male', 'm.abizard1123@gmail.com', 'default.png', '$2y$10$AUVpDR593bbdsQz7vOcuWuXIRmuhfLdqO7pi3SjAMKS185xbLHKpy', 2, 1, 1586782172, 'offline-dot', '0000-00-00', '', 'Hello World!', '', '', '', 0);
 
@@ -1197,19 +1252,19 @@ ALTER TABLE `user_token`
 -- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `id_follow` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
+  MODIFY `id_follow` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `group_comment`
@@ -1227,7 +1282,7 @@ ALTER TABLE `group_information`
 -- AUTO_INCREMENT for table `group_notif`
 --
 ALTER TABLE `group_notif`
-  MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `group_postingan`
@@ -1287,7 +1342,7 @@ ALTER TABLE `pesan`
 -- AUTO_INCREMENT for table `postgen`
 --
 ALTER TABLE `postgen`
-  MODIFY `id_posting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_posting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `posting`
@@ -1311,13 +1366,13 @@ ALTER TABLE `suka`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `trigger_user`
 --
 ALTER TABLE `trigger_user`
-  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -1389,7 +1444,7 @@ DELIMITER $$
 --
 -- Events
 --
-CREATE DEFINER=`root`@`localhost` EVENT `backup_tubes` ON SCHEDULE EVERY 1 MINUTE STARTS '2020-04-13 11:23:30' ON COMPLETION NOT PRESERVE ENABLE DO CALL backup_pesan_comment_like()$$
+CREATE DEFINER=`root`@`localhost` EVENT `backup_tubes_myvoqu` ON SCHEDULE EVERY 1 MINUTE STARTS '2020-04-02 14:53:25' ON COMPLETION NOT PRESERVE ENABLE DO CALL backup_semua_tabel()$$
 
 DELIMITER ;
 COMMIT;
