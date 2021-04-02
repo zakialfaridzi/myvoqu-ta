@@ -163,7 +163,7 @@ class User extends CI_Controller
 
             $this->session->set_flashdata('mm', '<div class="alert alert-success alert-dismissible show" role="alert">
       <strong>Congratulations!</strong> your post is deleted.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
       </button>
   </div>');

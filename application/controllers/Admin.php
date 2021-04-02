@@ -461,12 +461,49 @@ class Admin extends CI_Controller
         );
 
         $this->Admin_model->activate_data($where, $data, 'user');
-        $this->session->set_flashdata('message', '<div class="alert alert-info alert-dismissible fade show" role="alert">
-        Mentor has been <strong>Verified</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
-      </div>');
+
+        //data udh verfied, tinggal aktifasi dari mentor
+        //ambil email dari id_usernya
+
+        $get_email = $this->db->get_where('user', ['id' => $id])->row_array();
+
+        $email = $get_email['email'];
+
+        // var_dump($email);die();
+
+        //siapkan token
+
+        $token = base64_encode(random_bytes(32));
+        $user_token = [
+            'email' => $email,
+            'token' => $token,
+            'date_created' => time(),
+        ];
+        $this->db->insert('user_token', $user_token);
+
+        $this->_sendEmail($email, $token);
+
+        $this->session->set_flashdata('toast', '<div role="alert" aria-live="assertive" aria-atomic="true" class="toast position-fixed mr-2" data-autohide="false"
+		style="position: fixed; bottom: 0; right: 0;">
+		<div class="toast-header">
+			<span style="font-size: 1.5em; color: #06db00; margin-right: 10px;">
+				<i class="fas fa-check-circle"></i>
+			</span>
+			<strong class="mr-auto text-success">Perhatian!</strong>
+
+			<small>Baru saja</small>
+			<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="toast-body">
+			Berhasil Mengaktifasi mentor dan email aktifasi berhasil dikirim! <span
+				style="font-size: 1em; color: #06db00;">
+				<i class="fas fa-smile"></i>
+			</span>
+		</div>
+	</div>');
+
         redirect('Admin/indexMentor');
     }
 
@@ -1201,6 +1238,37 @@ class Admin extends CI_Controller
         $writer = PHPExcel_IOFactory::createWriter($obj, 'Excel2007');
         $writer->save('php://output');
         exit;
+    }
+
+    private function _sendEmail($mail, $token)
+    {
+
+        $this->load->library('email');
+
+        $config = [
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_user' => 'tepung1123@gmail.com',
+            'smtp_pass' => 'Password;',
+            'smtp_port' => 465,
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'newline' => "\r\n",
+        ];
+
+        $this->email->initialize($config);
+        $this->email->from('tepung1123@gmail.com', 'Admin MyVoQu');
+        $this->email->to($mail);
+
+        $this->email->subject('Account Verification');
+        $this->email->message('click this link to verify your account : <a href="' . base_url() . 'auth/verify?email=' . $mail . '&token=' . urlencode($token) . '">Activate</a>');
+
+        if ($this->email->send()) {
+            return true;
+        } else {
+            echo $this->email->print_debugger();
+            die;
+        }
     }
 
     // public function findTodo($id)
