@@ -28,14 +28,14 @@
                                 <?php foreach ($pollow as $fl) : ?>
                                     <ul class="follow-me list-inline" style="margin-right: 110px;">
                                         <li>
-                                            <a class="btn btn-primary" style="background-color: #6fb8df; margin-top: 4px; margin-right:4px; outline: none;" href="<?= base_url('chat/chat2/') . $this->uri->segment('3'); ?>">
+                                            <a class="btn btn-primary" style="background-color: #6fb8df; margin-top: 4px; margin-right:40px; outline: none;" href="<?= base_url('chat/chat2/') . $this->uri->segment('3'); ?>">
                                                 Send Message
                                             </a>
                                         </li>
                                     </ul>
                                     <ul class="follow-me list-inline">
                                         <li>
-                                            <?php if ($fl->id_userfollow == $this->session->userdata('id') and $fl->id_usertarget == $this->uri->segment('3') and $fl->stat == 1) : ?>
+                                            <?php if($fl->id_userfollow == $this->session->userdata('id') and $fl->id_usertarget == $this->uri->segment('3') and $fl->stat == 1) : ?>
                                                 <form method="post" action="<?= base_url('friend/updateUnFollow') . "/" . $this->uri->segment('3'); ?> ">
                                                     <input type="hidden" name="id_usertarget" value="<?= $this->uri->segment('3') ?>">
                                                     <input type="hidden" name="id_userfollow" value="<?= $this->session->userdata('id'); ?>">
@@ -47,17 +47,17 @@
 
                                                 </form>
 
-                                            <?php elseif ($fl->id_userfollow == $this->session->userdata('id') and $fl->id_usertarget == $this->uri->segment('3') and $fl->stat == 2) : ?>
+                                            <?php elseif($fl->id_userfollow == $this->session->userdata('id') and $fl->id_usertarget == $this->uri->segment('3') and $fl->stat == 2) : ?>
                                                 <form method="post" action="<?= base_url('friend/updateFollow') . "/" . $this->uri->segment('3'); ?> ">
                                                     <input type="hidden" name="id_usertarget" value="<?= $this->uri->segment('3') ?>">
                                                     <input type="hidden" name="id_userfollow" value="<?= $this->session->userdata('id'); ?>">
                                                     <input type="hidden" name="nama" value="<?= $i->name; ?>">
                                                     <input type="hidden" name="bio" value="<?= $i->bio; ?>">
                                                     <input type="hidden" name="image" value="<?= $i->image; ?>">
-                                                    <button class="btn btn-primary" style="background-color: #6fb8df; margin-top: 4px; outline: none;">Follow</button>
+                                                    <button class="btn btn-primary" style="background-color: #6fb8df; margin-top: 4px; outline: none;">Follow Again?</button>
                                                 </form>
 
-                                            <?php elseif ($fl->id_userfollow != $this->session->userdata('id') and $fl->id_usertarget == $this->uri->segment('3') ) : ?>
+                                            <?php elseif($fl->id_userfollow == $this->uri->segment('3') and $fl->id_usertarget == $this->uri->segment('3') and $fl->stat == 2) : ?>
                                                 <form method="post" action="<?= base_url('friend/addFollow') . "/" . $this->uri->segment('3'); ?>">
                                                     <input type="hidden" name="id_usertarget" value="<?= $this->uri->segment('3') ?>">
                                                     <input type="hidden" name="id_userfollow" value="<?= $this->session->userdata('id'); ?>">
