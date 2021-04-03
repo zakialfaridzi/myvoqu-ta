@@ -20,7 +20,8 @@ class User_model extends CI_model
 
     public function getOherUserData()
     {
-        return $this->db->query('SELECT * FROM user u where id !=' . $this->session->userdata('id') . ' and role_id <> 1 and role_id <> 3')->result();
+        return $this->db->query('SELECT * FROM user 
+        where id != ' . $this->session->userdata('id'). ' and gender = "' . $this->session->userdata('gender'). '"  and role_id <> 1 and role_id <> 3')->result();
     }
 
     public function getOtherUserData()
@@ -30,7 +31,7 @@ class User_model extends CI_model
 
     public function getSuggest()
     {
-        return $this->db->query('SELECT distinct id, name, id_usertarget, bio, image FROM user u join follow f on (u.id = f.id_usertarget) where id_usertarget not in (select id_usertarget from follow where id_userfollow =' . $this->session->userdata('id') . ') and role_id = 2 and id !=' . $this->session->userdata('id') . ' limit 4')->result();
+        return $this->db->query('SELECT distinct id, name, id_usertarget, bio, image FROM user u join follow f on (u.id = f.id_usertarget) where id_usertarget not in (select id_usertarget from follow where id_userfollow =' . $this->session->userdata('id') . ') and role_id = 2 and gender ="' . $this->session->userdata('gender') .  '" and id !=' . $this->session->userdata('id') .  ' limit 4')->result();
     }
 
     // public function getFollow()
@@ -203,6 +204,13 @@ class User_model extends CI_model
         where id_usertarget != ' . $this->session->userdata('id') . ' order by id_follow asc')->result();
     }
 
+    public function getPollow()
+    {
+        return $this->db->query('SELECT * FROM follow')->result();
+    }
+
+
+
     // public function getFollow()
     // {
     //     return $this->db->query('SELECT distinct id_follow, stat, id_userfollow, id_usertarget, name, id, image, bio FROM user right join follow on follow.id_userfollow = user.id
@@ -325,22 +333,54 @@ class User_model extends CI_model
         return $query->result();
     }
 
-    public function getFollowingVisit()
-    {
-        $this->db->select('id_usertarget, namatarget, imagetarget, biotarget');
-        $this->db->from('follow');
-        $this->db->join('user', 'follow.id_userfollow = user.id');
-        $this->db->where('id_userfollow =', $this->uri->segment('3'));
-        $query = $this->db->get();
-        return $query->result();
-    }
+    // public function getFollowingVisit()
+    // {
+    //     $this->db->select('id_usertarget, namatarget, imagetarget, biotarget');
+    //     $this->db->from('follow');
+    //     $this->db->join('user', 'follow.id_userfollow = user.id');
+    //     $this->db->where('id_userfollow =', $this->uri->segment('3'));
+    //     $query = $this->db->get();
+    //     return $query->result();
+    // }
 
-    public function getFollowersVisit()
-    {
-        return $this->db->query("SELECT * FROM follow f join user u on(u.id = f.id_userfollow) where id_usertarget =$")->result();
-    }
+    // public function getFollowersVisit()
+    // {
+    //     return $this->db->query("SELECT * FROM follow f join user u on(u.id = f.id_userfollow) where id_usertarget =$")->result();
+    // }
+
     public function getPostgen()
     {
         return $this->db->query('SELECT * FROM postgen p join user u on(p.id_user = u.id) order by p.id_posting desc')->result();
     }
+
+    public function getFollowingVisit()
+	{
+		return $this->db->query('SELECT id_usertarget, namatarget, imagetarget, biotarget FROM follow f join user u on(u.id = f.id_userfollow) where id_userfollow =' . $this->uri->segment('3') . ' and stat = 1')->result();
+	}
+
+	public function getFollowersVisit()
+	{
+		return $this->db->query('SELECT * FROM follow f join user u on(u.id = f.id_userfollow) where id_usertarget = ' . $this->uri->segment('3') . ' and stat = 1')->result();
+	}
+
+    //
+    public function getInfoProfileVisit()
+	{
+		$query = $this->db->query('SELECT * from user where id = ' . $this->uri->segment('3'));
+
+		return $query->result();
+	}
+
+    public function getUserPostProfileVisit()
+	{
+		return $this->db->query('SELECT * FROM posting p join user u on(p.id_user = u.id) where id = ' . $this->uri->segment('3') . ' order by p.id_posting desc')->result();
+	}
+
+
+
+
+
+
+
+
 }

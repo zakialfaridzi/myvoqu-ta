@@ -17,7 +17,7 @@
                         <?php }?>
                     </h5>
                     <?php foreach ($jumlahfollowers as $jf): ?>
-                    <a href="#" class="text-white"><i class="ion ion-android-person-add"></i><?=$jf->jumlahfollowers;?>
+                    <a href="<?=base_url('profile/followers');?>" class="text-white"><i class="ion ion-android-person-add"></i><?=$jf->jumlahfollowers;?>
                         followers</a>
                     <?php endforeach;?>
                 </div>

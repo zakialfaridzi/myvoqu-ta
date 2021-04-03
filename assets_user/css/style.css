@@ -1564,6 +1564,20 @@ video.post-video,
 	border-radius: 4px;
 }
 
+html {
+	scroll-behavior: smooth;
+   }
+   
+   a {
+	text-decoration: none;
+	color: black;
+   } 
+   
+   #down {
+	margin-top: 100%;
+	padding-bottom: 25%;
+   } 
+
 .chat-room .send-message button {
 	background: #000;
 	color: #fff;

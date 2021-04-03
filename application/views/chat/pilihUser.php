@@ -1,10 +1,10 @@
 <!-- Chat Room
             ================================================= -->
-<div class="chat-room">
+<div class="chat-room"style="height: 100px;">
     <b>All Friends</b>
 
     <a href="<?= base_url('chat/index'); ?>" style='float:right; color:white; background-color: #6FB8DF; border:none; border-radius: 10px;'><b>&nbsp; All Message Received&nbsp;</b></a>
-    <div class="row">
+    <div class="row" >
         <div class="col-md-12">
 
             <!-- Contact List in Left-->
@@ -13,7 +13,7 @@
 
             <?php foreach ($getChat as $pst) : ?>
                     <?php if ($pst->id_usertarget != $this->session->userdata('id')) : ?>
-                        <li class="active">
+                        <li class="active" style="height: 100px;">
                             <a href="<?= base_url('chat/chat2/') . $pst->id_usertarget; ?>">
                                 <div class="contact">
                                     <img src="<?= base_url('assets_user/') ?>images/<?= $pst->image; ?>" alt="" class="profile-photo-sm pull-left" />
