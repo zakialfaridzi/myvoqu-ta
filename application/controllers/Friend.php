@@ -142,40 +142,29 @@ class Friend extends CI_Controller
         }
     }
 
-    public function followersVisit()
+    public function followersVisit($id)
 	{
 
+        $data['posting'] = $this->User_model->getUserPostProfileVisit();
 		$data['search'] = 'none';
 		$data['upload'] = 'none';
 		$data['colorSearch'] = '#0486FE';
-		$data['info'] = $this->User_model->getInfoProfileVisit();
+		$data['info'] = $this->User_model->getInfoProfileVisit($id);
 		$data['title'] = 'Followers';
 		$data['active'] = 'active';
-		$data['followersVisit'] = $this->User_model->getFollowersVisit();
-
-		if (empty($data['user']['email'])) {
-
-			$this->sessionLogin();
-		} else if ($data['user']['role_id'] == 1) {
-			$this->session->set_flashdata('message', '<div class="alert alert-danger ">
-                  Your access is only for admin, sorry :(
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>');
-			redirect('admin');
-		} else {
+		$data['followersVisit'] = $this->User_model->getFollowersVisit($id);
+        $data['pollow'] = $this->User_model->getpollow($id);
 
 			$data['otherUser'] = $this->User_model->getOherUserData();
 			$this->load->view('templates_newsfeed/topbar', $data);
 			$this->load->view('templates_profile/bg_profile_visit', $data);
 			$this->load->view('templates_profile/followersVisit', $data);
 			$this->load->view('templates_profile/end', $data);
-		}
 	}
 
 	public function followingVisit()
 	{
+        $data['posting'] = $this->User_model->getUserPostProfileVisit();
 		$data['search'] = 'none';
 		$data['upload'] = 'none';
 		$data['colorSearch'] = '#0486FE';
@@ -183,25 +172,14 @@ class Friend extends CI_Controller
 		$data['title'] = 'Following';
 		$data['active'] = 'active';
 		$data['followingVisit'] = $this->User_model->getFollowingVisit();
+        $data['pollow'] = $this->User_model->getpollow();
 
-		if (empty($data['user']['email'])) {
-
-			$this->sessionLogin();
-		} else if ($data['user']['role_id'] == 1) {
-			$this->session->set_flashdata('message', '<div class="alert alert-danger ">
-                  Your access is only for admin, sorry :(
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>');
-			redirect('admin');
-		} else {
-
+		
 			$data['otherUser'] = $this->User_model->getOherUserData();
 			$this->load->view('templates_newsfeed/topbar', $data);
 			$this->load->view('templates_profile/bg_profile_visit', $data);
 			$this->load->view('templates_profile/followingVisit', $data);
 			$this->load->view('templates_profile/end', $data);
-		}
+		
 	}
 }

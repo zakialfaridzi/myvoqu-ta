@@ -75,6 +75,7 @@ class Chat extends CI_Controller
         $data['idpost'] = $this->User_model->getidpost();
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
+        $data['getChat'] = $this->User_model->getChat();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();

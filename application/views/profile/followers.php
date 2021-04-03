@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-7">
-            <?php foreach ($followersVisit as $fw) : ?>
+            <?php foreach ($followers as $fw) : ?>
                 <div class="chat-room" style="height: 100px;">
                     <div class="row" >
                         <div class="col-md-12" style="height: 100px;">

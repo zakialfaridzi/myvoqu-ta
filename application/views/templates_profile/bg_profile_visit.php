@@ -17,12 +17,11 @@
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <?php foreach ($follow3 as $sk) : ?>
                             <ul class="list-inline profile-menu">
                                 <li><a href="<?= base_url('profile'); ?>" class="<?= $active; ?>">Timeline</a></li>
                                 <li><a href="timeline-about.html" class="<?= $active; ?>">About</a></li>
-                                <li><a href=" <?= base_url('templates_profile/followingvisit') ?>" class="<?= $active; ?>">Following</a></li>
-                                <li><a href="<?= base_url('templates_profile/followersvisit') ?>" class="<?= $active; ?>">Followers </a></li>
+                                <li><a href=" <?= base_url('friend/followingvisit') . "/" . $this->uri->segment('3'); ?>" class="<?= $active; ?>">Following</a></li>
+                                <li><a href="<?= base_url('friend/followersvisit') . "/" . $this->uri->segment('3'); ?>" class="<?= $active; ?>">Followers </a></li>
                             </ul>
 
 
@@ -72,7 +71,6 @@
 
                                         </li>
                                     </ul>
-                                <?php endforeach; ?>
                             <?php endforeach; ?>
 
 

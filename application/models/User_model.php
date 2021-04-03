@@ -355,19 +355,25 @@ class User_model extends CI_model
 
     public function getFollowingVisit()
 	{
-		return $this->db->query('SELECT id_usertarget, namatarget, imagetarget, biotarget FROM follow f join user u on(u.id = f.id_userfollow) where stat = 1')->result();
+		return $this->db->query('SELECT id_usertarget, namatarget, imagetarget, biotarget FROM follow f join user u on(u.id = f.id_userfollow) where id_userfollow =' . $this->uri->segment('3') . ' and stat = 1')->result();
 	}
 
 	public function getFollowersVisit()
 	{
-		return $this->db->query('SELECT * FROM follow f join user u on(u.id = f.id_userfollow) where stat = 1')->result();
+		return $this->db->query('SELECT * FROM follow f join user u on(u.id = f.id_userfollow) where id_usertarget = ' . $this->uri->segment('3') . ' and stat = 1')->result();
 	}
 
     //
     public function getInfoProfileVisit()
 	{
-		$query = $this->db->query('SELECT * from user');
+		$query = $this->db->query('SELECT * from user where id = ' . $this->uri->segment('3'));
+
 		return $query->result();
+	}
+
+    public function getUserPostProfileVisit()
+	{
+		return $this->db->query('SELECT * FROM posting p join user u on(p.id_user = u.id) where id = ' . $this->uri->segment('3') . ' order by p.id_posting desc')->result();
 	}
 
 
