@@ -8,6 +8,8 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
+
+        //abizard
     }
 
     public function index()
@@ -61,7 +63,7 @@ class Auth extends CI_Controller
                     $data = [
                         'email' => $user['email'],
                         'role_id' => $user['role_id'],
-                        'id' => $user['id'],
+                        'id' => $user['id'], 'gender' => $user['gender'],
                     ];
 
                     $this->session->set_userdata($data);
@@ -182,7 +184,7 @@ class Auth extends CI_Controller
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
             'smtp_user' => 'tepung1123@gmail.com',
-            'smtp_pass' => 'Password;',
+            'smtp_pass' => 'haM9p{&3r?GRP{.}',
             'smtp_port' => 465,
             'mailtype' => 'html',
             'charset' => 'utf-8',
