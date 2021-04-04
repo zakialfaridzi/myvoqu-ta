@@ -50,7 +50,7 @@ class Friend extends CI_Controller
         } else {
             $this->load->view('templates_newsfeed/topbar', $data);
             $this->load->view('templates_newsfeed/header', $data);
-            $this->load->view('friend/index.php');
+            $this->load->view('friend/index', $data);
             $this->load->view('templates_newsfeed/footer');
         }
     }
@@ -139,6 +139,7 @@ class Friend extends CI_Controller
         }
     }
 
+<<<<<<< HEAD
     public function followersVisit()
     {
 
@@ -173,6 +174,31 @@ class Friend extends CI_Controller
 
     public function followingVisit()
     {
+=======
+    public function followersVisit($id)
+    {
+
+        $data['posting'] = $this->User_model->getUserPostProfileVisit();
+        $data['search'] = 'none';
+        $data['upload'] = 'none';
+        $data['colorSearch'] = '#0486FE';
+        $data['info'] = $this->User_model->getInfoProfileVisit($id);
+        $data['title'] = 'Followers';
+        $data['active'] = 'active';
+        $data['followersVisit'] = $this->User_model->getFollowersVisit($id);
+        $data['pollow'] = $this->User_model->getpollow($id);
+
+        $data['otherUser'] = $this->User_model->getOherUserData();
+        $this->load->view('templates_newsfeed/topbar', $data);
+        $this->load->view('templates_profile/bg_profile_visit', $data);
+        $this->load->view('templates_profile/followersVisit', $data);
+        $this->load->view('templates_profile/end', $data);
+    }
+
+    public function followingVisit()
+    {
+        $data['posting'] = $this->User_model->getUserPostProfileVisit();
+>>>>>>> 8188a7fcb487f5c5ff07fb51421e8aa85444d06a
         $data['search'] = 'none';
         $data['upload'] = 'none';
         $data['colorSearch'] = '#0486FE';
@@ -180,6 +206,7 @@ class Friend extends CI_Controller
         $data['title'] = 'Following';
         $data['active'] = 'active';
         $data['followingVisit'] = $this->User_model->getFollowingVisit();
+<<<<<<< HEAD
 
         if (empty($data['user']['email'])) {
 
@@ -202,3 +229,15 @@ class Friend extends CI_Controller
         }
     }
 }
+=======
+        $data['pollow'] = $this->User_model->getpollow();
+
+        $data['otherUser'] = $this->User_model->getOherUserData();
+        $this->load->view('templates_newsfeed/topbar', $data);
+        $this->load->view('templates_profile/bg_profile_visit', $data);
+        $this->load->view('templates_profile/followingVisit', $data);
+        $this->load->view('templates_profile/end', $data);
+
+    }
+}
+>>>>>>> 8188a7fcb487f5c5ff07fb51421e8aa85444d06a

@@ -75,6 +75,7 @@ class Chat extends CI_Controller
         $data['idpost'] = $this->User_model->getidpost();
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
+        $data['getChat'] = $this->User_model->getChat();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -149,7 +150,7 @@ class Chat extends CI_Controller
             'id_pengirim' => $this->input->post('id'),
             'date' => time(),
             'pesan' => $this->input->post('isi_pesan'),
-            'sudah_dibaca' => 'belum'
+            'sudah_dibaca' => 'belum',
         );
         $this->User_model->kirimPesan($data);
         redirect("chat/chat2/" . $id);

@@ -1,5 +1,5 @@
 <div class="chat-room">
-<?php foreach($pesan3 as $pst) : ?>
+<?php foreach(array_slice($pesan3 , 0, 1) as $pst) : ?>
     <h3><?php if ($pst->id_pengirim == $this->session->userdata('id')) : ?>
         <?php else : ?>
             <?= $pst->name; ?>'s room chat
@@ -8,12 +8,16 @@
 <?php endforeach; ?>
     <div class="row">
         <div class="col-md-12">
+        <p>Helmi</p>
 
         
 
 
             <!--Chat Messages in Right-->
             <div class="tab-content scrollbar-wrapper wrapper scrollbar-outer">
+            <html>
+  <a href="#downnn">Click Here, scroll to textfield</a>
+</html> 
                 <div class="tab-pane active" id="contact-1">
                     <div class="chat-body">
                         <?php foreach ($pesan3 as $pst) : ?>
@@ -40,18 +44,18 @@
 
                             </ul>
                         <?php endforeach; ?>
-
                     </div>
-                    <div class="send-message">
-                <div class="post-comment">
+                    <div class="send-message" id="downnn">
+                <div class="post-comment" style="height: 250px;">
                     <?php echo smiley_js(); ?>
                     <form method="post" action="<?= base_url('Chat/kirimPesan') . "/" . $this->uri->segment('3'); ?>">
                         <input type="text" name="isi_pesan" id="comment" class="form-control" placeholder="Type your message">
                         <input type="hidden" name="id" value="<?= $this->session->userdata('id'); ?>">
-                        <input type="submit" class="btn-primary" style="height: 45px; margin-left:460px; margin-top: 7px; background-color: #6fb8df;" value="Send">
+                        <input type="submit" class="btn-primary" style="height: 45px; margin-left:460px; margin-top: 7px; background-color: #6fb8df; scroll-behavior: smooth;" value="Send">
                     </form>
                     <p>Click to insert a smiley!</p>
                     <?php echo $smiley_table; ?>
+                    
                 </div>
             </div>
                 </div>
@@ -59,6 +63,10 @@
 
             <!--Chat Messages in Right End-->
         </div>
+
     </div>
 </div>
+
 </div>
+
+

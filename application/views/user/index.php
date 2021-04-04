@@ -97,6 +97,21 @@
 
 </div>
 
+<script src="<?=base_url('assets_user/js/search.js');?>"></script>
+
+<div id="snackbar" class="show">
+
+    <button type="button" id="close" class="close" data-dismiss="alert" aria-label="Close" style="color: white;">
+        <span aria-hidden="true" onclick="myFunction()">&times;</span>
+    </button>
+
+
+    <p>Sudah kah kamu infaq hari ini?<br>
+        jika belum, <a href="<?=base_url('infaq')?>" class="text-red">klik disini</a> untuk infaq</p>
+
+
+</div>
+
 
 
 

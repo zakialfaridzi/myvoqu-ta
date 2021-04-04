@@ -17,61 +17,63 @@
                         <?php }?>
                     </h5>
                     <?php foreach ($jumlahfollowers as $jf): ?>
-                    <a href="#" class="text-white"><i class="ion ion-android-person-add"></i><?=$jf->jumlahfollowers;?>
+                    <a href="<?=base_url('profile/followers');?>" class="text-white"><i
+                            class="ion ion-android-person-add"></i><?=$jf->jumlahfollowers;?>
                         followers</a>
                     <?php endforeach;?>
                 </div>
                 <!--profile card ends-->
+                <div style="">
+                    <ul class="nav-news-feed">
 
-                <ul class="nav-news-feed">
+                        <li><i class="far fa-bell" style="color: tomato;"></i>
+                            <div><a href="<?=base_url('notification')?>">Notification</a></div>
+                        </li>
 
-                    <li><i class="far fa-bell" style="color: tomato;"></i>
-                        <div><a href="<?=base_url('notification')?>">Notification</a></div>
-                    </li>
+                        <li><i class="fas fa-book-reader" style="color: burlywood;"></i>
+                            <div><a href="<?=base_url('library')?>">Material Library</a></div>
+                        </li>
 
-                    <li><i class="fas fa-book-reader" style="color: burlywood;"></i>
-                        <div><a href="<?=base_url('library')?>">Material Library</a></div>
-                    </li>
+                        <li><i class="fas fa-search" style="color: peachpuff;"></i>
+                            <div><a href="<?=base_url('friend')?>">Explore</a></div>
+                        </li>
 
-                    <li><i class="fas fa-search" style="color: peachpuff;"></i>
-                        <div><a href="<?=base_url('friend')?>">Explore</a></div>
-                    </li>
+                        <li><i class="fas fa-users" style="color: royalblue;"></i>
+                            <div><a href="<?=base_url('group')?>">Group</a></div>
+                        </li>
 
-                    <li><i class="fas fa-users" style="color: royalblue;"></i>
-                        <div><a href="<?=base_url('group')?>">Group</a></div>
-                    </li>
+                        <li><i class="fas fa-comments" style="color: yellowgreen;"></i>
+                            <div><a href="<?=base_url('chat/index');?>">Messages</a></div>
+                        </li>
 
-                    <li><i class="fas fa-comments" style="color: yellowgreen;"></i>
-                        <div><a href="<?=base_url('chat/index');?>">Messages</a></div>
-                    </li>
+                        <li><i class="fas fa-comment-dots" style="color: black;"></i>
+                            <div><a href="<?=base_url('./Chat');?>" target="_blank">Chat all</a></div>
+                        </li>
 
-                    <li><i class="fas fa-comment-dots" style="color: black;"></i>
-                        <div><a href="<?=base_url('./Chat');?>" target="_blank">Chat all</a></div>
-                    </li>
+                        <li><i class="fa fa-video text-muted" style="color: black;"></i>
+                            <div><a href="<?=base_url('./Colab');?>" target="_blank">Collaboration</a></div>
+                        </li>
 
-                    <li><i class="fa fa-video text-muted" style="color: black;"></i>
-                        <div><a href="<?=base_url('./Colab');?>" target="_blank">Collaboration</a></div>
-                    </li>
-
-                </ul>
-                <!--news-feed links ends-->
-                <div id="container1">
-                    <div id="chat-block">
-                        <div class="title">Chat online</div>
-                        <ul class="online-users list-inline">
-                            <?php foreach ($otherUser as $ou):
+                    </ul>
+                    <!--news-feed links ends-->
+                    <div id="container1">
+                        <div id="chat-block">
+                            <div class="title">Chat online</div>
+                            <ul class="online-users list-inline">
+                                <?php foreach ($otherUser as $ou):
     if ($ou->role_id != 1) {?>
-                            <li>
-                                <a href="newsfeed-messages.html" title="<?=$ou->name;?>"><img
-                                        src="<?=base_url('assets_user/images/' . $ou->image);?>" alt="user"
-                                        class="img-responsive profile-photo" /><span class="<?=$ou->status;?>"
-                                        id="keyword"></span>
-                                </a>
-                            </li>
-                            <?php }
+                                <li>
+                                    <a href="newsfeed-messages.html" title="<?=$ou->name;?>"><img
+                                            src="<?=base_url('assets_user/images/' . $ou->image);?>" alt="user"
+                                            class="img-responsive profile-photo" /><span class="<?=$ou->status;?>"
+                                            id="keyword"></span>
+                                    </a>
+                                </li>
+                                <?php }
 endforeach;?>
 
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -140,4 +142,5 @@ endforeach;?>
 
                     </div>
                 </div><!-- Post Create Box End-->
+
                 <?=$this->session->flashdata('message');?>
