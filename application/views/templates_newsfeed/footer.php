@@ -1,4 +1,4 @@
-<div class="col-md-2 static">
+<div class="col-md-2" style="position: fixed;margin-left: 900px;">
     <div class="suggestions" id="sticky-sidebar">
         <h4 class="grey">Suggestion to Follow</h4>
         <?php foreach ($suggestion as $ou): ?>
@@ -39,18 +39,65 @@
 
 
                         </ul>
+
+
                     </div>
 
+                    <div style="width: 200px;height:60px;margin-top: 20px;">
 
 
+
+                        <div class="thumbnail">
+                            <img src="https://www.w3schools.com/howto/img_avatar.png" alt="...">
+                            <div class="caption">
+                                <h3>Thumbnail label</h3>
+                                <p>...</p>
+                                <p><a href="#" class="btn btn-info" role="button">Button</a> <a href="#"
+                                        class="btn btn-default" role="button">Button</a></p>
+                            </div>
+                        </div>
+
+
+
+                    </div>
                 </div>
             </div>
+
+
+
+
+
+
         </div>
     </div>
+
 </div>
 </div>
 </div>
 </div>
+</div>
+</div>
+
+<style>
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 40%;
+    border-radius: 5px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+img {
+    border-radius: 5px 5px 0 0;
+}
+
+.container {
+    padding: 2px 16px;
+}
+</style>
 
 
 
@@ -241,6 +288,8 @@ $(document).ready(function() {
 
 <!-- Mi
 rrored from mythemestore.com/friend-finder/newsfeed.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 21 Jan 2020 16:01:50 GMT -->
+
+
 
 
 </html>

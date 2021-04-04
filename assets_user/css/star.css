@@ -10,7 +10,7 @@
 
       .cont {
         width: 93%;
-				/* margin-top: -200px; */
+				margin-top: -00px;
         max-width: 350px;
         text-align: center;
         margin: 4% auto;
@@ -36,7 +36,7 @@
         float: right;
         padding: 10px;
         font-size: 36px;
-        color: #444;
+        color: #2492db;
         transition: all .2s;
       }
 

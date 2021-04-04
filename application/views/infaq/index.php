@@ -48,7 +48,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <form action="<?=base_url('infaq/addInfaq')?>">
+                        <form action="<?=base_url('infaq/addInfaq')?>" method="POST">
 
                             <div class="alert alert-warning alert-dismissible show" role="alert">
                                 <strong>Hallo orang baik!</strong> kami tidak menepatkanbatas minimal atau maksimal
@@ -80,15 +80,19 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Nominal Infaq</label>
                                 <input type="number" class="form-control" id="exampleInputPassword1"
-                                    placeholder="1000000" name="jumlah">
+                                    placeholder="1000000" name="jumlah" required>
                             </div>
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
-                        <button type="submit" class="btn btn-info">Submit</button>
+                        <input type="submit" class="btn btn-info" value="Submit" id="submittt">
                     </div>
+
+
+
+
 
                     </form>
                 </div>
@@ -115,6 +119,7 @@
 </div>
 
 <script src="<?=base_url('assets_user/js/search.js');?>"></script>
+
 
 
 <?=$this->session->flashdata('pesan')?>

@@ -9,6 +9,12 @@ class Infaq extends CI_Controller
         parent::__construct();
         $this->load->model('User_model');
         $this->load->library('form_validation');
+
+        if (empty($this->session->userdata('id'))) {
+
+            redirect('auth');
+
+        }
     }
 
     public function sessionLogin()
@@ -61,17 +67,36 @@ class Infaq extends CI_Controller
 
         $jumlah = $this->input->post('jumlah');
 
-        $this->session->set_flashdata('pesan', '<div id="snackbar" class="show">
+        $bintang = $this->input->post('star');
 
-		<button type="button" id="close" class="close" data-dismiss="alert" aria-label="Close" style="color: white;">
-			<span aria-hidden="true" onclick="myFunction(3000)">&times;</span>
-		</button>
+        // var_dump($bintang);die();
+
+        if (is_null($bintang)) {
+            $this->session->set_flashdata('pesan', '<div id="snackbar" class="show">
+
+			<button type="button" id="close" class="close" data-dismiss="alert" aria-label="Close" style="color: white;">
+				<span aria-hidden="true" onclick="myFunction(3000)">&times;</span>
+			</button>
 
 
-		<p>Horee!! Kamu telah infaq hari ini!</p>
+			<p>Maaf!! Kamu belum pilih bintang!</p>
 
 
-		</div>');
+			</div>');
+
+        } else {
+            $this->session->set_flashdata('pesan', '<div id="snackbar" class="show">
+
+			<button type="button" id="close" class="close" data-dismiss="alert" aria-label="Close" style="color: white;">
+				<span aria-hidden="true" onclick="myFunction(3000)">&times;</span>
+			</button>
+
+
+			<p>Hore!! Kamu sudah infaq srbanyak ' . $jumlah . ' hari ini!</p>
+
+
+			</div>');
+        }
 
         redirect('infaq/index');
 
