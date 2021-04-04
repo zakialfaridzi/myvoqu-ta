@@ -487,7 +487,7 @@ class Auth extends CI_Controller
             //gausah kirim aktivasi ke email, admin nge acc baru kirim aktivasi ke email
 
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Selamat</strong> akun berhasil didaftarkan. Tunggu aktivasi dari admin dan link aktivasi akan dikirim ke email anda.
+                <strong>Selamat</strong> akun berhasil didaftarkan. Tunggu verifikasi dari admin dan link aktivasi akan dikirim ke email anda.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
