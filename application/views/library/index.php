@@ -1,28 +1,40 @@
 <?php if ($this->session->userdata('role_id') == 3) : ?>
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Tambah Surat
-    </button>
-    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
+    <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Tambah Surat
     </button> -->
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Tambah Surat</button>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Buat Group baru</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="<?= base_url('Library/addSurat') ?>" method="post">
+                        <div class="form-group">
+                            <label for="nama">Nama Surat</label>
+                            <input type="text" class="form-control" name="nama" placeholder="nama surat">
+                            <label for="arti">Arti Dari Surat</label>
+                            <input type="text" class="form-control" name="arti" placeholder="artinya">
+                            <label for="ayat">Berapa Ayat</label>
+                            <input type="text" class="form-control" name="ayat" placeholder="berapa ayat">
+                            <label for="suratke">Surat Ke</label>
+                            <input type="text" class="form-control" name="suratke" placeholder="surat ke berapa">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-info">Submit</button>
+                </div>
+                </form>
             </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+
         </div>
     </div>
-</div>
 
 <?php endif; ?>
 

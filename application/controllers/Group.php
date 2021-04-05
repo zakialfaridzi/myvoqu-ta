@@ -81,12 +81,6 @@ class Group extends CI_Controller
 			$data['otherUser'] = $this->User_model->getOherUserData();
 			$this->form_validation->set_rules('nama', 'Nama', 'required');
 			$this->form_validation->set_rules('desc', 'Desc', 'required');
-			if ($this->form_validation->run() == false) {
-				$this->load->view('templates_newsfeed/topbar', $data);
-				$this->load->view('templates_newsfeed/header', $data);
-				$this->load->view('group/tambah', $data);
-				// $this->load->view('templates_newsfeed/footer');
-			} else {
 				$datagroup = [
 					"nama" => $this->input->post('nama', true),
 					"deskripsi" => $this->input->post('desc', true),
@@ -95,7 +89,6 @@ class Group extends CI_Controller
 				];
 				$this->Group_model->tambahDataGroup($datagroup);
 				redirect('group');
-			}
 		}
 	}
 
@@ -140,7 +133,7 @@ class Group extends CI_Controller
 					"deskripsi" => $this->input->post('desc', true)
 				];
 				$this->Group_model->ubahDataGroup($idgroup, $datagroup);
-				redirect('group');
+				redirect('group/inGroup/'.$id);
 			}
 		}
 	}
@@ -240,7 +233,7 @@ class Group extends CI_Controller
 		if (empty($data['user']['email'])) {
 			$this->sessionLogin();
 		} elseif ($data['user']['role_id'] == 1) {
-			$this->session->set_flashdata('message', '<div class="alert alert-danger ">
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger ">
               Your access is only for admin, sorry :(
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -648,12 +641,12 @@ class Group extends CI_Controller
 			if (is_readable($file)) {
 				$this->Group_model->editPhoto($id, $data);
 	
-				$this->session->set_flashdata('mm', '<div class="alert alert-success alert-dismissible show" role="alert">
-					Berhasil diubah
+				$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+				Berhasil diubah
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
+					<span aria-hidden="true">&times;</span>
 					</button>
-					</div>');
+				</div>');
 	
 					redirect('Group/inGroup/'.$id);
 				} else {
@@ -699,11 +692,11 @@ class Group extends CI_Controller
 
 		if ($eror === 4) {
 			$this->session->set_flashdata('mm', '<div class="alert alert-danger alert-dismissible show" role="alert">
-      Chose an image or video first!
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-      </button>
-  </div>');
+				Chose an image or video first!
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>');
 
   		redirect('Group/inGroup/'.$id);
 
@@ -713,17 +706,17 @@ class Group extends CI_Controller
 		$ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'mp4', 'flv'];
 		$ekstensiGambar = explode('.', $namaFiles);
 		$ekstensiGambar = strtolower(end($ekstensiGambar));
-		if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
-			$this->session->set_flashdata('mm', '<div class="alert alert-danger alert-dismissible show" role="alert">
-      Your uploaded file, is not image or video!
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-      </button>
-  </div>');
+			if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+				$this->session->set_flashdata('mm', '<div class="alert alert-danger alert-dismissible show" role="alert">
+					Your uploaded file, is not image or video!
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>');
 
-  		redirect('Group/inGroup/'.$id);
-			return false;
-		}
+			redirect('Group/inGroup/'.$id);
+				return false;
+			}
 
 		$namaFilesBaru = uniqid();
 		$namaFilesBaru .= '.';

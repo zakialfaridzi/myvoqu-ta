@@ -15,7 +15,10 @@
             <div>
                 <div class="chat-room">
                     <div class="row">
-                    <a class="btn btn-primary" href="<?= base_url(); ?>group/ingroup/<?= $this->uri->segment('3'); ?>" style="text-decoration:none; float: left;"><- Back</a><br>
+                    <a href="<?= base_url(); ?>group/ingroup/<?= $this->uri->segment('3'); ?>" style="text-decoration:none; float: left;">
+                        <h4><span class="label label-primary"><span class="glyphicon glyphicon-arrow-left"></span> Back</span></h4>
+                    </a>
+                    <br>
                         <h3>Informasi</h3>
                         <div class="col-md-12">
                             <!-- Contact List in Left-->

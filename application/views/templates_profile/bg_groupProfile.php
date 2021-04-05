@@ -12,7 +12,7 @@
 						<div class="profile-info">
 							<?php foreach ($info as $i) : ?>
 								<?php foreach ($datagroup as $nama) : ?>
-									<img src="<?= base_url('assets/').'img/group/'. $nama['image'] ?>" alt="" class="img-responsive profile-photo" />
+									<img src="<?= base_url('assets/') . 'img/group/' . $nama['image'] ?>" alt="" class="img-responsive profile-photo" />
 									<h3 style="color: #6fb8df;"><?= $nama['nama']; ?></h3>
 									<p class="text-muted"><?= $nama['deskripsi']; ?></p>
 						</div>
@@ -29,7 +29,9 @@
 						</ul>
 						<ul class="follow-me list-inline">
 							<?php if ($user['role_id'] == 3) { ?>
-								<li><a href="<?= base_url(); ?>group/ubahGroup/<?= $nama['id']; ?>" class="btn btn-primary" style="background-color: #6fb8df; margin-top: 4px; outline: none;">Edit Group</a></li>
+								<li>
+									<a href="<?= base_url(); ?>group/ubahGroup/<?= $nama['id']; ?>" class="btn btn-primary" style="background-color: #6fb8df; margin-top: 4px; outline: none;">Edit Group</a>
+								</li>
 							<?php } ?>
 						<?php endforeach; ?>
 						</ul>

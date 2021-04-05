@@ -2,20 +2,13 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-7">
-
-            <!-- Post Create Box
-      ================================================= -->
-
-            <?= $this->session->flashdata('message'); ?>
-
-            <!-- Post Content
-      ================================================= -->
-
-            <?= $this->session->flashdata('mm'); ?>
+            <?= $this->session->flashdata('msg'); ?>
             <div>
                 <div class="chat-room">
                     <div class="row">
-                    <a class="btn btn-primary" href="<?= base_url(); ?>group/ingroup/<?= $this->uri->segment('3'); ?>" style="text-decoration:none; float: left;"><- Back</a>
+                    <a href="<?= base_url(); ?>group/ingroup/<?= $this->uri->segment('3'); ?>" style="text-decoration:none; float: left;">
+                        <h4><span class="label label-primary"><span class="glyphicon glyphicon-arrow-left"></span> Back</span></h4>
+                    </a>
                     <br>
                         <h3> Anggota Group</h3>
                         <div class="col-md-12">
@@ -38,7 +31,13 @@
                                         </div>
                                     </a>
                                 </li> -->
-                                <?php foreach ($anggota as $penghuni) : ?>
+                                
+                                <?php 
+                                if (empty($anggota)) {
+                                    echo '<center>Tidak mempunyai anggota</center>';
+                                }else{
+                                    foreach ($anggota as $penghuni) { 
+                                ?>
                                     <li class="active">
                                         <div class="contact">
                                             <img src="<?= base_url('assets_user/') ?>images/default.png" alt="" class="profile-photo-sm pull-left" />
@@ -55,7 +54,8 @@
                                         </div>
                                     </li>
                                     <hr>
-                                <?php endforeach; ?>
+                                    <?php } } 
+                                    ?>
                             </ul>
                             <!--Contact List in Left End-->
                         </div>

@@ -188,7 +188,6 @@ class Library extends CI_Controller
         'nama' => $ayat,
         'id_surat' => $idm,
         'id_user' => $id_user,
-        'nama_mentor' => $nama_mentor,
         'fileName' => $fileName,
         'html' => $html
       ];
