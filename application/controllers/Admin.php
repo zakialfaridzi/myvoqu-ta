@@ -497,9 +497,7 @@ class Admin extends CI_Controller
 			</button>
 		</div>
 		<div class="toast-body">
-			Berhasil Mengaktifasi mentor dan email aktifasi berhasil dikirim! <span
-				style="font-size: 1em; color: #06db00;">
-				<i class="fas fa-smile"></i>
+			<strong>Berhasil</strong> memverifikasi mentor dan email aktivasi berhasil dikirim!
 			</span>
 		</div>
 	</div>');
