@@ -9,6 +9,13 @@ class User extends CI_Controller
         parent::__construct();
         $this->load->model('User_model');
         $this->load->library('form_validation');
+
+        if (empty($this->session->userdata('id'))) {
+
+            redirect('auth');
+
+        }
+
     }
 
     public function sessionLogin()
@@ -276,7 +283,7 @@ class User extends CI_Controller
           </div>');
         redirect('user');
     }
- 
+
     public function getIdposting($id)
     {
         $data['search'] = 'none';

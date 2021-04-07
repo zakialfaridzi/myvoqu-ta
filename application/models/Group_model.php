@@ -95,7 +95,7 @@ class Group_model extends CI_Model
 
     public function cekAnggota()
     {
-        return $this->db->query('select distinct id, image, name from user u left join anggota a on u.id=a.id_user where role_id <> 3 and role_id <> 1 and ifnull(id_group, 0) <> ' . $this->uri->segment('3') . ' and id not in (select id_user from anggota where id_group = ' . $this->uri->segment('3') . ')')->result_array();
+        return $this->db->query('select distinct id, image, name, gender from user u left join anggota a on u.id=a.id_user where role_id <> 3 and role_id <> 1 and ifnull(id_group, 0) <> ' . $this->uri->segment('3') . ' and id not in (select id_user from anggota where id_group = ' . $this->uri->segment('3') . ')')->result_array();
     }
 
     public function tambahUser($data)

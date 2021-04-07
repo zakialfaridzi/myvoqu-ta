@@ -1652,7 +1652,7 @@ video {
   ==================================================*/
 
 .timeline-cover {
-	background: url("../images/covers/1.jpg") no-repeat;
+	background: url("../images/covers/default_group_cover.jpg") no-repeat;
 	background-position: center;
 	background-size: cover;
 	min-height: 360px;
@@ -1663,7 +1663,7 @@ video {
 /*Timeline Menu for Large Screens*/
 
 .timeline-cover .timeline-nav-bar {
-	background: rgba(0, 0, 0, 0.7);
+	background: rgba(0, 0, 0, 0.9);
 	width: 100%;
 	position: absolute;
 	bottom: 25px;
