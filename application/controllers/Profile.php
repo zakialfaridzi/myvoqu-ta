@@ -283,11 +283,11 @@ class Profile extends CI_Controller
     {
 
         $this->form_validation->set_rules('email', 'Email', 'trim|valid_email');
+        $this->form_validation->set_rules('instansi', 'Instansi', 'required|min_length[1]|max_length[15]');
 
         if ($this->form_validation->run() == false) {
             $this->editProfile();
         } else {
-
             $name = htmlspecialchars($this->input->post('name', true));
             $email = htmlspecialchars($this->input->post('email', true));
             $birtdate = htmlspecialchars($this->input->post('date', true));
@@ -295,7 +295,7 @@ class Profile extends CI_Controller
             $city = htmlspecialchars($this->input->post('city', true));
             $bio = htmlspecialchars($this->input->post('bio', true));
             $work = htmlspecialchars($this->input->post('work', true));
-            $instansi = htmlspecialchars($this->input->post('instansi', true));
+            $instansi = strtoupper(str_replace(['-', ' ', '.', '_', '!', '/', '(', ')', '#', '&'], "", htmlspecialchars($this->input->post('instansi', true))));
 
             $data = [
 
