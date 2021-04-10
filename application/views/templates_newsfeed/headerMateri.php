@@ -41,7 +41,15 @@
                         </li>
 
                         <li><i class="fas fa-comments" style="color: yellowgreen;"></i>
-                            <div><a href="<?= base_url('chat'); ?>">Messages</a></div>
+                            <div><a href="<?= base_url('chat/index'); ?>">Messages</a></div>
+                        </li>
+
+                        <li><i class="fas fa-comment-dots" style="color: black;"></i>
+                            <div><a href="<?= base_url('./Chat'); ?>" target="_blank">Chat all</a></div>
+                        </li>
+
+                        <li><i class="fa fa-video text-muted" style="color: black;"></i>
+                            <div><a href="<?= base_url('./Colab'); ?>" target="_blank">Collaboration</a></div>
                         </li>
 
                     </ul>
@@ -53,7 +61,7 @@
                                 <?php foreach ($otherUser as $ou) :
                                     if ($ou->role_id != 1) {  ?>
                                         <li>
-                                            <a href="newsfeed-messages.html" title="<?= $ou->name; ?>"><img src="<?= base_url('assets_user/images/' . $ou->image); ?>" alt="user" class="img-responsive profile-photo" /><span class="<?= $ou->status; ?>" id="keyword"></span>
+                                            <a href="#" title="<?= $ou->name; ?>"><img src="<?= base_url('assets_user/images/' . $ou->image); ?>" alt="user" class="img-responsive profile-photo" /><span class="<?= $ou->status; ?>" id="keyword"></span>
                                             </a>
                                         </li>
                                 <?php }
