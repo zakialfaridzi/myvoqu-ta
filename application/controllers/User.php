@@ -135,7 +135,7 @@ class User extends CI_Controller
             return false;
         }
 
-        $ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'mp4', 'flv', 'mkv'];
+        $ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'jfif', 'mp4', 'flv', 'mkv'];
         $ekstensiGambar = explode('.', $namaFiles);
         $ekstensiGambar = strtolower(end($ekstensiGambar));
         if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {

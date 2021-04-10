@@ -92,7 +92,7 @@ class Infaq extends CI_Controller
 			</button>
 
 
-			<p>Hore!! Kamu sudah infaq sebanyak ' . $jumlah . ' hari ini!</p>
+			<p>Hore!! Kamu sudah infaq sebanyak <b>Rp.' . number_format($jumlah, 2, ',', '.') . '</b> hari ini!</p>
 
 
 			</div>');

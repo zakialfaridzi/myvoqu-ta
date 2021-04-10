@@ -18,10 +18,10 @@
         <!-- Stylesheets
     ================================================= -->
 
-
+        <link rel="stylesheet" href="<?=base_url('assets_user/');?>css/star.css" />
 
         <link rel="stylesheet" href="<?=base_url('assets_user/');?>css/bootstrap.min.css" />
-        <link rel="stylesheet" href="<?=base_url('assets_user/');?>css/star.css" />
+
 
 
 

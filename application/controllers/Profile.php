@@ -10,6 +10,12 @@ class Profile extends CI_Controller
         $this->load->model('Profile_model');
         $this->load->model('User_model');
         $this->load->library('form_validation');
+
+        if (empty($this->session->userdata('id'))) {
+
+            redirect('auth');
+
+        }
     }
 
     public function sessionLogin()
@@ -522,7 +528,7 @@ class Profile extends CI_Controller
             return false;
         }
 
-        $ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'mp4', 'flv'];
+        $ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'jfif', 'mp4', 'flv', 'mkv'];
         $ekstensiGambar = explode('.', $namaFiles);
         $ekstensiGambar = strtolower(end($ekstensiGambar));
         if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
