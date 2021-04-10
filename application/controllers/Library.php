@@ -52,7 +52,7 @@ class Library extends CI_Controller
         } else {
             $data['otherUser'] = $this->User_model->getOherUserData();
             $this->load->view('templates_newsfeed/topbar', $data);
-            $this->load->view('templates_newsfeed/headerMateri', $data);
+            $this->load->view('templates_newsfeed/header', $data);
             $this->load->view('library/index', $data);
             $this->load->view('templates_newsfeed/footer');
         }
