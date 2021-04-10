@@ -125,8 +125,8 @@ class Profile extends CI_Controller
         if ($eror === 4) {
 
             $this->session->set_flashdata('mm', '<div class="alert alert-danger alert-dismissible show" role="alert">
-      Chose an image or video first!
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      Pilih foto atau video terlebih dahulu!
+      <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
       </button>
   		</div>');
@@ -141,8 +141,8 @@ class Profile extends CI_Controller
         $ekstensiGambar = strtolower(end($ekstensiGambar));
         if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
             $this->session->set_flashdata('mm', '<div class="alert alert-danger alert-dismissible show" role="alert">
-      Your uploaded file is not image/video
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      Yang kamu upload bukan foto/video
+      <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
       </button>
   		</div>');
@@ -283,7 +283,9 @@ class Profile extends CI_Controller
     {
 
         $this->form_validation->set_rules('email', 'Email', 'trim|valid_email');
-        $this->form_validation->set_rules('instansi', 'Instansi', 'required|min_length[1]|max_length[15]');
+        if ($this->session->userdata('role_id') == 3) {
+            $this->form_validation->set_rules('instansi', 'Instansi', 'required|min_length[1]|max_length[15]');
+        }
 
         if ($this->form_validation->run() == false) {
             $this->editProfile();
@@ -295,7 +297,9 @@ class Profile extends CI_Controller
             $city = htmlspecialchars($this->input->post('city', true));
             $bio = htmlspecialchars($this->input->post('bio', true));
             $work = htmlspecialchars($this->input->post('work', true));
-            $instansi = strtoupper(str_replace(['-', ' ', '.', '_', '!', '/', '(', ')', '#', '&'], "", htmlspecialchars($this->input->post('instansi', true))));
+            if ($this->session->userdata('role_id') == 3) {
+                $instansi = strtoupper(str_replace(['-', ' ', '.', '_', '!', '/', '(', ')', '#', '&'], "", htmlspecialchars($this->input->post('instansi', true))));
+            }
 
             $data = [
 
@@ -318,13 +322,13 @@ class Profile extends CI_Controller
                 if ($d->email == $email) {
 
                     $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">
-            <strong>Congratulastions!</strong> your profile is updated!
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <strong>Selamat!</strong> profil berhasil diperbarui!
+            <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>');
-
                     $this->Profile_model->editBasicModel($data);
+                    // var_dump();die();
 
                     redirect('profile/editProfile');
                 } else {
@@ -375,11 +379,39 @@ class Profile extends CI_Controller
         $data['on_s'] = 'active';
         $data['on_p'] = '';
 
-        $this->load->view('templates_newsfeed/topbar', $data);
-        $this->load->view('templates_profile/bg_profile', $data);
-        $this->load->view('templates_profile/sidebar_edit', $data);
-        $this->load->view('profile/editPassword', $data);
-        $this->load->view('templates_profile/end', $data);
+        $this->form_validation->set_rules('password1', 'Paassword', 'trim|required|min_length[3]|matches[password2]', [
+            'matches' => '',
+            'min_length' => '',
+        ]);
+        $this->form_validation->set_rules('password2', 'Repeat Paassword', 'trim|required|min_length[3]|matches[password1]', [
+            'matches' => 'Password Tidak Sama!!',
+            'min_length' => 'Password Terlalu Pendek!',
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates_newsfeed/topbar', $data);
+            $this->load->view('templates_profile/bg_profile', $data);
+            $this->load->view('templates_profile/sidebar_edit', $data);
+            $this->load->view('profile/editPassword', $data);
+            $this->load->view('templates_profile/end', $data);
+        } else {
+
+            $password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
+            // $email = $this->session->userdata('reset_email');
+
+            $this->db->set('passsword', $password);
+            $this->db->where('id', $this->session->userdata('id'));
+            $this->db->update('user');
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible show" role="alert">
+			Password berhasil diperbarui
+			<button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>');
+            redirect('profile/editPassword');
+        }
+
     }
 
     public function editPhoto()
@@ -512,5 +544,39 @@ class Profile extends CI_Controller
         move_uploaded_file($tmpName, 'assets_user/images/' . $namaFilesBaru);
 
         return $namaFilesBaru;
+    }
+
+    public function aboutMe()
+    {
+        $data['posting'] = $this->Profile_model->getUserPostProfile();
+        $data['search'] = 'none';
+        $data['upload'] = 'none';
+        $data['colorSearch'] = '#0486FE';
+        $data['user'] = $this->Profile_model->getUser();
+        $data['info'] = $this->Profile_model->getInfoProfile();
+        $data['title'] = 'Following';
+        $data['active'] = 'active';
+        $data['allUser'] = $this->Profile_model->getUserData();
+        $data['following'] = $this->Profile_model->getFollowing();
+
+        if (empty($data['user']['email'])) {
+
+            $this->sessionLogin();
+        } else if ($data['user']['role_id'] == 1) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger ">
+                  Your access is only for admin, sorry :(
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>');
+            redirect('admin');
+        } else {
+
+            $data['otherUser'] = $this->User_model->getOherUserData();
+            $this->load->view('templates_newsfeed/topbar', $data);
+            $this->load->view('templates_profile/bg_profile', $data);
+            $this->load->view('profile/aboutMe', $data);
+            $this->load->view('templates_profile/end', $data);
+        }
     }
 }

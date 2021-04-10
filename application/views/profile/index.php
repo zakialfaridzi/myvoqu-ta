@@ -28,17 +28,12 @@
                             <ul class="publishing-tools list-inline">
                                 <li class="nav-item">
                                     <label for="file-input-gambar">
-                                        <a class="nav-link"><i class="fa fa-camera text-muted"></i></a>
+                                        <a class="nav-link"><i class="fas fa-photo-video"></i></a>
                                     </label>
                                     <input type="file" id="file-input-gambar" style="display: none;" name="file">
                                 </li>
 
-                                <li class="nav-item">
-                                    <label for="file-input-video">
-                                        <a class="nav-link"><i class="fa fa-video text-muted"></i></a>
-                                    </label>
-                                    <input type="file" id="file-input-video" style="display: none;" name="video">
-                                </li>
+
 
                             </ul>
                             <button class="btn btn-primary pull-right"
@@ -98,7 +93,7 @@
                         class="profile-photo-md pull-left" />
                     <div class="post-detail">
                         <div class="user-info">
-                            <h5><a href="timeline.html" class="profile-link"><?=$pst->name;?></a></h5>
+                            <h5 class="text-info"><?=$pst->name;?></h5>
                             <p class="text-muted">Diunggah pada <?=date('d F Y ', $pst->date_post);?></p>
                         </div>
 

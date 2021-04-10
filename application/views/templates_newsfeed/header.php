@@ -11,7 +11,7 @@
 
                 <div class="profile-card">
                     <img src="<?=base_url('assets_user/images/' . $us->image);?> " alt="user" class="profile-photo" />
-                    <h5><a href="timeline.html" class="text-white"><?=$us->name;?></a>
+                    <h5><a href="<?=base_url('profile')?>" class="text-white"><?=$us->name;?></a>
                         <?php if ($us->role_id == 3) {?>
                         <span class="badge badge-secondary">Mentor</span>
                         <?php }?>
@@ -106,17 +106,12 @@ endforeach;?>
 
                                     <li class="nav-item">
                                         <label for="file-input-gambar">
-                                            <a class="nav-link"><i class="fa fa-camera text-muted"></i></a>
+                                            <a class="nav-link"><i class="fas fa-photo-video"></i></a>
                                         </label>
                                         <input type="file" id="file-input-gambar" style="display: none;" name="file">
                                     </li>
 
-                                    <li class="nav-item">
-                                        <label for="file-input-video">
-                                            <a class="nav-link"><i class="fa fa-video text-muted"></i></a>
-                                        </label>
-                                        <input type="file" id="file-input-video" style="display: none;" name="video">
-                                    </li>
+
 
 
 

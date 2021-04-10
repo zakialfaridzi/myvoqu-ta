@@ -50,16 +50,16 @@ class Friend extends CI_Controller
         } else {
             $this->load->view('templates_newsfeed/topbar', $data);
             $this->load->view('templates_newsfeed/header', $data);
-            $this->load->view('friend/index.php');
+            $this->load->view('friend/index');
             $this->load->view('templates_newsfeed/footer');
         }
     }
 
-    public function getUserByName($name)
+    public function getUserByName($name = "")
     {
         $data['type'] = $this->User_model->getUserName($name);
 
-        $this->load->view('ajax/friend.php', $data);
+        $this->load->view('ajax/friend', $data);
     }
 
     public function addFollow($id)
