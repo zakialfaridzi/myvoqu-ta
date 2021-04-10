@@ -37,6 +37,8 @@ class Friend extends CI_Controller
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
 
+
+
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
         } elseif ($data['user']['role_id'] == 1) {
@@ -50,14 +52,15 @@ class Friend extends CI_Controller
         } else {
             $this->load->view('templates_newsfeed/topbar', $data);
             $this->load->view('templates_newsfeed/header', $data);
-            $this->load->view('friend/index', $data);
+            $this->load->view('friend/index.php');
             $this->load->view('templates_newsfeed/footer');
         }
     }
 
     public function getUserByName($name)
     {
-        $data['type'] = $this->User_model->getUserName($name);
+        $data['type'] =  $this->User_model->getUserName($name);
+
 
         $this->load->view('ajax/friend.php', $data);
     }
@@ -71,7 +74,7 @@ class Friend extends CI_Controller
             'id_usertarget' => $this->input->post('id_usertarget'),
             'namatarget' => $this->input->post('nama'),
             'biotarget' => $this->input->post('bio'),
-            'imagetarget' => $this->input->post('image'),
+            'imagetarget' => $this->input->post('image')
         );
         $this->User_model->addFollow($data);
         redirect("friend/visitProfile/" . $id);
@@ -86,7 +89,7 @@ class Friend extends CI_Controller
             'id_usertarget' => $this->input->post('id_usertarget'),
             'namatarget' => $this->input->post('nama'),
             'biotarget' => $this->input->post('bio'),
-            'imagetarget' => $this->input->post('image'),
+            'imagetarget' => $this->input->post('image')
         );
         $this->User_model->updateUnFollow($data);
         redirect("friend/visitProfile/" . $id);
@@ -101,12 +104,12 @@ class Friend extends CI_Controller
             'id_usertarget' => $this->input->post('id_usertarget'),
             'namatarget' => $this->input->post('nama'),
             'biotarget' => $this->input->post('bio'),
-            'imagetarget' => $this->input->post('image'),
+            'imagetarget' => $this->input->post('image')
         );
         $this->User_model->updateFollow($data);
         redirect("friend/visitProfile/" . $id);
     }
-
+ 
     public function visitProfile($id)
     {
         $data['posting'] = $this->User_model->getUserPostProfile($id);
@@ -139,105 +142,44 @@ class Friend extends CI_Controller
         }
     }
 
-<<<<<<< HEAD
-    public function followersVisit()
-    {
-
-        $data['search'] = 'none';
-        $data['upload'] = 'none';
-        $data['colorSearch'] = '#0486FE';
-        $data['info'] = $this->User_model->getInfoProfileVisit();
-        $data['title'] = 'Followers';
-        $data['active'] = 'active';
-        $data['followersVisit'] = $this->User_model->getFollowersVisit();
-
-        if (empty($data['user']['email'])) {
-
-            $this->sessionLogin();
-        } else if ($data['user']['role_id'] == 1) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger ">
-                  Your access is only for admin, sorry :(
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>');
-            redirect('admin');
-        } else {
-
-            $data['otherUser'] = $this->User_model->getOherUserData();
-            $this->load->view('templates_newsfeed/topbar', $data);
-            $this->load->view('templates_profile/bg_profile_visit', $data);
-            $this->load->view('templates_profile/followersVisit', $data);
-            $this->load->view('templates_profile/end', $data);
-        }
-    }
-
-    public function followingVisit()
-    {
-=======
     public function followersVisit($id)
-    {
+	{
 
         $data['posting'] = $this->User_model->getUserPostProfileVisit();
-        $data['search'] = 'none';
-        $data['upload'] = 'none';
-        $data['colorSearch'] = '#0486FE';
-        $data['info'] = $this->User_model->getInfoProfileVisit($id);
-        $data['title'] = 'Followers';
-        $data['active'] = 'active';
-        $data['followersVisit'] = $this->User_model->getFollowersVisit($id);
+		$data['search'] = 'none';
+		$data['upload'] = 'none';
+		$data['colorSearch'] = '#0486FE';
+		$data['info'] = $this->User_model->getInfoProfileVisit($id);
+		$data['title'] = 'Followers';
+		$data['active'] = 'active';
+		$data['followersVisit'] = $this->User_model->getFollowersVisit($id);
         $data['pollow'] = $this->User_model->getpollow($id);
 
-        $data['otherUser'] = $this->User_model->getOherUserData();
-        $this->load->view('templates_newsfeed/topbar', $data);
-        $this->load->view('templates_profile/bg_profile_visit', $data);
-        $this->load->view('templates_profile/followersVisit', $data);
-        $this->load->view('templates_profile/end', $data);
-    }
+			$data['otherUser'] = $this->User_model->getOherUserData();
+			$this->load->view('templates_newsfeed/topbar', $data);
+			$this->load->view('templates_profile/bg_profile_visit', $data);
+			$this->load->view('templates_profile/followersVisit', $data);
+			$this->load->view('templates_profile/end', $data);
+	}
 
-    public function followingVisit()
-    {
+	public function followingVisit()
+	{
         $data['posting'] = $this->User_model->getUserPostProfileVisit();
->>>>>>> 8188a7fcb487f5c5ff07fb51421e8aa85444d06a
-        $data['search'] = 'none';
-        $data['upload'] = 'none';
-        $data['colorSearch'] = '#0486FE';
-        $data['info'] = $this->User_model->getInfoProfileVisit();
-        $data['title'] = 'Following';
-        $data['active'] = 'active';
-        $data['followingVisit'] = $this->User_model->getFollowingVisit();
-<<<<<<< HEAD
-
-        if (empty($data['user']['email'])) {
-
-            $this->sessionLogin();
-        } else if ($data['user']['role_id'] == 1) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger ">
-                  Your access is only for admin, sorry :(
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>');
-            redirect('admin');
-        } else {
-
-            $data['otherUser'] = $this->User_model->getOherUserData();
-            $this->load->view('templates_newsfeed/topbar', $data);
-            $this->load->view('templates_profile/bg_profile_visit', $data);
-            $this->load->view('templates_profile/followingVisit', $data);
-            $this->load->view('templates_profile/end', $data);
-        }
-    }
-}
-=======
+		$data['search'] = 'none';
+		$data['upload'] = 'none';
+		$data['colorSearch'] = '#0486FE';
+		$data['info'] = $this->User_model->getInfoProfileVisit();
+		$data['title'] = 'Following';
+		$data['active'] = 'active';
+		$data['followingVisit'] = $this->User_model->getFollowingVisit();
         $data['pollow'] = $this->User_model->getpollow();
 
-        $data['otherUser'] = $this->User_model->getOherUserData();
-        $this->load->view('templates_newsfeed/topbar', $data);
-        $this->load->view('templates_profile/bg_profile_visit', $data);
-        $this->load->view('templates_profile/followingVisit', $data);
-        $this->load->view('templates_profile/end', $data);
-
-    }
+		
+			$data['otherUser'] = $this->User_model->getOherUserData();
+			$this->load->view('templates_newsfeed/topbar', $data);
+			$this->load->view('templates_profile/bg_profile_visit', $data);
+			$this->load->view('templates_profile/followingVisit', $data);
+			$this->load->view('templates_profile/end', $data);
+		
+	}
 }
->>>>>>> 8188a7fcb487f5c5ff07fb51421e8aa85444d06a

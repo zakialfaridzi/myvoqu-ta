@@ -1,5 +1,5 @@
 <div class="chat-room">
-<?php foreach(array_slice($pesan3 , 0, 1) as $pst) : ?>
+<?php foreach(array_slice($pesan3 , 1, 1) as $pst) : ?>
     <h3><?php if ($pst->id_pengirim == $this->session->userdata('id')) : ?>
         <?php else : ?>
             <?= $pst->name; ?>'s room chat
@@ -8,7 +8,6 @@
 <?php endforeach; ?>
     <div class="row">
         <div class="col-md-12">
-        <p>Helmi</p>
 
         
 
