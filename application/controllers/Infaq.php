@@ -92,7 +92,7 @@ class Infaq extends CI_Controller
 			</button>
 
 
-			<p>Hore!! Kamu sudah infaq srbanyak ' . $jumlah . ' hari ini!</p>
+			<p>Hore!! Kamu sudah infaq sebanyak ' . $jumlah . ' hari ini!</p>
 
 
 			</div>');

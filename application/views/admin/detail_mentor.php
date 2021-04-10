@@ -30,6 +30,17 @@
                     <td><?php echo $detail->instansi ?></td>
                 </tr>
                 <tr>
+                    <th>Grup yang diajar</th>
+					<td>
+                    <?php foreach ($allgroup as $group): if ($group['owner'] == $detail->id) {?>
+		                        <ul>
+		                            <li><?=$group['nama'];?></li>
+		                        </ul>
+		                    <?php }
+endforeach;?>
+                    </td>
+                </tr>
+                <tr>
                     <th>Create Date</th>
                     <td><?php echo date("Y-m-d H:i:s", strtotime('+5 hours', $detail->date_created)); ?></td>
                 </tr>

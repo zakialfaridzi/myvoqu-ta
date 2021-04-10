@@ -51,7 +51,7 @@
                         <form action="<?=base_url('infaq/addInfaq')?>" method="POST">
 
                             <div class="alert alert-warning alert-dismissible show" role="alert">
-                                <strong>Hallo orang baik!</strong> kami tidak menepatkanbatas minimal atau maksimal
+                                <strong>Hallo orang baik!</strong> kami tidak menepatkan batas minimal atau maksimal
                                 infaq ya
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>

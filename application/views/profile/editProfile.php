@@ -38,9 +38,9 @@
 	<div class="row">
 				<div class="form-group col-xs-12">
 					<form action="<?=base_url('profile/editBasic');?>" method="post">
-						<label for="email">Instansi</label>
-						<input id="work" class="form-control input-group-lg" type="text" name="instansi" title="Enter Your Institute" placeholder="Instansi" value="<?=$i->instansi;?>" autocomplete="off" />
-
+						<label for="instansi">Instansi</label>
+						<input id="instansi" class="form-control input-group-lg" type="text" name="instansi" title="Enter Your Institute" placeholder="Instansi" value="<?=$i->instansi;?>" autocomplete="off" />
+						<?=form_error('instansi', '<small class="text-danger pl-3">', '</small>');?>
 				</div>
 			</div>
 <?php endif;?>
