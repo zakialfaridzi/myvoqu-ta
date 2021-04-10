@@ -27,7 +27,7 @@
                         <ul class="follow-me list-inline">
 
                             <li><a href="<?=base_url('profile/editProfile');?>" class="btn btn-primary"
-                                    style="background-color: #6fb8df; margin-top: 4px; outline: none;">Edit Profile</a>
+                                    style="background-color: #6fb8df; margin-top: 4px; outline: none;">Ubah Profil</a>
                             </li>
 
                         </ul>

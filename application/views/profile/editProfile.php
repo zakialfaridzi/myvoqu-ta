@@ -4,10 +4,10 @@
               ================================================= -->
     <div class="edit-profile-container">
         <div class="block-title">
-            <h4 class="grey"><i class="icon ion-android-checkmark-circle"></i>Edit basic information</h4>
+            <h4 class="grey"><i class="icon ion-android-checkmark-circle"></i>Perbarui Informasi Akun</h4>
             <div class="line"></div>
             <?php foreach ($info as $i): ?>
-            <p><?=$i->name?> was created on <?=date('d-F-y', $i->date_created);?></p>
+            <p><b><?=$i->name?></b> bergabung pada <?=date('d-F-y', $i->date_created);?></p>
             <div class="line"></div>
             <?=$this->session->flashdata('message');?>
         </div>
@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="form-group col-xs-12">
                     <form action="<?=base_url('profile/editBasic');?>" method="post">
-                        <label for="email">Full Name</label>
+                        <label for="email">Nama Lengkap</label>
                         <input id="name" class="form-control input-group-lg" type="text" name="name"
                             title="Enter Full Name" placeholder="Full Name" value="<?=$i->name;?>" autocomplete="off" />
 
@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="form-group col-xs-12">
                     <form action="<?=base_url('profile/editBasic');?>" method="post">
-                        <label for="email">Work as</label>
+                        <label for="email">Bekerja di</label>
                         <input id="work" class="form-control input-group-lg" type="text" name="work"
                             title="Enter Your Work" placeholder="Work" value="<?=$i->work;?>" autocomplete="off" />
 
@@ -53,7 +53,7 @@
 
             <div class=" row">
                 <div class="form-group col-xs-12">
-                    <label for="email">My email</label>
+                    <label for="email">Email</label>
                     <input id="email" class="form-control input-group-lg" type="text" name="email" title="Enter Email"
                         placeholder="My Email" value="<?=$i->email;?>" autocomplete="off" />
                 </div>
@@ -62,7 +62,7 @@
 
             <div class="row">
                 <div class="form-group col-xs-12">
-                    <label for="exampleInputEmail1">Birthday Date</label>
+                    <label for="exampleInputEmail1">Tanggal Lahir</label>
                     <input type="date" class="form-control" id="date" name="date" aria-describedby="emailHelp"
                         value="<?=$i->birthdate;?>" autocomplete="off">
 
@@ -71,7 +71,7 @@
 
 
             <div class=" form-group gender">
-                <span class="custom-label"><strong>I am a: </strong></span>
+                <span class="custom-label"><strong>Jenis Kelamin: </strong></span>
                 <label class="radio-inline">
 
                     <?php if ($i->gender == 'Male'): ?>
@@ -91,20 +91,20 @@
             </div>
             <div class="row">
                 <div class="form-group col-xs-6">
-                    <label for="city"> My city</label>
+                    <label for="city"> Kota</label>
                     <input id="city" class="form-control input-group-lg" type="text" name="city" title="Enter city"
                         placeholder="Your city" value="<?=$i->city;?>" autocomplete="off">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-xs-12">
-                    <label for="my-info">About me</label>
+                    <label for="my-info">Tentang Saya</label>
                     <textarea id="bio" name="bio" class="form-control" placeholder="Some texts about me" rows="4"
                         cols="400" autocomplete="off"><?=$i->bio;?></textarea>
                 </div>
             </div>
-            <button id="submit" type="submit" class="btn btn-primary" style="background-color:#0486FE; ">Save
-                Changes</button>
+            <button id="submit" type="submit" class="btn btn-primary" style="background-color:#0486FE; ">Simpan
+                Perubahan</button>
             <?php endforeach;?>
             </form>
 
