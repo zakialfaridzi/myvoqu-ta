@@ -15,11 +15,11 @@ class Group extends CI_Controller
     public function sessionLogin()
     {
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    Login first!!
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>');
+		Login first!!
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		</div>');
         redirect('auth');
     }
 
@@ -465,11 +465,11 @@ class Group extends CI_Controller
             $this->db->insert('group_postingan', $data);
 
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible show" role="alert">
-      <strong>Congratulations!</strong> your post is uploaded.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-      </button>
-  </div>');
+		<strong>Congratulations!</strong> your post is uploaded.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		</div>');
 
             redirect('group/inGroup/' . $idg);
         }
@@ -492,11 +492,11 @@ class Group extends CI_Controller
         // }
         if ($eror === 4) {
             $this->session->set_flashdata('mm', '<div class="alert alert-danger alert-dismissible show" role="alert">
-      Chose an image or video first!
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-      </button>
-  </div>');
+			Chose an image or video first!
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>');
             redirect('group/inGroup/' . $id);
             return false;
         }
@@ -505,11 +505,11 @@ class Group extends CI_Controller
         $ekstensiGambar = strtolower(end($ekstensiGambar));
         if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
             $this->session->set_flashdata('mm', '<div class="alert alert-danger alert-dismissible show" role="alert">
-      Your uploaded file, is not image or video!
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      	Your uploaded file, is not image or video!
+      	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-      </button>
-  </div>');
+     	 </button>
+ 		 </div>');
             redirect('group/inGroup/' . $id);
             return false;
         }
@@ -527,11 +527,11 @@ class Group extends CI_Controller
         $this->Group_model->deletePostGroup($idPost);
 
         $this->session->set_flashdata('mm', '<div class="alert alert-success alert-dismissible show" role="alert">
-      <strong>Congratulations!</strong> your post is deleted.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-      </button>
-  </div>');
+      	<strong>Congratulations!</strong> your post is deleted.
+      	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          	<span aria-hidden="true">&times;</span>
+      	</button>
+  		</div>');
         redirect('group/inGroup/' . $id);
     }
 
@@ -616,7 +616,7 @@ class Group extends CI_Controller
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
       </button>
-  </div>');
+  		</div>');
         redirect("group/getIdposting/" . $id);
     }
 
