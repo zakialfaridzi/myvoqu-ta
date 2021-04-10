@@ -1,10 +1,11 @@
 <div class="form-holder">
     <div class="form-content">
         <div class="form-items">
-            <h3>Please login with your active accont.</h3>
-            <p>Welcome to MyVoQu Website.</p>
+            <h3>Silahkan Login Dengan Akun Yang Sudah Aktif.</h3>
+            <p>Selamat Datang di Website MyVoQu.</p>
             <div class="page-links">
-                <a href="login5.html" class="active">Login</a><a href="<?=base_url('auth/registration');?>">Register</a>
+                <a href="login5.html" class="active">Login</a><a
+                    href="<?=base_url('auth/registration');?>">Registrasi</a>
             </div>
             <?=$this->session->flashdata('message');?>
 
@@ -13,7 +14,7 @@
 
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="email" name="email"
-                        placeholder="Enter Email Address..." value="<?=set_value('email');?>">
+                        placeholder="Masukkan Email..." value="<?=set_value('email');?>">
                     <?=form_error('email', '<small class="text-danger pl-3">', '</small>');?>
                 </div>
 
@@ -28,8 +29,7 @@
 
                 <div class="form-button">
                     <button id="submit" type="submit" class="ibtn">Login</button> <a
-                        href="<?=base_url('auth/forgotPassword');?>">Forget
-                        password?</a>
+                        href="<?=base_url('auth/forgotPassword');?>">Lupa Password?</a>
                 </div>
             </form>
 

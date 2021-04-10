@@ -51,7 +51,7 @@
                         <form action="<?=base_url('infaq/addInfaq')?>" method="POST">
 
                             <div class="alert alert-warning alert-dismissible show" role="alert">
-                                <strong>Hallo orang baik!</strong> kami tidak menepatkanbatas minimal atau maksimal
+                                <strong>Hallo orang baik!</strong> kami tidak menepatkan batas minimal atau maksimal
                                 infaq ya
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -60,20 +60,21 @@
 
                             <div class="cont">
 
-                                <div class="stars">
-
-                                    <input class="star star-5" id="star-5" type="radio" name="star" />
-                                    <label class="star star-5" for="star-5"></label>
-                                    <input class="star star-4" id="star-4" type="radio" name="star" />
-                                    <label class="star star-4" for="star-4"></label>
-                                    <input class="star star-3" id="star-3" type="radio" name="star" />
-                                    <label class="star star-3" for="star-3"></label>
-                                    <input class="star star-2" id="star-2" type="radio" name="star" />
-                                    <label class="star star-2" for="star-2"></label>
-                                    <input class="star star-1" id="star-1" type="radio" name="star" />
-                                    <label class="star star-1" for="star-1"></label>
-
+                                <div class="stars" style="width: 300px;margin-top:12px;align-self: center;">
+                                    <center>
+                                        <input class="star star-5" id="star-5" type="radio" name="star" />
+                                        <label class="star star-5" for="star-5"></label>
+                                        <input class="star star-4" id="star-4" type="radio" name="star" />
+                                        <label class="star star-4" for="star-4"></label>
+                                        <input class="star star-3" id="star-3" type="radio" name="star" />
+                                        <label class="star star-3" for="star-3"></label>
+                                        <input class="star star-2" id="star-2" type="radio" name="star" />
+                                        <label class="star star-2" for="star-2"></label>
+                                        <input class="star star-1" id="star-1" type="radio" name="star" />
+                                        <label class="star star-1" for="star-1"></label>
+                                    </center>
                                 </div>
+
                                 <p>click the stars</p>
                             </div>
 

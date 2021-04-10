@@ -18,7 +18,7 @@ keyword.addEventListener('keyup', function () {
 		}
 	}
 
-	xhr.open('GET', 'http://localhost/tubes-ci/friend/getUserByName/' + keyword.value, true);
+	xhr.open('GET', 'http://localhost/myvoqu/friend/getUserByName/' + keyword.value, true);
 	xhr.send();
 
 
