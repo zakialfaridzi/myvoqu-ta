@@ -27,38 +27,39 @@
                     <ul class="nav-news-feed">
 
                         <li><i class="far fa-bell" style="color: tomato;"></i>
-                            <div><a href="<?=base_url('notification')?>">Notification</a></div>
+                            <div><a href="<?=base_url('notification')?>">Notifikasi</a></div>
                         </li>
 
                         <li><i class="fas fa-book-reader" style="color: burlywood;"></i>
-                            <div><a href="<?=base_url('library')?>">Material Library</a></div>
+                            <div><a href="<?=base_url('library')?>">Material Pembelajaran</a></div>
                         </li>
 
                         <li><i class="fas fa-search" style="color: peachpuff;"></i>
-                            <div><a href="<?=base_url('friend')?>">Explore</a></div>
+                            <div><a href="<?=base_url('friend')?>">Temukan Teman</a></div>
                         </li>
 
                         <li><i class="fas fa-users" style="color: royalblue;"></i>
-                            <div><a href="<?=base_url('group')?>">Group</a></div>
+                            <div><a href="<?=base_url('group')?>">Grup</a></div>
                         </li>
 
                         <li><i class="fas fa-comments" style="color: yellowgreen;"></i>
-                            <div><a href="<?=base_url('chat/index');?>">Messages</a></div>
+                            <div><a href="<?=base_url('chat/index');?>">Pesan</a></div>
                         </li>
 
                         <li><i class="fas fa-comment-dots" style="color: black;"></i>
-                            <div><a href="<?=base_url('./Chat');?>" target="_blank">Chat all</a></div>
+                            <div><a href="<?=base_url('./Chat');?>" target="_blank">Ngobrol Dengan Semua Pengguna</a>
+                            </div>
                         </li>
 
                         <li><i class="fa fa-video text-muted" style="color: black;"></i>
-                            <div><a href="<?=base_url('./Colab');?>" target="_blank">Collaboration</a></div>
+                            <div><a href="<?=base_url('./Colab');?>" target="_blank">Kolaborasi</a></div>
                         </li>
 
                     </ul>
                     <!--news-feed links ends-->
                     <div id="container1">
                         <div id="chat-block">
-                            <div class="title">Chat online</div>
+                            <div class="title">Pengguna Online</div>
                             <ul class="online-users list-inline">
                                 <?php foreach ($otherUser as $ou):
     if ($ou->role_id != 1) {?>
@@ -93,7 +94,7 @@ endforeach;?>
                                 <form action="<?=base_url('user/posting');?>" method="post"
                                     enctype="multipart/form-data">
 
-                                    <textarea cols="30" rows="1" class="form-control" placeholder="Write what you wish"
+                                    <textarea cols="30" rows="1" class="form-control" placeholder="Masukkan kata-kata"
                                         name="caption" id="caption"></textarea>
                                     <?=form_error('caption', '<small class="text-danger pl-3">', '</small>');?>
 
@@ -121,7 +122,7 @@ endforeach;?>
 
                                 </ul>
                                 <button class="btn btn-primary pull-right"
-                                    style="background-color:#6fb8df;">Publish</button>
+                                    style="background-color:#6fb8df;">Unggah</button>
 
 
 

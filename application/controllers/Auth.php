@@ -80,7 +80,7 @@ class Auth extends CI_Controller
                     }
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-            Wrong password!
+            Password Salah!
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -90,7 +90,7 @@ class Auth extends CI_Controller
                 }
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-            This Email has not been activated
+            Email belum aktif
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -101,7 +101,7 @@ class Auth extends CI_Controller
         } else {
 
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-            Email is not registered
+            Email belum terdaftar
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -124,11 +124,11 @@ class Auth extends CI_Controller
 
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
-            'is_unique' => 'This Email Has Already Registered!',
+            'is_unique' => 'Email ini sudah ada!',
         ]);
         $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', [
-            'matches' => 'Password Dont Match!!',
-            'min_length' => 'Password To Short!',
+            'matches' => 'Password Tidak Sama!!',
+            'min_length' => 'Password Terlalu Pendek!',
         ]);
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
         $this->form_validation->set_rules('gender', 'Gender', 'required|trim');
@@ -283,7 +283,7 @@ class Auth extends CI_Controller
         if (empty($this->session->userdata('email'))) {
 
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            What are you doing ?
+            Apa yang kamu lakukan ?
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -302,7 +302,7 @@ class Auth extends CI_Controller
         $this->session->unset_userdata('role_id');
 
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-           You have been logout!
+           Kamu sudah keluar!
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -339,7 +339,7 @@ class Auth extends CI_Controller
                 $this->db->insert('user_token', $user_token);
                 $this->_sendEmail($token, 'forgot');
                 $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-               Please check your email to reset your password!
+               Tolong cek email kamu untuk reset password!
                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                    <span aria-hidden="true">&times;</span>
                  </button>
@@ -347,7 +347,7 @@ class Auth extends CI_Controller
                 redirect('auth/forgotPassword');
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-               Email have not registered or activated!
+               Email belum aktif!
                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                    <span aria-hidden="true">&times;</span>
                  </button>
@@ -375,7 +375,7 @@ class Auth extends CI_Controller
                 $this->changePassword();
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                Reset password vailed! Wrong token
+                Reset password gagal! Token salah
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -384,7 +384,7 @@ class Auth extends CI_Controller
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-               Reset password vailed! Wrong email
+               Reset password gagal! Email salah
                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                    <span aria-hidden="true">&times;</span>
                  </button>
@@ -405,8 +405,8 @@ class Auth extends CI_Controller
             'min_length' => '',
         ]);
         $this->form_validation->set_rules('password2', 'Repeat Paassword', 'trim|required|min_length[3]|matches[password1]', [
-            'matches' => 'Password Dont Match!!',
-            'min_length' => 'Password To Short!',
+            'matches' => 'Password Tidak Sama!!',
+            'min_length' => 'Password Terlalu Pendek!',
         ]);
 
         if ($this->form_validation->run() == false) {
@@ -428,7 +428,7 @@ class Auth extends CI_Controller
             $this->session->unset_userdata('reset_email');
 
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-               Password has been change ! Please Login
+               Password sudah diubah ! Silahkan Login
                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                    <span aria-hidden="true">&times;</span>
                  </button>
@@ -518,7 +518,7 @@ class Auth extends CI_Controller
 
         if ($eror === 4) {
 
-            $this->session->set_flashdata('message', '<small style="color: red;">Chose an image or video first!</small>');
+            $this->session->set_flashdata('message', '<small style="color: red;">Pilih gambar dulu ya!</small>');
 
             redirect('Auth/registMentor');
 
@@ -529,7 +529,7 @@ class Auth extends CI_Controller
         $ekstensiGambar = explode('.', $namaFiles);
         $ekstensiGambar = strtolower(end($ekstensiGambar));
         if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
-            $this->session->set_flashdata('message', '<small style="color: red;">Your uploaded file is not image/video!</small>');
+            $this->session->set_flashdata('message', '<small style="color: red;">Yang kamu upload bukan foto/video!</small>');
 
             redirect('Auth/registMentor');
             return false;

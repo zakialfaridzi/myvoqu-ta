@@ -76,7 +76,12 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right main-menu">
                             <li class="dropdown">
-                                <a href="<?=base_url('auth')?>">Home </a>
+                                <a href="<?=base_url('auth')?>">Beranda </a>
+
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="<?=base_url('profile/');?>">Profil</a>
 
                             </li>
 
@@ -86,13 +91,10 @@
 
                             </li>
 
-                            <li class="dropdown">
-                                <a href="<?=base_url('profile/');?>">Profile</a>
 
-                            </li>
 
                             <li class="dropdown">
-                                <a href="<?=base_url('auth/logout');?>" class="dropdown-toggle">Logout </a>
+                                <a href="<?=base_url('auth/logout');?>" class="dropdown-toggle">Keluar </a>
 
                             </li>
 

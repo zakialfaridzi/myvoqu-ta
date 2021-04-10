@@ -15,11 +15,11 @@ class Library extends CI_Controller
     public function sessionLogin()
     {
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    Login first!!
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>');
+		Login first!!
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+		</button>
+		</div>');
         redirect('auth');
     }
 
@@ -38,8 +38,6 @@ class Library extends CI_Controller
         $data['suggestion'] = $this->User_model->getSuggest();
         $idlog = $this->session->userdata('id');
         $data['idlogin'] = $this->Materi_model->getLog($idlog);
-
-
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -79,7 +77,7 @@ class Library extends CI_Controller
                 'nama' => $this->input->post('nama', true),
                 'arti' => $this->input->post('arti', true),
                 'ayat' => $this->input->post('ayat', true),
-                'suratke' => $this->input->post('suratke', true)
+                'suratke' => $this->input->post('suratke', true),
             ];
             $this->Materi_model->tambahSurat($datasurat);
             redirect('Library');
@@ -101,7 +99,6 @@ class Library extends CI_Controller
         $data['suggestion'] = $this->User_model->getSuggest();
         $data['idlogin'] = $this->Materi_model->getLog($idlog);
 
-
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
         } elseif ($data['user']['role_id'] == 1) {
@@ -118,7 +115,7 @@ class Library extends CI_Controller
             //PAGINATION
             $this->load->library('pagination');
             //config
-            $config['base_url'] = 'http://af296e5caa26.ap.ngrok.io/myvoqu/library/materi/'.$id;
+            $config['base_url'] = 'http://af296e5caa26.ap.ngrok.io/myvoqu/library/materi/' . $id;
             $config['total_rows'] = $this->Materi_model->countMateri($idm);
             $config['per_page'] = 4;
 
@@ -185,12 +182,12 @@ class Library extends CI_Controller
                 $html .= 'class="img-responsive post-image" />';
             }
             $data = [
-        'nama' => $ayat,
-        'id_surat' => $idm,
-        'id_user' => $id_user,
-        'fileName' => $fileName,
-        'html' => $html
-      ];
+                'nama' => $ayat,
+                'id_surat' => $idm,
+                'id_user' => $id_user,
+                'fileName' => $fileName,
+                'html' => $html,
+            ];
 
             //siapkan token
             $this->session->set_flashdata('message', '<small> br</small>');
@@ -200,7 +197,7 @@ class Library extends CI_Controller
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
       </button>
-  </div>');
+  		</div>');
 
             redirect('library/materi/' . $idm);
         }
@@ -223,12 +220,12 @@ class Library extends CI_Controller
         // }
         if ($eror === 4) {
             $this->session->set_flashdata('mm', '<div class="alert alert-danger alert-dismissible show" role="alert">
-      Chose an image or video first!
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+     	 Chose an image or video first!
+     	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-      </button>
-  </div>');
-            redirect('library/materi/' . $idm);
+      	</button>
+ 		</div>');
+            redirect('library/materi/' . $id);
             return false;
         }
         $ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'mp4', 'flv'];
@@ -240,7 +237,7 @@ class Library extends CI_Controller
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
       </button>
-  </div>');
+  		</div>');
             redirect('library/materi/' . $id);
             return false;
         }

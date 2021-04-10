@@ -19,7 +19,7 @@ class Profile extends CI_Controller
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-    </div>');
+    	</div>');
         redirect('auth');
     }
 
@@ -93,11 +93,11 @@ class Profile extends CI_Controller
             $this->db->insert('posting', $data);
 
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible show" role="alert">
-      <strong>Congratulations!</strong> your post is uploaded.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <strong>Selamat!</strong> postingan mu berhasil diunggah.
+      <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
       </button>
-  </div>');
+  		</div>');
 
             redirect('profile');
         }
@@ -129,7 +129,7 @@ class Profile extends CI_Controller
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
       </button>
-  </div>');
+  		</div>');
 
             redirect('profile');
 
@@ -145,7 +145,7 @@ class Profile extends CI_Controller
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
       </button>
-  </div>');
+  		</div>');
 
             redirect('profile');
             return false;
@@ -166,11 +166,11 @@ class Profile extends CI_Controller
         $this->Profile_model->deletePostUser($id);
 
         $this->session->set_flashdata('mm', '<div class="alert alert-success alert-dismissible show" role="alert">
-      <strong>Congratulations!</strong> your post is deleted.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      	<strong>Selamat!</strong> postingan berhasil dihapus.
+     	<button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-      </button>
-  </div>');
+     	</button>
+  		</div>');
         redirect('profile');
     }
 
@@ -450,7 +450,7 @@ class Profile extends CI_Controller
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
-	</div>');
+		</div>');
 
                 redirect('profile/editPhoto');
             } else {
@@ -483,7 +483,7 @@ class Profile extends CI_Controller
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
       </button>
-  </div>');
+  		</div>');
 
             redirect('user');
 
@@ -499,7 +499,7 @@ class Profile extends CI_Controller
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
       </button>
-  </div>');
+  		</div>');
 
             redirect('user');
             return false;

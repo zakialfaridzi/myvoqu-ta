@@ -1,6 +1,6 @@
 <div class="col-md-2" style="position: fixed;margin-left: 900px;">
     <div class="suggestions" id="sticky-sidebar">
-        <h4 class="grey">Suggestion to Follow</h4>
+        <h4 class="grey">Mungkin anda kenal ? </h4>
         <?php foreach ($suggestion as $ou): ?>
         <div class="follow-user">
 
@@ -19,7 +19,7 @@
                     <input type="hidden" name="bio" value="<?=$ou->bio;?>">
                     <input type="hidden" name="image" value="<?=$ou->image;?>">
                     <button class="btn btn-primary"
-                        style="background-color: #6fb8df; margin-top: 4px; outline: none;">Follow</button>
+                        style="background-color: #6fb8df; margin-top: 4px; outline: none;">Ikuti</button>
                 </form>
             </div>
         </div>

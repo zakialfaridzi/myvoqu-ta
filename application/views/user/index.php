@@ -18,7 +18,7 @@
     <?php if ($pst->id_user == $this->session->userdata('id')): ?>
     <i class="fas fa-trash" style="color: tomato;margin-left:18px;"></i>
     <a href="<?=base_url();?>user/deletePost/<?=$pst->id_posting;?>/<?=$pst->fileName?>"
-        style="text-decoration:none;">Delete</a>
+        style="text-decoration:none;">Hapus</a>
 
     <?php endif;?>
 
@@ -35,7 +35,7 @@
                     <a href="<?=base_url('friend/visitProfile/') . $pst->id_user;?>"><?=$pst->name;?></a>
                     <?php endif;?>
                 </h5>
-                <p class="text-muted">Published on <?=date('d F Y ', $pst->date_post);?></p>
+                <p class="text-muted">Diunggah pada <?=date('d F Y ', $pst->date_post);?></p>
             </div>
             <div class="line-divider"></div>
             <div class="post-text">
@@ -46,7 +46,7 @@
 
 
             <div class="post-comment">
-                <a href="<?=base_url('user/getIdposting/') . $pst->id_posting;?>">Comment</a>
+                <a href="<?=base_url('user/getIdposting/') . $pst->id_posting;?>">Komen</a>
             </div>
         </div>
     </div>
@@ -68,7 +68,7 @@
 
     <?php if ($pst->id_user == $this->session->userdata('id')): ?>
     <i class="fas fa-trash" style="color: tomato;margin-left:18px;"></i>
-    <a href="<?=base_url();?>user/deletePost/<?=$pst->id_posting;?>" style="text-decoration:none;">Delete</a>
+    <a href="<?=base_url();?>user/deletePost/<?=$pst->id_posting;?>" style="text-decoration:none;">Hapus</a>
 
     <?php endif;?>
 
@@ -78,7 +78,7 @@
             <div class="user-info">
                 <h5><a href="timeline.html" class="profile-link"><?=$pst->name;?></a>&emsp;<span
                         class="badge badge-pill badge-danger">Admin</span></h5>
-                <p class="text-muted">Published on <?=date('d F Y ', $pst->date_post);?></p>
+                <p class="text-muted">Diunggah pada <?=date('d F Y ', $pst->date_post);?></p>
             </div>
             <div class="line-divider"></div>
             <div class="post-text">
@@ -92,7 +92,6 @@
 
 <?php endforeach;?>
 <!-- Post Content=================================================-->
-
 
 
 </div>
