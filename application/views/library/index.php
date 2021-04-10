@@ -59,7 +59,7 @@
         <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
             <div class="card" style="width: 18rem;">
                 <img src="assets\img\materi\default.jpg" class="card-img-top" alt="..." style="height: 160px; width: 180px;">
-                <div class="card-body">
+                <div class="card-body" style="padding: 1rem;">
                     <h5 class="card-title"><?= $surat['nama'] ?></h5>
                     <h6 class="card-title">Artinya : <?= $surat['arti'] ?></h6>
                     <h6 class="card-title"><?= $surat['ayat'] ?> Ayat</h6>

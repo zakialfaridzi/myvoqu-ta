@@ -27,13 +27,14 @@
 
 
         <link href="<?=base_url('assets/');?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+        <!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"> -->
 
 
 
         <link rel="stylesheet" href="<?=base_url('assets_user/');?>css/style.css" />
         <link rel="stylesheet" href="<?=base_url('assets_user/');?>css/ionicons.min.css" />
         <link rel="stylesheet" href="<?=base_url('assets_user/');?>css/font-awesome.min.css" />
+        <link rel="stylesheet" href="<?=base_url('assets_user/');?>css/font-roboto.css" />
         <link href="<?=base_url('assets_user/');?>css/emoji.css" rel="stylesheet">
 
 
