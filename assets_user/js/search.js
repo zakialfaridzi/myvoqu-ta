@@ -18,7 +18,7 @@ keyword.addEventListener('keyup', function () {
 		}
 	}
 
-	xhr.open('GET', 'http://localhost/myvoqu/friend/getUserByName/' + keyword.value, true);
+	xhr.open('GET', 'https://bcb5efcd060d.ap.ngrok.io/myvoqu/friend/getUserByName/' + keyword.value, true);
 	xhr.send();
 
 

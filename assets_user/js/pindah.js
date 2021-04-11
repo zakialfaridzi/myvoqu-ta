@@ -42,7 +42,7 @@ keyword2.addEventListener('click', function () {
 		}
 	}
 
-	xhr.open('GET', 'http://localhost/myvoqu/profile/editProfile2', true);
+	xhr.open('GET', 'https://bcb5efcd060d.ap.ngrok.io/myvoqu/profile/editProfile2', true);
 	xhr.send();
 
 
