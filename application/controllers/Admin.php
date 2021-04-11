@@ -91,20 +91,20 @@ class Admin extends CI_Controller
         $this->load->view('admin/v_profad', $data);
         $this->load->view('templates/footer');
 
-        $upload_image = $_FILES['image']['name'];
-        if ($upload_image) {
-            $config['allowed_types'] = 'jpg|jpeg|png|gif';
-            $config['max_size'] = '10000';
-            $config['upload_path'] = './assets/foto/';
+        // $upload_image = $_FILES['image']['name'];
+        // if ($upload_image) {
+        //     $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        //     $config['max_size'] = '10000';
+        //     $config['upload_path'] = './assets/foto/';
 
-            $this->load->library('upload', $config);
-            if ($this->upload->do_upload('image')) {
-                $new_image = $this->upload->data('file_name');
-                $this->db->set('image', $new_image);
-            } else {
-                echo $this->upload->display_errors();
-            }
-        }
+        //     $this->load->library('upload', $config);
+        //     if ($this->upload->do_upload('image')) {
+        //         $new_image = $this->upload->data('file_name');
+        //         $this->db->set('image', $new_image);
+        //     } else {
+        //         echo $this->upload->display_errors();
+        //     }
+        // }
     }
 
     public function updateProfile()
@@ -113,7 +113,7 @@ class Admin extends CI_Controller
         $name = $this->input->post('nama');
         $email = $this->input->post('email');
         $upload_image = $_FILES['image']['name'];
-        if ($upload_image) {
+        if ($upload_image != "") {
             $config['allowed_types'] = 'jpg|jpeg|png|gif';
             $config['max_size'] = '10000';
             $config['upload_path'] = './assets/foto/';
@@ -125,6 +125,8 @@ class Admin extends CI_Controller
             } else {
                 echo $this->upload->display_errors();
             }
+        } else {
+            $new_image = $this->input->post('old');
         }
 
         $data = array(
@@ -157,7 +159,7 @@ class Admin extends CI_Controller
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar', $dats);
-        $this->load->view('admin/v_user', $data);
+        $this->load->view('admin/v_penghafal', $data);
         $this->load->view('templates/footer');
     }
 
@@ -270,7 +272,7 @@ class Admin extends CI_Controller
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar', $dats);
-        $this->load->view('admin/detail', $data);
+        $this->load->view('admin/detail_penghafal', $data);
         $this->load->view('templates/footer');
     }
 
@@ -582,103 +584,6 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function pagepostMentor()
-    {
-        $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerMentor');
-        $this->load->view('templates/sidebar', $dats);
-        $this->load->view('admin/post_general');
-        $this->load->view('templates/footer');
-    }
-
-    public function postingMentor()
-    {
-        $caption = htmlspecialchars($this->input->post('caption', true));
-        $id_user = htmlspecialchars($this->input->post('id_user', true));
-        $fileName = $this->_uploadFileMentor();
-
-        if ((substr($fileName, -3, 3) == 'mp4') || (substr($fileName, -3, 3) == 'mkv') || (substr($fileName, -3, 3) == 'flv')) {
-            $html = '<div class="video-wrapper">';
-            $html .= '<video class="post-video" controls width="500" height="500">';
-            $html .= '<source src=' . base_url('assets_user/file_upload/');
-            $html .= $fileName . ' type="video/mp4">';
-            $html .= '</video></div>';
-        } else {
-            $html = '<img src=' . base_url('assets_user/file_upload/');
-            $html .= $fileName . ' alt="post-image"';
-            $html .= 'class="img-responsive post-image" style="height: 300px;" />';
-        }
-
-        $data = [
-            'caption' => $caption,
-            'fileName' => $fileName,
-            'html' => $html,
-            'date_post' => time(),
-            'id_user' => $id_user,
-        ];
-
-        //siapkan token
-        $this->session->set_flashdata('message', '<small> br</small>');
-
-        $this->db->insert('postgen', $data);
-
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible show" role="alert">
-        <strong>Congratulations!</strong> your post is uploaded.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>');
-
-        redirect('Admin/pagepostMentor');
-    }
-
-    private function _uploadFileMentor()
-    {
-
-        $namaFiles = $_FILES['file']['name'];
-        $ukuranFile = $_FILES['file']['size'];
-        $type = $_FILES['file']['type'];
-        $eror = $_FILES['file']['error'];
-
-        // $nama_file = str_replace(" ", "_", $namaFiles);
-        $tmpName = $_FILES['file']['tmp_name'];
-        // $nama_folder = "assets_user/file_upload/";
-        // $file_baru = $nama_folder . basename($nama_file);
-
-        // if ((($type == "video/mp4") || ($type == "video/3gpp")) && ($ukuranFile < 8000000)) {
-
-        //   move_uploaded_file($tmpName, $file_baru);
-        //   return $file_baru;
-        // }
-
-        if ($eror === 4) {
-
-            $this->session->set_flashdata('message', '<small style="color: red;">Chose an image or video first!</small>');
-
-            redirect('Admin/pagepostMentor');
-
-            return false;
-        }
-
-        $ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'mp4', 'flv', 'mkv'];
-        $ekstensiGambar = explode('.', $namaFiles);
-        $ekstensiGambar = strtolower(end($ekstensiGambar));
-        if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
-            $this->session->set_flashdata('message', '<small style="color: red;">Your uploaded file is not image/video!</small>');
-
-            redirect('Admin/pagepostMentor');
-            return false;
-        }
-
-        $namaFilesBaru = uniqid();
-        $namaFilesBaru .= '.';
-        $namaFilesBaru .= $ekstensiGambar;
-
-        move_uploaded_file($tmpName, 'assets_user/file_upload/' . $namaFilesBaru);
-
-        return $namaFilesBaru;
-    }
-
     public function activateMentor($id)
     {
         $data = array(
@@ -720,7 +625,7 @@ class Admin extends CI_Controller
     }
 
     ////////////////////////////////////////////////////////////////////
-    //Postingan Admin
+    //Postingan Penghafal Mentor
     ////////////////////////////////////////////////////////////////////
 
     public function indexPosting()
@@ -956,6 +861,104 @@ class Admin extends CI_Controller
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_postgen', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function pagepostGen()
+    {
+        $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
+        $this->load->view('templates/headerMentor');
+        $this->load->view('templates/sidebar', $dats);
+        $this->load->view('admin/post_general');
+        $this->load->view('templates/footer');
+    }
+
+    public function postingGen()
+    {
+        $caption = htmlspecialchars($this->input->post('caption', true));
+        $id_user = htmlspecialchars($this->input->post('id_user', true));
+        $fileName = $this->_uploadFileGen();
+
+        if ((substr($fileName, -3, 3) == 'mp4') || (substr($fileName, -3, 3) == 'mkv') || (substr($fileName, -3, 3) == 'flv')) {
+            $html = '<div class="video-wrapper">';
+            $html .= '<video class="post-video" controls width="500" height="500">';
+            $html .= '<source src=' . base_url('assets_user/file_upload/');
+            $html .= $fileName . ' type="video/mp4">';
+            $html .= '</video></div>';
+        } else {
+            $html = '<img src=' . base_url('assets_user/file_upload/');
+            $html .= $fileName . ' alt="post-image"';
+            $html .= 'class="img-responsive post-image" style="height: 300px;" />';
+        }
+
+        $data = [
+            'caption' => $caption,
+            'fileName' => $fileName,
+            'html' => $html,
+            'date_post' => time(),
+            'id_user' => $id_user,
+        ];
+
+        //siapkan token
+        $this->session->set_flashdata('message', '<small> br</small>');
+
+        // $this->db->insert('postgen', $data);
+        $this->Admin_model->addPostGen($data);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible show" role="alert">
+        <strong>Congratulations!</strong> your post is uploaded.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>');
+
+        redirect('Admin/pagepostGen');
+    }
+
+    private function _uploadFileGen()
+    {
+
+        $namaFiles = $_FILES['file']['name'];
+        $ukuranFile = $_FILES['file']['size'];
+        $type = $_FILES['file']['type'];
+        $eror = $_FILES['file']['error'];
+
+        // $nama_file = str_replace(" ", "_", $namaFiles);
+        $tmpName = $_FILES['file']['tmp_name'];
+        // $nama_folder = "assets_user/file_upload/";
+        // $file_baru = $nama_folder . basename($nama_file);
+
+        // if ((($type == "video/mp4") || ($type == "video/3gpp")) && ($ukuranFile < 8000000)) {
+
+        //   move_uploaded_file($tmpName, $file_baru);
+        //   return $file_baru;
+        // }
+
+        if ($eror === 4) {
+
+            $this->session->set_flashdata('message', '<small style="color: red;">Chose an image or video first!</small>');
+
+            redirect('Admin/pagepostGen');
+
+            return false;
+        }
+
+        $ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'mp4', 'flv', 'mkv'];
+        $ekstensiGambar = explode('.', $namaFiles);
+        $ekstensiGambar = strtolower(end($ekstensiGambar));
+        if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+            $this->session->set_flashdata('message', '<small style="color: red;">Your uploaded file is not image/video!</small>');
+
+            redirect('Admin/pagepostGen');
+            return false;
+        }
+
+        $namaFilesBaru = uniqid();
+        $namaFilesBaru .= '.';
+        $namaFilesBaru .= $ekstensiGambar;
+
+        move_uploaded_file($tmpName, 'assets_user/file_upload/' . $namaFilesBaru);
+
+        return $namaFilesBaru;
     }
 
     ////////////////////////////////////////////////////////////////////

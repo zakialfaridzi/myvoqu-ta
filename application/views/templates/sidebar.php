@@ -89,7 +89,7 @@ echo $data['user']['name'];
                           </ul>
                       </li>
                       <li class="nav-item">
-                          <a href="<?php echo base_url('Admin/pagepostMentor/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'pagepostMentor' ? 'active' : '' ?>">
+                          <a href="<?php echo base_url('Admin/pagepostGen/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'pagepostGen' ? 'active' : '' ?>">
                               <i class="nav-icon fas fa-book-open"></i>
                               <p>
                                   Input Materi

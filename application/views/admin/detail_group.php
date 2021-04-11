@@ -5,13 +5,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">MyVoqu Groups Data Detail</h1>
+                        <h1 class="m-0 text-dark">Detil Data Grup Hafalan MyVoqu</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Home</a></li>
-                            <li class="breadcrumb-item">MyVoqu Groups Data</li>
-                            <li class="breadcrumb-item active">MyVoqu Groups Data Detail</li>
+                            <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Beranda</a></li>
+                            <li class="breadcrumb-item">Data Grup Hafalan MyVoqu</li>
+                            <li class="breadcrumb-item active">Detil Data Grup Hafalan MyVoqu</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -55,7 +55,7 @@
                     </tr>
                 <?php endforeach;?>
             </table>
-            <a href="<?php echo base_url('Admin/indexGroup'); ?>" class="btn btn-primary">Back</a>
+            <a href="<?php echo base_url('Admin/indexGroup'); ?>" class="btn btn-primary">Kembali</a>
         </div>
     </div>
 </div>

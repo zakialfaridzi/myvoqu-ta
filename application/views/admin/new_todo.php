@@ -3,13 +3,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Create To-Do List Admin</h1>
+                    <h1 class="m-0 text-dark">Membuat Daftar Kegiatan Admin MyVoQu</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Home</a></li>
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/indexTodo/'); ?>">To-Do List Admin</a></li>
-                        <li class="breadcrumb-item active">Create To-Do List Admin</li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Beranda</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/indexTodo/'); ?>">Daftar Kegiatan Admin MyVoQu</a></li>
+                        <li class="breadcrumb-item active">Membuat Daftar Kegiatan Admin MyVoQu</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -19,12 +19,12 @@
     <div class="content m-2">
     <form action="<?php echo base_url('Admin/saveTodo') ?>" method="post">
                 <div class="form-group">
-                    <label>Nama To-Do List</label>
-                    <input type="text" name="namatodo" id='namatodo' class="form-control col-3">
+                    <label>Nama Kegiatan</label>
+                    <input type="text" name="namatodo" id='namatodo' class="form-control col-3" required>
                 </div>
 
-                <button type="reset" class="btn btn-danger">Reset</button>
-                <button type="submit" name="tambahtodo" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-danger">Ulangi</button>
+                <button type="submit" name="tambahtodo" class="btn btn-primary">Simpan</button>
             </form>
     </div>
 </div>

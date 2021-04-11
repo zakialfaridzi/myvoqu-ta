@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Print Admin To-Do Data</h1>
+                    <h1 class="m-0 text-dark">Print Data Daftar Kegiatan Admin MyVoQu</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                 </div><!-- /.col -->
@@ -15,7 +15,7 @@
         <table class="table" border="1">
             <tr>
                 <th>NO</th>
-                <th>Nama To-Do</th>
+                <th>Nama Kegiatan</th>
             </tr>
             <?php $no = 1;
 foreach ($mahasiswa as $mhs): ?>

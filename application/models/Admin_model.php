@@ -267,9 +267,9 @@ class Admin_model extends CI_model
         return $this->db->get()->result();
     }
 
-    public function addPosting($data)
+    public function addPostGen($data)
     {
-        return $this->db->insert('postgen', $data);
+        $this->db->insert('postgen', $data);
     }
 
     public function tampil_postgen()
