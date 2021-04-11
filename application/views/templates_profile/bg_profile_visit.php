@@ -4,7 +4,7 @@
       ================================================= -->
     <div class="timeline">
         <div class="timeline-cover">
-
+ 
             <!--Timeline Menu for Large Screens-->
             <div class="timeline-nav-bar hidden-sm hidden-xs">
                 <div class="row">

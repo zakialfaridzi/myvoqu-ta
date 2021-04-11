@@ -76,6 +76,7 @@ class Chat extends CI_Controller
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
         $data['getChat'] = $this->User_model->getChat();
+        $data['getInfoChat'] = $this->User_model->getInfoProfileChat();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -103,7 +104,7 @@ class Chat extends CI_Controller
             $this->load->view('templates_newsfeed/footer');
         }
     }
-
+ 
     public function pilihUser()
     {
         $data['pesan'] = $this->User_model->getPesanById();

@@ -1,11 +1,5 @@
 <div class="chat-room">
-<?php foreach(array_slice($pesan3 , 1, 1) as $pst) : ?>
-    <h3><?php if ($pst->id_pengirim == $this->session->userdata('id')) : ?>
-        <?php else : ?>
-            <?= $pst->name; ?>'s room chat
-        <?php endif; ?>
-        </h3>
-<?php endforeach; ?>
+
     <div class="row">
         <div class="col-md-12">
 
@@ -14,9 +8,13 @@
 
             <!--Chat Messages in Right-->
             <div class="tab-content scrollbar-wrapper wrapper scrollbar-outer">
-            <html>
+            <?php foreach ($getInfoChat as $pst) : ?>
+         <h3>
+            <?= $pst->name; ?>'s room chat
+       
+        </h3>
+<?php endforeach; ?>
   <a href="#downnn">Click Here, scroll to textfield</a>
-</html> 
                 <div class="tab-pane active" id="contact-1">
                     <div class="chat-body">
                         <?php foreach ($pesan3 as $pst) : ?>
