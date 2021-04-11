@@ -3,12 +3,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">MyVoqu General Posts Data</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Home</a></li>
-                        <li class="breadcrumb-item active">MyVoqu General Posts Data</li>
+                    <h1 class="m-0 text-dark">Data Unggahan Materi Umum MyVoqu</h1>
+					</div><!-- /.col -->
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Beranda</a></li>
+							<li class="breadcrumb-item">Data Unggahan Materi Umum</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -20,7 +20,7 @@
 
         <div class="dropdown">
             <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-download"></i> Export
+                <i class="fa fa-download"></i> Ekspor
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a href="<?php echo base_url('Admin/printPostingGen'); ?>" target="_blank" rel="noreferrer" class="dropdown-item"><i class="fa fa-print"></i> Print</a>
@@ -32,10 +32,10 @@
         <table class="table mt-2">
             <tr>
                 <th>NO</th>
-                <th>ID Post</th>
-                <th>Caption</th>
+                <th>ID Unggah (ID Post)</th>
+                <th>Keterangan (Caption)</th>
                 <th colspan="2">
-                    Action
+                    Aksi
                 </th>
             </tr>
             <?php $no = 1;
@@ -45,10 +45,10 @@ foreach ($post as $u): ?>
                     <td><?php echo $u->id_posting ?></td>
                     <td><?php echo $u->caption ?></td>
                     <td>
-                        <?php echo anchor('Admin/detailPostingGen/' . $u->id_posting, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detail</div>') ?>
+                        <?php echo anchor('Admin/detailPostingGen/' . $u->id_posting, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
                     </td>
-                    <td onclick="return confirm('Delete Post?');">
-                        <?php echo anchor('Admin/DelPosGen/' . $u->id_posting, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</div>') ?>
+                    <td onclick="return confirm('Hapus Unggahan?');">
+                        <?php echo anchor('Admin/DelPosGen/' . $u->id_posting, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
                     </td>
                 </tr>
             <?php endforeach;?>

@@ -3,12 +3,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">MyVoqu Groups Data</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Home</a></li>
-                        <li class="breadcrumb-item active">MyVoqu Groups Data</li>
+                        <h1 class="m-0 text-dark">Data Grup Hafalan MyVoqu</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Beranda</a></li>
+                            <li class="breadcrumb-item active">Data Grup Hafalan MyVoqu</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -20,7 +20,7 @@
 
         <div class="dropdown">
             <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-download"></i> Export
+                <i class="fa fa-download"></i> Ekspor
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a href="<?php echo base_url('Admin/printGroup'); ?>" target="_blank" rel="noreferrer" class="dropdown-item"><i class="fa fa-print"></i> Print</a>
@@ -32,8 +32,8 @@
         <table class="table mt-2">
             <tr>
                 <th>NO</th>
-                <th>Nama Group</th>
-                <th colspan="3">Action</th>
+                <th>Nama Grup</th>
+                <th colspan="3">Aksi</th>
             </tr>
             <?php $no = 1;
 foreach ($group as $m): ?>
@@ -41,10 +41,10 @@ foreach ($group as $m): ?>
                     <td><?php echo $no++; ?></td>
                     <td><?php echo $m->nama ?></td>
                     <td>
-                        <?php echo anchor('Admin/detailGroup/' . $m->id, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detail</div>') ?>
+                        <?php echo anchor('Admin/detailGroup/' . $m->id, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
                     </td>
-                    <td onclick="return confirm('Delete Group?');">
-                        <?php echo anchor('Admin/hapusGroup/' . $m->id, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</div>') ?>
+                    <td onclick="return confirm('Hapus Grup?');">
+                        <?php echo anchor('Admin/hapusGroup/' . $m->id, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
                     </td>
                 </tr>
             <?php endforeach;?>

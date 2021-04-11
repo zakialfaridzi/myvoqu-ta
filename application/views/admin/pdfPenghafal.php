@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Myvoqu Penghafal Data</h1>
+                    <h1 class="m-0 text-dark">Data Penghafal Myvoqu</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                 </div><!-- /.col -->
@@ -21,13 +21,13 @@
 
             </tr>
             <?php $no = 1;
-            foreach ($mahasiswa as $mhs) : ?>
+foreach ($mahasiswa as $mhs): ?>
                 <tr>
                     <td><?php echo $no++; ?></td>
                     <td><?php echo $mhs->name ?></td>
                     <td><?php echo $mhs->email ?></td>
                     <td><?php echo $mhs->gender ?></td>
                 </tr>
-            <?php endforeach; ?>
+            <?php endforeach;?>
         </table>
     </div>

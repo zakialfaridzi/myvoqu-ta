@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Myvoqu Posting Data</h1>
+                    <h1 class="m-0 text-dark">Data Unggahan Penghafal dan Mentor Myvoqu</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                 </div><!-- /.col -->
@@ -22,7 +22,7 @@
             </tr>
 
             <?php $no = 1;
-            foreach ($mahasiswa as $mhs) : ?>
+foreach ($mahasiswa as $mhs): ?>
                 <tr>
                     <td><?php echo $no++; ?></td>
                     <td><?php echo $mhs->id_posting ?></td>
@@ -30,6 +30,6 @@
                     <td><?php echo 4; ?></td>
                     <td><?php echo $mhs->html ?></td>
                 </tr>
-            <?php endforeach; ?>
+            <?php endforeach;?>
         </table>
     </div>
