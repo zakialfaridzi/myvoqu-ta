@@ -19,7 +19,7 @@
                     <?php foreach ($jumlahfollowers as $jf): ?>
                     <a href="<?=base_url('profile/followers');?>" class="text-white"><i
                             class="ion ion-android-person-add"></i><?=$jf->jumlahfollowers;?>
-                        followers</a>
+                        Pengikut</a>
                     <?php endforeach;?>
                 </div>
                 <!--profile card ends-->

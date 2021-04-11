@@ -1,9 +1,9 @@
 <!-- Chat Room
             ================================================= -->
 <div class="chat-room"style="height: 100px;">
-    <b>All Friends</b>
+    <b>Semua Teman Yang Diikuti</b>
 
-    <a href="<?= base_url('chat/index'); ?>" style='float:right; color:white; background-color: #6FB8DF; border:none; border-radius: 10px;'><b>&nbsp; All Message Received&nbsp;</b></a>
+    <a href="<?= base_url('chat/index'); ?>" style='float:right; color:white; background-color: #6FB8DF; border:none; border-radius: 10px;'><b>&nbsp; Semua Pesan Yang Diterima&nbsp;</b></a>
     <div class="row" >
         <div class="col-md-12">
 

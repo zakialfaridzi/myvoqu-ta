@@ -1,12 +1,12 @@
 <!-- Chat Room
             ================================================= -->
 <div class="chat-room">
-    <b> All Message Received</b>
+    <b>Semua Pesan Yang Diterima</b>
 
 
     <a href="<?=base_url('chat/pilihUser');?>"
-        style='float:right; color:white; background-color: #6FB8DF; border:none; border-radius: 10px;'><b> &nbsp;Send
-            message&nbsp;</b></a>
+        style='float:right; color:white; background-color: #6FB8DF; border:none; border-radius: 10px;'><b> &nbsp;
+            Kirim Pesan Kepada Teman&nbsp;</b></a>
     <div class="row">
         <div class="col-md-12">
 

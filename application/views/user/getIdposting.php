@@ -24,7 +24,7 @@
         <input type="hidden" name="id_posting" value="<?=$pst->id_posting;?>">
         <input type="hidden" name="id" value="<?=$this->session->userdata('id');?>">
         <a class="btn text-red">
-            <button class="fas fa-exclamation" style="border : 0;" name="report"> Report </button> </a>
+            <button class="fas fa-exclamation" style="border : 0;" name="report"> Laporkan </button> </a>
     </form>
     <?php elseif ($pst->id_user != $this->session->userdata('id') and $rpt->report == 1): ?>
 
@@ -34,7 +34,7 @@
 
     <i class="fas fa-trash" style="color: tomato;margin-left:18px;"></i>
     <a href="<?=base_url();?>user/deletePost/<?=$pst->id_posting . '/' . $pst->fileName?>"
-        style="text-decoration:none;">Delete</a>
+        style="text-decoration:none;">Hapus</a>
 
     <?php endif;?>
 
@@ -50,7 +50,7 @@
                         <a href="<?=base_url('friend/visitProfile/') . $pst->id_user;?>"><?=$pst->name;?></a>
                         <?php endif;?>
                     </h5>
-                    <p class="text-muted">Published on <?=date('d F Y ', $pst->date_post);?></p>
+                    <p class="text-muted">Diunggah pada <?=date('d F Y ', $pst->date_post);?></p>
             </div>
 
 
@@ -71,7 +71,7 @@
                     <input type="hidden" name="notifsuka" value="Like on your post.">
                     <input type="hidden" name="id" value="<?=$this->session->userdata('id');?>">
                     <a class="btn text-blue">
-                        <button class="icon ion-thumbsup" style="border : 0;" name="like2"> like </button>
+                        <button class="icon ion-thumbsup" style="border : 0;" name="like2"> sukai </button>
                         <?=$sk->jumlahsuka;?></a>
                 </form>
             </div>
@@ -85,7 +85,7 @@
                     <input type="hidden" name="notifsuka" value="Like on your post.">
                     <input type="hidden" name="id" value="<?=$this->session->userdata('id');?>">
                     <a class="btn text-blue">
-                        <button class="icon ion-thumbsup" style="border : 0;" name="unlike"> liked </button>
+                        <button class="icon ion-thumbsup" style="border : 0;" name="unlike"> disukai </button>
                         <?=$sk->jumlahsuka;?></a>
                 </form>
             </div>
@@ -97,10 +97,10 @@
                     <input type="hidden" name="jumlahsuka" value="<?=$sk->jumlahsuka;?>">
                     <input type="hidden" name="id_posting" value="<?=$pst->id_posting;?>">
                     <input type="hidden" name="id_user" value="<?=$pst->id_user;?>">
-                    <input type="hidden" name="notifsuka" value="Like on your post.">
+                    <input type="hidden" name="notifsuka" value="Menyukai Unggahan Anda.">
                     <input type="hidden" name="id" value="<?=$this->session->userdata('id');?>">
                     <a class="btn text-blue">
-                        <button class="icon ion-thumbsup" style=" border : 0;" name="like2"> Like </button>
+                        <button class="icon ion-thumbsup" style=" border : 0;" name="like2"> sukai </button>
                         <?=$sk->jumlahsuka;?></a>
                 </form>
             </div>
@@ -143,7 +143,7 @@ echo $str;
                 <form
                     action="<?=base_url('user/deleteComment/') . $cmt->id_comment . "/" . $this->uri->segment('3');?>">
                     <button style="text-decoration:none; color:red; border:none; background-color:#fff; opacity:70%;">
-                        Delete!
+                        Hapus!
                     </button>
                 </form>
                 <?php endif;?>
@@ -155,19 +155,19 @@ echo $str;
             <form method="post" action="<?=base_url('User/commentPost') . "/" . $this->uri->segment('3');?>">
                 <div class="post-comment">
                     <img src="<?=base_url('assets_user/');?>images/<?=$pst->image;?>" alt="" class="profile-photo-sm" />
-                    <input type="text" name="comment" id="comment" class="form-control" placeholder="Post a comment">
+                    <input type="text" name="comment" id="comment" class="form-control" placeholder="Beri komentar">
                     <input type="hidden" name="id_posting" value="<?=$pst->id_posting;?>">
                     <input type="hidden" name="id_user" value="<?=$pst->id_user;?>">
-                    <input type="hidden" name="notifComment" value="Comment on your post.">
+                    <input type="hidden" name="notifComment" value="Mengomentari Unggahan Anda.">
                     <input type="hidden" name="id" value="<?=$this->session->userdata('id');?>">
                     <input type="submit" class="btn-primary"
                         style="height: 45px; margin-top: -2px; margin-left: 10px; margin-right: -10px;background-color: #6fb8df;"
-                        value="Send">
+                        value="Kirim">
             </form>
 
 
         </div>
-        <p>Click to insert a smiley!</p>
+        <p>Klik untuk memasukan emoticon!</p>
         <?php echo $smiley_table; ?>
     </div>
 </div>

@@ -19,10 +19,10 @@
                     </div>
                     <div class="col-md-9">
                         <ul class="list-inline profile-menu">
-                            <li><a href="<?=base_url('profile');?>" class="<?=$active;?>">Timeline</a></li>
-                            <li><a href="<?=base_url('profile/aboutMe');?>" class="<?=$active;?>">About</a></li>
-                            <li><a href=" <?=base_url('profile/following')?>" class="<?=$active;?>">Following</a></li>
-                            <li><a href="<?=base_url('profile/followers')?>" class="<?=$active;?>">Followers</a></li>
+                            <li><a href="<?=base_url('profile');?>" class="<?=$active;?>">Lintas Masa</a></li>
+                            <li><a href="<?=base_url('profile/aboutMe');?>" class="<?=$active;?>">Tentang</a></li>
+                            <li><a href=" <?=base_url('profile/following')?>" class="<?=$active;?>">Diikuti</a></li>
+                            <li><a href="<?=base_url('profile/followers')?>" class="<?=$active;?>">Pengikut</a></li>
                         </ul>
                         <ul class="follow-me list-inline">
 

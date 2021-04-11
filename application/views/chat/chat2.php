@@ -10,11 +10,11 @@
             <div class="tab-content scrollbar-wrapper wrapper scrollbar-outer">
             <?php foreach ($getInfoChat as $pst) : ?>
          <h3>
-            <?= $pst->name; ?>'s room chat
+            Ruang Obrolan Bersama <?= $pst->name; ?>
        
         </h3>
 <?php endforeach; ?>
-  <a href="#downnn">Click Here, scroll to textfield</a>
+  <a href="#downnn">Klik disini untuk gulir kebawah untuk mengirim pesan</a>
                 <div class="tab-pane active" id="contact-1">
                     <div class="chat-body">
                         <?php foreach ($pesan3 as $pst) : ?>
@@ -27,7 +27,7 @@
                                     <div class="chat-item">
                                         <div class="chat-item-header">
                                             <h5><?= $pst->name; ?></h5>
-                                            <small class="text-muted">send on <?= date('d F Y h:m:sa ', $pst->date); ?></small>
+                                            <small class="text-muted">Dikirimkan pada <?= date('d F Y h:m:sa ', $pst->date); ?></small>
                                         </div>
                                         <p>
                                             <?php
@@ -46,11 +46,11 @@
                 <div class="post-comment" style="height: 250px;">
                     <?php echo smiley_js(); ?>
                     <form method="post" action="<?= base_url('Chat/kirimPesan') . "/" . $this->uri->segment('3'); ?>">
-                        <input type="text" name="isi_pesan" id="comment" class="form-control" placeholder="Type your message">
+                        <input type="text" name="isi_pesan" id="comment" class="form-control" placeholder="Ketik Pesan">
                         <input type="hidden" name="id" value="<?= $this->session->userdata('id'); ?>">
-                        <input type="submit" class="btn-primary" style="height: 45px; margin-left:460px; margin-top: 7px; background-color: #6fb8df; scroll-behavior: smooth;" value="Send">
+                        <input type="submit" class="btn-primary" style="height: 45px; margin-left:460px; margin-top: 7px; background-color: #6fb8df; scroll-behavior: smooth;" value="Kirim">
                     </form>
-                    <p>Click to insert a smiley!</p>
+                    <p>Klik untuk memasukan emoticon</p>
                     <?php echo $smiley_table; ?>
                     
                 </div>

@@ -204,7 +204,7 @@ class User extends CI_Controller
     {
         $data = array(
             'id_comment' => '',
-            'comment' => $this->input->post('comment'),
+            'comment' => htmlspecialchars($this->input->post('comment')),
             'date' => time(),
             'id_posting' => $this->input->post('id_posting'),
             'id' => $this->input->post('id'),

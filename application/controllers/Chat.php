@@ -142,7 +142,7 @@ class Chat extends CI_Controller
             $this->load->view('templates_newsfeed/footer');
         }
     }
-
+ 
     public function kirimPesan($id)
     {
         $data = array(
@@ -150,7 +150,7 @@ class Chat extends CI_Controller
             'id_penerima' => $id,
             'id_pengirim' => $this->input->post('id'),
             'date' => time(),
-            'pesan' => $this->input->post('isi_pesan'),
+            'pesan' => htmlspecialchars($this->input->post('isi_pesan')),
             'sudah_dibaca' => 'belum',
         );
         $this->User_model->kirimPesan($data);
