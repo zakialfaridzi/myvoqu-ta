@@ -16,7 +16,7 @@
                         <li class="active" style="height: 100px;">
                             <a href="<?= base_url('chat/chat2/') . $pst->id_usertarget; ?>">
                                 <div class="contact">
-                                    <img src="<?= base_url('assets_user/') ?>images/<?= $pst->image; ?>" alt="" class="profile-photo-sm pull-left" />
+                                    <img src="<?= base_url('assets_user/') ?>images/<?= $pst->imagetarget; ?>" alt="" class="profile-photo-sm pull-left" />
                                     <div class="msg-preview">
                                         <h6><?= $pst->namatarget; ?></h6>
 
