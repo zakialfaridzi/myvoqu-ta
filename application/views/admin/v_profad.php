@@ -35,8 +35,8 @@
                 <div class="col-sm-4">
                     <div class="custom-file">
                         <label>Foto</label>
-                        <input type="file" class="custom-file-input" id="image" name="image">
-                        <label class="custom-file-label" for="image">Pilih Berkas</label>
+                        <input type="file" class="custom-file-input" id="imageadmin" name="image">
+                        <label class="custom-file-label" for="imageadmin">Pilih Berkas</label>
                     </div>
                 </div>
 

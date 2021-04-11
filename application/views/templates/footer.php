@@ -78,6 +78,16 @@ $(document).ready(function() {
 });
 </script>
 
+<script>
+            $('#imageadmin').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                var cleanFileName = fileName.replace('C:\\fakepath\\', " ");
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(cleanFileName);
+            })
+</script>
+
 </body>
 
 </html>
