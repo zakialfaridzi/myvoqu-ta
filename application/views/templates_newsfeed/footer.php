@@ -1,6 +1,6 @@
 <div class="col-md-2" style="position: fixed;margin-left: 900px;">
     <div class="suggestions" id="sticky-sidebar">
-        <h4 class="grey">Suggestion to Follow</h4>
+        <h4 class="grey">Mungkin anda kenal ? </h4>
         <?php foreach ($suggestion as $ou): ?>
         <div class="follow-user">
 
@@ -19,7 +19,7 @@
                     <input type="hidden" name="bio" value="<?=$ou->bio;?>">
                     <input type="hidden" name="image" value="<?=$ou->image;?>">
                     <button class="btn btn-primary"
-                        style="background-color: #6fb8df; margin-top: 4px; outline: none;">Follow</button>
+                        style="background-color: #6fb8df; margin-top: 4px; outline: none;">Ikuti</button>
                 </form>
             </div>
         </div>
@@ -41,25 +41,46 @@
                         </ul>
 
 
+
+
                     </div>
 
-                    <div style="width: 200px;height:60px;margin-top: 20px;">
 
 
 
-                        <div class="thumbnail">
-                            <img src="https://www.w3schools.com/howto/img_avatar.png" alt="...">
-                            <div class="caption">
-                                <h3>Thumbnail label</h3>
-                                <p>...</p>
-                                <p><a href="#" class="btn btn-info" role="button">Button</a> <a href="#"
-                                        class="btn btn-default" role="button">Button</a></p>
+                    <div style="width: 900px;margin-top: 50px;">
+                        <div class="card" style="padding: 10px;">
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <div class="col-sm-8">
+
+                                        <h4 class="card-title" style="color: black;">Nominal Dana Akun </h4>
+                                        <h3 class="card-text">Rp500.000,00</h3>
+                                        <button href="#" class="btn btn-info" style="margin-top: 10px;"><i
+                                                class="fas fa-plus"></i></button>
+
+
+                                    </div>
+
+
+                                    <div class="col-sm-4" style="margin-top: 35px;">
+                                        <div style="font-size: 80px;color: #5badff;">
+                                            <i class="fas fa-wallet fa-xs"></i>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
                             </div>
                         </div>
-
-
-
                     </div>
+
+
+
                 </div>
             </div>
 
@@ -203,11 +224,6 @@ function myFunction() {
 </script>
 
 
-
-
-
-
-
 <style>
 #topBtn {
     display: none;
@@ -288,6 +304,8 @@ $(document).ready(function() {
 
 <!-- Mi
 rrored from mythemestore.com/friend-finder/newsfeed.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 21 Jan 2020 16:01:50 GMT -->
+
+
 
 
 

@@ -27,7 +27,7 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
                     <button type="submit" class="btn btn-info">Submit</button>
                 </div>
                 </form>
@@ -49,7 +49,7 @@
             <input type="text" class="form-control" name="ayat" placeholder="berapa ayat">
             <label for="suratke">Surat Ke</label>
             <input type="text" class="form-control" name="suratke" placeholder="surat ke berapa">
-            <button type="submit" class="btn btn-success" style="float: right;">Add</<button>
+            <button type="submit" class="btn btn-success" style="float: right;">Tambahkan</<button>
         </form>
     </div>
 </div>
@@ -59,12 +59,12 @@
         <div class="col-md-4 col-sm-6" style="margin-bottom: 5px;">
             <div class="card" style="width: 18rem;">
                 <img src="assets\img\materi\default.jpg" class="card-img-top" alt="..." style="height: 160px; width: 180px;">
-                <div class="card-body">
+                <div class="card-body" style="padding: 1rem;">
                     <h5 class="card-title"><?= $surat['nama'] ?></h5>
                     <h6 class="card-title">Artinya : <?= $surat['arti'] ?></h6>
                     <h6 class="card-title"><?= $surat['ayat'] ?> Ayat</h6>
                     <h6 class="card-title">Surat ke : <?= $surat['suratke'] ?></h6>
-                    <a href="<?= base_url('library/materi/') . $surat['id'] ?>" class="btn btn-primary">Open</a>
+                    <a href="<?= base_url('library/materi/') . $surat['id'] ?>" class="btn btn-primary">Buka</a>
                 </div>
             </div>
         </div>

@@ -40,7 +40,7 @@
 
 
                         <i class="fas fa-exclamation" style="color: tomato;margin-left:10px;"></i>
-                        <a href="" style="text-decoration:none;">Report</a>
+                        <a href="" style="text-decoration:none;">Laporkan!</a>
 
 
                     <?php else : ?>
@@ -53,7 +53,7 @@
 
 
                         <i class="fas fa-exclamation" style="color: tomato;margin-left:10px;"></i>
-                        <a href="" style="text-decoration:none;">Report</a>
+                        <a href="" style="text-decoration:none;">Laporkan!</a>
 
 
 
@@ -64,7 +64,7 @@
                         <div class="post-detail">
                             <div class="user-info">
                                 <h5><a href="timeline.html" class="profile-link"><?= $pst->name; ?></a></h5>
-                                <p class="text-muted">Published on <?= date('d F Y ', $pst->date_post); ?></p>
+                                <p class="text-muted">Diunggah pada <?= date('d F Y ', $pst->date_post); ?></p>
                             </div>
 
 
@@ -74,7 +74,7 @@
                             </div>
                             <div class="line-divider"></div>
                             <div class="post-comment">
-                                <a href="<?= base_url('user/getIdposting/') . $pst->id_posting; ?>">Comment</a>
+                                <a href="<?= base_url('user/getIdposting/') . $pst->id_posting; ?>">Beri Komentar</a>
                             </div>
                         </div>
                     </div>

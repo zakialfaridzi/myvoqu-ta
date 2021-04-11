@@ -15,11 +15,11 @@ class Chat extends CI_Controller
     public function sessionLogin()
     {
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-      Login first!!
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>');
+		Login first!!
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		</div>');
         redirect('auth');
     }
 
@@ -76,6 +76,7 @@ class Chat extends CI_Controller
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
         $data['getChat'] = $this->User_model->getChat();
+        $data['getInfoChat'] = $this->User_model->getInfoProfileChat();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -103,7 +104,7 @@ class Chat extends CI_Controller
             $this->load->view('templates_newsfeed/footer');
         }
     }
-
+ 
     public function pilihUser()
     {
         $data['pesan'] = $this->User_model->getPesanById();
@@ -141,7 +142,7 @@ class Chat extends CI_Controller
             $this->load->view('templates_newsfeed/footer');
         }
     }
-
+ 
     public function kirimPesan($id)
     {
         $data = array(
@@ -149,7 +150,7 @@ class Chat extends CI_Controller
             'id_penerima' => $id,
             'id_pengirim' => $this->input->post('id'),
             'date' => time(),
-            'pesan' => $this->input->post('isi_pesan'),
+            'pesan' => htmlspecialchars($this->input->post('isi_pesan')),
             'sudah_dibaca' => 'belum',
         );
         $this->User_model->kirimPesan($data);

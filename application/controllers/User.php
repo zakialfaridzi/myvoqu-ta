@@ -21,11 +21,11 @@ class User extends CI_Controller
     public function sessionLogin()
     {
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    Login first!!
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    	Login first!!
+    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
-    </button>
-  </div>');
+    	</button>
+  		</div>');
         redirect('auth');
     }
 
@@ -49,7 +49,7 @@ class User extends CI_Controller
             $this->sessionLogin();
         } elseif ($data['user']['role_id'] == 1) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger ">
-            Your access is only for admin, sorry :(
+            Akses kamu hanya untuk admin, sorry :(
             <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -104,11 +104,11 @@ class User extends CI_Controller
             $this->db->insert('posting', $data);
 
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible show" role="alert">
-      <strong>Congratulations!</strong> your post is uploaded.
+      <strong>Selamat!</strong> postingan berhasil diunggah.
       <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
       </button>
-  </div>');
+  		</div>');
         }
 
         redirect('user');
@@ -124,27 +124,27 @@ class User extends CI_Controller
 
         if ($eror === 4) {
             $this->session->set_flashdata('mm', '<div class="alert alert-danger alert-dismissible show" role="alert">
-      Chose an image or video first!
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      	Pilih foto atau video terlebih dahulu!
+      	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-      </button>
-  </div>');
+      	</button>
+  		</div>');
 
             redirect('user');
 
             return false;
         }
 
-        $ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'mp4', 'flv', 'mkv'];
+        $ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'jfif', 'mp4', 'flv', 'mkv'];
         $ekstensiGambar = explode('.', $namaFiles);
         $ekstensiGambar = strtolower(end($ekstensiGambar));
         if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
             $this->session->set_flashdata('mm', '<div class="alert alert-danger alert-dismissible show" role="alert">
-      Your uploaded file, is not image or video!
+      Yang kamu upload bukan foto/video!
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
       </button>
-  </div>');
+  		</div>');
 
             redirect('user');
             return false;
@@ -169,11 +169,11 @@ class User extends CI_Controller
             $this->User_model->deletePostUser($id);
 
             $this->session->set_flashdata('mm', '<div class="alert alert-success alert-dismissible show" role="alert">
-      <strong>Congratulations!</strong> your post is deleted.
-      <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+      	<strong>Selamat!</strong> postingan berhasil dihapus.
+      	<button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-      </button>
-  </div>');
+      	</button>
+  		</div>');
             redirect('user');
         } else {
             echo "The file was not found or not readable and could not be deleted";
@@ -192,11 +192,11 @@ class User extends CI_Controller
         $this->User_model->reportPost($id);
 
         $this->session->set_flashdata('mm', '<div class="alert alert-success alert-dismissible show" role="alert">
-      <strong>Congratulations!</strong> your post is deleted.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      	<strong>Selamat!</strong> berhasil melaporkan postingan.
+      	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-      </button>
-  </div>');
+		</button>
+		</div>');
         redirect('user');
     }
 
@@ -204,7 +204,7 @@ class User extends CI_Controller
     {
         $data = array(
             'id_comment' => '',
-            'comment' => $this->input->post('comment'),
+            'comment' => htmlspecialchars($this->input->post('comment')),
             'date' => time(),
             'id_posting' => $this->input->post('id_posting'),
             'id' => $this->input->post('id'),
@@ -219,11 +219,11 @@ class User extends CI_Controller
         $this->User_model->deleteComment($id);
 
         $this->session->set_flashdata('nn', '<div class="alert alert-success alert-dismissible show" role="alert">
-      <strong>Congratulations!</strong> your comment is deleted.
+      <strong>Selaamt!</strong> komentar berhasil dihapus.
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
       </button>
-  </div>');
+  		</div>');
         redirect("user/getIdposting/" . $idpost);
     }
 

@@ -20,25 +20,13 @@
                             <?php } ?>
                             <!-- Contact List in Left-->
                             <ul class=" nav nav-tabs contact-list" style="margin-top: 50px">
-                                <!-- <li class="active">
-                                    <a href="#">
-                                        <div class="contact">
-                                            <img src="<?= base_url('assets_user/') ?>images/default.png" alt="" class="profile-photo-sm pull-left" />
-                                            <div class="msg-preview">
-                                                <h6>Mang Ibing <span class="badge badge-primary">Mentor</span></h6>
-                                                <p class="text-muted">Subhanallah</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li> -->
-                                
                                 <?php 
                                 if (empty($anggota)) {
                                     echo '<center>Tidak mempunyai anggota</center>';
                                 }else{
                                     foreach ($anggota as $penghuni) { 
                                 ?>
-                                    <li class="active">
+                                    <li class="active" style="height: auto;">
                                         <div class="contact">
                                             <img src="<?= base_url('assets_user/') ?>images/default.png" alt="" class="profile-photo-sm pull-left" />
                                             <div class="msg-preview" style="margin-left: 50px">

@@ -7,7 +7,7 @@
         <ul class=" nav nav-tabs contact-list">
             <?php foreach ($notification as $pst) : ?>
                 <li class="active" style="height: 100px;">
-                    <?php if ($pst->notif == 'Started following you.') : ?>
+                    <?php if ($pst->notif == 'Mulai Mengikuti Anda.') : ?>
                         <a href="<?= base_url('friend/visitProfile/') . $pst->id; ?>">
                         <?php else : ?>
                             <a href="<?= base_url('user/getIdposting/') . $pst->id_posting; ?>">
@@ -31,4 +31,4 @@
     <!--Chat Messages in Right End-->
 </div>
 </div>
-</div>
+</div> 

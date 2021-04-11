@@ -10,10 +10,10 @@
                         </video>
                     <div class="media-info">
                         <div class="user-info">
-                            <img src="images/users/user-10.jpg" alt="" class="profile-photo-sm pull-left" />
+                            <img src="<?= base_url('assets_user/'); ?>images/<?= $mat['image']; ?>" alt="" class="profile-photo-sm pull-left" />
                             <div class="user">
                                 <h5><?= $mat['nama']; ?></h5>
-                                <h5>Oleh Ustad <a href="<?= base_url('Friend/visitProfile/').$mat['id_user'] ?>" class="profile-link"><?= $mat['name']; ?></a></h5>
+                                <h5>oleh <a href="<?= base_url('Friend/visitProfile/').$mat['id_user'] ?>" class="profile-link"><?= $mat['name']; ?></a></h5>
                             </div>
                         </div>
                     </div>

@@ -88,7 +88,7 @@ class User_model extends CI_model
     {
         $id = $this->session->userdata('id');
 
-        $query = $this->db->query("SELECT * FROM user where id <> '$id' and name LIKE '%$name%'");
+        $query = $this->db->query("SELECT * FROM user where id <> '$id' and name LIKE '%$name%' and role_id IN(2)");
 
         return $query->result();
     }
@@ -277,7 +277,7 @@ class User_model extends CI_model
 
     public function getChat()
     {
-        return $this->db->query('SELECT * FROM user u join follow f on (u.id = f.id_userfollow) where id_usertarget in (select id_usertarget from follow where id_userfollow = ' . $this->session->userdata('id') . ') and id_userfollow = ' . $this->session->userdata('id') . '  and role_id = 2')->result();
+        return $this->db->query('SELECT * FROM user u join follow f on (u.id = f.id_userfollow) where id_usertarget in (select id_usertarget from follow where id_userfollow = ' . $this->session->userdata('id') . ') and id_userfollow = ' . $this->session->userdata('id') . '  and role_id = 2' .' and stat = 1')->result();
     }
 
     // public function getPesanByIdsendiri($id)
@@ -333,6 +333,15 @@ class User_model extends CI_model
         $this->db->select('*');
         $this->db->from('user');
         $this->db->where('id =', $id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getInfoProfileChat()
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('id =', $this->uri->segment('3'));
         $query = $this->db->get();
         return $query->result();
     }
