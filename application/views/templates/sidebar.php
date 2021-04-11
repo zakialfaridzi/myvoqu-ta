@@ -7,8 +7,8 @@
       </a>
 
       <!-- Sidebar -->
-      <div class="sidebar">
           <?php foreach ($mahasiswa as $mhs): ?>
+      <div class="sidebar">
               <!-- Sidebar user panel (optional) -->
               <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                   <div class="image">
@@ -16,8 +16,7 @@
                   </div>
                   <div class="info">
                       <a href="<?php echo base_url('Admin/indexProfile/') ?>" class="d-block"><?php
-$data['user'] = $this->db->get_where('user', ['role_id' => 1])->row_array();
-echo $data['user']['name'];
+echo $mhs->name
 ?>
                       </a>
 
