@@ -41,7 +41,7 @@ echo $data['user']['name'];
                           <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-list-alt"></i>
                               <p>
-                                  Management
+                                  Pengelolaan Data
                                   <i class="fas fa-angle-left right"></i>
                               </p>
                           </a>
@@ -50,7 +50,7 @@ echo $data['user']['name'];
                                   <a href="<?php echo base_url('Admin/indexPenghafal/'); ?>" class="nav-link <?php echo $this->uri->segment(2) == 'indexPenghafal' ? 'active' : '' ?>">
                                       <i class="nav-icon fas fa-users"></i>
                                       <p>
-                                          Manage Penghafal
+                                          Kelola Penghafal
                                       </p>
                                   </a>
                               </li>
@@ -58,7 +58,7 @@ echo $data['user']['name'];
                                   <a href="<?php echo base_url('Admin/indexMentor/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'indexMentor' ? 'active' : '' ?>">
                                       <i class="nav-icon fas fa-chalkboard-teacher"></i>
                                       <p>
-                                          Manage Mentors
+                                          Kelola Mentor
                                       </p>
                                   </a>
                               </li>
@@ -66,7 +66,7 @@ echo $data['user']['name'];
                                   <a href="<?php echo base_url('Admin/indexPosting/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'indexPosting' ? 'active' : '' ?>">
                                       <i class="nav-icon fas fa-upload"></i>
                                       <p>
-                                          Manage Posts
+                                          Kelola Unggahan
                                       </p>
                                   </a>
                               </li>
@@ -74,7 +74,7 @@ echo $data['user']['name'];
                                   <a href="<?php echo base_url('Admin/indexPostingGen/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'indexPostingGen' ? 'active' : '' ?>">
                                       <i class="nav-icon fas fa-upload"></i>
                                       <p>
-                                          Manage General Posts
+                                          Kelola Materi Umum
                                       </p>
                                   </a>
                               </li>
@@ -82,7 +82,7 @@ echo $data['user']['name'];
                                   <a href="<?php echo base_url('Admin/indexGroup/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'indexGroup' ? 'active' : '' ?>">
                                       <i class="nav-icon fa fa-users"></i>
                                       <p>
-                                          Manage Groups
+                                          Kelola Grup Hafalan
                                       </p>
                                   </a>
                               </li>
@@ -92,7 +92,7 @@ echo $data['user']['name'];
                           <a href="<?php echo base_url('Admin/pagepostGen/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'pagepostGen' ? 'active' : '' ?>">
                               <i class="nav-icon fas fa-book-open"></i>
                               <p>
-                                  Input Materi
+                                  Unggah Materi Umum
                               </p>
                           </a>
                       </li>
@@ -100,7 +100,7 @@ echo $data['user']['name'];
                           <a href="<?php echo base_url('Admin/indexTodo/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'indexTodo' ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-tasks"></i>
                               <p>
-                                  To-Do List Admin
+                                  Daftar Kegiatan Admin
                               </p>
                           </a>
                       </li>

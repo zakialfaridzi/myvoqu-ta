@@ -34,10 +34,10 @@
                     <th>Grup yang diajar</th>
 					<td>
                     <?php foreach ($allgroup as $group): if ($group['owner'] == $detail->id) {?>
-						        <ul>
-						            <li><?=$group['nama'];?></li>
-						        </ul>
-						    <?php }
+							        <ul>
+							            <li><?=$group['nama'];?></li>
+							        </ul>
+							    <?php }
 endforeach;?>
                     </td>
                 </tr>
