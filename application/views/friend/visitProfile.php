@@ -63,7 +63,7 @@
                         <img src="<?= base_url('assets_user/'); ?>images/<?= $pst->image; ?>" alt="user" class="profile-photo-md pull-left" />
                         <div class="post-detail">
                             <div class="user-info">
-                                <h5><a href="timeline.html" class="profile-link"><?= $pst->name; ?></a></h5>
+                                <h5><a href="<?=base_url('friend/visitProfile/') . $pst->id_user;?>" class="profile-link"><?= $pst->name; ?></></h5>
                                 <p class="text-muted">Diunggah pada <?= date('d F Y ', $pst->date_post); ?></p>
                             </div>
 

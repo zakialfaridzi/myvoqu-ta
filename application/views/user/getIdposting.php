@@ -47,7 +47,7 @@
 							<a href="<?= base_url('friend/visitProfile/') . $pst->id_user; ?>"><?= $pst->name; ?></a>
 						<?php endif; ?>
 					</h5>
-                    <p class="text-muted">Published on <?= date('d F Y ', $pst->date_post); ?></p>
+                    <p class="text-muted">Diunggah pada <?= date('d F Y ', $pst->date_post); ?></p>
                 </div>
 
 
@@ -135,7 +135,7 @@
                         <?php else : ?>
                             <br>
                             <form action="<?= base_url('user/deleteComment/') . $cmt->id_comment . "/" . $this->uri->segment('3'); ?>">
-                                <button style="text-decoration:none; color:red; border:none; background-color:#fff; opacity:70%;"> Delete!
+                                <button style="text-decoration:none; color:red; border:none; background-color:#fff; opacity:70%;"> Hapus!
                                 </button>
                             </form>
                         <?php endif; ?>
@@ -157,7 +157,7 @@
 
 
             </div>
-            <p>Click to insert a smiley!</p>
+            <p>Klik untuk memasukan emoticon!</p>
             <?php echo $smiley_table; ?>
         </div>
     </div>
