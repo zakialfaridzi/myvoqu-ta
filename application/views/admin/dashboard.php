@@ -312,7 +312,7 @@ foreach ($hasil4 as $item) {
                                         });
                                     </script>
                                 </div>
-                                <span>*1 = Admin, 2 = Member, 3 = Mentor</span>
+                                <span>*1 = Admin, 2 = Penghafal, 3 = Mentor</span>
                             </div><!-- /.card-body -->
                         </div>
                     </div>
