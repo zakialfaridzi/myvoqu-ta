@@ -437,6 +437,7 @@ class Admin extends CI_Controller
         $detail = $this->Admin_model->detail_mentor($id);
         $data['detail'] = $detail;
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
+        $data['allgroup'] = $this->Admin_model->detail_mentor2();
 
         $this->load->view('templates/headerMentor');
         $this->load->view('templates/sidebar', $dats);

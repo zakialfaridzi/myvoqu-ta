@@ -180,6 +180,11 @@ class Admin_model extends CI_model
         return $query;
     }
 
+    public function detail_mentor2()
+    {
+        return $this->db->get('grup')->result_array();
+    }
+
     public function hapus_mentor($where3, $where2, $where)
     {
         $this->db->delete('posting', $where2);

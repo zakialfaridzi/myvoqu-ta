@@ -11,7 +11,7 @@
 							<div class="form-group">
 								<img src="<?= base_url('assets_user/') ?>images/<?= $i->image;  ?>" alt="" class="profile-photo-md" />
 								<form action="<?= base_url('group/posting') . "/" . $this->uri->segment('3'); ?>" method="post" enctype="multipart/form-data">
-									<textarea cols="30" rows="1" class="form-control" placeholder="Write what you wish" name="caption" id="caption"></textarea>
+									<textarea cols="30" rows="1" class="form-control" placeholder="Bagikan hafalan mu.." name="caption" id="caption"></textarea>
 									<?= form_error('caption', '<small class="text-danger pl-3">', '</small>'); ?>
 							</div>
 						</div>

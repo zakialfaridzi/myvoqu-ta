@@ -19,10 +19,10 @@
 					</div>
 					<div class="col-md-9">
 						<ul class="list-inline profile-menu">
-							<li><a href="<?= base_url('group/inGroup') . "/" . $nama['id']; ?>" class="<?= $active; ?>">Timeline</a></li>
+							<li><a href="<?= base_url('group/inGroup') . "/" . $nama['id']; ?>" class="<?= $active; ?>">Beranda</a></li>
 							<!-- <li><a href="#" class="<?= $active; ?>">Materi</a></li> -->
 							<li><a href="<?= base_url('group/listAnggota') . "/" . $nama['id']; ?>" class="<?= $active; ?>">Anggota</a></li>
-							<li><a href="<?= base_url('group/info') . "/" . $nama['id']; ?>" class="<?= $active; ?>">Information</a></li>
+							<li><a href="<?= base_url('group/info') . "/" . $nama['id']; ?>" class="<?= $active; ?>">Informasi</a></li>
 							<li><a href="<?= base_url('./Chat') ?>" target="_blank" class="<?= $active; ?>">Chat Group</a></li>
 							<li><a href="<?= base_url('./cc'); ?>" target="_blank" class="<?= $active; ?>">Quiz</a></li>
 							<!-- <li><a href="#" class="<?= $active; ?>">Ulangan</a></li> -->
@@ -30,7 +30,7 @@
 						<ul class="follow-me list-inline">
 							<?php if ($user['role_id'] == 3) { ?>
 								<li>
-									<a href="<?= base_url(); ?>group/ubahGroup/<?= $nama['id']; ?>" class="btn btn-primary" style="background-color: #6fb8df; margin-top: 4px; outline: none;">Edit Group</a>
+									<a href="<?= base_url(); ?>group/ubahGroup/<?= $nama['id']; ?>" class="btn btn-primary" style="background-color: #6fb8df; margin-top: 4px; outline: none;">Ubah Group</a>
 								</li>
 							<?php } ?>
 						<?php endforeach; ?>

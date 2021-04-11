@@ -6,29 +6,42 @@
         <div class="block-title">
             <h4 class="grey"><i class="icon ion-ios-locked-outline"></i>Change Password</h4>
             <div class="line"></div>
-            <p>asdsadas</p>
-            <div class="line"></div>
+
         </div>
         <div class="edit-block">
-            <form name="update-pass" id="education" class="form-inline">
-                <div class="row">
-                    <div class="form-group col-xs-12">
-                        <label for="my-password">Old password</label>
-                        <input id="my-password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Old password" />
-                    </div>
-                </div>
+
+            <?=$this->session->flashdata('message')?>
+
+            <?=form_error('password2', '<div class="alert alert-danger alert-dismissible show" role="alert">', '<button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>');?>
+
+            <form name="update-pass" id="education" class="form-inline" method="post"
+                action="<?=base_url('Profile/editPassword')?>">
+
                 <div class="row">
                     <div class="form-group col-xs-6">
-                        <label>New password</label>
-                        <input class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="New password" />
+                        <label>Password Baru</label>
+                        <input class="form-control input-group-lg" type="password" name="password1"
+                            title="Masukkan password" placeholder="New password" />
+                        <?=form_error('password1', '<small class="text-danger pl-3">', '</small>');?>
                     </div>
+
+
+
                     <div class="form-group col-xs-6">
-                        <label>Confirm password</label>
-                        <input class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Confirm password" />
+                        <label>Konfirmasi Password</label>
+                        <input class="form-control input-group-lg" type="password" name="password2"
+                            title="Masukkan password" placeholder="Konfirmasi password" />
+
+
+
                     </div>
+
                 </div>
 
-                <button class="btn btn-primary">Update Password</button>
+                <button class="btn btn-primary">Ubah Password</button>
             </form>
         </div>
     </div>

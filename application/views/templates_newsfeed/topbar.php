@@ -18,22 +18,23 @@
         <!-- Stylesheets
     ================================================= -->
 
-
+        <link rel="stylesheet" href="<?=base_url('assets_user/');?>css/star.css" />
 
         <link rel="stylesheet" href="<?=base_url('assets_user/');?>css/bootstrap.min.css" />
-        <link rel="stylesheet" href="<?=base_url('assets_user/');?>css/star.css" />
+
 
 
 
 
         <link href="<?=base_url('assets/');?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+        <!-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"> -->
 
 
 
         <link rel="stylesheet" href="<?=base_url('assets_user/');?>css/style.css" />
         <link rel="stylesheet" href="<?=base_url('assets_user/');?>css/ionicons.min.css" />
         <link rel="stylesheet" href="<?=base_url('assets_user/');?>css/font-awesome.min.css" />
+        <link rel="stylesheet" href="<?=base_url('assets_user/');?>css/font-roboto.css" />
         <link href="<?=base_url('assets_user/');?>css/emoji.css" rel="stylesheet">
 
 
@@ -76,7 +77,12 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right main-menu">
                             <li class="dropdown">
-                                <a href="<?=base_url('auth')?>">Home </a>
+                                <a href="<?=base_url('auth')?>">Beranda </a>
+
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="<?=base_url('profile/');?>">Profil</a>
 
                             </li>
 
@@ -86,13 +92,10 @@
 
                             </li>
 
-                            <li class="dropdown">
-                                <a href="<?=base_url('profile/');?>">Profile</a>
 
-                            </li>
 
                             <li class="dropdown">
-                                <a href="<?=base_url('auth/logout');?>" class="dropdown-toggle">Logout </a>
+                                <a href="<?=base_url('auth/logout');?>" class="dropdown-toggle">Keluar </a>
 
                             </li>
 

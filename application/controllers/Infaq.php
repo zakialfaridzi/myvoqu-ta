@@ -20,11 +20,11 @@ class Infaq extends CI_Controller
     public function sessionLogin()
     {
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    Login first!!
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>');
+    	Login first!!
+    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+     		<span aria-hidden="true">&times;</span>
+    	</button>
+  		</div>');
         redirect('auth');
     }
 
@@ -92,7 +92,7 @@ class Infaq extends CI_Controller
 			</button>
 
 
-			<p>Hore!! Kamu sudah infaq srbanyak ' . $jumlah . ' hari ini!</p>
+			<p>Hore!! Kamu sudah infaq sebanyak <b>Rp.' . number_format($jumlah, 2, ',', '.') . '</b> hari ini!</p>
 
 
 			</div>');

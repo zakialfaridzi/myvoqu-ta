@@ -88,7 +88,7 @@ class User_model extends CI_model
     {
         $id = $this->session->userdata('id');
 
-        $query = $this->db->query("SELECT * FROM user where id <> '$id' and name LIKE '%$name%'");
+        $query = $this->db->query("SELECT * FROM user where id <> '$id' and name LIKE '%$name%' and role_id IN(2)");
 
         return $query->result();
     }

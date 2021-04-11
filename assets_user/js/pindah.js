@@ -18,7 +18,7 @@ keyword.addEventListener('click', function () {
 		}
 	}
 
-	xhr.open('GET', 'http://localhost/tubes-ci/profile/editProfileImage', true);
+	xhr.open('GET', 'http://localhost/myvoqu/profile/editProfileImage', true);
 	xhr.send();
 
 
@@ -42,7 +42,7 @@ keyword2.addEventListener('click', function () {
 		}
 	}
 
-	xhr.open('GET', 'http://localhost/tubes-ci/profile/editProfile2', true);
+	xhr.open('GET', 'http://localhost/myvoqu/profile/editProfile2', true);
 	xhr.send();
 
 

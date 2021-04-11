@@ -41,7 +41,15 @@
                         </li>
 
                         <li><i class="fas fa-comments" style="color: yellowgreen;"></i>
-                            <div><a href="<?= base_url('chat'); ?>">Messages</a></div>
+                            <div><a href="<?= base_url('chat/index'); ?>">Messages</a></div>
+                        </li>
+
+                        <li><i class="fas fa-comment-dots" style="color: black;"></i>
+                            <div><a href="<?= base_url('./Chat'); ?>" target="_blank">Chat all</a></div>
+                        </li>
+
+                        <li><i class="fa fa-video text-muted" style="color: black;"></i>
+                            <div><a href="<?= base_url('./Colab'); ?>" target="_blank">Collaboration</a></div>
                         </li>
 
                     </ul>
@@ -53,7 +61,7 @@
                                 <?php foreach ($otherUser as $ou) :
                                     if ($ou->role_id != 1) {  ?>
                                         <li>
-                                            <a href="newsfeed-messages.html" title="<?= $ou->name; ?>"><img src="<?= base_url('assets_user/images/' . $ou->image); ?>" alt="user" class="img-responsive profile-photo" /><span class="<?= $ou->status; ?>" id="keyword"></span>
+                                            <a href="#" title="<?= $ou->name; ?>"><img src="<?= base_url('assets_user/images/' . $ou->image); ?>" alt="user" class="img-responsive profile-photo" /><span class="<?= $ou->status; ?>" id="keyword"></span>
                                             </a>
                                         </li>
                                 <?php }
@@ -73,11 +81,9 @@
 
                     <div class="create-post">
                         <div class="row">
-
                             <div class="col-md-7 col-sm-7">
-
                                 <div class="form-group">
-                                    <?php if ($this->session->userdata('role_id') == 3) : ?>
+                                    <?php if ($this->session->userdata('role_id') == 3 && $this->uri->segment('2') == 'materi') : ?>
                                         <img src="<?= base_url('assets_user/images/' . $us->image); ?>" alt="" class="profile-photo-md" />
                                         <form action="<?= base_url('library/posting/') . $this->uri->segment('3'); ?>" method="post" enctype="multipart/form-data">
                                             <textarea cols="30" rows="1" class="form-control" placeholder="Ayat Surat" name="ayat" id="ayat"></textarea>
