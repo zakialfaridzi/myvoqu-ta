@@ -116,7 +116,7 @@ class Friend extends CI_Controller
         $data['search'] = 'none';
         $data['colorSearch'] = '#0486FE';
         $data['user'] = $this->User_model->getUser($id);
-        $data['info'] = $this->User_model->getInfoProfile($id);
+        $data['info'] = $this->User_model->getInfoProf                                                      ile($id);
         $data['follow2'] = $this->User_model->getFollow($id);
         $data['follow3'] = $this->User_model->getFollow2($id);
         $data['follow4'] = $this->User_model->getFollow4($id);

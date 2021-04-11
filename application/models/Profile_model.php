@@ -18,7 +18,7 @@ class Profile_model extends CI_model
 			'id' => $this->session->userdata('id')
 		])->result();
 	}
-
+ 
 	public function getUserPostProfile()
 	{
 		return $this->db->query('SELECT * FROM posting p join user u on(p.id_user = u.id) where id = ' . $this->session->userdata('id') . ' order by p.id_posting desc')->result();
