@@ -1,13 +1,11 @@
 // ambil elements yg di buutuhkan
-var keyword = document.getElementById('pbi');
+var keyword = document.getElementById("pbi");
 
-var container = document.getElementById('ctn');
+var container = document.getElementById("ctn");
 
 // tambahkan event ketika keyword ditulis
 
-keyword.addEventListener('click', function () {
-
-
+keyword.addEventListener("click", function () {
 	//buat objek ajax
 	var xhr = new XMLHttpRequest();
 
@@ -16,14 +14,18 @@ keyword.addEventListener('click', function () {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			container.innerHTML = xhr.responseText;
 		}
-	}
+	};
 
+<<<<<<< HEAD
+	xhr.open("GET", "http://localhost/myvoqu/profile/editProfileImage", true);
+=======
 	xhr.open('GET', 'http://e0f75e7b3bc2.ap.ngrok.io/myvoqu/profile/editProfileImage', true);
+>>>>>>> 266bbb437a273587ff13abf70b06c69e27a5cf87
 	xhr.send();
-
-
 });
 
+var keyword2 = document.getElementById("bi");
+var ctn = document.getElementById("ctn");
 
 var keyword2 = document.getElementById('bi');
 var ctn = document.getElementById('ctn');
@@ -39,7 +41,7 @@ keyword2.addEventListener('click', function () {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			ctn.innerHTML = xhr.responseText;
 		}
-	}
+	};
 
 	xhr.open('GET', 'http://localhost/myvoqu/profile/editProfile2', true);
 	xhr.send();

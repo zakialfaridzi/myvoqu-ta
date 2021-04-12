@@ -31,7 +31,7 @@
             </div>
             <input type="hidden" value="<?=$this->session->userdata('id');?>" name="id_user" id="id_user">
             <button type="reset" class="btn btn-danger">Ulangi</button>
-            <button type="submit" class="btn btn-primary">Simpan</button>
+            <button type="submit" class="btn btn-primary">Unggah</button>
         </form>
     </div>
 </div>

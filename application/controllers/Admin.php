@@ -1164,6 +1164,13 @@ class Admin extends CI_Controller
     {
         $this->load->model('Admin_model');
         $this->Admin_model->update_todo($id);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+      Data Kegiatan <strong>Berhasil</strong> Diperbarui
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>');
+
         redirect('Admin/indexTodo');
     }
 
