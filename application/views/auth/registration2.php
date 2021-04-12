@@ -1,9 +1,9 @@
 <div class="form-holder">
     <div class="form-content">
         <div class="form-items">
-            <h3>Dont have an account ?</h3>
-            <p>Register to be our team. Or you want to be <a href="<?=base_url('auth/registMentor');?>"
-                    style="color:blue;">Mentor</a> ?</p>
+            <h3>Belum punya akun ?</h3>
+            <p>Registrasi untuk masuk ke dalam aplikasi. Atau mendaftarkan sebagai <a
+                    href="<?=base_url('auth/registMentor');?>" style="color:blue;">Mentor</a> ?</p>
             <div class="page-links">
                 <a href="<?=base_url('auth');?>">Login</a>
                 <a href="<?=base_url('auth/registration')?>" class="active">Registrasi</a>
