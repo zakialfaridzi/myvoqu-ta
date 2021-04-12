@@ -277,7 +277,7 @@ class User_model extends CI_model
 
     public function getChat()
     {
-        return $this->db->query('SELECT * FROM user u join follow f on (u.id = f.id_userfollow) where id_usertarget in (select id_usertarget from follow where id_userfollow = ' . $this->session->userdata('id') . ') and id_userfollow = ' . $this->session->userdata('id') . '  and role_id = 2' .' and stat = 1')->result();
+        return $this->db->query('SELECT * FROM user u join follow f on (u.id = f.id_userfollow) where id_usertarget in (select id_usertarget from follow where id_userfollow = ' . $this->session->userdata('id') . ') and id_userfollow = ' . $this->session->userdata('id') . '  and role_id = 2' . ' and stat = 1')->result();
     }
 
     // public function getPesanByIdsendiri($id)
