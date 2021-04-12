@@ -131,7 +131,7 @@ class Auth extends CI_Controller
             'min_length' => 'Password Terlalu Pendek!',
         ]);
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
-        $this->form_validation->set_rules('gender', 'Gender', 'required|trim');
+        $this->form_validation->set_rules('gender', 'Gender', 'required');
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'User Registration';

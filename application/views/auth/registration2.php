@@ -18,7 +18,7 @@
                 <div class="form-group">
 
                     <select class="custom-select" id="gender" name="gender">
-                        <option selected>Jenis Kelamin</option>
+                        <option value="">Pilih Jenis Kelamin</option>
                         <option value="Male">Laki-laki</option>
                         <option value="Female">Perempuan</option>
                     </select>
@@ -44,6 +44,14 @@
                     <?=form_error('password2', '<small class="text-danger pl-3">', '</small>');?>
                 </div>
 
+                <div class="form-group">
+                    <input type="checkbox" class="custom-control-input" id="customControlInline" onclick="myFunction()">
+                    <label class="custom-control-label" for="customControlInline">Tampillkan Semua Password</label>
+                </div>
+
+
+
+
 
 
 
@@ -52,6 +60,24 @@
                 </div>
             </form>
 
+
+            <script>
+            function myFunction() {
+
+
+                var x = document.getElementById("password1");
+                var y = document.getElementById("password2");
+                if (x.type === "password" && y.type === "password") {
+                    x.type = "text";
+                    y.type = "text";
+                } else {
+                    x.type = "password";
+                    y.type = "password";
+                }
+
+
+            };
+            </script>
 
 
 

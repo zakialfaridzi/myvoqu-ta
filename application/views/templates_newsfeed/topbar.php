@@ -87,12 +87,6 @@
                             </li>
 
 
-                            <li class="dropdown">
-                                <a href="<?=base_url('faq/')?>">FaQ </a>
-
-                            </li>
-
-
 
                             <li class="dropdown">
                                 <a href="<?=base_url('auth/logout');?>" class="dropdown-toggle">Keluar </a>
