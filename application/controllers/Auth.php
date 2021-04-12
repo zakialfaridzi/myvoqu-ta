@@ -472,14 +472,13 @@ class Auth extends CI_Controller
                 'name' => htmlspecialchars($this->input->post('name', true)),
                 'gender' => htmlspecialchars($this->input->post('gender')),
                 'email' => htmlspecialchars($email),
-                'image' => 'default.png',
+                'image' => 'default_' . strtolower($this->input->post('gender')) . '.png',
                 'passsword' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                 'role_id' => 3,
                 'is_active' => 0,
                 'date_created' => time(),
                 'bio' => 'Hello World!',
                 'sertif' => $fileName,
-
             ];
 
             $this->db->insert('user', $data);
