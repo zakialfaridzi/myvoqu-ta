@@ -1,13 +1,11 @@
 // ambil elements yg di buutuhkan
-var keyword = document.getElementById('keyword');
+var keyword = document.getElementById("keyword");
 
-var container = document.getElementById('container');
+var container = document.getElementById("container");
 
 // tambahkan event ketika keyword ditulis
 
-keyword.addEventListener('keyup', function () {
-
-
+keyword.addEventListener("keyup", function () {
 	//buat objek ajax
 	var xhr = new XMLHttpRequest();
 
@@ -16,10 +14,12 @@ keyword.addEventListener('keyup', function () {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			container.innerHTML = xhr.responseText;
 		}
-	}
+	};
 
-	xhr.open('GET', 'https://bcb5efcd060d.ap.ngrok.io/myvoqu/friend/getUserByName/' + keyword.value, true);
+	xhr.open(
+		"GET",
+		"http://localhost/myvoqu/friend/getUserByName/" + keyword.value,
+		true
+	);
 	xhr.send();
-
-
-})
+});

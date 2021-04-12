@@ -1,13 +1,11 @@
 // ambil elements yg di buutuhkan
-var keyword = document.getElementById('pbi');
+var keyword = document.getElementById("pbi");
 
-var container = document.getElementById('ctn');
+var container = document.getElementById("ctn");
 
 // tambahkan event ketika keyword ditulis
 
-keyword.addEventListener('click', function () {
-
-
+keyword.addEventListener("click", function () {
 	//buat objek ajax
 	var xhr = new XMLHttpRequest();
 
@@ -16,22 +14,16 @@ keyword.addEventListener('click', function () {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			container.innerHTML = xhr.responseText;
 		}
-	}
+	};
 
-	xhr.open('GET', 'http://localhost/myvoqu/profile/editProfileImage', true);
+	xhr.open("GET", "http://localhost/myvoqu/profile/editProfileImage", true);
 	xhr.send();
-
-
 });
 
+var keyword2 = document.getElementById("bi");
+var ctn = document.getElementById("ctn");
 
-var keyword2 = document.getElementById('bi');
-var ctn = document.getElementById('ctn');
-
-
-keyword2.addEventListener('click', function () {
-
-
+keyword2.addEventListener("click", function () {
 	//buat objek ajax
 	var xhr = new XMLHttpRequest();
 
@@ -40,10 +32,8 @@ keyword2.addEventListener('click', function () {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			ctn.innerHTML = xhr.responseText;
 		}
-	}
+	};
 
-	xhr.open('GET', 'https://bcb5efcd060d.ap.ngrok.io/myvoqu/profile/editProfile2', true);
+	xhr.open("GET", "http://localhost/myvoqu/profile/editProfile2", true);
 	xhr.send();
-
-
 });

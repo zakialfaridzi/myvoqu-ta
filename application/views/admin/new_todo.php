@@ -9,7 +9,7 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Beranda</a></li>
                         <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/indexTodo/'); ?>">Daftar Kegiatan Admin MyVoQu</a></li>
-                        <li class="breadcrumb-item active">Membuat Daftar Kegiatan Admin MyVoQu</li>
+                        <li class="breadcrumb-item active">Membuat Daftar Kegiatan </li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
