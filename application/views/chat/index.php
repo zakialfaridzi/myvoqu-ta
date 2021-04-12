@@ -1,6 +1,6 @@
 <!-- Chat Room
             ================================================= -->
-<div class="chat-room">
+<div class="chat-room" >
     <b>Semua Pesan Yang Diterima</b>
 
 
@@ -12,11 +12,12 @@
 
             <!-- Contact List in Left-->
 
-            <ul class="nav nav-tabs contact-list scrollbar-wrapper scrollbar-outer">
+            <ul class="nav nav-tabs contact-list scrollbar-wrapper scrollbar-outer" >
+                
+                <?php rsort($pesan);
+                foreach ($pesan as $pst): ?>
 
-                <?php foreach ($pesan as $pst): ?>
-
-                <li class="active">
+                <li class="active" style="height: 100px;">
                     <a href="<?=base_url('chat/chat2/') . $pst->id;?>">
                         <div class="contact">
                             <img src="<?=base_url('assets_user/')?>images/<?=$pst->image;?>" alt=""
@@ -24,7 +25,7 @@
                             <div class="msg-preview">
                                 <h6><?=$pst->name;?></h6>
 
-                                <p class="text-muted"><?=$pst->pesan;?></p>
+                                <p class="text-muted"><?=$pst->name;?> mengirim anda pesan</p>
                                 <small class="text-muted"><?=date('h:m:sa ', $pst->date);?></small>
 
                                 <!-- <p class="text-muted">Hallo brooo!!</p>
