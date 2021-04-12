@@ -4,7 +4,7 @@
             <h3>Silahkan Login Dengan Akun Yang Sudah Aktif.</h3>
             <p>Selamat Datang di Website MyVoQu.</p>
             <div class="page-links">
-                <a href="login5.html" class="active">Login</a><a
+                <a href="<?=base_url('auth');?>" class="active">Login</a><a
                     href="<?=base_url('auth/registration');?>">Registrasi</a>
             </div>
             <?=$this->session->flashdata('message');?>
