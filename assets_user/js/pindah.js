@@ -18,7 +18,7 @@ keyword.addEventListener('click', function () {
 		}
 	}
 
-	xhr.open('GET', 'http://localhost/myvoqu/profile/editProfileImage', true);
+	xhr.open('GET', 'http://e0f75e7b3bc2.ap.ngrok.io/myvoqu/profile/editProfileImage', true);
 	xhr.send();
 
 
@@ -31,7 +31,6 @@ var ctn = document.getElementById('ctn');
 
 keyword2.addEventListener('click', function () {
 
-
 	//buat objek ajax
 	var xhr = new XMLHttpRequest();
 
@@ -42,8 +41,7 @@ keyword2.addEventListener('click', function () {
 		}
 	}
 
-	xhr.open('GET', 'https://bcb5efcd060d.ap.ngrok.io/myvoqu/profile/editProfile2', true);
+	xhr.open('GET', 'http://localhost/myvoqu/profile/editProfile2', true);
 	xhr.send();
-
 
 });

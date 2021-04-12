@@ -98,7 +98,15 @@
 
 <script src="<?=base_url('assets_user/js/search.js');?>"></script>
 
-<div id="snackbar" class="show">
+<?php
+$shown = "";
+if ($this->session->role_id == 3) {
+    $shown = "hide";
+} else {
+    $shown = "show";
+}?>
+
+<div id="snackbar" class="<?=$shown?>">
 
     <button type="button" id="close" class="close" data-dismiss="alert" aria-label="Close" style="color: white;">
         <span aria-hidden="true" onclick="myFunction()">&times;</span>

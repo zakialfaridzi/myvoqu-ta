@@ -23,8 +23,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
  */
+<<<<<<< HEAD
 $config['base_url'] = ' http://localhost/myvoqu/';
 // http://ae662992cfe3.ap.ngrok.io/myvoqu/
+=======
+$config['base_url'] = 'http://localhost/myvoqu/';
+>>>>>>> 266bbb437a273587ff13abf70b06c69e27a5cf87
 /*
 |--------------------------------------------------------------------------
 | Index File
