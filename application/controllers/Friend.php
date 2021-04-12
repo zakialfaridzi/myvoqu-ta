@@ -61,7 +61,7 @@ class Friend extends CI_Controller
 
         $this->load->view('ajax/friend', $data);
     }
- 
+
     public function addFollow($id)
     {
         $data = array(

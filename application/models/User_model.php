@@ -87,8 +87,9 @@ class User_model extends CI_model
     public function getUserName($name)
     {
         $id = $this->session->userdata('id');
+        $gender = $this->session->userdata('gender');
 
-        $query = $this->db->query("SELECT * FROM user where id <> '$id' and name LIKE '%$name%' and role_id IN(2)");
+        $query = $this->db->query("SELECT * FROM user where id <> '$id' and name LIKE '%$name%' and role_id IN(2) and gender = '$gender'");
 
         return $query->result();
     }
