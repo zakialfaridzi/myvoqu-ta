@@ -24,7 +24,7 @@
                     <input type="hidden" name="id_posting" value="<?= $pst->id_posting; ?>">
                     <input type="hidden" name="id" value="<?= $this->session->userdata('id'); ?>">
                     <a class="btn text-red">
-                        <button class="fas fa-exclamation" style="border : 0;" name="report"> Report </button> </a>
+                        <button class="fas fa-exclamation" style="border : 0;" name="report"> Laporkan! </button> </a>
                 </form>
             <?php elseif ($pst->id_user != $this->session->userdata('id') and $rpt->report == 1) : ?>
 
@@ -33,7 +33,7 @@
         <?php else : ?>
 
             <i class="fas fa-trash" style="color: tomato;margin-left:18px;"></i>
-            <a href="<?= base_url(); ?>user/deletePost/<?= $pst->id_posting; ?>" style="text-decoration:none;">Delete</a>
+            <a href="<?= base_url(); ?>user/deletePost/<?= $pst->id_posting; ?>" style="text-decoration:none;">Hapus</a>
 
         <?php endif; ?>
 
@@ -68,7 +68,7 @@
                                     <input type="hidden" name="notifsuka" value="Like on your post.">
                                     <input type="hidden" name="id" value="<?= $this->session->userdata('id'); ?>">
                                     <a class="btn text-blue">
-                                        <button class="icon ion-thumbsup" style="border : 0;" name="like2"> like </button> <?= $sk->jumlahsuka; ?></a>
+                                        <button class="icon ion-thumbsup" style="border : 0;" name="like2"> suka </button> <?= $sk->jumlahsuka; ?></a>
                                 </form>
                             </div>
 
@@ -81,7 +81,7 @@
                                     <input type="hidden" name="notifsuka" value="Like on your post.">
                                     <input type="hidden" name="id" value="<?= $this->session->userdata('id'); ?>">
                                     <a class="btn text-blue">
-                                        <button class="icon ion-thumbsup" style="border : 0;" name="unlike"> liked </button> <?= $sk->jumlahsuka; ?></a>
+                                        <button class="icon ion-thumbsup" style="border : 0;" name="unlike"> disukai </button> <?= $sk->jumlahsuka; ?></a>
                                 </form>
                             </div>
 
@@ -95,7 +95,7 @@
                                     <input type="hidden" name="notifsuka" value="Like on your post.">
                                     <input type="hidden" name="id" value="<?= $this->session->userdata('id'); ?>">
                                     <a class="btn text-blue">
-                                        <button class="icon ion-thumbsup" style=" border : 0;" name="like2"> Like </button> <?= $sk->jumlahsuka; ?></a>
+                                        <button class="icon ion-thumbsup" style=" border : 0;" name="like2"> Suka </button> <?= $sk->jumlahsuka; ?></a>
                                 </form>
                             </div>
 
