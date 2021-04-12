@@ -152,7 +152,7 @@ class Library extends CI_Controller
             $data['start'] = $this->uri->segment('4');
             $data['materi'] = $this->Materi_model->getAllMateri($idm, $config['per_page'], $data['start']);
             $this->load->view('templates_newsfeed/topbar', $data);
-            $this->load->view('templates_newsfeed/headerMateri', $data);
+            $this->load->view('templates_newsfeed/header', $data);
             $this->load->view('library/materi', $data);
             $this->load->view('templates_newsfeed/footer');
         }

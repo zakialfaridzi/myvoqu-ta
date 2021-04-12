@@ -83,7 +83,7 @@
                         <div class="row">
                             <div class="col-md-7 col-sm-7">
                                 <div class="form-group">
-                                    <?php if ($this->session->userdata('role_id') == 3 && $this->uri->segment('2') == 'materi') : ?>
+                                    <?php if ($this->session->userdata('role_id') == 3) : ?>
                                         <img src="<?= base_url('assets_user/images/' . $us->image); ?>" alt="" class="profile-photo-md" />
                                         <form action="<?= base_url('library/posting/') . $this->uri->segment('3'); ?>" method="post" enctype="multipart/form-data">
                                             <textarea cols="30" rows="1" class="form-control" placeholder="Ayat Surat" name="ayat" id="ayat"></textarea>

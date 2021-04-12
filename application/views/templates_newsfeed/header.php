@@ -77,8 +77,6 @@ endforeach;?>
                         </div>
                     </div>
                 </div>
-
-
                 <!--chat block ends-->
             </div>
             <div class="col-md-7">
@@ -93,50 +91,33 @@ endforeach;?>
                                     class="profile-photo-md" />
                                 <form action="<?=base_url('user/posting');?>" method="post"
                                     enctype="multipart/form-data">
-
                                     <textarea cols="30" rows="1" class="form-control" placeholder="Masukkan kata-kata"
                                         name="caption" id="caption"></textarea>
                                     <?=form_error('caption', '<small class="text-danger pl-3">', '</small>');?>
-
                             </div>
                         </div>
                         <div class="col-md-5 col-sm-5">
                             <div class="tools">
                                 <ul class="publishing-tools list-inline">
-
                                     <li class="nav-item">
                                         <label for="file-input-gambar">
                                             <a class="nav-link"><i class="fas fa-photo-video"></i></a>
                                         </label>
                                         <input type="file" id="file-input-gambar" style="display: none;" name="file">
                                     </li>
-
-
-
-
-
                                 </ul>
                                 <button class="btn btn-primary pull-right"
                                     style="background-color:#6fb8df;">Unggah</button>
-
-
-
                                 <input type="hidden" value="<?=$this->session->userdata('id');?>" name="id_user"
                                     id="id_user">
-
                                 <?php foreach ($idpost as $idpst): ?>
                                 <input type="hidden" value="<?=$idpst->id_posting;?>" name="id_posting">
                                 <?php endforeach;?>
-
                                 </form>
-
-
-
                             </div>
                             <?php endforeach;?>
                         </div>
 
                     </div>
                 </div><!-- Post Create Box End-->
-
                 <?=$this->session->flashdata('message');?>
