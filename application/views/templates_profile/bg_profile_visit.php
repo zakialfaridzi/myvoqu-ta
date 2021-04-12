@@ -18,8 +18,8 @@
                     </div>
                     <div class="col-md-9">
                             <ul class="list-inline profile-menu">
-                                <li><a href="<?= base_url('profile'); ?>" class="<?= $active; ?>">Lintas Masa</a></li>
-                                <li><a href="timeline-about.html" class="<?= $active; ?>">Tentang</a></li>
+                                <li><a href="<?=base_url('friend/visitProfile/') .$this->uri->segment('3'); ?> " class="<?= $active; ?>">Lintas Masa</a></li>
+                                <li><a href="<?=base_url('friend/aboutMeVisit/') .$this->uri->segment('3'); ?>" class="<?= $active; ?>">Tentang</a></li>
                                 <li><a href=" <?= base_url('friend/followingvisit') . "/" . $this->uri->segment('3'); ?>" class="<?= $active; ?>">Diikuti</a></li>
                                 <li><a href="<?= base_url('friend/followersvisit') . "/" . $this->uri->segment('3'); ?>" class="<?= $active; ?>">Pengikut </a></li>
                             </ul>

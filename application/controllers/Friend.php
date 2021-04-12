@@ -178,4 +178,23 @@ class Friend extends CI_Controller
         $this->load->view('templates_profile/end', $data);
 
     }
+
+    public function aboutMeVisit()
+    {
+    $data['posting'] = $this->User_model->getUserPostProfileVisit();
+        $data['search'] = 'none';
+        $data['upload'] = 'none';
+        $data['colorSearch'] = '#0486FE';
+        $data['info'] = $this->User_model->getInfoProfileVisit();
+        $data['title'] = 'Followers';
+        $data['active'] = 'active';
+        $data['pollow'] = $this->User_model->getpollow();
+
+        $data['otherUser'] = $this->User_model->getOherUserData();
+        $this->load->view('templates_newsfeed/topbar', $data);
+        $this->load->view('templates_profile/bg_profile_visit', $data);
+        $this->load->view('profile/aboutMeVisit', $data);
+        $this->load->view('templates_profile/end', $data);
+}
+
 }

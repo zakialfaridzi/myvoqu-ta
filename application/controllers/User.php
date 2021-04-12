@@ -246,6 +246,7 @@ class User extends CI_Controller
             'date' => time(),
             'id_posting' => $this->input->post('id_posting'),
             'id' => $this->input->post('id'),
+            'id_tujuan' => $this->input->post('id_user')
         );
         $this->User_model->updateGaSuka($data);
         redirect("user/getIdposting/" . $id);

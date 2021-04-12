@@ -68,7 +68,7 @@
                                     <input type="hidden" name="notifsuka" value="Like on your post.">
                                     <input type="hidden" name="id" value="<?= $this->session->userdata('id'); ?>">
                                     <a class="btn text-blue">
-                                        <button class="icon ion-thumbsup" style="border : 0;" name="like2"> like </button> <?= $sk->jumlahsuka; ?></a>
+                                        <button class="icon ion-thumbsup" style="border : 0;" name="like2"> suka </button> <?= $sk->jumlahsuka; ?></a>
                                 </form>
                             </div>
 
@@ -81,7 +81,7 @@
                                     <input type="hidden" name="notifsuka" value="Like on your post.">
                                     <input type="hidden" name="id" value="<?= $this->session->userdata('id'); ?>">
                                     <a class="btn text-blue">
-                                        <button class="icon ion-thumbsup" style="border : 0;" name="unlike"> liked </button> <?= $sk->jumlahsuka; ?></a>
+                                        <button class="icon ion-thumbsup" style="border : 0;" name="unlike"> disukai </button> <?= $sk->jumlahsuka; ?></a>
                                 </form>
                             </div>
 
@@ -95,7 +95,7 @@
                                     <input type="hidden" name="notifsuka" value="Like on your post.">
                                     <input type="hidden" name="id" value="<?= $this->session->userdata('id'); ?>">
                                     <a class="btn text-blue">
-                                        <button class="icon ion-thumbsup" style=" border : 0;" name="like2"> Like </button> <?= $sk->jumlahsuka; ?></a>
+                                        <button class="icon ion-thumbsup" style=" border : 0;" name="like2"> Suka </button> <?= $sk->jumlahsuka; ?></a>
                                 </form>
                             </div>
 
