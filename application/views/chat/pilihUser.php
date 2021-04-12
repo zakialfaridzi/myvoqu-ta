@@ -21,7 +21,7 @@
                                         <h6><?= $pst->namatarget; ?></h6>
 
 
-                                        <p class="text-muted"><?= $pst->bio; ?></p>
+                                        <p class="text-muted">klik untuk chat</p>
                                         <small class="text-muted"></small>
 
                                     </div>
