@@ -270,7 +270,7 @@ class User_model extends CI_model
         $this->db->join('user', 'pesan.id_pengirim = user.id');
         $this->db->where('id_penerima =', $id_user);
         $this->db->group_by('id_pengirim');
-        $this->db->order_by('date' . ' asc');
+        $this->db->order_by('pesan' . ' desc');
         $query = $this->db->get();
         return $query->result();
     }
