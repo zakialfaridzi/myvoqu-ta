@@ -18,7 +18,7 @@ class Admin extends CI_Controller
         if (empty($data['user']['email'])) {
 
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-            Login first!!
+            Masuk kedalam aplikasi terlebih dahulu
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -57,7 +57,7 @@ class Admin extends CI_Controller
         $this->session->unset_userdata('role_id');
 
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-            You have been logged out
+            Anda berhasil keluar dari aplikasi
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -91,20 +91,20 @@ class Admin extends CI_Controller
         $this->load->view('admin/v_profad', $data);
         $this->load->view('templates/footer');
 
-        $upload_image = $_FILES['image']['name'];
-        if ($upload_image) {
-            $config['allowed_types'] = 'jpg|jpeg|png|gif';
-            $config['max_size'] = '10000';
-            $config['upload_path'] = './assets/foto/';
+        // $upload_image = $_FILES['image']['name'];
+        // if ($upload_image) {
+        //     $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        //     $config['max_size'] = '10000';
+        //     $config['upload_path'] = './assets/foto/';
 
-            $this->load->library('upload', $config);
-            if ($this->upload->do_upload('image')) {
-                $new_image = $this->upload->data('file_name');
-                $this->db->set('image', $new_image);
-            } else {
-                echo $this->upload->display_errors();
-            }
-        }
+        //     $this->load->library('upload', $config);
+        //     if ($this->upload->do_upload('image')) {
+        //         $new_image = $this->upload->data('file_name');
+        //         $this->db->set('image', $new_image);
+        //     } else {
+        //         echo $this->upload->display_errors();
+        //     }
+        // }
     }
 
     public function updateProfile()
@@ -113,7 +113,7 @@ class Admin extends CI_Controller
         $name = $this->input->post('nama');
         $email = $this->input->post('email');
         $upload_image = $_FILES['image']['name'];
-        if ($upload_image) {
+        if ($upload_image != "") {
             $config['allowed_types'] = 'jpg|jpeg|png|gif';
             $config['max_size'] = '10000';
             $config['upload_path'] = './assets/foto/';
@@ -125,6 +125,8 @@ class Admin extends CI_Controller
             } else {
                 echo $this->upload->display_errors();
             }
+        } else {
+            $new_image = $this->input->post('old');
         }
 
         $data = array(
@@ -139,7 +141,7 @@ class Admin extends CI_Controller
 
         $this->Admin_model->update_data($where, $data, 'user');
         $this->session->set_flashdata('message', '<div class="alert alert-primary alert-dismissible fade show" role="alert">
-        <strong>Successfully</strong> Updated
+        Data Profil Admin <strong>Berhasil</strong> Diperbarui
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -157,7 +159,7 @@ class Admin extends CI_Controller
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar', $dats);
-        $this->load->view('admin/v_user', $data);
+        $this->load->view('admin/v_penghafal', $data);
         $this->load->view('templates/footer');
     }
 
@@ -173,7 +175,7 @@ class Admin extends CI_Controller
 
         $this->Admin_model->hapus_data($where2, $where, 'user');
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <strong>Successfully</strong> Deleted
+    Data Penghafal <strong>Berhasil</strong> Dihapus
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
         </button>
@@ -193,7 +195,7 @@ class Admin extends CI_Controller
 
         $this->Admin_model->activate_data($where, $data, 'user');
         $this->session->set_flashdata('message', '<div class="alert alert-info alert-dismissible fade show" role="alert">
-        User has been <strong>Activated</strong>
+        Data Penghafal <strong>Berhasil</strong> Diaktifasi
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button>
@@ -213,7 +215,7 @@ class Admin extends CI_Controller
 
         $this->Admin_model->deactivate_data($where, $data, 'user');
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    User has been <strong>Deactivated</strong>
+    Data Penghafal <strong>Berhasil</strong> Di Non Aktivasi
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
           </button>
@@ -270,7 +272,7 @@ class Admin extends CI_Controller
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar', $dats);
-        $this->load->view('admin/detail', $data);
+        $this->load->view('admin/detail_penghafal', $data);
         $this->load->view('templates/footer');
     }
 
@@ -307,7 +309,7 @@ class Admin extends CI_Controller
 
         $obj->getProperties()->setCreator("Myvoqu");
         $obj->getProperties()->setLastModifiedBy("Myvoqu");
-        $obj->getProperties()->setTitle("List Penghafal Myvoqu");
+        $obj->getProperties()->setTitle("Data Penghafal Myvoqu");
 
         $obj->setActiveSheetIndex(0);
 
@@ -328,9 +330,9 @@ class Admin extends CI_Controller
             $baris++;
         }
 
-        $filename = "Penghafal Data Myvoqu" . '.xlsx';
+        $filename = "Data Penghafal Myvoqu" . '.xlsx';
 
-        $obj->getActiveSheet()->setTitle('Penghafal Data Myvoqu');
+        $obj->getActiveSheet()->setTitle('Data Penghafal Myvoqu');
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename="' . $filename, '"');
@@ -349,7 +351,7 @@ class Admin extends CI_Controller
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar', $dats);
-        $this->load->view('admin/v_user', $data);
+        $this->load->view('admin/v_penghafal', $data);
         $this->load->view('templates/footer');
     }
 
@@ -383,7 +385,7 @@ class Admin extends CI_Controller
 
         $this->Admin_model->hapus_mentor($where3, $where2, $where, 'user');
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Successfully</strong> Deleted
+        Data Mentor <strong>Berhasil</strong> Dihapus
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -533,7 +535,7 @@ class Admin extends CI_Controller
 
         $obj->getProperties()->setCreator("Myvoqu");
         $obj->getProperties()->setLastModifiedBy("Myvoqu");
-        $obj->getProperties()->setTitle("List Mentor Myvoqu");
+        $obj->getProperties()->setTitle("Data Mentor Myvoqu");
 
         $obj->setActiveSheetIndex(0);
 
@@ -557,9 +559,9 @@ class Admin extends CI_Controller
         }
 
         // $writer = PHPExcel_IOFactory::createWriter($obj, 'Excel2007');
-        $filename = "Mentor Data Myvoqu" . '.xlsx';
+        $filename = "Data Mentor Myvoqu" . '.xlsx';
 
-        $obj->getActiveSheet()->setTitle('Posting Data Myvoqu');
+        $obj->getActiveSheet()->setTitle('Data Mentor Myvoqu');
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename="' . $filename, '"');
@@ -582,103 +584,6 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function pagepostMentor()
-    {
-        $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerMentor');
-        $this->load->view('templates/sidebar', $dats);
-        $this->load->view('admin/post_general');
-        $this->load->view('templates/footer');
-    }
-
-    public function postingMentor()
-    {
-        $caption = htmlspecialchars($this->input->post('caption', true));
-        $id_user = htmlspecialchars($this->input->post('id_user', true));
-        $fileName = $this->_uploadFileMentor();
-
-        if ((substr($fileName, -3, 3) == 'mp4') || (substr($fileName, -3, 3) == 'mkv') || (substr($fileName, -3, 3) == 'flv')) {
-            $html = '<div class="video-wrapper">';
-            $html .= '<video class="post-video" controls width="500" height="500">';
-            $html .= '<source src=' . base_url('assets_user/file_upload/');
-            $html .= $fileName . ' type="video/mp4">';
-            $html .= '</video></div>';
-        } else {
-            $html = '<img src=' . base_url('assets_user/file_upload/');
-            $html .= $fileName . ' alt="post-image"';
-            $html .= 'class="img-responsive post-image" style="height: 300px;" />';
-        }
-
-        $data = [
-            'caption' => $caption,
-            'fileName' => $fileName,
-            'html' => $html,
-            'date_post' => time(),
-            'id_user' => $id_user,
-        ];
-
-        //siapkan token
-        $this->session->set_flashdata('message', '<small> br</small>');
-
-        $this->db->insert('postgen', $data);
-
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible show" role="alert">
-        <strong>Congratulations!</strong> your post is uploaded.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>');
-
-        redirect('Admin/pagepostMentor');
-    }
-
-    private function _uploadFileMentor()
-    {
-
-        $namaFiles = $_FILES['file']['name'];
-        $ukuranFile = $_FILES['file']['size'];
-        $type = $_FILES['file']['type'];
-        $eror = $_FILES['file']['error'];
-
-        // $nama_file = str_replace(" ", "_", $namaFiles);
-        $tmpName = $_FILES['file']['tmp_name'];
-        // $nama_folder = "assets_user/file_upload/";
-        // $file_baru = $nama_folder . basename($nama_file);
-
-        // if ((($type == "video/mp4") || ($type == "video/3gpp")) && ($ukuranFile < 8000000)) {
-
-        //   move_uploaded_file($tmpName, $file_baru);
-        //   return $file_baru;
-        // }
-
-        if ($eror === 4) {
-
-            $this->session->set_flashdata('message', '<small style="color: red;">Chose an image or video first!</small>');
-
-            redirect('Admin/pagepostMentor');
-
-            return false;
-        }
-
-        $ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'mp4', 'flv', 'mkv'];
-        $ekstensiGambar = explode('.', $namaFiles);
-        $ekstensiGambar = strtolower(end($ekstensiGambar));
-        if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
-            $this->session->set_flashdata('message', '<small style="color: red;">Your uploaded file is not image/video!</small>');
-
-            redirect('Admin/pagepostMentor');
-            return false;
-        }
-
-        $namaFilesBaru = uniqid();
-        $namaFilesBaru .= '.';
-        $namaFilesBaru .= $ekstensiGambar;
-
-        move_uploaded_file($tmpName, 'assets_user/file_upload/' . $namaFilesBaru);
-
-        return $namaFilesBaru;
-    }
-
     public function activateMentor($id)
     {
         $data = array(
@@ -691,7 +596,7 @@ class Admin extends CI_Controller
 
         $this->Admin_model->activate_data($where, $data, 'user');
         $this->session->set_flashdata('message', '<div class="alert alert-info alert-dismissible fade show" role="alert">
-        Mentor has been <strong>Activated</strong>
+        Data Mentor <strong>Berhasil</strong> Diaktifasi
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button>
@@ -711,7 +616,7 @@ class Admin extends CI_Controller
 
         $this->Admin_model->deactivate_data($where, $data, 'user');
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    Mentor has been <strong>Deactivated</strong>
+    Data Mentor <strong>Berhasil</strong> Di Non Aktivasi
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
           </button>
@@ -720,7 +625,7 @@ class Admin extends CI_Controller
     }
 
     ////////////////////////////////////////////////////////////////////
-    //Postingan Admin
+    //Postingan Penghafal Mentor
     ////////////////////////////////////////////////////////////////////
 
     public function indexPosting()
@@ -741,7 +646,7 @@ class Admin extends CI_Controller
 
         $this->Admin_model->hapus_post($where, 'posting');
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong>Posting Successfully</strong> Deleted
+      Data Unggahan <strong>Berhasil</strong> Dihapus
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -793,7 +698,7 @@ class Admin extends CI_Controller
 
         $obj->getProperties()->setCreator("Myvoqu");
         $obj->getProperties()->setLastModifiedBy("Myvoqu");
-        $obj->getProperties()->setTitle("List Postingan Myvoqu");
+        $obj->getProperties()->setTitle("Data Unggahan Myvoqu");
 
         $obj->setActiveSheetIndex(0);
 
@@ -814,9 +719,9 @@ class Admin extends CI_Controller
             $baris++;
         }
 
-        $filename = "Posting Data Myvoqu" . '.xlsx';
+        $filename = "Data Unggahan Myvoqu" . '.xlsx';
 
-        $obj->getActiveSheet()->setTitle('Posting Data Myvoqu');
+        $obj->getActiveSheet()->setTitle('Data Unggahan Myvoqu');
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename="' . $filename, '"');
@@ -860,7 +765,7 @@ class Admin extends CI_Controller
 
         $this->Admin_model->hapus_postgen($where, 'postgen');
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong>Posting Successfully</strong> Deleted
+      Data Unggahan <strong>Berhasil</strong> Dihapus
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -913,7 +818,7 @@ class Admin extends CI_Controller
 
         $obj->getProperties()->setCreator("Myvoqu");
         $obj->getProperties()->setLastModifiedBy("Myvoqu");
-        $obj->getProperties()->setTitle("List Postingan General Myvoqu");
+        $obj->getProperties()->setTitle("Data Unggahan Materi Umum Myvoqu");
 
         $obj->setActiveSheetIndex(0);
 
@@ -934,9 +839,9 @@ class Admin extends CI_Controller
             $baris++;
         }
 
-        $filename = "Posting General Myvoqu" . '.xlsx';
+        $filename = "Unggahan Materi Umum Myvoqu" . '.xlsx';
 
-        $obj->getActiveSheet()->setTitle('Posting Data Myvoqu');
+        $obj->getActiveSheet()->setTitle('Data Unggahan Materi Umum Myvoqu');
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename="' . $filename, '"');
@@ -956,6 +861,109 @@ class Admin extends CI_Controller
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_postgen', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function pagepostGen()
+    {
+        $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
+        $this->load->view('templates/headerMentor');
+        $this->load->view('templates/sidebar', $dats);
+        $this->load->view('admin/post_general');
+        $this->load->view('templates/footer');
+    }
+
+    public function postingGen()
+    {
+        $caption = htmlspecialchars($this->input->post('caption', true));
+        $id_user = htmlspecialchars($this->input->post('id_user', true));
+        $fileName = $this->_uploadFileGen();
+
+        if ((substr($fileName, -3, 3) == 'mp4') || (substr($fileName, -3, 3) == 'mkv') || (substr($fileName, -3, 3) == 'flv')) {
+            $html = '<div class="video-wrapper">';
+            $html .= '<video class="post-video" controls width="500" height="500">';
+            $html .= '<source src=' . base_url('assets_user/file_upload/');
+            $html .= $fileName . ' type="video/mp4">';
+            $html .= '</video></div>';
+        } else {
+            $html = '<img src=' . base_url('assets_user/file_upload/');
+            $html .= $fileName . ' alt="post-image"';
+            $html .= 'class="img-responsive post-image" style="height: 300px;" />';
+        }
+
+        $data = [
+            'caption' => $caption,
+            'fileName' => $fileName,
+            'html' => $html,
+            'date_post' => time(),
+            'id_user' => $id_user,
+        ];
+
+        //siapkan token
+        $this->session->set_flashdata('message', '<small> br</small>');
+
+        // $this->db->insert('postgen', $data);
+        $this->Admin_model->addPostGen($data);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible show" role="alert">
+        Unggahan Materi Umum <strong>Berhasil</strong> Di Unggah
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>');
+
+        redirect('Admin/pagepostGen');
+    }
+
+    private function _uploadFileGen()
+    {
+
+        $namaFiles = $_FILES['file']['name'];
+        $ukuranFile = $_FILES['file']['size'];
+        $type = $_FILES['file']['type'];
+        $eror = $_FILES['file']['error'];
+
+        // $nama_file = str_replace(" ", "_", $namaFiles);
+        $tmpName = $_FILES['file']['tmp_name'];
+        // $nama_folder = "assets_user/file_upload/";
+        // $file_baru = $nama_folder . basename($nama_file);
+
+        // if ((($type == "video/mp4") || ($type == "video/3gpp")) && ($ukuranFile < 8000000)) {
+
+        //   move_uploaded_file($tmpName, $file_baru);
+        //   return $file_baru;
+        // }
+
+        if ($eror === 4) {
+
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible show" role="alert">
+        Tolong pilih gambar atau video terlebih dahulu!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>');
+
+            redirect('Admin/pagepostGen');
+
+            return false;
+        }
+
+        $ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'mp4', 'flv', 'mkv'];
+        $ekstensiGambar = explode('.', $namaFiles);
+        $ekstensiGambar = strtolower(end($ekstensiGambar));
+        if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+            $this->session->set_flashdata('message', '<small style="color: red;">Berkas yang ingin anda unggah bukan berformat gambar atau video!</small>');
+
+            redirect('Admin/pagepostGen');
+            return false;
+        }
+
+        $namaFilesBaru = uniqid();
+        $namaFilesBaru .= '.';
+        $namaFilesBaru .= $ekstensiGambar;
+
+        move_uploaded_file($tmpName, 'assets_user/file_upload/' . $namaFilesBaru);
+
+        return $namaFilesBaru;
     }
 
     ////////////////////////////////////////////////////////////////////
@@ -991,7 +999,7 @@ class Admin extends CI_Controller
 
         $this->Admin_model->hapus_group($where, 'grup');
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong>Group Successfully</strong> Deleted
+      Data Grup <strong>Berhasil</strong> Dihapus
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -1032,7 +1040,7 @@ class Admin extends CI_Controller
 
         $obj->getProperties()->setCreator("Myvoqu");
         $obj->getProperties()->setLastModifiedBy("Myvoqu");
-        $obj->getProperties()->setTitle("List Group Myvoqu");
+        $obj->getProperties()->setTitle("Data Group Myvoqu");
 
         $obj->setActiveSheetIndex(0);
 
@@ -1051,9 +1059,9 @@ class Admin extends CI_Controller
             $baris++;
         }
 
-        $filename = "Group Data Myvoqu" . '.xlsx';
+        $filename = "Data Group Myvoqu" . '.xlsx';
 
-        $obj->getActiveSheet()->setTitle('Group Data Myvoqu');
+        $obj->getActiveSheet()->setTitle('Data Group Myvoqu');
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename="' . $filename, '"');
@@ -1103,7 +1111,7 @@ class Admin extends CI_Controller
         $this->load->model('Admin_model');
         $this->Admin_model->tambah_todo();
         $this->session->set_flashdata('message', '<div class="alert alert-primary alert-dismissible fade show" role="alert">
-      Data To-Do <strong>Berhasil</strong> di Simpan
+      Data Kegiatan <strong>Berhasil</strong> di Simpan
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -1117,7 +1125,7 @@ class Admin extends CI_Controller
         $this->load->model('Admin_model');
         $this->Admin_model->done_todo($id);
         $this->session->set_flashdata('message', '<div class="alert alert-primary alert-dismissible fade show" role="alert">
-      Data To-Do <strong>Berhasil</strong> di Set Selesai
+      Data Kegiatan <strong>Berhasil</strong> dibuat Selesai
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -1131,7 +1139,7 @@ class Admin extends CI_Controller
         $this->load->model('Admin_model');
         $this->Admin_model->undone_todo($id);
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-      Data To-Do <strong>Berhasil</strong> di Set Tidak Selesai
+      Data Kegiatan <strong>Berhasil</strong> dibuat Tidak Selesai
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -1167,7 +1175,7 @@ class Admin extends CI_Controller
         $this->load->model('Admin_model');
         $this->Admin_model->delete_todo($id);
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-      Data To-Do <strong>Berhasil</strong> di Hapus
+      Data Kegiatan <strong>Berhasil</strong> di Hapus
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -1209,7 +1217,7 @@ class Admin extends CI_Controller
 
         $obj->getProperties()->setCreator("Myvoqu");
         $obj->getProperties()->setLastModifiedBy("Myvoqu");
-        $obj->getProperties()->setTitle("List To-Do Myvoqu");
+        $obj->getProperties()->setTitle("Data Kegiatan Myvoqu");
 
         $obj->setActiveSheetIndex(0);
 
@@ -1226,9 +1234,9 @@ class Admin extends CI_Controller
             $baris++;
         }
 
-        $filename = "Admin To-Do Data Myvoqu" . '.xlsx';
+        $filename = "Data Kegiatan Myvoqu" . '.xlsx';
 
-        $obj->getActiveSheet()->setTitle('To-Do Data Myvoqu');
+        $obj->getActiveSheet()->setTitle('Data Kegiatan Myvoqu');
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename="' . $filename, '"');
@@ -1260,7 +1268,7 @@ class Admin extends CI_Controller
         $this->email->to($mail);
 
         $this->email->subject('Account Verification');
-        $this->email->message('click this link to verify your account : <a href="' . base_url() . 'auth/verify?email=' . $mail . '&token=' . urlencode($token) . '">Activate</a>');
+        $this->email->message('Klik tautan berikut untuk aktivasi akun anda: <a href="' . base_url() . 'auth/verify?email=' . $mail . '&token=' . urlencode($token) . '">Aktivasi</a>');
 
         if ($this->email->send()) {
             return true;

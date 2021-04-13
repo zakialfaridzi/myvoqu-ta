@@ -1,9 +1,9 @@
 <!-- Chat Room
             ================================================= -->
 <div class="chat-room"style="height: 100px;">
-    <b>All Friends</b>
+    <b>Semua Teman Yang Diikuti</b>
 
-    <a href="<?= base_url('chat/index'); ?>" style='float:right; color:white; background-color: #6FB8DF; border:none; border-radius: 10px;'><b>&nbsp; All Message Received&nbsp;</b></a>
+    <a href="<?= base_url('chat/index'); ?>" style='float:right; color:white; background-color: #6FB8DF; border:none; border-radius: 10px;'><b>&nbsp; Semua Pesan Yang Diterima&nbsp;</b></a>
     <div class="row" >
         <div class="col-md-12">
 
@@ -16,12 +16,12 @@
                         <li class="active" style="height: 100px;">
                             <a href="<?= base_url('chat/chat2/') . $pst->id_usertarget; ?>">
                                 <div class="contact">
-                                    <img src="<?= base_url('assets_user/') ?>images/<?= $pst->image; ?>" alt="" class="profile-photo-sm pull-left" />
+                                    <img src="<?= base_url('assets_user/') ?>images/<?= $pst->imagetarget; ?>" alt="" class="profile-photo-sm pull-left" />
                                     <div class="msg-preview">
                                         <h6><?= $pst->namatarget; ?></h6>
 
 
-                                        <p class="text-muted"><?= $pst->bio; ?></p>
+                                        <p class="text-muted">klik untuk chat</p>
                                         <small class="text-muted"></small>
 
                                     </div>

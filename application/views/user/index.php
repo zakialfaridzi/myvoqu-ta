@@ -46,7 +46,7 @@
 
 
             <div class="post-comment">
-                <a href="<?=base_url('user/getIdposting/') . $pst->id_posting;?>">Komen</a>
+                <a href="<?=base_url('user/getIdposting/') . $pst->id_posting;?>">Beri Komentar</a>
             </div>
         </div>
     </div>

@@ -55,15 +55,15 @@
 							<?= $pst->html; ?>
 							<?php if ($pst->id_user != $this->session->userdata('id')) : ?>
 								<i class="fas fa-exclamation" style="color: tomato;margin-left:10px;"></i>
-								<a href="" style="text-decoration:none;">Report</a>
+								<a href="" style="text-decoration:none;">Laporkan</a>
 							<?php else : ?>
 								<i class="fas fa-trash" style="color: tomato;margin-left:18px;"></i>
 								<button type="submit" class="btn btn-danger btn-sm" style="height: 18px; width: 50px;">
-									<p style="margin-top: -6px; margin-left: -3px;">Delete</p>
+									<p style="margin-top: -6px; margin-left: -3px;">Hapus</p>
 								</button>
 								<!-- <a href="<?= base_url(); ?>group/deletePost/<?= $pst->id_posting; ?>" style="text-decoration:none;" id="delete">Delete</a> -->
-								<i class="fas fa-exclamation" style="color: tomato;margin-left:10px;"></i>
-								<a href="" style="text-decoration:none;">Report</a>
+								<!-- <i class="fas fa-exclamation" style="color: tomato;margin-left:10px;"></i>
+								<a href="" style="text-decoration:none;">Laporkan</a> -->
 							<?php endif; ?>
 						</form>
 						<div class="post-container">
@@ -71,7 +71,7 @@
 							<div class="post-detail">
 								<div class="user-info">
 									<h5><a href="timeline.html" class="profile-link"><?= $pst->name; ?></a></h5>
-									<p class="text-muted">Published on <?= $pst->date_post; ?></p>
+									<p class="text-muted">Diunggah pada <?= $pst->date_post; ?></p>
 								</div>
 								<div class="line-divider"></div>
 								<div class="post-text">
@@ -80,7 +80,7 @@
 								<div class="line-divider"></div>
 								<?= $this->session->flashdata('nn'); ?>
 								<div class="post-comment">
-									<a href="<?= base_url('group/getIdposting/') . $pst->id_posting; ?>">Comment</a>
+									<a href="<?= base_url('group/getIdposting/') . $pst->id_posting; ?>">Beri Komentar</a>
 								</div>
 							</div>
 						</div>

@@ -38,7 +38,7 @@
 
 <?php endif; ?>
 
-<div class="collapse" id="collapseExample">
+<!-- <div class="collapse" id="collapseExample">
     <div class="card card-body">
         <form action="<?= base_url('Library/addSurat') ?>" method="POST">
             <label for="nama">Nama Surat</label>
@@ -52,7 +52,7 @@
             <button type="submit" class="btn btn-success" style="float: right;">Tambahkan</<button>
         </form>
     </div>
-</div>
+</div> -->
 <br>
 <div class="media">
     <?php foreach ($allSurat as $surat) : ?>

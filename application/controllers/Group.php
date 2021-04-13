@@ -81,13 +81,22 @@ class Group extends CI_Controller
             $data['otherUser'] = $this->User_model->getOherUserData();
             $this->form_validation->set_rules('nama', 'Nama', 'required');
             $this->form_validation->set_rules('desc', 'Desc', 'required');
-            $datagroup = [
-                "nama" => $this->input->post('nama', true),
-                "deskripsi" => $this->input->post('desc', true),
-                "image" => $this->input->post('image', true),
-                "owner" => $this->input->post('id', true),
-            ];
-            $this->Group_model->tambahDataGroup($datagroup);
+            if ($this->form_validation->run() == true) {
+                $datagroup = [
+                    "nama" => $this->input->post('nama', true),
+                    "deskripsi" => $this->input->post('desc', true),
+                    "image" => $this->input->post('image', true),
+                    "owner" => $this->input->post('id', true),
+                ];
+                $this->Group_model->tambahDataGroup($datagroup);
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger ">
+                    Gagal Dibuat, ada yang belum terisi
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>');
+            }
             redirect('group');
         }
     }
@@ -278,6 +287,7 @@ class Group extends CI_Controller
             $this->load->view('templates_profile/bg_groupProfile', $data);
             $this->load->view('group/information', $data);
             $this->load->view('templates_profile/end_group', $data);
+            // $this->load->view('templates_newsfeed/footer');
         }
     }
 
@@ -357,17 +367,48 @@ class Group extends CI_Controller
 
     public function tambahInfo($idg)
     {
-        $this->form_validation->set_rules('informasi', 'Informasi', 'required');
-        if ($this->form_validation->run() == false) {
-            redirect('group');
-        } else {
+        if ($this->input->post('hafalan') == '0') {
+            $this->form_validation->set_rules('informasi', 'Informasi', 'required');
+            if ($this->form_validation->run() == false){
+                $this->session->set_flashdata('message', '<div class="alert alert-danger ">
+                    Gagal Dibuat, ada yang belum terisi
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>');
+            }else{
             $datainfo = [
                 "info" => $this->input->post('informasi', true),
                 "id_group" => $this->input->post('idgroup', true),
                 "id_user" => $this->input->post('iduser', true),
+                'hafalan' => $this->input->post('hafalan', true)
             ];
             $this->Group_model->addInfo($datainfo);
             redirect('group/info/' . $idg);
+            }
+        } else {
+            $this->form_validation->set_rules('nama', 'nama surah', 'required');
+            $this->form_validation->set_rules('ayat', 'ayat surah', 'required');
+            if ($this->form_validation->run() == false){
+                $this->session->set_flashdata('message', '<div class="alert alert-danger ">
+                    Gagal Dibuat, ada yang belum terisi
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>');
+            } else{
+                $namaSurah = $this->input->post('nama', true);
+                $ayatSurah = $this->input->post('ayat', true);
+                $catatan = $this->input->post('catatan', true);
+            $datainfo = [
+                "info" => 'Buat Hafalan Mengenai Surah ' . $namaSurah . ' Ayat Ke ' . $ayatSurah . ' ' . $catatan ,
+                "id_group" => $this->input->post('idgroup', true),
+                "id_user" => $this->input->post('iduser', true),
+                'hafalan' => $this->input->post('hafalan', true)
+            ];
+            $this->Group_model->addInfo($datainfo);
+            redirect('group/info/' . $idg);
+            }
         }
     }
 
@@ -577,7 +618,7 @@ class Group extends CI_Controller
 
             $this->load->view('templates_newsfeed/topbar', $data);
             // $this->load->view('templates_newsfeed/header', $data);
-            //$this->load->view('templates_profile/bg_groupProfile', $data);
+            // $this->load->view('templates_profile/bg_groupProfile', $data);
             //$this->load->view('user/getIdposting', $data);
             $this->load->view('group/posting', $data);
             //$this->load->view('templates_profile/end_group', $data);

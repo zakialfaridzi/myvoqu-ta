@@ -63,7 +63,9 @@ class Auth extends CI_Controller
                     $data = [
                         'email' => $user['email'],
                         'role_id' => $user['role_id'],
-                        'id' => $user['id'], 'gender' => $user['gender'],
+                        'id' => $user['id'], 
+                        'gender' => $user['gender'],
+                        'image' => $user['image']
                     ];
 
                     $this->session->set_userdata($data);
@@ -131,7 +133,7 @@ class Auth extends CI_Controller
             'min_length' => 'Password Terlalu Pendek!',
         ]);
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
-        $this->form_validation->set_rules('gender', 'Gender', 'required|trim');
+        $this->form_validation->set_rules('gender', 'Gender', 'required');
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'User Registration';
@@ -144,7 +146,7 @@ class Auth extends CI_Controller
                 'name' => htmlspecialchars($this->input->post('name', true)),
                 'gender' => htmlspecialchars($this->input->post('gender')),
                 'email' => htmlspecialchars($email),
-                'image' => 'default.png',
+                'image' => 'default_' . strtolower($this->input->post('gender')) . '.png',
                 'passsword' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                 'role_id' => 2,
                 'is_active' => 0,
@@ -472,14 +474,13 @@ class Auth extends CI_Controller
                 'name' => htmlspecialchars($this->input->post('name', true)),
                 'gender' => htmlspecialchars($this->input->post('gender')),
                 'email' => htmlspecialchars($email),
-                'image' => 'default.png',
+                'image' => 'default_' . strtolower($this->input->post('gender')) . '.png',
                 'passsword' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                 'role_id' => 3,
                 'is_active' => 0,
                 'date_created' => time(),
                 'bio' => 'Hello World!',
                 'sertif' => $fileName,
-
             ];
 
             $this->db->insert('user', $data);

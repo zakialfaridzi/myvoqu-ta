@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Print General Posts Data</h1>
+                    <h1 class="m-0 text-dark">Print Data Unggahan Materi Islami Umum</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                 </div><!-- /.col -->
@@ -15,8 +15,8 @@
         <table class="table">
             <tr>
                 <th>NO</th>
-                <th>ID Post</th>
-                <th>Caption</th>
+                <th>ID Unggahan (ID Post)</th>
+                <th>Keterangan (Caption)</th>
             </tr>
             <?php $no = 1;
 foreach ($post as $mhs): ?>

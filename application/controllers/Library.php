@@ -115,7 +115,7 @@ class Library extends CI_Controller
             //PAGINATION
             $this->load->library('pagination');
             //config
-            $config['base_url'] = 'http://af296e5caa26.ap.ngrok.io/myvoqu/library/materi/' . $id;
+            $config['base_url'] = 'http://localhost/myvoqu/library/materi/' . $id;
             $config['total_rows'] = $this->Materi_model->countMateri($idm);
             $config['per_page'] = 4;
 

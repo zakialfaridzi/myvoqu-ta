@@ -7,8 +7,8 @@
       </a>
 
       <!-- Sidebar -->
-      <div class="sidebar">
           <?php foreach ($mahasiswa as $mhs): ?>
+      <div class="sidebar">
               <!-- Sidebar user panel (optional) -->
               <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                   <div class="image">
@@ -16,8 +16,7 @@
                   </div>
                   <div class="info">
                       <a href="<?php echo base_url('Admin/indexProfile/') ?>" class="d-block"><?php
-$data['user'] = $this->db->get_where('user', ['role_id' => 1])->row_array();
-echo $data['user']['name'];
+echo $mhs->name
 ?>
                       </a>
 
@@ -41,7 +40,7 @@ echo $data['user']['name'];
                           <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-list-alt"></i>
                               <p>
-                                  Management
+                                  Pengelolaan Data
                                   <i class="fas fa-angle-left right"></i>
                               </p>
                           </a>
@@ -50,7 +49,7 @@ echo $data['user']['name'];
                                   <a href="<?php echo base_url('Admin/indexPenghafal/'); ?>" class="nav-link <?php echo $this->uri->segment(2) == 'indexPenghafal' ? 'active' : '' ?>">
                                       <i class="nav-icon fas fa-users"></i>
                                       <p>
-                                          Manage Penghafal
+                                          Kelola Penghafal
                                       </p>
                                   </a>
                               </li>
@@ -58,7 +57,7 @@ echo $data['user']['name'];
                                   <a href="<?php echo base_url('Admin/indexMentor/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'indexMentor' ? 'active' : '' ?>">
                                       <i class="nav-icon fas fa-chalkboard-teacher"></i>
                                       <p>
-                                          Manage Mentors
+                                          Kelola Mentor
                                       </p>
                                   </a>
                               </li>
@@ -66,7 +65,7 @@ echo $data['user']['name'];
                                   <a href="<?php echo base_url('Admin/indexPosting/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'indexPosting' ? 'active' : '' ?>">
                                       <i class="nav-icon fas fa-upload"></i>
                                       <p>
-                                          Manage Posts
+                                          Kelola Unggahan
                                       </p>
                                   </a>
                               </li>
@@ -74,7 +73,7 @@ echo $data['user']['name'];
                                   <a href="<?php echo base_url('Admin/indexPostingGen/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'indexPostingGen' ? 'active' : '' ?>">
                                       <i class="nav-icon fas fa-upload"></i>
                                       <p>
-                                          Manage General Posts
+                                          Kelola Materi Umum
                                       </p>
                                   </a>
                               </li>
@@ -82,17 +81,17 @@ echo $data['user']['name'];
                                   <a href="<?php echo base_url('Admin/indexGroup/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'indexGroup' ? 'active' : '' ?>">
                                       <i class="nav-icon fa fa-users"></i>
                                       <p>
-                                          Manage Groups
+                                          Kelola Grup Hafalan
                                       </p>
                                   </a>
                               </li>
                           </ul>
                       </li>
                       <li class="nav-item">
-                          <a href="<?php echo base_url('Admin/pagepostMentor/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'pagepostMentor' ? 'active' : '' ?>">
+                          <a href="<?php echo base_url('Admin/pagepostGen/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'pagepostGen' ? 'active' : '' ?>">
                               <i class="nav-icon fas fa-book-open"></i>
                               <p>
-                                  Input Materi
+                                  Unggah Materi Umum
                               </p>
                           </a>
                       </li>
@@ -100,7 +99,7 @@ echo $data['user']['name'];
                           <a href="<?php echo base_url('Admin/indexTodo/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'indexTodo' ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-tasks"></i>
                               <p>
-                                  To-Do List Admin
+                                  Daftar Kegiatan Admin
                               </p>
                           </a>
                       </li>

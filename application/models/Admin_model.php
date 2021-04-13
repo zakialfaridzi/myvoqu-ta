@@ -11,13 +11,9 @@ class Admin_model extends CI_model
 
     public function profileAdmin()
     {
-        $query = $this->db->query("CALL profileAdmin()");
-        $res = $query->result();
-
-        $query->next_result();
-        $query->free_result();
-
-        return $res;
+        return $this->db->get_where('user', [
+            'id' => $this->session->userdata('id'),
+        ])->result();
     }
 
     public function tampil_data()
@@ -267,9 +263,9 @@ class Admin_model extends CI_model
         return $this->db->get()->result();
     }
 
-    public function addPosting($data)
+    public function addPostGen($data)
     {
-        return $this->db->insert('postgen', $data);
+        $this->db->insert('postgen', $data);
     }
 
     public function tampil_postgen()

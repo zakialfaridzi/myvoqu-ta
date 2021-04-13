@@ -1,5 +1,5 @@
 <footer class="main-footer">
-    <strong>Copyright &copy; 2019-2020 MyVoQu.</strong>
+    <strong>Copyright &copy; 2019-2021 MyVoQu.</strong>
     <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 1.0
     </div>
@@ -76,6 +76,16 @@ jQuery(document).ready(function() {
 $(document).ready(function() {
     $('.toast').toast('show');
 });
+</script>
+
+<script>
+            $('#imageadmin').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                var cleanFileName = fileName.replace('C:\\fakepath\\', " ");
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(cleanFileName);
+            })
 </script>
 
 </body>

@@ -28,7 +28,7 @@
                                 ?>
                                     <li class="active" style="height: auto;">
                                         <div class="contact">
-                                            <img src="<?= base_url('assets_user/') ?>images/default.png" alt="" class="profile-photo-sm pull-left" />
+                                            <img src="<?= base_url('assets_user/images/').$penghuni['image'] ?>" alt="" class="profile-photo-sm pull-left" />
                                             <div class="msg-preview" style="margin-left: 50px">
                                                 <form method="POST" action="<?= base_url('group/kickUser') . "/" . $this->uri->segment('3'); ?>">
                                                     <input type="hidden" name="iduser" value="<?= $penghuni['id_anggota'] ?>" ?>

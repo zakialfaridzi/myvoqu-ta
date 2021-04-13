@@ -3,12 +3,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Edit Admin Profile Data</h1>
+                    <h1 class="m-0 text-dark">Sunting Data Profil Admin Myvoqu</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Home</a></li>
-                        <li class="breadcrumb-item active">Edit Admin Profile Data</li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Beranda</a></li>
+                        <li class="breadcrumb-item active">Sunting Data Profil Admin Myvoqu</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -20,6 +20,7 @@
         <?php foreach ($mahasiswa as $mhs): ?>
             <form action="<?php echo base_url() . 'Admin/updateProfile'; ?>" method="post" enctype="multipart/form-data">
                 <div class="form-group">
+                    <input type="hidden"  id="old"  name="old"  value="<?php echo $mhs->image ?>">
                     <center><img src="<?php echo base_url() ?>/assets/foto/<?php echo $mhs->image ?>" height="200" width="200" style="border-radius: 50%"></center>
                 </div>
                 <div class="form-group col-md-7">
@@ -34,14 +35,14 @@
                 <div class="col-sm-4">
                     <div class="custom-file">
                         <label>Foto</label>
-                        <input type="file" class="custom-file-input" id="image" name="image">
-                        <label class="custom-file-label" for="image">Choose file</label>
+                        <input type="file" class="custom-file-input" id="imageadmin" name="image">
+                        <label class="custom-file-label" for="imageadmin">Pilih Berkas</label>
                     </div>
                 </div>
 
 
-                <button type="reset" class="btn btn-danger">Reset</button>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="reset" class="btn btn-danger">Ulangi</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
             </form>
         <?php endforeach;?>
     </div>

@@ -19,7 +19,7 @@
                     <?php foreach ($jumlahfollowers as $jf): ?>
                     <a href="<?=base_url('profile/followers');?>" class="text-white"><i
                             class="ion ion-android-person-add"></i><?=$jf->jumlahfollowers;?>
-                        followers</a>
+                        Pengikut</a>
                     <?php endforeach;?>
                 </div>
                 <!--profile card ends-->
@@ -89,11 +89,20 @@ endforeach;?>
                             <div class="form-group">
                                 <img src="<?=base_url('assets_user/images/' . $us->image);?>" alt=""
                                     class="profile-photo-md" />
+                                <?php if ($this->uri->segment('2') == 'materi' && $this->session->userdata('role_id') == 3) { ?>
+                                <h4>Buat Materi</h4><br>
+                                    <form action="<?= base_url('library/posting/') . $this->uri->segment('3'); ?>" method="post"
+                                    enctype="multipart/form-data">
+                                    <textarea cols="30" rows="1" class="form-control" placeholder="Ayat"
+                                        name="ayat" id="caption"></textarea>
+                                    <?=form_error('caption', '<small class="text-danger pl-3">', '</small>');?>
+                                <?php }else{ ?>
                                 <form action="<?=base_url('user/posting');?>" method="post"
                                     enctype="multipart/form-data">
                                     <textarea cols="30" rows="1" class="form-control" placeholder="Masukkan kata-kata"
                                         name="caption" id="caption"></textarea>
                                     <?=form_error('caption', '<small class="text-danger pl-3">', '</small>');?>
+                                <?php } ?>
                             </div>
                         </div>
                         <div class="col-md-5 col-sm-5">
@@ -120,4 +129,5 @@ endforeach;?>
 
                     </div>
                 </div><!-- Post Create Box End-->
+
                 <?=$this->session->flashdata('message');?>
