@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2021 at 03:50 PM
+-- Generation Time: Apr 13, 2021 at 09:30 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -288,7 +288,8 @@ CREATE TABLE `dompet` (
 
 INSERT INTO `dompet` (`id_dompet`, `saldo`, `id_user`) VALUES
 (2, '0', 129),
-(3, '0', 130);
+(3, '0', 130),
+(4, '0', 131);
 
 -- --------------------------------------------------------
 
@@ -361,9 +362,10 @@ INSERT INTO `follow` (`id_follow`, `stat`, `date`, `id_userfollow`, `id_usertarg
 (47, 2, '1618298702', 126, 126, 'Muhammad Abizard', 'Hello World!', 'default_female.png'),
 (48, 2, '1618306081', 127, 127, 'Muhammad Abizard', 'Hello World!', 'default_male.png'),
 (49, 2, '1618306081', 128, 128, 'Ustad Abizard', 'Hello World!', 'default_male.png'),
-(50, 2, '1618314853', 129, 129, 'Muhammad Abizard', 'Hello World!', 'default_male.png'),
+(50, 2, '1618314853', 129, 129, 'Muhammad Abizard', 'Hello World!', '6075a3c8b2c47.jpg'),
 (51, 2, '1618319213', 129, 114, 'Fydhia Helmi Ramadhan', 'Hello Myvoqu!', '6075504d4bb97.png'),
-(52, 2, '1618314853', 130, 130, 'Muhammad Abizard', 'Hello World!', 'default_male.png');
+(52, 2, '1618314853', 130, 130, 'Muhammad Abizard', 'Hello World!', 'default_male.png'),
+(53, 2, '1618314853', 131, 131, 'Muhammad Abizard', 'Hello World!', 'Group_123.jpg');
 
 --
 -- Triggers `follow`
@@ -700,7 +702,12 @@ INSERT INTO `notification` (`id_notification`, `notif`, `date`, `id_posting`, `i
 (351, 'Mulai Mengikuti Anda.', '1618306081', 0, 128, 128),
 (352, 'Mulai Mengikuti Anda.', '1618314853', 0, 129, 129),
 (353, 'Mulai Mengikuti Anda.', '1618319188', 0, 129, 114),
-(354, 'Mulai Mengikuti Anda.', '1618314853', 0, 130, 130);
+(354, 'Mulai Mengikuti Anda.', '1618314853', 0, 130, 130),
+(355, 'like on your post', '', 272, 129, 0),
+(356, 'like on your post', '', 273, 129, 0),
+(357, 'comment on your post: \" :P\"', '1618341925', 273, 129, 129),
+(358, 'delete comment on your post: \" :P\"', '1618341925', 273, 129, 129),
+(359, 'Mulai Mengikuti Anda.', '1618314853', 0, 131, 131);
 
 -- --------------------------------------------------------
 
@@ -772,6 +779,13 @@ CREATE TABLE `posting` (
   `html` varchar(250) NOT NULL,
   `date_post` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `posting`
+--
+
+INSERT INTO `posting` (`id_posting`, `caption`, `id_user`, `name`, `fileName`, `html`, `date_post`) VALUES
+(273, '', 129, '', '6075efc6bb75b.mp4', '<div class=\"video-wrapper\"><video class=\"post-video\" controls  width=\"500\" height=\"500\"><source src= http://2e61eb313f87.ap.ngrok.io/myvoqu/assets_user/file_upload/6075efc6bb75b.mp4 type=\"video/mp4\"></video></div>', '1618341830');
 
 --
 -- Triggers `posting`
@@ -867,7 +881,9 @@ INSERT INTO `report` (`id_report`, `report`, `date`, `id_posting`, `id_user`) VA
 (97, 0, '', 268, 123),
 (98, 0, '', 269, 114),
 (99, 0, '', 270, 126),
-(100, 0, '', 271, 126);
+(100, 0, '', 271, 126),
+(101, 0, '', 272, 129),
+(102, 0, '', 273, 129);
 
 -- --------------------------------------------------------
 
@@ -935,7 +951,9 @@ INSERT INTO `suka` (`id_suka`, `status`, `date`, `id_posting`, `id`, `id_tujuan`
 (226, 2, '', 268, 123, 0),
 (227, 2, '', 269, 114, 0),
 (228, 2, '', 270, 126, 0),
-(229, 2, '', 271, 126, 0);
+(229, 2, '', 271, 126, 0),
+(230, 2, '', 272, 129, 0),
+(231, 2, '', 273, 129, 0);
 
 --
 -- Triggers `suka`
@@ -981,7 +999,7 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `task_name`, `state`, `id_user`) VALUES
-(45, 'Cek data-data penghafal hari ini', 1, 0),
+(45, 'Cek data-data penghafal hari ini', 0, 0),
 (46, 'Verifikasi mentor yang baru', 0, 0),
 (47, 'Unggah materi umum', 1, 0),
 (48, 'Lakukan Aktivasi Penghafal', 1, 0);
@@ -989,24 +1007,27 @@ INSERT INTO `tasks` (`id`, `task_name`, `state`, `id_user`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transaksi_topup_wallet`
+-- Table structure for table `transaksi_topup_dompet`
 --
 
-CREATE TABLE `transaksi_topup_wallet` (
-  `id_transaksi` int(11) NOT NULL,
-  `nominal` varchar(250) NOT NULL,
-  `bukti_bayar` varchar(250) NOT NULL,
-  `tanggal_transaksi` date NOT NULL DEFAULT current_timestamp(),
-  `id_dompet` int(11) NOT NULL
+CREATE TABLE `transaksi_topup_dompet` (
+  `order_id` char(12) NOT NULL,
+  `gross_amount` int(11) NOT NULL,
+  `payment_type` varchar(13) NOT NULL,
+  `transaction_time` varchar(19) NOT NULL,
+  `bank` varchar(10) NOT NULL,
+  `va_number` varchar(30) NOT NULL,
+  `pdf_url` text NOT NULL,
+  `status_code` char(3) NOT NULL,
+  `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `transaksi_topup_wallet`
+-- Dumping data for table `transaksi_topup_dompet`
 --
 
-INSERT INTO `transaksi_topup_wallet` (`id_transaksi`, `nominal`, `bukti_bayar`, `tanggal_transaksi`, `id_dompet`) VALUES
-(1, '100000', '6075939d0f15d.jpg', '2021-04-13', 2),
-(2, '500000', '60759721243b4.jpg', '2021-04-13', 2);
+INSERT INTO `transaksi_topup_dompet` (`order_id`, `gross_amount`, `payment_type`, `transaction_time`, `bank`, `va_number`, `pdf_url`, `status_code`, `id_user`) VALUES
+('1282215058', 50000, 'bank_transfer', '2021-04-14 02:14:37', 'bca', '46612052842', 'https://app.sandbox.midtrans.com/snap/v1/transactions/6a96a8b3-b681-4eea-8fd9-44a964eafc9f/pdf', '200', 129);
 
 -- --------------------------------------------------------
 
@@ -1081,7 +1102,8 @@ INSERT INTO `trigger_user` (`no`, `id`, `name`, `email`, `role_id`, `aksi`, `tgl
 (109, 124, 'Muhammad Abizard Al Thareq', 'abizard@student.telkomuniversity.ac.id', 2, 'Muhammad Abizard Al Thareq yang baru melakukan update profile menjadi Muhammad Abizard', '2021-04-13 13:31:50'),
 (110, 91, 'ADMIN - Zaki', 'jaki@gmail.com', 1, 'ADMIN - Zaki yang baru melakukan update profile menjadi ADMIN - Zaki Al Faridzi', '2021-04-13 13:53:38'),
 (111, 114, '', '', 0, 'Ada yang baru delete posting', '2021-04-13 15:00:04'),
-(112, 126, '', '', 0, 'Ada yang baru delete posting', '2021-04-13 16:02:29');
+(112, 126, '', '', 0, 'Ada yang baru delete posting', '2021-04-13 16:02:29'),
+(113, 129, '', '', 0, 'Ada yang baru delete posting', '2021-04-14 01:16:19');
 
 -- --------------------------------------------------------
 
@@ -1114,8 +1136,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `gender`, `email`, `image`, `passsword`, `role_id`, `is_active`, `date_created`, `status`, `birthdate`, `city`, `bio`, `work`, `instansi`, `sertif`, `verified`) VALUES
-(129, 'Muhammad Abizard', 'Male', 'abizard@student.telkomuniversity.ac.id', 'default_male.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 2, 1, 1618314853, 'online-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
-(130, 'Muhammad Abizard', 'Male', 'abizard@student.telkomuniversity.ac.id', 'default_male.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 3, 1, 1618314853, 'online-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0);
+(129, 'Muhammad Abizard', 'Male', 'abizard@student.telkomuniversity.ac.id', '6075a3c8b2c47.jpg', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 2, 1, 1618314853, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(130, 'Muhammad Abizard', 'Male', 'abizard@student.telkomuniversity.ac.id', 'default_male.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 3, 1, 1618314853, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(131, 'Muhammad Abizard', 'Male', 'zaki@gmail.com', 'Group_123.jpg', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 1, 1, 1618314853, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0);
 
 --
 -- Triggers `user`
@@ -1366,10 +1389,10 @@ ALTER TABLE `tasks`
   ADD KEY `fkIDuser` (`id_user`);
 
 --
--- Indexes for table `transaksi_topup_wallet`
+-- Indexes for table `transaksi_topup_dompet`
 --
-ALTER TABLE `transaksi_topup_wallet`
-  ADD PRIMARY KEY (`id_transaksi`);
+ALTER TABLE `transaksi_topup_dompet`
+  ADD PRIMARY KEY (`order_id`);
 
 --
 -- Indexes for table `trigger_user`
@@ -1409,19 +1432,19 @@ ALTER TABLE `anggota`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `dompet`
 --
 ALTER TABLE `dompet`
-  MODIFY `id_dompet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_dompet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `id_follow` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id_follow` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `group_comment`
@@ -1493,7 +1516,7 @@ ALTER TABLE `menu_item`
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `id_notification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=355;
+  MODIFY `id_notification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=360;
 
 --
 -- AUTO_INCREMENT for table `pesan`
@@ -1511,19 +1534,19 @@ ALTER TABLE `postgen`
 -- AUTO_INCREMENT for table `posting`
 --
 ALTER TABLE `posting`
-  MODIFY `id_posting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=272;
+  MODIFY `id_posting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=274;
 
 --
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `id_report` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id_report` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `suka`
 --
 ALTER TABLE `suka`
-  MODIFY `id_suka` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=230;
+  MODIFY `id_suka` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=232;
 
 --
 -- AUTO_INCREMENT for table `tasks`
@@ -1532,22 +1555,16 @@ ALTER TABLE `tasks`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
--- AUTO_INCREMENT for table `transaksi_topup_wallet`
---
-ALTER TABLE `transaksi_topup_wallet`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `trigger_user`
 --
 ALTER TABLE `trigger_user`
-  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
 -- AUTO_INCREMENT for table `user_role`
