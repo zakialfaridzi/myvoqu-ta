@@ -83,6 +83,8 @@ endforeach;?>
             </div>
             <div class="col-md-7">
 
+
+
                 <div id="fp"></div>
 
                 <!-- <div class="alert alert-success alert-dismissible show" role="alert">
@@ -179,3 +181,83 @@ endforeach;?>
 
                 <!-- Kamu memilih foto/video <strong>papa.jpg<
 /strong> ya! -->
+                <div class="alert alert-success alert-dismissible show" role="alert">
+
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="alert-heading">Saldo VOQU-Wallet</h4>
+                    <p>Saldo dana kamu sekarang adalah
+                        <strong>Rp<?=number_format($saldo_wallet['saldo'], 2, ',', '.')?></strong>
+                        <i class="fas fa-wallet"></i>
+                    </p>
+                    <p>
+                        <a class="btn btn-success" data-toggle="modal" data-target="#tambahDana"><i
+                                class="fas fa-plus"></i></a>
+                        <!-- <a class="btn btn-info" data-toggle="modal" data-target="#myModal" data-id="<?=$au->id?>"
+                            id="showInfaqModal">Infaq</a> -->
+                    </p>
+
+                </div>
+
+                <?=$this->session->flashdata('alert')?>
+                <!-- Modal -->
+                <div class="modal fade" id="tambahDana" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Top up VOQU-Wallet <i class="fas fa-wallet"></i></h4>
+                            </div>
+                            <div class="modal-body" id="modal_view">
+
+                                <div class="alert alert-warning alert-dismissible show" role="alert">
+                                    Silahkan transfer ke rekening <strong>671321312321</strong> atas nama
+                                    <strong>MYVOQU</strong>. Bank tujuan adalah <strong>Mandiri</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <div class="alert alert-info alert-dismissible show" role="alert">
+                                    Minimal pengisian wallet adalah <strong>Rp10.0000,00</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <form method="POST" action="<?=base_url('infaq/isi_wallet')?>"
+                                    enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Nominal Pengisian</label>
+                                        <input type="number" class="form-control" id="nominal_topup"
+                                            placeholder="Masukan Nominal Pengisian" name="nominal_topup" required>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Bukti Transfer</label>
+                                        <input type="file" class="form-control-file" id="file" name="file" required>
+                                        <small class="text-danger">*Bukti transfer dalam bentuk JPG, JPEG, atau
+                                            PNG</small>
+                                    </div>
+
+                                    <input type="hidden" name="redirect" value="<?=$this->uri->segment(1)?>">
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                                <input type="submit" class="btn btn-info" value="Submit" id="submittt">
+                            </div>
+                            </form>
+
+                        </div>
+
+
+                    </div>
+                </div>

@@ -23,6 +23,7 @@ class Colab extends CI_Controller
     }
     public function index()
     {
+        $data['saldo_wallet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
         $data['search'] = 'none';
         $data['upload'] = '';
         $data['colorSearch'] = '#0486FE';

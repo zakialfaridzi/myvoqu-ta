@@ -27,6 +27,7 @@ class Library extends CI_Controller
     {
         $data['search'] = '';
         $data['upload'] = '';
+        $data['postgen'] = $this->User_model->getPostgen();
         $data['colorSearch'] = '#0486FE';
         $data['posting'] = $this->User_model->getPosting();
         $data['allUser'] = $this->User_model->getUserData();
@@ -38,6 +39,7 @@ class Library extends CI_Controller
         $data['suggestion'] = $this->User_model->getSuggest();
         $idlog = $this->session->userdata('id');
         $data['idlogin'] = $this->Materi_model->getLog($idlog);
+        $data['saldo_wallet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();

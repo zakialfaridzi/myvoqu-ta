@@ -9,6 +9,7 @@ class Notification extends CI_Controller
         $this->load->model('Profile_model');
         $this->load->model('User_model');
         $this->load->library('form_validation');
+
     }
 
     public function sessionLogin()
@@ -25,6 +26,8 @@ class Notification extends CI_Controller
     public function index()
     {
         $id = $this->session->userdata('id');
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['saldo_wallet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
         $data['search'] = 'none';
         $data['upload'] = 'none';
         $data['colorSearch'] = '#0486FE';

@@ -67,8 +67,9 @@ class User_model extends CI_model
 
     public function getMentorData()
     {
-        return $this->db->query('SELECT * FROM user
-        where role_id = 3')->result();
+        $gender = $this->session->userdata('gender');
+
+        return $this->db->query("SELECT *,(SELECT ROUND(avg(rating)) FROM infaq WHERE id_mentor = id) avg_rating FROM user where role_id = 3 AND gender = '$gender'")->result();
     }
 
     public function deletePostUser($id)
@@ -364,7 +365,7 @@ class User_model extends CI_model
 
     public function getPostgen()
     {
-        return $this->db->query('SELECT * FROM postgen p join user u on(p.id_user = u.id) order by p.id_posting desc')->result();
+        return $this->db->query('SELECT * FROM postgen p join user u on(p.id_user = u.id) order by p.id_posting desc limit 3')->result();
     }
 
     public function getFollowingVisit()
@@ -388,6 +389,17 @@ class User_model extends CI_model
     public function getUserPostProfileVisit()
     {
         return $this->db->query('SELECT * FROM posting p join user u on(p.id_user = u.id) where id = ' . $this->uri->segment('3') . ' order by p.id_posting desc')->result();
+    }
+
+    public function getRatingMentor()
+    {
+        return $this->db->query('SELECT avg(rating) avg_rating FROM infaq GROUP BY id_mentor')->result();
+    }
+
+    public function getUserInfaqSum($id)
+    {
+
+        return $this->db->query("SELECT sum(nominal) jml_infaq FROM `infaq` WHERE tanggal_infaq = DATE(NOW()) AND id_user_infaq = '$id'")->row_array();
     }
 
 }

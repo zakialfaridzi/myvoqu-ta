@@ -52,6 +52,21 @@
             </div><!-- Post Create Box End-->
             <?=$this->session->flashdata('message');?>
 
+            <div class="alert alert-success alert-dismissible show" role="alert">
+
+                <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="alert-heading">Saldo dana</h4>
+                <p>Saldo dana kamu sekarang adalah <strong>Rp.500.000,00</strong> <i class="fas fa-wallet"></i></p>
+                <p><button class="btn btn-success"><i class="fas fa-plus"></i></button>
+                </p>
+
+
+
+            </div>
+
             <!-- Post Content
               ================================================= -->
 

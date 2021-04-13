@@ -23,6 +23,7 @@ class Friend extends CI_Controller
 
     public function index()
     {
+        $data['postgen'] = $this->User_model->getPostgen();
         $data['upload'] = 'none';
         $data['search'] = '';
         $data['colorSearch'] = 'black';
@@ -36,6 +37,7 @@ class Friend extends CI_Controller
         $data['idpost'] = $this->User_model->getidpost();
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
+        $data['saldo_wallet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();

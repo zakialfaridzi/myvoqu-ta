@@ -472,7 +472,9 @@ class Profile extends CI_Controller
             'image' => $filename,
         ];
 
-        if ($potolama == "default.png") {
+        $gender = strtolower($this->session->userdata('gender'));
+
+        if ($potolama == "default_" . $gender . ".png") {
 
             $this->Profile_model->editPhoto($data);
 
@@ -484,7 +486,7 @@ class Profile extends CI_Controller
 		</div>');
 
             redirect('profile/editPhoto');
-        } elseif ($potolama != "default.png") {
+        } elseif ($potolama != "default_" . $gender . ".png") {
 
             if (is_readable($file) && unlink($file)) {
 

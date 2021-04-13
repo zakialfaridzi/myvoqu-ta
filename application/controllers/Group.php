@@ -25,6 +25,7 @@ class Group extends CI_Controller
 
     public function index()
     {
+        $data['postgen'] = $this->User_model->getPostgen();
         $iduser = $this->session->userdata['id'];
         $data['search'] = 'none';
         $data['colorSearch'] = '#0486FE';
@@ -36,6 +37,7 @@ class Group extends CI_Controller
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['title'] = 'Group';
         $data['suggestion'] = $this->User_model->getSuggest();
+        $data['saldo_wallet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();

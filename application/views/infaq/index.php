@@ -10,6 +10,18 @@
                         <img src="<?=base_url('assets_user/')?>images/<?=$au->image;?>" alt="user"
                             class="profile-photo-lg" />
 
+                        <?php if (is_null($au->avg_rating)): ?>
+
+                        <a class="badge" style="background-color: darkorange;">mentor baru</a>
+
+                        <?php else: ?>
+
+                        <a class="badge" style="background-color: darkorange;"><?=$au->avg_rating?> <i
+                                class="fas fa-star"></i></a>
+
+                        <?php endif;?>
+
+                        <a class="badge" style="background-color: deepskyblue;">Mentor</a>
 
 
                         <div class="friend-info">
@@ -17,14 +29,17 @@
 
 
                             <h5><a href="<?=base_url('friend/visitProfile/') . $au->id;?>"><?=$au->name;?></a></h5>
-                            <p>Student at Harvard</p>
+                            <p>Mentor MyVoQu</p>
 
 
                         </div>
-                        <button type="button" class="btn btn-info" data-toggle="modal"
-                            data-target="#myModal">Infaq</button>
-                        <div style="margin-top: 0px;">
-                        </div>
+                        <a class="btn btn-info" data-toggle="modal" data-target="#myModal" data-id="<?=$au->id?>"
+                            id="showInfaqModal">Infaq</a>
+
+                        <button type=" button" class="btn btn-success">
+                            Testimoni <i class="fas fa-quote-right"></i></button>
+
+
 
 
                     </div>
@@ -46,10 +61,11 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Infaq Itu Indah <i class="fas fa-smile"></i></h4>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" id="modal_view">
+
 
                         <form action="<?=base_url('infaq/addInfaq')?>" method="POST">
-
+                            <input type="hidden" value="" name="id_mentor" id="idMentor">
                             <div class="alert alert-warning alert-dismissible show" role="alert">
                                 <strong>Hallo orang baik!</strong> kami tidak menepatkan batas minimal atau maksimal
                                 infaq ya
@@ -72,8 +88,16 @@
                                         <label class="star star-2" for="star-2"></label>
                                         <input class="star star-1" id="star-1" type="radio" name="star" />
                                         <label class="star star-1" for="star-1"></label>
+
+                                        <input type="hidden" value="0" name="rating" id="rating">
+
+
                                     </center>
                                 </div>
+
+
+
+
 
                                 <p>click the stars</p>
                             </div>
@@ -103,6 +127,7 @@
 
 
 
+
     </div>
 
 
@@ -112,6 +137,29 @@
 
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+
+    $("#star-1").click(function() {
+        $("#rating").val("1");
+    });
+    $("#star-2").click(function() {
+        $("#rating").val("2");
+    });
+    $("#star-3").click(function() {
+        $("#rating").val("3");
+    });
+    $("#star-4").click(function() {
+        $("#rating").val("4");
+    });
+    $("#star-5").click(function() {
+        $("#rating").val("5");
+    });
+});
+</script>
+
+
 
 
 
@@ -123,4 +171,14 @@
 
 
 
+
 <?=$this->session->flashdata('pesan')?>
+<script type="text/javascript">
+$(document).on("click", "#showInfaqModal", function() {
+    var idmentor = $(this).data('id');
+
+    $("#modal_view #idMentor").val(idmentor);
+
+
+});
+</script>

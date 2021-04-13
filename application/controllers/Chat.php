@@ -25,6 +25,8 @@ class Chat extends CI_Controller
 
     public function index()
     {
+        $data['saldo_wallet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
         $data['pesan'] = $this->User_model->getPesanById();
         $data['posting'] = $this->Profile_model->getUserPostProfile();
         $data['search'] = 'none';
@@ -104,7 +106,7 @@ class Chat extends CI_Controller
             $this->load->view('templates_newsfeed/footer');
         }
     }
- 
+
     public function pilihUser()
     {
         $data['pesan'] = $this->User_model->getPesanById();
@@ -142,7 +144,7 @@ class Chat extends CI_Controller
             $this->load->view('templates_newsfeed/footer');
         }
     }
- 
+
     public function kirimPesan($id)
     {
         $data = array(
