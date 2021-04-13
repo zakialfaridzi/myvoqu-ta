@@ -402,4 +402,9 @@ class User_model extends CI_model
         return $this->db->query("SELECT sum(nominal) jml_infaq FROM `infaq` WHERE tanggal_infaq = DATE(NOW()) AND id_user_infaq = '$id'")->row_array();
     }
 
+    public function last_transaksi_topup($id)
+    {
+        return $this->db->query("SELECT * FROM `transaksi_topup_dompet` WHERE status_code = 200 AND id_user ='$id' ORDER BY transaction_time DESC")->row_array();
+    }
+
 }

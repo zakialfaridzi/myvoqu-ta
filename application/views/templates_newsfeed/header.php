@@ -27,7 +27,7 @@
                     <ul class="nav-news-feed">
 
                         <li><i class="far fa-bell" style="color: tomato;"></i>
-                            <div><a href="<?=base_url('notification')?>">Notifikasi</a></div>
+                            <div><a href="<?=base_url('notifikasi')?>">Notifikasi</a></div>
                         </li>
 
                         <li><i class="fas fa-book-reader" style="color: burlywood;"></i>
@@ -189,12 +189,15 @@ endforeach;?>
                     </button>
                     <h4 class="alert-heading">Saldo VOQU-Wallet</h4>
                     <p>Saldo dana kamu sekarang adalah
-                        <strong>Rp<?=number_format($saldo_wallet['saldo'], 2, ',', '.')?></strong>
+                        <strong>Rp<?=number_format($saldosekarang, 2, ',', '.')?></strong>
                         <i class="fas fa-wallet"></i>
                     </p>
                     <p>
                         <a class="btn btn-success" data-toggle="modal" data-target="#tambahDana"><i
-                                class="fas fa-plus"></i></a>
+                                class="fas fa-plus"></i> Top Up</a>
+
+                        <a class="btn btn-warning" data-toggle="modal" data-target="#riwayat"><i
+                                class="fas fa-history"></i> Riwayat</a>
                         <!-- <a class="btn btn-info" data-toggle="modal" data-target="#myModal" data-id="<?=$au->id?>"
                             id="showInfaqModal">Infaq</a> -->
                     </p>
@@ -202,6 +205,80 @@ endforeach;?>
                 </div>
 
                 <?=$this->session->flashdata('alert')?>
+
+                <!-- Modal -->
+                <div class="modal fade" id="riwayat" role="dialog">
+                    <div class="modal-dialog modal">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Riwayat Top Up VOQU-Wallet <i class="fas fa-history"></i></h4>
+                            </div>
+                            <div class="modal-body" id="modal_view">
+
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">First</th>
+                                            <th scope="col">Last</th>
+                                            <th scope="col">Handle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                            <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+
+                            </div>
+
+
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <!-- Modal -->
                 <div class="modal fade" id="tambahDana" role="dialog">
                     <div class="modal-dialog">
@@ -214,37 +291,43 @@ endforeach;?>
                             </div>
                             <div class="modal-body" id="modal_view">
 
-                                <div class="alert alert-warning alert-dismissible show" role="alert">
-                                    Silahkan transfer ke rekening <strong>671321312321</strong> atas nama
-                                    <strong>MYVOQU</strong>. Bank tujuan adalah <strong>Mandiri</strong>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
+                                <form id="payment-form" method="post" action="<?=site_url()?>/snap/finish">
+                                    <input type="hidden" name="result_type" id="result-type" value="">
 
-                                <div class="alert alert-info alert-dismissible show" role="alert">
-                                    Minimal pengisian wallet adalah <strong>Rp10.0000,00</strong>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
+                                    <input type="hidden" name="result_data" id="result-data" value="">
 
-                                <form method="POST" action="<?=base_url('infaq/isi_wallet')?>"
-                                    enctype="multipart/form-data">
+
+
+                                    <div class="alert alert-info alert-dismissible show" role="alert">
+                                        Minimal pengisian wallet adalah <strong>Rp10.0000,00</strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Nominal Pengisian</label>
-                                        <input type="number" class="form-control" id="nominal_topup"
-                                            placeholder="Masukan Nominal Pengisian" name="nominal_topup" required>
+                                        <input type="number" class="form-control"
+                                            placeholder="Masukan Nominal Pengisian" name="nominal_topup" id="nominal"
+                                            required message="minimal top up adalah Rp10.000,00">
+                                        <small style="color: red;display:none" id="errorMsg"><i>*minimal top up adalah
+                                                Rp10.000,00</i></small>
 
                                     </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Bukti Transfer</label>
-                                        <input type="file" class="form-control-file" id="file" name="file" required>
-                                        <small class="text-danger">*Bukti transfer dalam bentuk JPG, JPEG, atau
-                                            PNG</small>
-                                    </div>
+
+
+
+
+
+
 
                                     <input type="hidden" name="redirect" value="<?=$this->uri->segment(1)?>">
+
+
+
+                                    <input type="hidden" name="email" value="<?=$this->session->userdata('email')?>"
+                                        id="email">
 
 
 
@@ -252,12 +335,80 @@ endforeach;?>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
-                                <input type="submit" class="btn btn-info" value="Submit" id="submittt">
+                                <button class="btn btn-info" id="pay-button" style="display: none;">Bayar</button>
                             </div>
                             </form>
+
 
                         </div>
 
 
+
                     </div>
                 </div>
+
+                <script>
+                $("#nominal").keyup(function() {
+                    if ($('#nominal').val() < 10000) {
+                        $('#errorMsg').show();
+                        $('#pay-button').hide();
+                    } else {
+                        $('#errorMsg').hide();
+                        $('#pay-button').show();
+                    }
+                });
+                </script>
+
+                <script type="text/javascript">
+                $('#pay-button').click(function(event) {
+                    event.preventDefault();
+                    $(this).attr("disabled", "disabled");
+                    var nominal = $("#nominal").val();
+                    var email = $("#email").val();
+                    $.ajax({
+                        type: 'POST',
+                        url: '<?=site_url()?>/snap/token',
+                        data: {
+                            nominal: nominal,
+                            email: email,
+                        },
+                        cache: false,
+
+                        success: function(data) {
+                            //location = data;
+
+                            console.log('token = ' + data);
+
+                            var resultType = document.getElementById('result-type');
+                            var resultData = document.getElementById('result-data');
+
+                            function changeResult(type, data) {
+                                $("#result-type").val(type);
+                                $("#result-data").val(JSON.stringify(data));
+                                //resultType.innerHTML = type;
+                                //resultData.innerHTML = JSON.stringify(data);
+                            }
+
+                            snap.pay(data, {
+
+                                onSuccess: function(result) {
+                                    changeResult('success', result);
+                                    console.log(result.status_message);
+                                    console.log(result);
+                                    $("#payment-form").submit();
+                                },
+                                onPending: function(result) {
+                                    changeResult('pending', result);
+                                    console.log(result.status_message);
+                                    $("#payment-form").submit();
+                                },
+                                onError: function(result) {
+                                    changeResult('error', result);
+                                    console.log(result.status_message);
+                                    $("#payment-form").submit();
+                                }
+                            });
+                        }
+                    });
+                });
+                </script>

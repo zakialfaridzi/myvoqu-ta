@@ -45,7 +45,12 @@ class Infaq extends CI_Controller
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
         // $data['rating'] = $this->User_model->getRatingMentor();
-        $data['saldo_wallet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        // $data['saldo_wallet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $saldo_dompet = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+
+        $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
+
+        $data['saldosekarang'] = $saldo_dompet['saldo'] + $topup_berhasil_terakhr['gross_amount'];
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -93,17 +98,33 @@ class Infaq extends CI_Controller
 
             // var_dump($bintang);die();
 
-            $data = [
-                'rating' => $rating,
-                'nominal' => $jumlah,
-                'id_user_infaq' => $this->session->userdata('id'),
-                'id_mentor' => $id_mentor,
-            ];
-            $this->db->insert('infaq', $data);
+            //cek kalau jumlah infaq nya kurang dari jmlh nominal didompet
+            //ambil data domper nya dulu
 
-            $jumlah_infaq = $this->User_model->getUserInfaqSum($this->session->userdata('id'));
+            $data_dompet = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
 
-            $this->session->set_flashdata('pesan', '<div id="snackbar" class="show">
+            if ($data_dompet['saldo'] - $jumlah < 0) {
+                $this->session->set_flashdata('alert', '<div class="alert alert-danger alert-dismissible show" role="alert">
+				<strong>Infaq gagal!</strong> Saldo tidak cukup.
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>');
+
+                redirect("infaq");
+            } else {
+
+                $data = [
+                    'rating' => $rating,
+                    'nominal' => $jumlah,
+                    'id_user_infaq' => $this->session->userdata('id'),
+                    'id_mentor' => $id_mentor,
+                ];
+                $this->db->insert('infaq', $data);
+
+                $jumlah_infaq = $this->User_model->getUserInfaqSum($this->session->userdata('id'));
+
+                $this->session->set_flashdata('pesan', '<div id="snackbar" class="show">
 
 			<button type="button" id="close" class="close" data-dismiss="alert" aria-label="Close" style="color: white;">
 				<span aria-hidden="true" onclick="myFunction(3000)">&times;</span>
@@ -114,6 +135,7 @@ class Infaq extends CI_Controller
 
 
 			</div>');
+            }
         }
 
         redirect('infaq/index');

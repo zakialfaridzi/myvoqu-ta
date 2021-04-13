@@ -1,7 +1,7 @@
 <!-- Newsfeed Common Side Bar Right
           ================================================= -->
 
-<div class="col-md-2 static" style="margin-top: 10px;">
+<div class="col-md-2 static" style="margin-top: 10px;position: sticky;">
     <div class="suggestions" id="sticky-sidebar">
         <h5 class="grey">Postingan Admin</h5>
 
