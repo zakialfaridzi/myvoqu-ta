@@ -15,25 +15,26 @@
 
     <?=$pst->html;?>
 
-    <?php if ($pst->id_user != $this->session->userdata('id')) : ?>
+    <?php if ($pst->id_user != $this->session->userdata('id')): ?>
 
-<?php if ($pst->id_user != $this->session->userdata('id')) : ?>
-    <form method="post" action="<?= base_url('User/addReport'); ?>">
-        <input type="hidden" name="id_posting" value="<?= $pst->id_posting; ?>">
-        <input type="hidden" name="id" value="<?= $this->session->userdata('id'); ?>">
+    <?php if ($pst->id_user != $this->session->userdata('id')): ?>
+    <form method="post" action="<?=base_url('User/addReport');?>">
+        <input type="hidden" name="id_posting" value="<?=$pst->id_posting;?>">
+        <input type="hidden" name="id" value="<?=$this->session->userdata('id');?>">
         <a class="btn text-red">
             <button class="fas fa-exclamation" style="border : 0;" name="report"> Laporkan! </button> </a>
     </form>
-<?php elseif ($pst->id_user != $this->session->userdata('id') and $rpt->report == 1) : ?>
+    <?php elseif ($pst->id_user != $this->session->userdata('id') and $rpt->report == 1): ?>
 
-<?php endif; ?>
+    <?php endif;?>
 
-<?php else : ?>
+    <?php else: ?>
 
-<i class="fas fa-trash" style="color: tomato;margin-left:18px;"></i>
-<a href="<?= base_url(); ?>user/deletePost/<?= $pst->id_posting; ?>" style="text-decoration:none;">Hapus</a>
+    <i class="fas fa-trash" style="color: tomato;margin-left:18px;"></i>
+    <a href="<?=base_url();?>user/deletePost/<?=$pst->id_posting . '/' . $pst->fileName?>"
+        style="text-decoration:none;">Hapus</a>
 
-<?php endif; ?>
+    <?php endif;?>
 
     <!-- <?=$pst->image?> -->
 

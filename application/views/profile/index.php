@@ -85,8 +85,8 @@
                 <?php else: ?>
 
                 <i class="fas fa-trash" style="color: tomato;margin-left:18px;"></i>
-                <a href="<?=base_url();?>profile/deletePost/<?=$pst->id_posting;?>" style="text-decoration:none;"
-                    id="delete">Hapus</a>
+                <a href="<?=base_url();?>profile/deletePost/<?=$pst->id_posting . '/' . $pst->fileName;?>"
+                    style="text-decoration:none;" id="delete">Hapus</a>
 
 
                 <?php endif;?>
