@@ -166,18 +166,25 @@ class Profile extends CI_Controller
         return $namaFilesBaru;
     }
 
-    public function deletePost($id)
+    public function deletePost($id, $filename)
     {
 
-        $this->Profile_model->deletePostUser($id);
+        $file = 'assets_user/file_upload/' . $filename;
 
-        $this->session->set_flashdata('mm', '<div class="alert alert-success alert-dismissible show" role="alert">
+        if (is_readable($file) && unlink($file)) {
+
+            $this->User_model->deletePostUser($id);
+
+            $this->session->set_flashdata('mm', '<div class="alert alert-success alert-dismissible show" role="alert">
       	<strong>Selamat!</strong> postingan berhasil dihapus.
-     	<button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+      	<button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-     	</button>
+      	</button>
   		</div>');
-        redirect('profile');
+            redirect('profile');
+        } else {
+            echo "The file was not found or not readable and could not be deleted";
+        }
     }
 
     public function editProfile()
@@ -586,5 +593,4 @@ class Profile extends CI_Controller
         }
     }
 
-    
 }
