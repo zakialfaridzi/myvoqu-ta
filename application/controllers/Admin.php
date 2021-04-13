@@ -951,7 +951,12 @@ class Admin extends CI_Controller
         $ekstensiGambar = explode('.', $namaFiles);
         $ekstensiGambar = strtolower(end($ekstensiGambar));
         if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
-            $this->session->set_flashdata('message', '<small style="color: red;">Berkas yang ingin anda unggah bukan berformat gambar atau video!</small>');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible show" role="alert">
+        Berkas yang ingin anda unggah bukan berformat gambar atau video!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>');
 
             redirect('Admin/pagepostGen');
             return false;

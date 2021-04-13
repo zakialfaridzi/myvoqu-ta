@@ -224,7 +224,7 @@ class Profile extends CI_Controller
         $data['colorSearch'] = '#0486FE';
         $data['user'] = $this->Profile_model->getUser();
         $data['info'] = $this->Profile_model->getInfoProfile();
-        $data['title'] = 'Followers';
+        $data['title'] = 'Yang mengikuti';
         $data['active'] = 'active';
         $data['allUser'] = $this->Profile_model->getUserData();
         $data['followers'] = $this->Profile_model->getFollowers();
@@ -259,7 +259,7 @@ class Profile extends CI_Controller
         $data['colorSearch'] = '#0486FE';
         $data['user'] = $this->Profile_model->getUser();
         $data['info'] = $this->Profile_model->getInfoProfile();
-        $data['title'] = 'Following';
+        $data['title'] = 'Yang diikuti';
         $data['active'] = 'active';
         $data['allUser'] = $this->Profile_model->getUserData();
         $data['following'] = $this->Profile_model->getFollowing();
@@ -560,7 +560,7 @@ class Profile extends CI_Controller
         $data['colorSearch'] = '#0486FE';
         $data['user'] = $this->Profile_model->getUser();
         $data['info'] = $this->Profile_model->getInfoProfile();
-        $data['title'] = 'Following';
+        $data['title'] = 'tentang';
         $data['active'] = 'active';
         $data['allUser'] = $this->Profile_model->getUserData();
         $data['following'] = $this->Profile_model->getFollowing();
@@ -585,4 +585,6 @@ class Profile extends CI_Controller
             $this->load->view('templates_profile/end', $data);
         }
     }
+
+    
 }

@@ -24,7 +24,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 |
  */
 $config['base_url'] = ' http://localhost/myvoqu/';
-
+// http://ae662992cfe3.ap.ngrok.io/myvoqu/
 /*
 |--------------------------------------------------------------------------
 | Index File

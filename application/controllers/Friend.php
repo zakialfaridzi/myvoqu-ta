@@ -30,7 +30,7 @@ class Friend extends CI_Controller
         $data['user'] = $this->User_model->getUser();
         $data['otherUser'] = $this->User_model->getOherUserData();
         $data['allotherUser'] = $this->User_model->getallOtherUserData();
-        $data['title'] = 'Home';
+        $data['title'] = 'Pencarian teman';
         $data['allUsers'] = $this->User_model->viewAllUsers();
         $data['follow'] = $this->User_model->getFollow();
         $data['idpost'] = $this->User_model->getidpost();
@@ -61,7 +61,7 @@ class Friend extends CI_Controller
 
         $this->load->view('ajax/friend', $data);
     }
- 
+
     public function addFollow($id)
     {
         $data = array(
@@ -118,7 +118,7 @@ class Friend extends CI_Controller
         $data['follow3'] = $this->User_model->getFollow2($id);
         $data['follow4'] = $this->User_model->getFollow4($id);
         $data['pollow'] = $this->User_model->getpollow($id);
-        $data['title'] = 'Profile';
+        $data['title'] = 'Profil teman';
         $data['active'] = 'active';
 
         if (empty($data['user']['email'])) {
@@ -147,7 +147,7 @@ class Friend extends CI_Controller
         $data['upload'] = 'none';
         $data['colorSearch'] = '#0486FE';
         $data['info'] = $this->User_model->getInfoProfileVisit($id);
-        $data['title'] = 'Followers';
+        $data['title'] = 'Yang Mengikuti';
         $data['active'] = 'active';
         $data['followersVisit'] = $this->User_model->getFollowersVisit($id);
         $data['pollow'] = $this->User_model->getpollow($id);
@@ -166,7 +166,7 @@ class Friend extends CI_Controller
         $data['upload'] = 'none';
         $data['colorSearch'] = '#0486FE';
         $data['info'] = $this->User_model->getInfoProfileVisit();
-        $data['title'] = 'Following';
+        $data['title'] = 'Yang diikuti';
         $data['active'] = 'active';
         $data['followingVisit'] = $this->User_model->getFollowingVisit();
         $data['pollow'] = $this->User_model->getpollow();
@@ -178,4 +178,23 @@ class Friend extends CI_Controller
         $this->load->view('templates_profile/end', $data);
 
     }
+
+    public function aboutMeVisit()
+    {
+        $data['posting'] = $this->User_model->getUserPostProfileVisit();
+        $data['search'] = 'none';
+        $data['upload'] = 'none';
+        $data['colorSearch'] = '#0486FE';
+        $data['info'] = $this->User_model->getInfoProfileVisit();
+        $data['title'] = 'tentang';
+        $data['active'] = 'active';
+        $data['pollow'] = $this->User_model->getpollow();
+
+        $data['otherUser'] = $this->User_model->getOherUserData();
+        $this->load->view('templates_newsfeed/topbar', $data);
+        $this->load->view('templates_profile/bg_profile_visit', $data);
+        $this->load->view('profile/aboutMeVisit', $data);
+        $this->load->view('templates_profile/end', $data);
+    }
+
 }
