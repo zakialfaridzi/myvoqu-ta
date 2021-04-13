@@ -23,58 +23,56 @@
                 </div>
                 <!--profile card ends-->
 
-                <div>
-                    <ul class="nav-news-feed">
+                <ul class="nav-news-feed">
 
-                        <li><i class="far fa-bell" style="color: tomato;"></i>
-                            <div><a href="<?=base_url('notification')?>">Notifikasi</a></div>
-                        </li>
+                    <li><i class="far fa-bell" style="color: tomato;"></i>
+                        <div><a href="<?=base_url('notification')?>">Notifikasi</a></div>
+                    </li>
 
-                        <li><i class="fas fa-book-reader" style="color: burlywood;"></i>
-                            <div><a href="<?=base_url('library')?>">Material Pembelajaran</a></div>
-                        </li>
+                    <li><i class="fas fa-book-reader" style="color: burlywood;"></i>
+                        <div><a href="<?=base_url('library')?>">Material Pembelajaran</a></div>
+                    </li>
 
-                        <li><i class="fas fa-search" style="color: peachpuff;"></i>
-                            <div><a href="<?=base_url('friend')?>">Temukan Teman</a></div>
-                        </li>
+                    <li><i class="fas fa-search" style="color: peachpuff;"></i>
+                        <div><a href="<?=base_url('friend')?>">Temukan Teman</a></div>
+                    </li>
 
-                        <li><i class="fas fa-users" style="color: royalblue;"></i>
-                            <div><a href="<?=base_url('group')?>">Grup</a></div>
-                        </li>
+                    <li><i class="fas fa-users" style="color: royalblue;"></i>
+                        <div><a href="<?=base_url('group')?>">Grup</a></div>
+                    </li>
 
-                        <li><i class="fas fa-comments" style="color: yellowgreen;"></i>
-                            <div><a href="<?=base_url('chat/index');?>">Pesan</a></div>
-                        </li>
+                    <li><i class="fas fa-comments" style="color: yellowgreen;"></i>
+                        <div><a href="<?=base_url('chat/index');?>">Pesan</a></div>
+                    </li>
 
-                        <li><i class="fas fa-comment-dots" style="color: black;"></i>
-                            <div><a href="<?=base_url('./Chat');?>" target="_blank">Ngobrol Dengan Semua Pengguna</a>
-                            </div>
-                        </li>
+                    <li><i class="fas fa-comment-dots" style="color: black;"></i>
+                        <div><a href="<?=base_url('./Chat');?>" target="_blank">Ngobrol Dengan Semua Pengguna</a>
+                        </div>
+                    </li>
 
-                        <li><i class="fa fa-video text-muted" style="color: black;"></i>
-                            <div><a href="<?=base_url('./Colab');?>" target="_blank">Kolaborasi</a></div>
-                        </li>
+                    <li><i class="fa fa-video text-muted" style="color: black;"></i>
+                        <div><a href="<?=base_url('./Colab');?>" target="_blank">Kolaborasi</a></div>
+                    </li>
 
-                    </ul>
-                    <!--news-feed links ends-->
-                    <div id="container1">
-                        <div id="chat-block">
-                            <div class="title">Pengguna Online</div>
-                            <ul class="online-users list-inline">
-                                <?php foreach ($otherUser as $ou):
+                </ul>
+                <!--news-feed links ends-->
+                <div id="container1">
+                    <div id="chat-block">
+                        <div class="title">Pengguna Daring</div>
+                        <ul class="online-users list-inline">
+                            <?php foreach ($otherUser as $ou):
     if ($ou->role_id != 1) {?>
-                                <li>
-                                    <a href="newsfeed-messages.html" title="<?=$ou->name;?>"><img
-                                            src="<?=base_url('assets_user/images/' . $ou->image);?>" alt="user"
-                                            class="img-responsive profile-photo" /><span class="<?=$ou->status;?>"
-                                            id="keyword"></span>
-                                    </a>
-                                </li>
-                                <?php }
+                            <li>
+                                <a href="#" title="<?=$ou->name;?>"><img
+                                        src="<?=base_url('assets_user/images/' . $ou->image);?>" alt="user"
+                                        class="img-responsive profile-photo" /><span class="<?=$ou->status;?>"
+                                        id="keyword"></span>
+                                </a>
+                            </li>
+                            <?php }
 endforeach;?>
 
-                            </ul>
-                        </div>
+                        </ul>
                     </div>
                 </div>
 
