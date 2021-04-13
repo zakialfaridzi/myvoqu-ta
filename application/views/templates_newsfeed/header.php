@@ -23,7 +23,7 @@
                     <?php endforeach;?>
                 </div>
                 <!--profile card ends-->
-                <div style="">
+                <div>
                     <ul class="nav-news-feed">
 
                         <li><i class="far fa-bell" style="color: tomato;"></i>
