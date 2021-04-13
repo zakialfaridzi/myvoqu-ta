@@ -15,12 +15,25 @@
 
     <?=$pst->html;?>
 
-    <?php if ($pst->id_user == $this->session->userdata('id')): ?>
-    <i class="fas fa-trash" style="color: tomato;margin-left:18px;"></i>
-    <a href="<?=base_url();?>user/deletePost/<?=$pst->id_posting;?>/<?=$pst->fileName?>"
-        style="text-decoration:none;">Hapus</a>
+    <?php if ($pst->id_user != $this->session->userdata('id')) : ?>
 
-    <?php endif;?>
+<?php if ($pst->id_user != $this->session->userdata('id')) : ?>
+    <form method="post" action="<?= base_url('User/addReport'); ?>">
+        <input type="hidden" name="id_posting" value="<?= $pst->id_posting; ?>">
+        <input type="hidden" name="id" value="<?= $this->session->userdata('id'); ?>">
+        <a class="btn text-red">
+            <button class="fas fa-exclamation" style="border : 0;" name="report"> Laporkan! </button> </a>
+    </form>
+<?php elseif ($pst->id_user != $this->session->userdata('id') and $rpt->report == 1) : ?>
+
+<?php endif; ?>
+
+<?php else : ?>
+
+<i class="fas fa-trash" style="color: tomato;margin-left:18px;"></i>
+<a href="<?= base_url(); ?>user/deletePost/<?= $pst->id_posting; ?>" style="text-decoration:none;">Hapus</a>
+
+<?php endif; ?>
 
     <!-- <?=$pst->image?> -->
 
@@ -46,7 +59,7 @@
 
 
             <div class="post-comment">
-                <a href="<?=base_url('user/getIdposting/') . $pst->id_posting;?>">Beri Komentar</a>
+                <a href="<?=base_url('user/getIdposting/') . $pst->id_posting;?>">Lihat detail unggahan</a>
             </div>
         </div>
     </div>
@@ -98,7 +111,15 @@
 
 <script src="<?=base_url('assets_user/js/search.js');?>"></script>
 
-<div id="snackbar" class="show">
+<?php
+$shown = "";
+if ($this->session->role_id == 3) {
+    $shown = "hide";
+} else {
+    $shown = "show";
+}?>
+
+<div id="snackbar" class="<?=$shown?>">
 
     <button type="button" id="close" class="close" data-dismiss="alert" aria-label="Close" style="color: white;">
         <span aria-hidden="true" onclick="myFunction()">&times;</span>

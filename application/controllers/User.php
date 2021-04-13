@@ -56,7 +56,7 @@ class User extends CI_Controller
           </div>');
             redirect('admin');
         } else {
-            $data['otherUser'] = $this->User_model->getOtherUserData();
+            $data['otherUser'] = $this->User_model->getOherUserData();
 
             $this->load->view('templates_newsfeed/topbar', $data);
             $this->load->view('templates_newsfeed/header', $data);
@@ -246,6 +246,7 @@ class User extends CI_Controller
             'date' => time(),
             'id_posting' => $this->input->post('id_posting'),
             'id' => $this->input->post('id'),
+            'id_tujuan' => $this->input->post('id_user'),
         );
         $this->User_model->updateGaSuka($data);
         redirect("user/getIdposting/" . $id);
@@ -295,7 +296,7 @@ class User extends CI_Controller
         $data['sukaa'] = $this->User_model->getSukaaById($id);
         $data['allUser'] = $this->User_model->getUserData();
         $data['user'] = $this->User_model->getUser();
-        $data['title'] = 'Home';
+        $data['title'] = 'Rincian unggahan';
         $data2['notification'] = $this->User_model->getNotification();
         $data['idpost'] = $this->User_model->getidpost();
         $data['report'] = $this->User_model->getReport();

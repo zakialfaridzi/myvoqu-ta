@@ -35,7 +35,6 @@ class Group_model extends CI_Model
         $this->db->insert('grup', $data);
     }
 
-
     public function ubahDataGroup($idgroup, $data)
     {
         $this->db->where('id', $idgroup);
@@ -49,8 +48,8 @@ class Group_model extends CI_Model
 
     public function getUserData($id)
     {
-        return  $this->db->get_where('user', [
-            'id' => $id
+        return $this->db->get_where('user', [
+            'id' => $id,
         ])->result();
     }
 
@@ -103,7 +102,6 @@ class Group_model extends CI_Model
         $this->db->insert('anggota', $data);
     }
 
-
     public function getAnggota()
     {
         return $this->db->query('SELECT id_anggota, id_user, name, bio, image FROM anggota a join user u on(a.id_user=u.id) where id_group = ' . $this->uri->segment('3') . ' ')->result_array();
@@ -139,7 +137,6 @@ class Group_model extends CI_Model
         return $this->db->query('SELECT * FROM notification c join user u using(id) order by id_notification desc')->result();
     }
 
-
     public function addComment($data)
     {
         return $this->db->insert('group_comment', $data);
@@ -160,8 +157,8 @@ class Group_model extends CI_Model
     public function editPhoto($id, $data)
     {
         $this->db->set($data);
-		$this->db->where('id', $id);
-		$this->db->update('grup');
+        $this->db->where('id', $id);
+        $this->db->update('grup');
     }
 
     public function getNotif($id)

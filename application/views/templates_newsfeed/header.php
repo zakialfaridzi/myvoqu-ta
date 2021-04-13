@@ -23,7 +23,7 @@
                     <?php endforeach;?>
                 </div>
                 <!--profile card ends-->
-                <div style="">
+                <div>
                     <ul class="nav-news-feed">
 
                         <li><i class="far fa-bell" style="color: tomato;"></i>
@@ -81,6 +81,15 @@ endforeach;?>
             </div>
             <div class="col-md-7">
 
+                <div id="fp"></div>
+
+                <!-- <div class="alert alert-success alert-dismissible show" role="alert">
+                    Kamu memilih foto/video <strong>papa.jpg</strong> ya!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div> -->
+
                 <!-- Post Create Box
             ================================================= -->
                 <div class="create-post">
@@ -105,14 +114,17 @@ endforeach;?>
                                 <?php } ?>
                             </div>
                         </div>
+
                         <div class="col-md-5 col-sm-5">
+
                             <div class="tools">
                                 <ul class="publishing-tools list-inline">
                                     <li class="nav-item">
                                         <label for="file-input-gambar">
                                             <a class="nav-link"><i class="fas fa-photo-video"></i></a>
                                         </label>
-                                        <input type="file" id="file-input-gambar" style="display: none;" name="file">
+                                        <input type="file" id="file-input-gambar" style="display: none;" name="file"
+                                            multiple onchange="GetFileSizeNameAndType()">
                                     </li>
                                 </ul>
                                 <button class="btn btn-primary pull-right"
@@ -131,3 +143,30 @@ endforeach;?>
                 </div><!-- Post Create Box End-->
 
                 <?=$this->session->flashdata('message');?>
+
+                <script type="text/javascript">
+                function GetFileSizeNameAndType() {
+                    var fi = document.getElementById('file-input-gambar'); // GET THE FILE INPUT AS VARIABLE.
+
+                    var totalFileSize = 0;
+
+                    // VALIDATE OR CHECK IF ANY FILE IS SELECTED.
+                    if (fi.files.length > 0) {
+                        // RUN A LOOP TO CHECK EACH SELECTED FILE.
+                        for (var i = 0; i <= fi.files.length - 1; i++) {
+                            //ACCESS THE SIZE PROPERTY OF THE ITEM OBJECT IN FILES COLLECTION. IN THIS WAY ALSO GET OTHER PROPERTIES LIKE FILENAME AND FILETYPE
+                            var fsize = fi.files.item(i).size;
+                            totalFileSize = totalFileSize + fsize;
+                            document.getElementById('fp').innerHTML =
+                                document.getElementById('fp').innerHTML +
+                                '<div class="alert alert-success alert-dismissible show" role="alert"> Kamu memilih foto/video <strong>' +
+                                fi.files.
+                            item(i).name + '</strong > ' +
+                                'ya!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> </div>'
+                        }
+                    }
+                }
+                </script>
+
+                <!-- Kamu memilih foto/video <strong>papa.jpg<
+/strong> ya! -->

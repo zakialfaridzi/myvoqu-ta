@@ -32,7 +32,7 @@ class Notification extends CI_Controller
         $data['comment'] = $this->User_model->getComment();
         $data['allUser'] = $this->User_model->getUserData();
         $data['user'] = $this->User_model->getUser();
-        $data['title'] = 'Home';
+        $data['title'] = 'Notifikasi';
         $data['notification'] = $this->User_model->getNotification();
         // $data['notifGroup'] = $this->User_model->getNotifGroup($id);
         $data['idpost'] = $this->User_model->getidpost();

@@ -87,8 +87,9 @@ class User_model extends CI_model
     public function getUserName($name)
     {
         $id = $this->session->userdata('id');
+        $gender = $this->session->userdata('gender');
 
-        $query = $this->db->query("SELECT * FROM user where id <> '$id' and name LIKE '%$name%' and role_id IN(2)");
+        $query = $this->db->query("SELECT * FROM user where id <> '$id' and name LIKE '%$name%' and role_id IN(2) and gender = '$gender'");
 
         return $query->result();
     }
@@ -270,14 +271,14 @@ class User_model extends CI_model
         $this->db->join('user', 'pesan.id_pengirim = user.id');
         $this->db->where('id_penerima =', $id_user);
         $this->db->group_by('id_pengirim');
-        $this->db->order_by('date' . ' asc');
+        $this->db->order_by('pesan' . ' desc');
         $query = $this->db->get();
         return $query->result();
     }
 
     public function getChat()
     {
-        return $this->db->query('SELECT * FROM user u join follow f on (u.id = f.id_userfollow) where id_usertarget in (select id_usertarget from follow where id_userfollow = ' . $this->session->userdata('id') . ') and id_userfollow = ' . $this->session->userdata('id') . '  and role_id = 2' .' and stat = 1')->result();
+        return $this->db->query('SELECT * FROM user u join follow f on (u.id = f.id_userfollow) where id_usertarget in (select id_usertarget from follow where id_userfollow = ' . $this->session->userdata('id') . ') and id_userfollow = ' . $this->session->userdata('id') . '  and role_id = 2' . ' and stat = 1')->result();
     }
 
     // public function getPesanByIdsendiri($id)

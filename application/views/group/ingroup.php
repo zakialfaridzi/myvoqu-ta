@@ -20,16 +20,16 @@
 								<ul class="publishing-tools list-inline">
 									<li class="nav-item">
 										<label for="file-input-gambar">
-											<a class="nav-link"><i class="fa fa-camera text-muted"></i></a>
+											<a class="nav-link"><i class="fa fa-video text-muted"></i></a>
 										</label>
 										<input type="file" id="file-input-gambar" style="display: none;" name="file">
 									</li>
-									<li class="nav-item">
+									<!-- <li class="nav-item">
 										<label for="file-input-video">
 											<a class="nav-link"><i class="fa fa-video text-muted"></i></a>
 										</label>
 										<input type="file" id="file-input-video" style="display: none;" name="video">
-									</li>
+									</li> -->
 
 								</ul>
 								<button class="btn btn-primary pull-right" style="background-color: #6fb8df;outline: none;">Upload</button>
