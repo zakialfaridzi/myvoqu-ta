@@ -37,7 +37,7 @@
             <!-- <img src=http://localhost/myvoqu/assets_user/file_upload/6075429d3ef62.png alt="post-image"
                 class="img-responsive post-image" width="100" /> -->
 
-                <!-- <div class="video-wrapper"><video class="post-video" controls width="500" height="500"><source src= http://localhost/myvoqu/assets_user/file_upload/60767409abca0.mp4 type="video/mp4"></video></div> -->
+            <!-- <div class="video-wrapper"><video class="post-video" controls width="500" height="500"><source src= http://localhost/myvoqu/assets_user/file_upload/60767409abca0.mp4 type="video/mp4"></video></div> -->
         </div>
         <?php endforeach;?>
 
@@ -314,6 +314,16 @@ rrored from mythemestore.com/friend-finder/newsfeed.html by HTTrack Website Copi
 
 
 
+
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+});
+</script>
 
 
 

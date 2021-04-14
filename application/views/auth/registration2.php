@@ -56,9 +56,26 @@
 
 
                 <div class="form-button">
-                    <button id="submit" type="submit" class="ibtn">Register</button>
+                    <button id="submit" type="submit" class="ibtn" onclick="hide()">Register</button>
+
+
+
+                    <button class="ibtn" type="button" disabled style="display: none;" id="load_regist">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        <span class="sr-only">Loading...</span>
+                    </button>
+
+
+
                 </div>
             </form>
+
+            <script>
+            function hide() {
+                $('#submit').hide();
+                $('#load_regist').show();
+            }
+            </script>
 
 
             <script>
@@ -85,5 +102,6 @@
         </div>
     </div>
 </div>
+
 </div>
 </div>

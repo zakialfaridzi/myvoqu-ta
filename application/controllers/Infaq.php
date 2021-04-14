@@ -15,6 +15,21 @@ class Infaq extends CI_Controller
             redirect('auth');
 
         }
+
+        $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
+
+        $saldo_dpt = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+
+        if ($topup_berhasil_terakhr['status_code'] == 200) {
+            $saldo_skrg = $saldo_dpt['saldo'] + $topup_berhasil_terakhr['gross_amount'];
+            $this->db->update('transaksi_topup_dompet', ['status_code' => 199], ['id_user' => $this->session->userdata('id')]);
+
+            $data_saldo = [
+                'saldo' => $saldo_skrg,
+            ];
+
+            $this->db->update('dompet', $data_saldo, ['id_user' => $this->session->userdata('id')]);
+        }
     }
 
     public function sessionLogin()
@@ -44,13 +59,7 @@ class Infaq extends CI_Controller
         $data['idpost'] = $this->User_model->getidpost();
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
-        // $data['rating'] = $this->User_model->getRatingMentor();
-        // $data['saldo_wallet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
-        $saldo_dompet = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
-
-        $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
-
-        $data['saldosekarang'] = $saldo_dompet['saldo'] + $topup_berhasil_terakhr['gross_amount'];
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -102,6 +111,7 @@ class Infaq extends CI_Controller
             //ambil data domper nya dulu
 
             $data_dompet = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+            $data_dompet_mentor = $this->db->get_where('dompet', ['id_user' => $id_mentor])->row_array();
 
             if ($data_dompet['saldo'] - $jumlah < 0) {
                 $this->session->set_flashdata('alert', '<div class="alert alert-danger alert-dismissible show" role="alert">
@@ -123,6 +133,17 @@ class Infaq extends CI_Controller
                 $this->db->insert('infaq', $data);
 
                 $jumlah_infaq = $this->User_model->getUserInfaqSum($this->session->userdata('id'));
+
+                $data_dompet_pemberi = [
+                    'saldo' => $data_dompet['saldo'] - $jumlah,
+                ];
+
+                $data_dompet_penerima = [
+                    'saldo' => $data_dompet_mentor['saldo'] + $jumlah,
+                ];
+
+                $this->db->update('dompet', $data_dompet_pemberi, ['id_user' => $this->session->userdata('id')]);
+                $this->db->update('dompet', $data_dompet_penerima, ['id_user' => $id_mentor]);
 
                 $this->session->set_flashdata('pesan', '<div id="snackbar" class="show">
 

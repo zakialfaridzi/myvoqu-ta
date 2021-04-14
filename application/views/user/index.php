@@ -43,7 +43,7 @@
         <div class="post-detail">
             <div class="user-info">
                 <h5><?php if ($pst->id == $this->session->userdata('id')): ?>
-                    <a href="<?=base_url('profile')?>"><?=$pst->name;?></a>
+                    <a href="<?=base_url('profile/')?>"><?=$pst->name;?></a>
                     <?php else: ?>
                     <a href="<?=base_url('friend/visitProfile/') . $pst->id_user;?>"><?=$pst->name;?></a>
                     <?php endif;?>

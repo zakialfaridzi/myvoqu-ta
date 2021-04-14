@@ -47,7 +47,7 @@
                         </li>
 
                         <li><i class="fas fa-comment-dots" style="color: black;"></i>
-                            <div><a href="<?=base_url('./Chat');?>" target="_blank">Ngobrol Dengan Semua Pengguna</a>
+                            <div><a href="<?=base_url('Chatall/');?>">Ngobrol Dengan Semua Pengguna</a>
                             </div>
                         </li>
 
@@ -189,15 +189,15 @@ endforeach;?>
                     </button>
                     <h4 class="alert-heading">Saldo VOQU-Wallet</h4>
                     <p>Saldo dana kamu sekarang adalah
-                        <strong>Rp<?=number_format($saldosekarang, 2, ',', '.')?></strong>
+                        <strong>Rp<?=number_format($saldo_dompet['saldo'], 2, ',', '.')?></strong>
                         <i class="fas fa-wallet"></i>
                     </p>
                     <p>
                         <a class="btn btn-success" data-toggle="modal" data-target="#tambahDana"><i
                                 class="fas fa-plus"></i> Top Up</a>
 
-                        <a class="btn btn-warning" data-toggle="modal" data-target="#riwayat"><i
-                                class="fas fa-history"></i> Riwayat</a>
+                        <a class="btn btn-warning" href="<?=base_url('transaksi/')?>"><i class="fas fa-history"></i>
+                            Riwayat</a>
                         <!-- <a class="btn btn-info" data-toggle="modal" data-target="#myModal" data-id="<?=$au->id?>"
                             id="showInfaqModal">Infaq</a> -->
                     </p>
@@ -205,76 +205,6 @@ endforeach;?>
                 </div>
 
                 <?=$this->session->flashdata('alert')?>
-
-                <!-- Modal -->
-                <div class="modal fade" id="riwayat" role="dialog">
-                    <div class="modal-dialog modal">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Riwayat Top Up VOQU-Wallet <i class="fas fa-history"></i></h4>
-                            </div>
-                            <div class="modal-body" id="modal_view">
-
-                                <table class="table">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">First</th>
-                                            <th scope="col">Last</th>
-                                            <th scope="col">Handle</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-
-                            </div>
-
-
-
-                        </div>
-
-
-
-                    </div>
-                </div>
-
-
-
-
-
-
-
-
-
 
 
 

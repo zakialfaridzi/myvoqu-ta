@@ -18,7 +18,7 @@ keyword.addEventListener("keyup", function () {
 
 	xhr.open(
 		"GET",
-		"http://localhost/myvoqu/friend/getUserByName/" + keyword.value,
+		"http://7600f3cd41b5.ap.ngrok.io/myvoqu/friend/getUserByName/" + keyword.value,
 		true
 	);
 	xhr.send();
