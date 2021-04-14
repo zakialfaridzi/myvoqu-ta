@@ -14,15 +14,18 @@ class Colab extends CI_Controller
 
         $saldo_dpt = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
 
-        if ($topup_berhasil_terakhr['status_code'] == 200) {
-            $saldo_skrg = $saldo_dpt['saldo'] + $topup_berhasil_terakhr['gross_amount'];
-            $this->db->update('transaksi_topup_dompet', ['status_code' => 199], ['id_user' => $this->session->userdata('id')]);
+        if (!is_null($topup_berhasil_terakhr)) {
 
-            $data_saldo = [
-                'saldo' => $saldo_skrg,
-            ];
+            if ($topup_berhasil_terakhr['status_code'] == 200) {
+                $saldo_skrg = $saldo_dpt['saldo'] + $topup_berhasil_terakhr['gross_amount'];
+                $this->db->update('transaksi_topup_dompet', ['status_code' => 199], ['id_user' => $this->session->userdata('id')]);
 
-            $this->db->update('dompet', $data_saldo, ['id_user' => $this->session->userdata('id')]);
+                $data_saldo = [
+                    'saldo' => $saldo_skrg,
+                ];
+
+                $this->db->update('dompet', $data_saldo, ['id_user' => $this->session->userdata('id')]);
+            }
         }
     }
 
