@@ -879,15 +879,15 @@ class Admin extends CI_Controller
         $fileName = $this->_uploadFileGen();
 
         if ((substr($fileName, -3, 3) == 'mp4') || (substr($fileName, -3, 3) == 'mkv') || (substr($fileName, -3, 3) == 'flv')) {
-            $html = '<div class="video-wrapper">';
+
             $html .= '<video class="post-video" controls width="500" height="500">';
             $html .= '<source src=' . base_url('assets_user/file_upload/');
             $html .= $fileName . ' type="video/mp4">';
-            $html .= '</video></div>';
+            $html .= '</video>';
         } else {
             $html = '<img src=' . base_url('assets_user/file_upload/');
             $html .= $fileName . ' alt="post-image"';
-            $html .= 'class="img-responsive post-image" style="height: 300px;" />';
+            $html .= 'class="img-responsive post-image"  style="border-radius: 5px 5px 5px 5px;"/>';
         }
 
         $data = [
