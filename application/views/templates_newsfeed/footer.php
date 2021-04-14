@@ -1,8 +1,23 @@
 <!-- Newsfeed Common Side Bar Right
           ================================================= -->
 
-<div class="col-md-2 static" style="margin-top: 10px;position: sticky;">
+<div class="col-md-2" style="margin-top: 10px;position: sticky;">
     <div class="suggestions" id="sticky-sidebar">
+
+        <h5 class="grey">Pengumuman</h5>
+        <?php foreach ($pengumuman as $pgu): ?>
+        <div class="alert alert-info alert-dismissible show" role="alert">
+
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <p><?=$pgu->isi_pengumuman?></p>
+
+        </div>
+        <?php endforeach;?>
+
+
         <h5 class="grey">Postingan Admin</h5>
 
         <?php foreach ($postgen as $pst): ?>
@@ -26,33 +41,11 @@
         </div>
         <?php endforeach;?>
 
-        <br>
-
-        <div class="suggestions" id="sticky-sidebar">
-            <h5 class="grey">Iklan <i class="fas fa-ad"></i></h5>
-
-
-            <div class="follow-user">
-
-
-
-                <video class="post-video" controls width="500" height="500">
-                    <source src="<?=base_url('assets_user/iklan/iklan_myvoqu.mp4')?>" type=" video/mp4">
-                </video>
-
-                <!-- <div class="video-wrapper"><video class="post-video" controls width="500" height="500">
-                    <source src=http://localhost/myvoqu/assets_user/file_upload/60753efdcecbb.mp4 type="video/mp4">
-                </video></div> -->
-                <!-- <img src=http://localhost/myvoqu/assets_user/file_upload/6075429d3ef62.png alt="post-image"
-                class="img-responsive post-image" width="100" /> -->
 
 
 
 
-            </div>
 
-
-            <div class="suggestions" id="sticky-sidebar">
                 <h5 class="grey">Mungkin anda kenal ?</h5>
                 <?php foreach ($suggestion as $ou): ?>
                 <div class="follow-user">
@@ -78,6 +71,18 @@
                 </div>
                 <?php endforeach?>
 
+            <h5 class="grey">Iklan <i class="fas fa-ad"></i></h5>
+            <div class="follow-user">
+                <video class="post-video" controls width="500" height="500">
+                    <source src="<?=base_url('assets_user/iklan/iklan_myvoqu.mp4')?>" type=" video/mp4">
+                </video>
+
+                <!-- <div class="video-wrapper"><video class="post-video" controls width="500" height="500">
+                    <source src=http://localhost/myvoqu/assets_user/file_upload/60753efdcecbb.mp4 type="video/mp4">
+                </video></div> -->
+                <!-- <img src=http://localhost/myvoqu/assets_user/file_upload/6075429d3ef62.png alt="post-image"
+                class="img-responsive post-image" width="100" /> -->
+            </div>
 
             </div>
 
@@ -94,8 +99,6 @@
 
 </div>
 
-</div>
-</div>
 </div>
 
 
