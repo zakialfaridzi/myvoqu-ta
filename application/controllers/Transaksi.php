@@ -59,6 +59,7 @@ class Transaksi extends CI_Controller
         $data['idpost'] = $this->User_model->getidpost();
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         //dari sini
 

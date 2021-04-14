@@ -157,7 +157,6 @@ class Chat extends CI_Controller
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
         $data['getChat'] = $this->User_model->getChat();
-<<<<<<< HEAD
         $data['pengumuman'] = $this->User_model->getPengumuman();
         $data['postgen'] = $this->User_model->getPostgen();
 
@@ -166,10 +165,6 @@ class Chat extends CI_Controller
         $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
 
         $data['saldosekarang'] = $saldo_dompet['saldo'] + $topup_berhasil_terakhr['gross_amount'];
-=======
-        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
-        $data['postgen'] = $this->User_model->getPostgen();
->>>>>>> 6dd12ebafd2c38f384b2162bfb17f424de8b0896
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
