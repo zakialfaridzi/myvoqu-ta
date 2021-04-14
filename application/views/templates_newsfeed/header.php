@@ -47,7 +47,7 @@
                         </li>
 
                         <li><i class="fas fa-comment-dots" style="color: black;"></i>
-                            <div><a href="<?=base_url('./Chat');?>" target="_blank">Ngobrol Dengan Semua Pengguna</a>
+                            <div><a href="<?=base_url('Chatall/');?>">Ngobrol Dengan Semua Pengguna</a>
                             </div>
                         </li>
 
