@@ -47,6 +47,7 @@ class Notification extends CI_Controller
         if ($result['status_code'] == 200) {
 
             $this->db->update('transaksi_topup_dompet', $data, ['order_id' => $order_id]);
+            // $this->db->update('dompet', ['saldo' => "200000"], ['id_user' => $this])
 
         }
         //notification handler sample
