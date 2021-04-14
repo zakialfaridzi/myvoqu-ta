@@ -38,11 +38,8 @@ class Friend extends CI_Controller
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
 
-        $saldo_dompet = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
-
-        $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
-
-        $data['saldosekarang'] = $saldo_dompet['saldo'] + $topup_berhasil_terakhr['gross_amount'];
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        // $data['postgen'] = $this->User_model->getPostgen();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -127,6 +124,8 @@ class Friend extends CI_Controller
         $data['pollow'] = $this->User_model->getpollow($id);
         $data['title'] = 'Profil teman';
         $data['active'] = 'active';
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -158,6 +157,8 @@ class Friend extends CI_Controller
         $data['active'] = 'active';
         $data['followersVisit'] = $this->User_model->getFollowersVisit($id);
         $data['pollow'] = $this->User_model->getpollow($id);
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
 
         $data['otherUser'] = $this->User_model->getOherUserData();
         $this->load->view('templates_newsfeed/topbar', $data);
@@ -177,6 +178,8 @@ class Friend extends CI_Controller
         $data['active'] = 'active';
         $data['followingVisit'] = $this->User_model->getFollowingVisit();
         $data['pollow'] = $this->User_model->getpollow();
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
 
         $data['otherUser'] = $this->User_model->getOherUserData();
         $this->load->view('templates_newsfeed/topbar', $data);
@@ -196,6 +199,8 @@ class Friend extends CI_Controller
         $data['title'] = 'tentang';
         $data['active'] = 'active';
         $data['pollow'] = $this->User_model->getpollow();
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
 
         $data['otherUser'] = $this->User_model->getOherUserData();
         $this->load->view('templates_newsfeed/topbar', $data);

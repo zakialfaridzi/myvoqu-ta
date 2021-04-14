@@ -23,7 +23,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
  */
-$config['base_url'] = ' http://2e61eb313f87.ap.ngrok.io/myvoqu/';
+$config['base_url'] = ' http://7600f3cd41b5.ap.ngrok.io/myvoqu/';
 // http://ae662992cfe3.ap.ngrok.io/myvoqu/
 /*
 |--------------------------------------------------------------------------

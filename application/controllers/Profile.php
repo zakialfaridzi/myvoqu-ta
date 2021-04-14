@@ -39,6 +39,7 @@ class Profile extends CI_Controller
         $data['info'] = $this->Profile_model->getInfoProfile();
         $data['title'] = 'Profile';
         $data['active'] = 'active';
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
 
         if (empty($data['user']['email'])) {
 

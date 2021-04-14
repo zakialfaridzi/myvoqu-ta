@@ -189,7 +189,7 @@ endforeach;?>
                     </button>
                     <h4 class="alert-heading">Saldo VOQU-Wallet</h4>
                     <p>Saldo dana kamu sekarang adalah
-                        <strong>Rp<?=number_format($saldosekarang, 2, ',', '.')?></strong>
+                        <strong>Rp<?=number_format($saldo_dompet['saldo'], 2, ',', '.')?></strong>
                         <i class="fas fa-wallet"></i>
                     </p>
                     <p>

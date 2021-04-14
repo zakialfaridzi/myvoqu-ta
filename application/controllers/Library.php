@@ -39,7 +39,7 @@ class Library extends CI_Controller
         $data['suggestion'] = $this->User_model->getSuggest();
         $idlog = $this->session->userdata('id');
         $data['idlogin'] = $this->Materi_model->getLog($idlog);
-        $data['saldo_wallet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -100,6 +100,8 @@ class Library extends CI_Controller
         $data['title'] = 'Materi';
         $data['suggestion'] = $this->User_model->getSuggest();
         $data['idlogin'] = $this->Materi_model->getLog($idlog);
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();

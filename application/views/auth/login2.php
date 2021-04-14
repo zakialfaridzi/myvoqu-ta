@@ -70,10 +70,25 @@
 
 
                 <div class="form-button">
-                    <button id="submit" type="submit" class="ibtn">Login</button> <a
-                        href="<?=base_url('auth/forgotPassword');?>">Lupa Password?</a>
+                    <button id="submit" type="submit" class="ibtn" onclick="hide()">Login</button>
+
+                    <button class="ibtn" type="button" disabled style="display: none;" id="load_login">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        <span class="sr-only">Loading...</span>
+                    </button>
+
+
+                    <a href="<?=base_url('auth/forgotPassword');?>">Lupa Password?</a>
                 </div>
             </form>
+
+            <script>
+            function hide() {
+                $('#submit').hide();
+                $('#load_login').show();
+            }
+            </script>
+
 
 
         </div>
