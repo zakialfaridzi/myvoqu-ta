@@ -63,6 +63,7 @@ class Infaq extends CI_Controller
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
         $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
