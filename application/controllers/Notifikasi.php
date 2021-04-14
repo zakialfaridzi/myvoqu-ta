@@ -9,6 +9,9 @@ class Notifikasi extends CI_Controller
         $this->load->model('Profile_model');
         $this->load->model('User_model');
         $this->load->library('form_validation');
+        if (empty($this->session->userdata('id'))) {
+            redirect('auth');
+        }
 
         $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
 

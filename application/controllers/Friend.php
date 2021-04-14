@@ -9,6 +9,10 @@ class Friend extends CI_Controller
         $this->load->model('User_model');
         $this->load->library('form_validation');
 
+        if (empty($this->session->userdata('id'))) {
+            redirect('auth');
+        }
+
         $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
 
         $saldo_dpt = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
