@@ -375,6 +375,11 @@ class User_model extends CI_model
         return $this->db->query('SELECT * FROM postgen p join user u on(p.id_user = u.id) order by p.id_posting desc limit 3')->result();
     }
 
+    public function getPengumuman()
+    {
+        return $this->db->query('SELECT * FROM pengumuman order by id desc limit 1')->result();
+    }
+
     public function getFollowingVisit()
     {
         return $this->db->query('SELECT id_usertarget, namatarget, imagetarget, biotarget FROM follow f join user u on(u.id = f.id_userfollow) where id_userfollow =' . $this->uri->segment('3') . ' and stat = 1')->result();

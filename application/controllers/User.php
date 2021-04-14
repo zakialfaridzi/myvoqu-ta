@@ -58,6 +58,7 @@ class User extends CI_Controller
         $data['idpost'] = $this->User_model->getidpost();
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         //dari sini
 
@@ -323,6 +324,7 @@ class User extends CI_Controller
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
         $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
 
@@ -381,6 +383,7 @@ class User extends CI_Controller
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
         $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         $saldo_dompet = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
 
@@ -444,6 +447,7 @@ class User extends CI_Controller
         $data['idpost'] = $this->User_model->getidpost();
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();

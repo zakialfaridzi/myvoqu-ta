@@ -58,7 +58,18 @@ class Library extends CI_Controller
         $data['suggestion'] = $this->User_model->getSuggest();
         $idlog = $this->session->userdata('id');
         $data['idlogin'] = $this->Materi_model->getLog($idlog);
+<<<<<<< HEAD
+        $data['pengumuman'] = $this->User_model->getPengumuman();
+        $data['saldo_wallet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+=======
         $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+>>>>>>> 6dd12ebafd2c38f384b2162bfb17f424de8b0896
+
+        $saldo_dompet = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+
+        $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
+
+        $data['saldosekarang'] = $saldo_dompet['saldo'] + $topup_berhasil_terakhr['gross_amount'];
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();

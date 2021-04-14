@@ -399,4 +399,44 @@ class Admin_model extends CI_model
     {
         return $this->db->get_where('tasks', ['id' => $id])->row_array();
     }
+
+    public function tampil_pengumuman()
+    {
+        $data = $this->db->query('select * from pengumuman')->result();
+        return $data;
+    }
+
+    public function tambah_pengumuman()
+    {
+        $data = ['isi_pengumuman' => $this->input->post('namapengumuman', true)];
+
+        $this->db->insert('pengumuman', $data);
+    }
+
+    public function edit_pengumuman($id)
+    {
+        $this->db->from('pengumuman');
+        $this->db->where('id', $id);
+        return $this->db->get()->row_array();
+    }
+
+    public function update_pengumuman($id)
+    {
+        $data = ['isi_pengumuman' => $this->input->post('namapengumuman', true)];
+
+        $this->db->where('id', $id);
+        $this->db->update('pengumuman', $data);
+
+    }
+
+    public function delete_pengumuman($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('pengumuman');
+    }
+
+    public function getPengumumanById($id)
+    {
+        return $this->db->get_where('pengumuman', ['id' => $id])->row_array();
+    }
 }

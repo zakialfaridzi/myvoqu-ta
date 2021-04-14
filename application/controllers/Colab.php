@@ -52,6 +52,7 @@ class Colab extends CI_Controller
         $data['idpost'] = $this->User_model->getidpost();
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
         $data['postgen'] = $this->User_model->getPostgen();
