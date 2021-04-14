@@ -320,7 +320,7 @@ class User extends CI_Controller
 
         $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
 
-        $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
+        // $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
 
         // $saldo_skrg = $saldo_dompet['saldo'] + $topup_berhasil_terakhr['gross_amount'];
 
