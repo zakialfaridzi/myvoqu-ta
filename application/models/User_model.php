@@ -168,6 +168,13 @@ class User_model extends CI_model
         return $query->result();
     }
 
+    public function getPostGenById($id)
+    {
+        $query = $this->db->query("SELECT * from postgen p  join user u on(u.id = p.id_user) where id_posting = $id");
+
+        return $query->result();
+    }
+
     public function getCommentById($id)
     {
         $query = $this->db->query("SELECT * FROM comment c join user u using(id) where id_posting = $id order by id_comment desc");

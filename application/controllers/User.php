@@ -355,6 +355,59 @@ class User extends CI_Controller
             $this->load->view('templates_newsfeed/footer');
         }
     }
+
+    public function getIdpostgen($id)
+    {
+        $data['search'] = 'none';
+        $data['upload'] = '';
+        $data['colorSearch'] = '#0486FE';
+        $data['posting'] = $this->User_model->getPostById($id);
+        $data['postgendetail'] = $this->User_model->getPostGenById($id);
+        $data['comment'] = $this->User_model->getCommentById($id);
+        $data['suka'] = $this->User_model->getSukaById($id);
+        $data['sukaa'] = $this->User_model->getSukaaById($id);
+        $data['allUser'] = $this->User_model->getUserData();
+        $data['user'] = $this->User_model->getUser();
+        $data['title'] = 'Rincian unggahan';
+        $data2['notification'] = $this->User_model->getNotification();
+        $data['idpost'] = $this->User_model->getidpost();
+        $data['report'] = $this->User_model->getReport();
+        $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
+        $data['suggestion'] = $this->User_model->getSuggest();
+        $data['postgen'] = $this->User_model->getPostgen();
+
+        $saldo_dompet = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+
+        $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
+
+        $data['saldosekarang'] = $saldo_dompet['saldo'] + $topup_berhasil_terakhr['gross_amount'];
+
+        if (empty($data['user']['email'])) {
+            $this->sessionLogin();
+        } elseif ($data['user']['role_id'] == 1) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger ">
+            Your access is only for admin, sorry :(
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+            redirect('admin');
+        } else {
+            $this->load->helper('smiley');
+            $this->load->library('table');
+            $image_array = get_clickable_smileys(base_url() . 'assets/smileys/', 'comment');
+            $col_array = $this->table->make_columns($image_array, 20);
+
+            $data['smiley_table'] = $this->table->generate($col_array);
+            $data['otherUser'] = $this->User_model->getOherUserData();
+
+            $this->load->view('templates_newsfeed/topbar', $data);
+            $this->load->view('templates_newsfeed/header', $data);
+            $this->load->view('user/getIdPostGen', $data);
+            $this->load->view('templates_newsfeed/footer');
+        }
+    }
+
     public function addFollow()
     {
         $data = array(

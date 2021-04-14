@@ -8,11 +8,13 @@
         <?php foreach ($postgen as $pst): ?>
         <div class="follow-user">
 
+            <a href="<?=base_url() . 'User/getIdpostgen/' . $pst->id_posting;?>"><?=$pst->html;?></a>
 
-
-            <video class="post-video" controls width="500" height="500">
-                <source src="<?=base_url('assets_user/file_upload/' . $pst->fileName)?>" type=" video/mp4">
+            <!-- <video class="post-video" controls width="500" height="500">
+                <source src="base_url('assets_user/file_upload/' . $pst->fileName)?>" type=" video/mp4">
             </video>
+
+            <img src="base_url('assets_user/images/' . $ou->image);?>" alt="" class='post-image'/> -->
 
             <!-- <div class="video-wrapper"><video class="post-video" controls width="500" height="500">
                     <source src=http://localhost/myvoqu/assets_user/file_upload/60753efdcecbb.mp4 type="video/mp4">
@@ -20,11 +22,11 @@
             <!-- <img src=http://localhost/myvoqu/assets_user/file_upload/6075429d3ef62.png alt="post-image"
                 class="img-responsive post-image" width="100" /> -->
 
-
-
-
+                <!-- <div class="video-wrapper"><video class="post-video" controls width="500" height="500"><source src= http://localhost/myvoqu/assets_user/file_upload/60767409abca0.mp4 type="video/mp4"></video></div> -->
         </div>
         <?php endforeach;?>
+
+        <br>
 
         <div class="suggestions" id="sticky-sidebar">
             <h5 class="grey">Iklan <i class="fas fa-ad"></i></h5>
