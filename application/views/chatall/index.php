@@ -56,7 +56,7 @@ function renderMessage(item) {
     height: 50vh;
     overflow-x: hidden;
     padding: 10px;
-    background-image: url('https://i.pinimg.com/originals/7e/13/6c/7e136c377c5dc09260b50b490ac1f9b1.jpg');
+    background-image: url('https://i.pinimg.com/originals/40/39/e0/4039e0f1ef08b7b965bacb4641a7af49.jpg');
     /* background-size: ; */
 }
 
