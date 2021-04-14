@@ -196,7 +196,8 @@ endforeach;?>
                         <a class="btn btn-success" data-toggle="modal" data-target="#tambahDana"><i
                                 class="fas fa-plus"></i> Top Up</a>
 
-                        <a class="btn btn-warning" href=""><i class="fas fa-history"></i> Riwayat</a>
+                        <a class="btn btn-warning" href="<?=base_url('transaksi/')?>"><i class="fas fa-history"></i>
+                            Riwayat</a>
                         <!-- <a class="btn btn-info" data-toggle="modal" data-target="#myModal" data-id="<?=$au->id?>"
                             id="showInfaqModal">Infaq</a> -->
                     </p>
