@@ -8,12 +8,13 @@ if ($db->connect_error) {
 $result = array();
 $message = isset($_POST['message']) ? $_POST['message'] : null;
 $from = isset($_POST['from']) ? $_POST['from'] : null;
+$id_user = isset($_POST['id_user']) ? $_POST['id_user'] : null;
 
 // var_dump($message);die();
 
 if (!empty($message) && !empty($from)) {
 
-    $sql = "INSERT INTO `chatall` (`message`, `from`) VALUES ('" . $message . "','" . $from . "')";
+    $sql = "INSERT INTO `chatall` (`message`, `from`, `id_user`) VALUES ('" . $message . "','" . $from . "','" . $id_user . "')";
     $result['send_status'] = $db->query($sql);
 }
 

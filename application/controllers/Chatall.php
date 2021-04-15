@@ -64,6 +64,8 @@ class Chatall extends CI_Controller
         $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
         $data['postgen'] = $this->User_model->getPostgen();
 
+        $data['nama_user'] = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array();
+
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
         } elseif ($data['user']['role_id'] == 1) {

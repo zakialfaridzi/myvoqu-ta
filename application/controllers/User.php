@@ -35,6 +35,8 @@ class User extends CI_Controller
             }
         }
 
+        // print_r($this->session->all_userdata());die();
+
     }
 
     public function sessionLogin()
