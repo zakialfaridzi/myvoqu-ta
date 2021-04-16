@@ -9,7 +9,8 @@ $(document).ready(function() {
     $('form').submit(function(e) {
         $.post(url, {
             message: $('#message').val(),
-            from: from
+            from: $('#from').val(),
+            id_user: $('#id_user').val()
         });
         $('#message').val('');
         return false;
@@ -41,11 +42,25 @@ function renderMessage(item) {
 }
 </script>
 
+<?php
+
+$email = $this->session->userdata('email');
+
+$potong_email = substr($email, 0, 12) . "....";
+
+// echo $potong_email;
+
+?>
+
 <div id="messages"></div>
 <form class="form-chat">
 
     <input type="text" id="message" autocomplete="off" autofocus placeholder="Tulis pesan..">
+    <input type="hidden" id="id_user" value="<?=$this->session->userdata('id')?>">
+    <input type="hidden" id="from" value="<?=$nama_user['name']?>">
     <input type="submit" value="Kirim">
+
+
 
 </form>
 
@@ -94,6 +109,6 @@ function renderMessage(item) {
 
 .msg span {
     font-size: 1rem;
-    margin-left: 15px;
+    float: right;
 }
 </style>

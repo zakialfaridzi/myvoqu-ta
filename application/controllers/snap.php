@@ -98,6 +98,10 @@ class Snap extends CI_Controller
             'expiry' => $custom_expiry,
         );
 
+        $id_user = $this->session->userdata('id');
+
+        $this->session->set_userdata("transaksi_" . $id_user, $item1_details['name']);
+
         error_log(json_encode($transaction_data));
         $snapToken = $this->midtrans->getSnapToken($transaction_data);
         error_log($snapToken);
@@ -106,11 +110,21 @@ class Snap extends CI_Controller
 
     public function finish()
     {
+        $id_user = $this->session->userdata('id');
+
         $result = json_decode($this->input->post('result_data'), true);
-        // var_dump($result);
+
+        $transaction_name = $this->session->userdata('transaksi_' . $id_user);
+
+        // $this->session->unset_userdata('transaksi_' . $id_user);
+
+        // var_dump($this->session->userdata('transaksi_' . $id_user));
+
+        // die();
 
         $data = [
             'order_id' => $result['order_id'],
+            'name' => $transaction_name,
             'gross_amount' => $result['gross_amount'],
             'payment_type' => $result['payment_type'],
             'transaction_time' => $result['transaction_time'],
@@ -129,6 +143,8 @@ class Snap extends CI_Controller
 			  <span aria-hidden="true">&times;</span>
 			</button>
 		  	</div>');
+
+        $this->session->unset_userdata('transaksi_' . $id_user);
 
         redirect("user");
 
