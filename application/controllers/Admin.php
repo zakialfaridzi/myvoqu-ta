@@ -658,6 +658,7 @@ class Admin extends CI_Controller
     {
         $data['post'] = $this->Admin_model->detail_post($id);
         $data['post2'] = $this->Admin_model->detail_post2($id);
+        $data['suka'] = $this->Admin_model->getSukaById($id);
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
         $this->load->view('templates/headerPosting');
         $this->load->view('templates/sidebar', $dats);
@@ -1318,7 +1319,7 @@ class Admin extends CI_Controller
         $this->load->model('Admin_model');
         $this->Admin_model->tambah_pengumuman();
         $this->session->set_flashdata('message', '<div class="alert alert-primary alert-dismissible fade show" role="alert">
-      Data Pengumuman <strong>Berhasil</strong> di Simpan
+      Data Pengumuman <strong>Berhasil</strong> di Umumkan
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
