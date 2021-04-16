@@ -237,6 +237,13 @@ class Admin_model extends CI_model
         return $res;
     }
 
+    public function getSukaById($id)
+    {
+        $query = $this->db->query("SELECT id, status, count(status) jumlahsuka FROM suka s where status = 1 and id_posting = $id");
+
+        return $query->result();
+    }
+
     public function detail_post2($id)
     {
         $query = $this->db->query("select * from posting where id_posting = $id");
