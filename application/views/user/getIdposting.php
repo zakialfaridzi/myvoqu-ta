@@ -33,7 +33,7 @@
         <?php else : ?>
 
             <i class="fas fa-trash" style="color: tomato;margin-left:18px;"></i>
-            <a href="<?= base_url(); ?>user/deletePost/<?= $pst->id_posting; ?>" style="text-decoration:none;">Hapus</a>
+            <a href="<?= base_url(); ?>user/deletePost/<?= $pst->id_posting; ?>" onclick="return confirm('Are you sure?')" style="text-decoration:none;">Hapus</a>
 
         <?php endif; ?>
 

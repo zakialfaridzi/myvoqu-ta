@@ -221,7 +221,7 @@ class User extends CI_Controller
         $this->User_model->deleteComment($id);
 
         $this->session->set_flashdata('nn', '<div class="alert alert-success alert-dismissible show" role="alert">
-      <strong>Selaamt!</strong> komentar berhasil dihapus.
+      <strong>Selamat!</strong> komentar berhasil dihapus.
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
       </button>
