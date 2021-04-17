@@ -59,7 +59,7 @@
                                                     <button class="btn btn-primary" style="background-color: #6fb8df; margin-top: 4px; outline: none;">Ikuti lagi pengguna?</button>
                                                 </form>
 
-                                            <?php elseif($fl->id_userfollow == $this->uri->segment('3') and $fl->id_usertarget != $this->session->userdata('id')) : ?>
+                                            <?php elseif($fl->id_userfollow == $this->session->userdata('id') and $fl->id_usertarget == $this->session->userdata('id')) : ?>
                                                 <form method="post" action="<?= base_url('friend/addFollow') . "/" . $this->uri->segment('3'); ?>">
                                                     <input type="hidden" name="id_usertarget" value="<?= $this->uri->segment('3') ?>">
                                                     <input type="hidden" name="id_userfollow" value="<?= $this->session->userdata('id'); ?>">
