@@ -223,7 +223,7 @@ class User_model extends CI_model
     {
         return $this->db->query('SELECT * FROM follow')->result();
     }
-
+    
     // public function getFollow()
     // {
     //     return $this->db->query('SELECT distinct id_follow, stat, id_userfollow, id_usertarget, name, id, image, bio FROM user right join follow on follow.id_userfollow = user.id

@@ -47,10 +47,10 @@
                 <?php endforeach;?>
                 <div class="mobile-menu">
                     <ul class="list-inline">
-                        <li><a href="timline.html" class="active">Timeline</a></li>
-                        <li><a href="timeline-about.html">About</a></li>
-                        <li><a href="timeline-album.html">Album</a></li>
-                        <li><a href="timeline-friends.html">Friends</a></li>
+                    <li><a href="<?=base_url('profile');?>" class="<?=$active;?>">Lintas Masa</a></li>
+                            <li><a href="<?=base_url('profile/aboutMe');?>" class="<?=$active;?>">Tentang</a></li>
+                            <li><a href=" <?=base_url('profile/following')?>" class="<?=$active;?>">Diikuti</a></li>
+                            <li><a href="<?=base_url('profile/followers')?>" class="<?=$active;?>">Pengikut</a></li>
                     </ul>
                     <a href="<?=base_url('profile/editProfile')?>" class="btn-primary"
                         style="text-decoration: none;">Edit Porfile</a>
