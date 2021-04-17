@@ -10,6 +10,28 @@ class Library extends CI_Controller
         $this->load->model('User_model');
         $this->load->model('Materi_model');
         $this->load->library('form_validation');
+
+        if (empty($this->session->userdata('id'))) {
+            redirect('auth');
+        }
+
+        $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
+
+        $saldo_dpt = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+
+        if (!is_null($topup_berhasil_terakhr)) {
+
+            if ($topup_berhasil_terakhr['status_code'] == 200) {
+                $saldo_skrg = $saldo_dpt['saldo'] + $topup_berhasil_terakhr['gross_amount'];
+                $this->db->update('transaksi_topup_dompet', ['status_code' => 199], ['id_user' => $this->session->userdata('id')]);
+
+                $data_saldo = [
+                    'saldo' => $saldo_skrg,
+                ];
+
+                $this->db->update('dompet', $data_saldo, ['id_user' => $this->session->userdata('id')]);
+            }
+        }
     }
 
     public function sessionLogin()
@@ -27,6 +49,7 @@ class Library extends CI_Controller
     {
         $data['search'] = '';
         $data['upload'] = '';
+        $data['postgen'] = $this->User_model->getPostgen();
         $data['colorSearch'] = '#0486FE';
         $data['posting'] = $this->User_model->getPosting();
         $data['allUser'] = $this->User_model->getUserData();
@@ -38,6 +61,11 @@ class Library extends CI_Controller
         $data['suggestion'] = $this->User_model->getSuggest();
         $idlog = $this->session->userdata('id');
         $data['idlogin'] = $this->Materi_model->getLog($idlog);
+        $data['pengumuman'] = $this->User_model->getPengumuman();
+        $data['saldo_wallet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+
+        $saldo_dompet = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -98,6 +126,8 @@ class Library extends CI_Controller
         $data['title'] = 'Materi';
         $data['suggestion'] = $this->User_model->getSuggest();
         $data['idlogin'] = $this->Materi_model->getLog($idlog);
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();

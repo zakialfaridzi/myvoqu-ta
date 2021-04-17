@@ -10,6 +10,28 @@ class Group extends CI_Controller
         $this->load->model('User_model');
         $this->load->model('Group_model');
         $this->load->library('form_validation');
+
+        if (empty($this->session->userdata('id'))) {
+            redirect('auth');
+        }
+
+        $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
+
+        $saldo_dpt = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+
+        if (!is_null($topup_berhasil_terakhr)) {
+
+            if ($topup_berhasil_terakhr['status_code'] == 200) {
+                $saldo_skrg = $saldo_dpt['saldo'] + $topup_berhasil_terakhr['gross_amount'];
+                $this->db->update('transaksi_topup_dompet', ['status_code' => 199], ['id_user' => $this->session->userdata('id')]);
+
+                $data_saldo = [
+                    'saldo' => $saldo_skrg,
+                ];
+
+                $this->db->update('dompet', $data_saldo, ['id_user' => $this->session->userdata('id')]);
+            }
+        }
     }
 
     public function sessionLogin()
@@ -25,6 +47,7 @@ class Group extends CI_Controller
 
     public function index()
     {
+        $data['postgen'] = $this->User_model->getPostgen();
         $iduser = $this->session->userdata['id'];
         $data['search'] = 'none';
         $data['colorSearch'] = '#0486FE';
@@ -36,6 +59,11 @@ class Group extends CI_Controller
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['title'] = 'Group';
         $data['suggestion'] = $this->User_model->getSuggest();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
+
+        // $data['saldo_wallet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        // $data['postgen'] = $this->User_model->getPostgen();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -105,6 +133,9 @@ class Group extends CI_Controller
         $data['allgroup'] = $this->Group_model->getGroup();
         $data['active'] = 'active';
         $data['notifGroup'] = $this->Group_model->getNotif($id);
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -151,6 +182,9 @@ class Group extends CI_Controller
         $data['allgroup'] = $this->Group_model->getGroup();
         $data['active'] = 'active';
         $data['notifGroup'] = $this->Group_model->getNotif($id);
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -196,6 +230,9 @@ class Group extends CI_Controller
         $data['title'] = 'Group Feeds';
         $data['active'] = 'active';
         $data['notifGroup'] = $this->Group_model->getNotif($id);
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -228,6 +265,9 @@ class Group extends CI_Controller
         $data['active'] = 'active';
         $data['anggota'] = $this->Group_model->getAnggota();
         $data['notifGroup'] = $this->Group_model->getNotif($id);
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -262,6 +302,9 @@ class Group extends CI_Controller
         $data['active'] = 'active';
         $data['allinfo'] = $this->Group_model->getInfoGroup();
         $data['notifGroup'] = $this->Group_model->getNotif($id);
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -296,6 +339,9 @@ class Group extends CI_Controller
         $data['active'] = 'active';
         $data['allinfo'] = $this->Group_model->getInfoGroup();
         $data['notifGroup'] = $this->Group_model->getNotif($id);
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -330,6 +376,9 @@ class Group extends CI_Controller
         $data['active'] = 'active';
         $data['allinfo'] = $this->Group_model->getInfoGroup();
         $data['notifGroup'] = $this->Group_model->getNotif($id);
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -385,6 +434,9 @@ class Group extends CI_Controller
         $data['getAllUser'] = $this->Group_model->getAllUser();
         $data['cek'] = $this->Group_model->cekAnggota();
         $data['notifGroup'] = $this->Group_model->getNotif($id);
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -556,6 +608,11 @@ class Group extends CI_Controller
         // $data['idpost'] = $this->Group_model->getidpost();
         // $data['report'] = $this->Group_model->getReport();
         // $data['jumlahfollowers'] = $this->Group_model->getJumlahFollowers();
+
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
+
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
         } elseif ($data['user']['role_id'] == 1) {

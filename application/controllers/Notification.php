@@ -1,61 +1,89 @@
-<?php
-defined('BASEPATH') or exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 
 class Notification extends CI_Controller
 {
+
+    /**
+     * Index Page for this controller.
+     *
+     * Maps to the following URL
+     *         http://example.com/index.php/welcome
+     *    - or -
+     *         http://example.com/index.php/welcome/index
+     *    - or -
+     * Since this controller is set as the default controller in
+     * config/routes.php, it's displayed at http://example.com/
+     *
+     * So any other public methods not prefixed with an underscore will
+     * map to /index.php/welcome/<method_name>
+     * @see http://codeigniter.com/user_guide/general/urls.html
+     */
+
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Profile_model');
         $this->load->model('User_model');
-        $this->load->library('form_validation');
-    }
+        $params = array('server_key' => 'SB-Mid-server-NIJu49puPJ6azOCJv8BnxFgE', 'production' => false);
+        $this->load->library('veritrans');
+        $this->veritrans->config($params);
+        $this->load->helper('url');
 
-    public function sessionLogin()
-    {
-        $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-      Login first!!
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    	</div>');
-        redirect('auth');
     }
 
     public function index()
     {
-        $id = $this->session->userdata('id');
-        $data['search'] = 'none';
-        $data['upload'] = 'none';
-        $data['colorSearch'] = '#0486FE';
-        $data['posting'] = $this->User_model->getPosting();
-        $data['comment'] = $this->User_model->getComment();
-        $data['allUser'] = $this->User_model->getUserData();
-        $data['user'] = $this->User_model->getUser();
-        $data['title'] = 'Notifikasi';
-        $data['notification'] = $this->User_model->getNotification();
-        // $data['notifGroup'] = $this->User_model->getNotifGroup($id);
-        $data['idpost'] = $this->User_model->getidpost();
-        $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
-        $data['suggestion'] = $this->User_model->getSuggest();
+        echo 'test notification handler';
+        $json_result = file_get_contents('php://input');
+        $result = json_decode($json_result, "true");
 
-        if (empty($data['user']['email'])) {
-            $this->sessionLogin();
-        } elseif ($data['user']['role_id'] == 1) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger ">
-                  Your access is only for admin, sorry :(
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>');
-            redirect('admin');
-        } else {
-            $data['otherUser'] = $this->User_model->getOherUserData();
+        $order_id = $result['order_id'];
 
-            $this->load->view('templates_newsfeed/topbar', $data);
-            $this->load->view('templates_newsfeed/header', $data);
-            $this->load->view('notification/index', $data);
-            $this->load->view('templates_newsfeed/footer');
+        $data = [
+            'status_code' => $result['status_code'],
+        ];
+
+        if ($result['status_code'] == 200) {
+
+            $this->db->update('transaksi_topup_dompet', $data, ['order_id' => $order_id]);
+            // $this->db->update('dompet', ['saldo' => "200000"], ['id_user' => $this])
+
         }
+        //notification handler sample
+
+        /*
+    $transaction = $notif->transaction_status;
+    $type = $notif->payment_type;
+    $order_id = $notif->order_id;
+    $fraud = $notif->fraud_status;
+
+    if ($transaction == 'capture') {
+    // For credit card transaction, we need to check whether transaction is challenge by FDS or not
+    if ($type == 'credit_card'){
+    if($fraud == 'challenge'){
+    // TODO set payment status in merchant's database to 'Challenge by FDS'
+    // TODO merchant should decide whether this transaction is authorized or not in MAP
+    echo "Transaction order_id: " . $order_id ." is challenged by FDS";
+    }
+    else {
+    // TODO set payment status in merchant's database to 'Success'
+    echo "Transaction order_id: " . $order_id ." successfully captured using " . $type;
+    }
+    }
+    }
+    else if ($transaction == 'settlement'){
+    // TODO set payment status in merchant's database to 'Settlement'
+    echo "Transaction order_id: " . $order_id ." successfully transfered using " . $type;
+    }
+    else if($transaction == 'pending'){
+    // TODO set payment status in merchant's database to 'Pending'
+    echo "Waiting customer to finish transaction order_id: " . $order_id . " using " . $type;
+    }
+    else if ($transaction == 'deny') {
+    // TODO set payment status in merchant's database to 'Denied'
+    echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
+    }*/
+
     }
 }

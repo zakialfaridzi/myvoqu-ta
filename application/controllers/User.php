@@ -15,6 +15,27 @@ class User extends CI_Controller
             redirect('auth');
 
         }
+        $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
+
+        $saldo_dpt = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+
+        // var_dump($topup_berhasil_terakhr);die();
+
+        if (!is_null($topup_berhasil_terakhr)) {
+
+            if ($topup_berhasil_terakhr['status_code'] == 200) {
+                $saldo_skrg = $saldo_dpt['saldo'] + $topup_berhasil_terakhr['gross_amount'];
+                $this->db->update('transaksi_topup_dompet', ['status_code' => 199], ['id_user' => $this->session->userdata('id')]);
+
+                $data_saldo = [
+                    'saldo' => $saldo_skrg,
+                ];
+
+                $this->db->update('dompet', $data_saldo, ['id_user' => $this->session->userdata('id')]);
+            }
+        }
+
+        // print_r($this->session->all_userdata());die();
 
     }
 
@@ -44,6 +65,13 @@ class User extends CI_Controller
         $data['idpost'] = $this->User_model->getidpost();
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
+
+        //dari sini
+
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+
+        //sampai sini khusu algoritma wallet
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -64,8 +92,6 @@ class User extends CI_Controller
             $this->load->view('templates_newsfeed/footer');
         }
     }
-
-    
 
     public function posting()
     {
@@ -248,7 +274,7 @@ class User extends CI_Controller
             'date' => time(),
             'id_posting' => $this->input->post('id_posting'),
             'id' => $this->input->post('id'),
-            'id_tujuan' => $this->input->post('id_user')
+            'id_tujuan' => $this->input->post('id_user'),
         );
         $this->User_model->updateGaSuka($data);
         redirect("user/getIdposting/" . $id);
@@ -287,7 +313,6 @@ class User extends CI_Controller
         redirect('user');
     }
 
-    
     public function getIdposting($id)
     {
         $data['search'] = 'none';
@@ -305,6 +330,21 @@ class User extends CI_Controller
         $data['report'] = $this->User_model->getReport();
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
+
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+
+        // $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
+
+        // $saldo_skrg = $saldo_dompet['saldo'] + $topup_berhasil_terakhr['gross_amount'];
+
+        // $data_upd = [
+        //     'saldo' => $saldo_skrg,
+        // ];
+
+        // $this->db->update('dompet', $data_upd);
+
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
         } elseif ($data['user']['role_id'] == 1) {
@@ -330,6 +370,61 @@ class User extends CI_Controller
             $this->load->view('templates_newsfeed/footer');
         }
     }
+
+    public function getIdpostgen($id)
+    {
+        $data['search'] = 'none';
+        $data['upload'] = '';
+        $data['colorSearch'] = '#0486FE';
+        $data['posting'] = $this->User_model->getPostById($id);
+        $data['postgendetail'] = $this->User_model->getPostGenById($id);
+        $data['comment'] = $this->User_model->getCommentById($id);
+        $data['suka'] = $this->User_model->getSukaById($id);
+        $data['sukaa'] = $this->User_model->getSukaaById($id);
+        $data['allUser'] = $this->User_model->getUserData();
+        $data['user'] = $this->User_model->getUser();
+        $data['title'] = 'Rincian unggahan';
+        $data2['notification'] = $this->User_model->getNotification();
+        $data['idpost'] = $this->User_model->getidpost();
+        $data['report'] = $this->User_model->getReport();
+        $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
+        $data['suggestion'] = $this->User_model->getSuggest();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+
+        // $saldo_dompet = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+
+        // $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
+
+        // $data['saldosekarang'] = $saldo_dompet['saldo'] + $topup_berhasil_terakhr['gross_amount'];
+
+        if (empty($data['user']['email'])) {
+            $this->sessionLogin();
+        } elseif ($data['user']['role_id'] == 1) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger ">
+            Your access is only for admin, sorry :(
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+            redirect('admin');
+        } else {
+            $this->load->helper('smiley');
+            $this->load->library('table');
+            $image_array = get_clickable_smileys(base_url() . 'assets/smileys/', 'comment');
+            $col_array = $this->table->make_columns($image_array, 20);
+
+            $data['smiley_table'] = $this->table->generate($col_array);
+            $data['otherUser'] = $this->User_model->getOherUserData();
+
+            $this->load->view('templates_newsfeed/topbar', $data);
+            $this->load->view('templates_newsfeed/header', $data);
+            $this->load->view('user/getIdPostGen', $data);
+            $this->load->view('templates_newsfeed/footer');
+        }
+    }
+
     public function addFollow()
     {
         $data = array(
@@ -360,6 +455,7 @@ class User extends CI_Controller
         $data['idpost'] = $this->User_model->getidpost();
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();

@@ -49,6 +49,12 @@
                         <th>Total Laporan (Report)</th>
                         <td><span class="badge badge-pill badge-danger"><?php echo $p->cr - 1 ?></span></td>
                     </tr>
+                    <?php foreach ($suka as $suka): ?>
+                    <tr>
+                        <th>Total Suka (Like)</th>
+                        <td><span class="badge badge-pill badge-primary"><?php echo $suka->jumlahsuka ?></span></td>
+                    </tr>
+                    <?php endforeach;?>
                     <tr>
                         <th>Tanggal Unggah</th>
                         <td><?php echo date("Y-m-d H:i:s", strtotime('+5 hours', $p->date_post)); ?></td>

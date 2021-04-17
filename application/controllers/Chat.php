@@ -10,6 +10,28 @@ class Chat extends CI_Controller
         $this->load->model('User_model');
 
         $this->load->library('form_validation');
+
+        if (empty($this->session->userdata('id'))) {
+            redirect('auth');
+        }
+
+        $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
+
+        $saldo_dpt = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+
+        if (!is_null($topup_berhasil_terakhr)) {
+
+            if ($topup_berhasil_terakhr['status_code'] == 200) {
+                $saldo_skrg = $saldo_dpt['saldo'] + $topup_berhasil_terakhr['gross_amount'];
+                $this->db->update('transaksi_topup_dompet', ['status_code' => 199], ['id_user' => $this->session->userdata('id')]);
+
+                $data_saldo = [
+                    'saldo' => $saldo_skrg,
+                ];
+
+                $this->db->update('dompet', $data_saldo, ['id_user' => $this->session->userdata('id')]);
+            }
+        }
     }
 
     public function sessionLogin()
@@ -25,6 +47,8 @@ class Chat extends CI_Controller
 
     public function index()
     {
+        $data['saldo_wallet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
         $data['pesan'] = $this->User_model->getPesanById();
         $data['posting'] = $this->Profile_model->getUserPostProfile();
         $data['search'] = 'none';
@@ -39,6 +63,10 @@ class Chat extends CI_Controller
         $data['idpost'] = $this->User_model->getidpost();
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
+
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        // $data['postgen'] = $this->User_model->getPostgen();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -77,6 +105,16 @@ class Chat extends CI_Controller
         $data['suggestion'] = $this->User_model->getSuggest();
         $data['getChat'] = $this->User_model->getChat();
         $data['getInfoChat'] = $this->User_model->getInfoProfileChat();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
+        $data['postgen'] = $this->User_model->getPostgen();
+
+        $saldo_dompet = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+
+        $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
+
+        $data['saldosekarang'] = $saldo_dompet['saldo'] + $topup_berhasil_terakhr['gross_amount'];
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -104,7 +142,7 @@ class Chat extends CI_Controller
             $this->load->view('templates_newsfeed/footer');
         }
     }
- 
+
     public function pilihUser()
     {
         $data['pesan'] = $this->User_model->getPesanById();
@@ -122,6 +160,17 @@ class Chat extends CI_Controller
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
         $data['getChat'] = $this->User_model->getChat();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
+        $data['postgen'] = $this->User_model->getPostgen();
+
+        $saldo_dompet = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+
+        $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
+
+        $data['saldosekarang'] = $saldo_dompet['saldo'] + $topup_berhasil_terakhr['gross_amount'];
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+
+        // $data['postgen'] = $this->User_model->getPostgen();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -142,7 +191,7 @@ class Chat extends CI_Controller
             $this->load->view('templates_newsfeed/footer');
         }
     }
- 
+
     public function kirimPesan($id)
     {
         $data = array(

@@ -1,103 +1,106 @@
-<div class="col-md-2" style="position: fixed;margin-left: 900px;">
-    <div class="suggestions" id="sticky-sidebar">
-        <h4 class="grey">Mungkin anda kenal ? </h4>
-        <?php foreach ($suggestion as $ou): ?>
-        <div class="follow-user">
+<!-- Newsfeed Common Side Bar Right
+          ================================================= -->
 
-            <img src="<?=base_url('assets_user/images/' . $ou->image);?>" alt="" class="profile-photo-sm pull-left" />
-            <div>
-                <h5> <?php if ($ou->id == $this->session->userdata('id')): ?>
-                    <a href="<?=base_url('profile')?>"><?=$ou->name;?></a>
-                    <?php else: ?>
-                    <a href="<?=base_url('friend/visitProfile/') . $ou->id;?>"><?=$ou->name;?></a>
-                    <?php endif;?>
-                </h5>
-                <form method="post" action="<?=base_url('user/addFollow') . "/" . $this->uri->segment('3');?>">
-                    <input type="hidden" name="id_usertarget" value="<?=$ou->id;?>">
-                    <input type="hidden" name="id_userfollow" value="<?=$this->session->userdata('id');?>">
-                    <input type="hidden" name="nama" value="<?=$ou->name;?>">
-                    <input type="hidden" name="bio" value="<?=$ou->bio;?>">
-                    <input type="hidden" name="image" value="<?=$ou->image;?>">
-                    <button class="btn btn-primary"
-                        style="background-color: #6fb8df; margin-top: 4px; outline: none;">Ikuti</button>
-                </form>
-            </div>
+<div class="col-md-2" style="margin-top: 10px;position: sticky;">
+    <div class="suggestions" id="sticky-sidebar">
+
+        <h5 class="grey">Pengumuman</h5>
+        <?php foreach ($pengumuman as $pgu): ?>
+        <div class="alert alert-info alert-dismissible show" role="alert">
+
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <p><?=$pgu->isi_pengumuman?></p>
+
         </div>
         <?php endforeach;?>
 
-        <div class="">
-            <div class="row-5">
-                <div class="footer-wrapper">
-                    <div class="">
-                        <a href="#"><img src="<?=base_url('assets_login/');?>images/mvqq2.png" alt=""
-                                style="width: 200px; margin-bottom: 15px;" /></a>
-                        <ul class="list-inline social-icons" style="margin-left: 20p">
-                            <li><a href="#"><i class="icon ion-social-facebook"></i></a></li>
-                            <li><a href="#"><i class="icon ion-social-twitter"></i></a></li>
-                            <li><a href="https://www.instagram.com/myvoqu.id/" target="#"><i
-                                        class="icon ion-social-instagram"></i></a></li>
+
+        <h5 class="grey">Postingan Admin</h5>
+
+        <?php foreach ($postgen as $pst): ?>
+        <div class="follow-user">
+
+            <a href="<?=base_url() . 'User/getIdpostgen/' . $pst->id_posting;?>"><?=$pst->html;?></a>
+
+            <!-- <video class="post-video" controls width="500" height="500">
+                <source src="base_url('assets_user/file_upload/' . $pst->fileName)?>" type=" video/mp4">
+            </video>
+
+            <img src="base_url('assets_user/images/' . $ou->image);?>" alt="" class='post-image'/> -->
+
+            <!-- <div class="video-wrapper"><video class="post-video" controls width="500" height="500">
+                    <source src=http://localhost/myvoqu/assets_user/file_upload/60753efdcecbb.mp4 type="video/mp4">
+                </video></div> -->
+            <!-- <img src=http://localhost/myvoqu/assets_user/file_upload/6075429d3ef62.png alt="post-image"
+                class="img-responsive post-image" width="100" /> -->
+
+            <!-- <div class="video-wrapper"><video class="post-video" controls width="500" height="500"><source src= http://localhost/myvoqu/assets_user/file_upload/60767409abca0.mp4 type="video/mp4"></video></div> -->
+        </div>
+        <?php endforeach;?>
 
 
-                        </ul>
 
 
 
 
+                <h5 class="grey">Mungkin anda kenal ?</h5>
+                <?php foreach ($suggestion as $ou): ?>
+                <div class="follow-user">
+                    <img src="<?=base_url('assets_user/images/' . $ou->image);?>" alt=""
+                        class="profile-photo-sm pull-left" />
+                    <div>
+                        <h5> <?php if ($ou->id == $this->session->userdata('id')): ?>
+                            <a href="<?=base_url('profile')?>"><?=$ou->name;?></a>
+                            <?php else: ?>
+                            <a href="<?=base_url('friend/visitProfile/') . $ou->id;?>"><?=$ou->name;?></a>
+                            <?php endif;?>
+                        </h5>
+                        <form method="post" action="<?=base_url('user/addFollow') . "/" . $this->uri->segment('3');?>">
+                            <input type="hidden" name="id_usertarget" value="<?=$ou->id;?>">
+                            <input type="hidden" name="id_userfollow" value="<?=$this->session->userdata('id');?>">
+                            <input type="hidden" name="nama" value="<?=$ou->name;?>">
+                            <input type="hidden" name="bio" value="<?=$ou->bio;?>">
+                            <input type="hidden" name="image" value="<?=$ou->image;?>">
+                            <button class="btn btn-primary"
+                                style="background-color: #6fb8df; margin-top: 4px; outline: none;">Ikuti</button>
+                        </form>
                     </div>
-
-
-
-
-                    <div style="width: 900px;margin-top: 50px;">
-                        <div class="card" style="padding: 10px;">
-                            <div class="card-body">
-
-                                <div class="row">
-                                    <div class="col-sm-8">
-
-                                        <h4 class="card-title" style="color: black;">Nominal Dana Akun </h4>
-                                        <h3 class="card-text">Rp500.000,00</h3>
-                                        <button href="#" class="btn btn-info" style="margin-top: 10px;"><i
-                                                class="fas fa-plus"></i></button>
-
-
-                                    </div>
-
-
-                                    <div class="col-sm-4" style="margin-top: 35px;">
-                                        <div style="font-size: 80px;color: #5badff;">
-                                            <i class="fas fa-wallet fa-xs"></i>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-
                 </div>
+                <?php endforeach?>
+
+            <h5 class="grey">Iklan <i class="fas fa-ad"></i></h5>
+            <div class="follow-user">
+                <video class="post-video" controls width="500" height="500">
+                    <source src="<?=base_url('assets_user/iklan/iklan_myvoqu.mp4')?>" type=" video/mp4">
+                </video>
+
+                <!-- <div class="video-wrapper"><video class="post-video" controls width="500" height="500">
+                    <source src=http://localhost/myvoqu/assets_user/file_upload/60753efdcecbb.mp4 type="video/mp4">
+                </video></div> -->
+                <!-- <img src=http://localhost/myvoqu/assets_user/file_upload/6075429d3ef62.png alt="post-image"
+                class="img-responsive post-image" width="100" /> -->
+            </div>
+
             </div>
 
 
 
 
-
-
         </div>
+
+
+
+
     </div>
 
+
 </div>
+
 </div>
-</div>
-</div>
-</div>
-</div>
+
 
 <style>
 .card {
@@ -137,6 +140,33 @@ img {
 
 
 <button id="topBtn"> <i class="fas fa-arrow-up" aria-hidden="true"></i></button>
+
+<script src="<?=base_url('assets_user/');?>js/jquery-3.1.1.min.js"></script>
+<script src="<?=base_url('assets_user/');?>js/bootstrap.min.js"></script>
+<script src="<?=base_url('assets_user/');?>js/jquery.sticky-kit.min.js"></script>
+<script src="<?=base_url('assets_user/');?>js/jquery.scrollbar.min.js"></script>
+<script src="<?=base_url('assets_user/');?>js/script.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+    integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous">
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script src="//code.tidio.co/r039ic2pvnauzj98l3ccwkkg58essfy6.js" async></script>
 
 <style>
 #snackbar {
@@ -250,11 +280,8 @@ function myFunction() {
     ================================================= -->
 <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTMXfmDn0VlqWIyoOxK8997L-amWbUPiQ&amp;callback=initMap"> -->
 </script>
-<script src="<?=base_url('assets_user/');?>js/jquery-3.1.1.min.js"></script>
-<script src="<?=base_url('assets_user/');?>js/bootstrap.min.js"></script>
-<script src="<?=base_url('assets_user/');?>js/jquery.sticky-kit.min.js"></script>
-<script src="<?=base_url('assets_user/');?>js/jquery.scrollbar.min.js"></script>
-<script src="<?=base_url('assets_user/');?>js/script.js"></script>
+
+
 
 
 
@@ -277,26 +304,6 @@ $(document).ready(function() {
 });
 </script>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
-    integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous">
-</script>
-
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-<script src="//code.tidio.co/r039ic2pvnauzj98l3ccwkkg58essfy6.js" async></script>
-
 
 
 
@@ -304,6 +311,20 @@ $(document).ready(function() {
 
 <!-- Mi
 rrored from mythemestore.com/friend-finder/newsfeed.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 21 Jan 2020 16:01:50 GMT -->
+
+
+
+
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+});
+</script>
+
 
 
 
