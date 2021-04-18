@@ -35,7 +35,8 @@
 
                         </div>
                         <a class="btn btn-info" data-toggle="modal" data-target="#myModal" data-id="<?=$au->id?>"
-                            id="showInfaqModal">Infaq</a>
+                            data-name="<?=$au->name;?>" id="showInfaqModal"><i class="fas fa-hand-holding-heart"></i>
+                            Infaq</a>
 
                         <button type=" button" class="btn btn-success">
                             Testimoni <i class="fas fa-quote-right"></i></button>
@@ -62,13 +63,21 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Infaq Itu Indah <i class="fas fa-smile"></i></h4>
+                        <h4 class="modal-title" id="title_modal"> <i class="fas fa-smile"></i> </h4>
                     </div>
                     <div class="modal-body" id="modal_view">
 
 
                         <form action="<?=base_url('infaq/addInfaq')?>" method="POST">
                             <input type="hidden" value="" name="id_mentor" id="idMentor">
+                            <div class="alert alert-success alert-dismissible show" role="alert">
+                                <strong>Hei!</strong> Berikan mentor kami rating ya, dengan cara pilih salah satu pada
+                                bintang <i class="fas fa-star"></i>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
                             <div class="alert alert-warning alert-dismissible show" role="alert">
                                 <strong>Hallo orang baik!</strong> kami tidak menepatkan batas minimal atau maksimal
                                 infaq ya
@@ -79,7 +88,7 @@
 
                             <div class="cont">
 
-                                <div class="stars" style="width: 300px;margin-top:12px;align-self: center;">
+                                <div class="stars" style="width: 300px;margin-top:20px;align-self: center;">
                                     <center>
                                         <input class="star star-5" id="star-5" type="radio" name="star" />
                                         <label class="star star-5" for="star-5"></label>
@@ -101,14 +110,18 @@
 
 
 
+                                <!-- <center>
+                                    <p>Berikan bintang</p>
+                                </center> -->
 
-                                <p>click the stars</p>
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Nominal Infaq</label>
                                 <input type="number" class="form-control" id="exampleInputPassword1"
                                     placeholder="1000000" name="jumlah" required>
+                                <small class="text-success"><i>*bukan masalah nominal, tapi keikhlasan <i
+                                            class="fas fa-smile"></i></i></small>
                             </div>
 
                     </div>
@@ -179,8 +192,10 @@ $(document).ready(function() {
 <script type="text/javascript">
 $(document).on("click", "#showInfaqModal", function() {
     var idmentor = $(this).data('id');
+    var name = $(this).data('name');
 
     $("#modal_view #idMentor").val(idmentor);
+    $("#title_modal").html("Infaq untuk " + name + " <i class='fas fa-smile'></i>");
 
 
 });

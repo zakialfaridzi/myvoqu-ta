@@ -8,11 +8,11 @@
         <?php foreach ($pengumuman as $pgu): ?>
         <div class="alert alert-info alert-dismissible show" role="alert">
 
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <p><?=$pgu->isi_pengumuman?></p>
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <p><?=$pgu->isi_pengumuman?></p>
 
         </div>
         <?php endforeach;?>
@@ -46,55 +46,54 @@
 
 
 
-                <h5 class="grey">Mungkin anda kenal ?</h5>
-                <?php foreach ($suggestion as $ou): ?>
-                <div class="follow-user">
-                    <img src="<?=base_url('assets_user/images/' . $ou->image);?>" alt=""
-                        class="profile-photo-sm pull-left" />
-                    <div>
-                        <h5> <?php if ($ou->id == $this->session->userdata('id')): ?>
-                            <a href="<?=base_url('profile')?>"><?=$ou->name;?></a>
-                            <?php else: ?>
-                            <a href="<?=base_url('friend/visitProfile/') . $ou->id;?>"><?=$ou->name;?></a>
-                            <?php endif;?>
-                        </h5>
-                        <form method="post" action="<?=base_url('user/addFollow') . "/" . $this->uri->segment('3');?>">
-                            <input type="hidden" name="id_usertarget" value="<?=$ou->id;?>">
-                            <input type="hidden" name="id_userfollow" value="<?=$this->session->userdata('id');?>">
-                            <input type="hidden" name="nama" value="<?=$ou->name;?>">
-                            <input type="hidden" name="bio" value="<?=$ou->bio;?>">
-                            <input type="hidden" name="image" value="<?=$ou->image;?>">
-                            <button class="btn btn-primary"
-                                style="background-color: #6fb8df; margin-top: 4px; outline: none;">Ikuti</button>
-                        </form>
-                    </div>
-                </div>
-                <?php endforeach?>
+        <h5 class="grey">Mungkin anda kenal ?</h5>
+        <?php foreach ($suggestion as $ou): ?>
+        <div class="follow-user">
+            <img src="<?=base_url('assets_user/images/' . $ou->image);?>" alt="" class="profile-photo-sm pull-left" />
+            <div>
+                <h5> <?php if ($ou->id == $this->session->userdata('id')): ?>
+                    <a href="<?=base_url('profile')?>"><?=$ou->name;?></a>
+                    <?php else: ?>
+                    <a href="<?=base_url('friend/visitProfile/') . $ou->id;?>"><?=$ou->name;?></a>
+                    <?php endif;?>
+                </h5>
+                <form method="post" action="<?=base_url('user/addFollow') . "/" . $this->uri->segment('3');?>">
+                    <input type="hidden" name="id_usertarget" value="<?=$ou->id;?>">
+                    <input type="hidden" name="id_userfollow" value="<?=$this->session->userdata('id');?>">
+                    <input type="hidden" name="nama" value="<?=$ou->name;?>">
+                    <input type="hidden" name="bio" value="<?=$ou->bio;?>">
+                    <input type="hidden" name="image" value="<?=$ou->image;?>">
+                    <button class="btn btn-primary"
+                        style="background-color: #6fb8df; margin-top: 4px; outline: none;">Ikuti</button>
+                </form>
+            </div>
+        </div>
+        <?php endforeach?>
 
-            <!-- <h5 class="grey">Iklan <i class="fas fa-ad"></i></h5>
+        <!-- <h5 class="grey">Iklan <i class="fas fa-ad"></i></h5>
             <div class="follow-user">
                 <video class="post-video" controls width="500" height="500">
                     <source src="base_url('assets_user/iklan/iklan_myvoqu.mp4')?>" type=" video/mp4">
                 </video> -->
 
-                <!-- <div class="video-wrapper"><video class="post-video" controls width="500" height="500">
+        <!-- <div class="video-wrapper"><video class="post-video" controls width="500" height="500">
                     <source src=http://localhost/myvoqu/assets_user/file_upload/60753efdcecbb.mp4 type="video/mp4">
                 </video></div> -->
-                <!-- <img src=http://localhost/myvoqu/assets_user/file_upload/6075429d3ef62.png alt="post-image"
+        <!-- <img src=http://localhost/myvoqu/assets_user/file_upload/6075429d3ef62.png alt="post-image"
                 class="img-responsive post-image" width="100" /> -->
-            <!-- </div> -->
-
-            </div>
-
-
-
-
-        </div>
-
-
-
+        <!-- </div> -->
 
     </div>
+
+
+
+
+</div>
+
+
+
+
+</div>
 
 
 </div>
@@ -140,6 +139,9 @@ img {
 
 
 <button id="topBtn"> <i class="fas fa-arrow-up" aria-hidden="true"></i></button>
+<br>
+
+
 
 <script src="<?=base_url('assets_user/');?>js/jquery-3.1.1.min.js"></script>
 <script src="<?=base_url('assets_user/');?>js/bootstrap.min.js"></script>
@@ -172,7 +174,7 @@ img {
 #snackbar {
     visibility: hidden;
     min-width: 400px;
-    margin-left: -125px;
+    margin-left: -195px;
     background-color: #2492ff;
     color: #fff;
     text-align: center;
