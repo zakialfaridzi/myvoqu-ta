@@ -415,7 +415,7 @@ class Admin_model extends CI_model
 
     public function tambah_pengumuman()
     {
-        $data = ['isi_pengumuman' => $this->input->post('namapengumuman', true)];
+        $data = ['isi_pengumuman' => $this->input->post('namapengumuman', true), 'datepost' => time()];
 
         $this->db->insert('pengumuman', $data);
     }
@@ -429,7 +429,7 @@ class Admin_model extends CI_model
 
     public function update_pengumuman($id)
     {
-        $data = ['isi_pengumuman' => $this->input->post('namapengumuman', true)];
+        $data = ['isi_pengumuman' => $this->input->post('namapengumuman', true), 'datepost' => time()];
 
         $this->db->where('id', $id);
         $this->db->update('pengumuman', $data);

@@ -71,18 +71,18 @@
                 </div>
                 <?php endforeach?>
 
-            <h5 class="grey">Iklan <i class="fas fa-ad"></i></h5>
+            <!-- <h5 class="grey">Iklan <i class="fas fa-ad"></i></h5>
             <div class="follow-user">
                 <video class="post-video" controls width="500" height="500">
-                    <source src="<?=base_url('assets_user/iklan/iklan_myvoqu.mp4')?>" type=" video/mp4">
-                </video>
+                    <source src="base_url('assets_user/iklan/iklan_myvoqu.mp4')?>" type=" video/mp4">
+                </video> -->
 
                 <!-- <div class="video-wrapper"><video class="post-video" controls width="500" height="500">
                     <source src=http://localhost/myvoqu/assets_user/file_upload/60753efdcecbb.mp4 type="video/mp4">
                 </video></div> -->
                 <!-- <img src=http://localhost/myvoqu/assets_user/file_upload/6075429d3ef62.png alt="post-image"
                 class="img-responsive post-image" width="100" /> -->
-            </div>
+            <!-- </div> -->
 
             </div>
 
