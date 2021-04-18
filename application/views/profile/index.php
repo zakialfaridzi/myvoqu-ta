@@ -49,7 +49,8 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- Post Create Box End-->
+            </div>
+            <!-- Post Create Box End-->
             <?=$this->session->flashdata('message');?>
 
 
