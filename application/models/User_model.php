@@ -69,7 +69,7 @@ class User_model extends CI_model
     {
         $gender = $this->session->userdata('gender');
 
-        return $this->db->query("SELECT *,(SELECT ROUND(avg(rating)) FROM infaq WHERE id_mentor = id) avg_rating FROM user where role_id = 3 AND gender = '$gender'")->result();
+        return $this->db->query("SELECT *,(SELECT ROUND(avg(rating)) FROM infaq WHERE id_mentor = id) avg_rating FROM user where role_id = 3 AND gender = '$gender' ORDER BY id ASC LIMIT 6")->result();
     }
 
     public function deletePostUser($id)
@@ -91,6 +91,16 @@ class User_model extends CI_model
         $gender = $this->session->userdata('gender');
 
         $query = $this->db->query("SELECT * FROM user where id <> '$id' and name LIKE '%$name%' and role_id IN(2) and gender = '$gender'");
+
+        return $query->result();
+    }
+
+    public function getUserNameMentor($name)
+    {
+        $id = $this->session->userdata('id');
+        $gender = $this->session->userdata('gender');
+
+        $query = $this->db->query("SELECT *,(SELECT ROUND(avg(rating)) FROM infaq i JOIN user u on(i.id_mentor = u.id) WHERE u.name LIKE '%$name%') avg_rating FROM user where id <> '$id' and name LIKE '%$name%' and role_id IN(3) and gender = '$gender' ORDER BY id ASC LIMIT 6");
 
         return $query->result();
     }

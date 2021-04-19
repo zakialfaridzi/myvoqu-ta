@@ -103,13 +103,24 @@
 
 
                         </ul>
+
+                        <?php
+$search_by = "";
+if ($this->uri->segment(1) == "friend") {
+    $search_by = "Teman";
+
+} else {
+    $search_by = "Mentor";
+}?>
+
                         <form class="navbar-form navbar-right hidden-sm">
                             <div class="form-group" style="display: <?=$search;?>;">
                                 <i class="icon ion-android-search " style="color: <?=$colorSearch;?> ;"></i>
-                                <input type="text" class="form-control" placeholder="Search People"
+                                <input type="text" class="form-control" placeholder="Cari <?=$search_by?>"
                                     style="background-color: white; color: #323232;" id="keyword">
                             </div>
                         </form>
+
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container -->
             </nav>

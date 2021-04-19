@@ -83,6 +83,13 @@ class Infaq extends CI_Controller
         }
     }
 
+    public function getUserByNameMentor($name = "")
+    {
+        $data['type'] = $this->User_model->getUserNameMentor($name);
+
+        $this->load->view('ajax/friend', $data);
+    }
+
     public function addInfaq()
     {
 

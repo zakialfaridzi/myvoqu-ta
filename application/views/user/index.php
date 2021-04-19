@@ -12,6 +12,7 @@
     <input type="hidden" value="<?=$pst->id_posting;?>" id="id_post">
 
 
+
     <?=$pst->html;?>
 
     <?php if ($pst->id_user != $this->session->userdata('id')): ?>
@@ -21,7 +22,9 @@
         <input type="hidden" name="id_posting" value="<?=$pst->id_posting;?>">
         <input type="hidden" name="id" value="<?=$this->session->userdata('id');?>">
         <a class="btn text-red">
-            <button class="fas fa-exclamation" style="border : 0;" name="report"> Laporkan! </button> </a>
+            <button class="" style="border : 0;background-color: transparent;" name="report"><i
+                    class="fas fa-exclamation"></i>
+                Laporkan! </button> </a>
     </form>
     <?php elseif ($pst->id_user != $this->session->userdata('id') and $rpt->report == 1): ?>
 

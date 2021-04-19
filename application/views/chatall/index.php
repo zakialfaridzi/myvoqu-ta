@@ -38,7 +38,14 @@ function load() {
 function renderMessage(item) {
     let time = new Date(item.created);
     time = `${time.getHours()}:${time.getMinutes() < 10 ? '0' :''}${time.getMinutes()}`;
-    return `<div class="msg"><p>${item.from}</p>${item.message}<span>${time}</span></div>`;
+
+    if (item.id_user != <?=$this->session->userdata('id')?>) {
+        return `<div class="msg" style="margin-left: 60%;width:40%;"><p>${item.from}</p>${item.message}<span>${time}</span></div>`;
+    } else {
+        return `<div class="msg" style="background-color: #dbeaff;"><p>Aku</p> <font>${item.message}</font><span>${time}</span></div>`;
+    }
+
+
 }
 </script>
 
@@ -55,16 +62,46 @@ $potong_email = substr($email, 0, 12) . "....";
 <div id="messages"></div>
 <form class="form-chat">
 
-    <input type="text" id="message" autocomplete="off" autofocus placeholder="Tulis pesan..">
+    <textarea id="message" autocomplete="off" autofocus placeholder="Tulis pesan.."></textarea>
+
     <input type="hidden" id="id_user" value="<?=$this->session->userdata('id')?>">
     <input type="hidden" id="from" value="<?=$nama_user['name']?>">
-    <input type="submit" value="Kirim">
+    <input type="submit" value="Kirim" id="kirim_btn">
+
+
+
+
 
 
 
 </form>
 
+<p id="count" class="text-danger"><i>maksimal 100 karakter</i></p>
+
 </div>
+
+<script>
+var count = 0;
+$("#message").keyup(function() {
+    count = $(this).val().length;
+    var x = document.getElementById("kirim_btn");
+    $("#count").html("<i class='text-danger'>karakter : " + $(this).val().length + "</i>");
+
+    if (count > 100) {
+        x.style.display = "none";
+        $("#count").html("<i class='text-danger'>sudah melebihi batas 100 karakter</i>");
+    } else {
+        x.style.display = "block";
+    }
+});
+</script>
+
+
+<!-- if (x.style.display === "none") {
+
+} else {
+x.style.display = "none";
+} -->
 
 <style>
 #messages {
@@ -91,24 +128,34 @@ $potong_email = substr($email, 0, 12) . "....";
 }
 
 #message {
-    flex: 2
+    flex: 2;
+    padding: 5px;
+    margin-top: 10px;
 }
 
 .msg {
+    /* display: block; */
+    /* position: absolute; */
+    /* right: 0; */
+    /* margin-right: -290px; */
+
     background-color: #dcf8c6;
     padding: 5px 10px;
     border-radius: 5px;
     margin-bottom: 8px;
-    width: fit-content;
+    width: 40%;
+
 }
 
 .msg p {
     margin: 0;
     font-weight: bold;
+
 }
 
 .msg span {
     font-size: 1rem;
     float: right;
+    margin-left: 20px;
 }
 </style>
