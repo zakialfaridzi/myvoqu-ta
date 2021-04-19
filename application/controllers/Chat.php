@@ -110,9 +110,9 @@ class Chat extends CI_Controller
 
         $saldo_dompet = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
 
-        $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
+        // $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
 
-        $data['saldosekarang'] = $saldo_dompet['saldo'] + $topup_berhasil_terakhr['gross_amount'];
+        // $data['saldosekarang'] = $saldo_dompet['saldo'] + $topup_berhasil_terakhr['gross_amount'];
         $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
         $data['postgen'] = $this->User_model->getPostgen();
 
@@ -165,9 +165,9 @@ class Chat extends CI_Controller
 
         $saldo_dompet = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
 
-        $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
+        // $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
 
-        $data['saldosekarang'] = $saldo_dompet['saldo'] + $topup_berhasil_terakhr['gross_amount'];
+        // $data['saldosekarang'] = $saldo_dompet['saldo'] + $topup_berhasil_terakhr['gross_amount'];
         $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
 
         // $data['postgen'] = $this->User_model->getPostgen();
