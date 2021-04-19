@@ -40,11 +40,11 @@ function renderMessage(item) {
     time = `${time.getHours()}:${time.getMinutes() < 10 ? '0' :''}${time.getMinutes()}`;
 
     if (item.id_user != <?=$this->session->userdata('id')?>) {
-        return `<div class="msg" style="margin-left: 60%;width:40%;"><p>${item.from}</p>${item.message}<span>${time}</span></div>`;
+        return `<div class="msg" style="background-color: #dbeaff;"><p>${item.from}</p>${item.message}<span>${time}</span></div>`;
     } else {
-        return `<div class="msg" style="background-color: #dbeaff;"><p>Aku</p> <font>${item.message}</font><span>${time}</span></div>`;
+        return `<div class="msg" style="margin-left: 60%;width:40%;"><p>Aku</p> <font>${item.message}</font><span>${time}</span></div>`;
     }
-
+    //
 
 }
 </script>
