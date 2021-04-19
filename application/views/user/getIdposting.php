@@ -24,7 +24,7 @@
         <input type="hidden" name="id_posting" value="<?=$pst->id_posting;?>">
         <input type="hidden" name="id" value="<?=$this->session->userdata('id');?>">
         <a class="btn text-red">
-            <button class="fas fa-exclamation" style="border : 0;" name="report"> Laporkan! </button> </a>
+            <button class="fas fa-exclamation" style="border : 0;" name="report"  onclick="if (!confirm('Apakah anda yakin akan melaporkan unggahan atau pengguna ini karena melanggar peraturan?')) { return false }"> Laporkan! </button> </a>
     </form>
     <?php elseif ($pst->id_user != $this->session->userdata('id') and $rpt->report == 1): ?>
 
@@ -66,7 +66,7 @@
                                     <button class="icon ion-thumbsup" style="opacity : 70% ; border : 0;" name="like1"> like </button> 0</a>
                             </div> -->
 
-            <?php if ($sk2->id == $this->session->userdata('id') and $sk2->status == 2): ?>
+            <?php if ($sk2->status == 2): ?>
             <div class="reaction">
                 <form method="post" action="<?=base_url('User/updateSuka') . "/" . $this->uri->segment('3');?>">
                     <input type="hidden" name="id_suka" value="<?=$sk2->id_suka;?>">
@@ -79,7 +79,7 @@
                 </form>
             </div>
 
-            <?php elseif ($sk2->id == $this->session->userdata('id') and $sk2->status == 1): ?>
+            <?php elseif ($sk2->status == 1): ?>
             <div class="reaction">
                 <form method="post" action="<?=base_url('User/updateGaSuka') . "/" . $this->uri->segment('3');?> ">
                     <input type="hidden" name="id_suka" value="<?=$sk2->id_suka;?>">
@@ -93,7 +93,7 @@
                 </form>
             </div>
 
-            <?php else: ?>
+            <?php elseif($sk2->total == 0): ?>
             <div class="reaction">
                 <form method="post" action="<?=base_url('User/addSuka') . "/" . $this->uri->segment('3');?>">
                     <input type="hidden" name="id_suka" value="<?=$sk2->id_suka;?>">
@@ -145,9 +145,10 @@ echo $str;
                 <br>
                 <form
                     action="<?=base_url('user/deleteComment/') . $cmt->id_comment . "/" . $this->uri->segment('3');?>">
-                    <button style="text-decoration:none; color:red; border:none; background-color:#fff; opacity:70%;">
+                    <button style="text-decoration:none; color:red; border:none; background-color:#fff; opacity:70%;" onclick="if (!confirm('Apakah anda yakin akan menghapus komentar ini?')) { return false }">
                         Hapus!
                     </button>
+                    
                 </form>
                 <?php endif;?>
             </div>
@@ -165,7 +166,7 @@ echo $str;
                     <input type="hidden" name="id" value="<?=$this->session->userdata('id');?>">
                     <input type="submit" class="btn-primary"
                         style="height: 45px; margin-top: -2px; margin-left: 10px; margin-right: -10px;background-color: #6fb8df;"
-                        value="Send">
+                        value="Kirim">
             </form>
 
 
@@ -195,6 +196,27 @@ if (self == top) {
     function sync(fn) {
         fn();
     }
+
+
+    // onclick="ConfirmDelete()" button
+    function ConfirmDelete()
+{
+  var z = confirm("Apakah anda yakin ingin menghapus komentar?");
+  if (z)
+      return confirm;
+  else
+    return false;
+}
+
+function ConfirmReport()
+{
+  var x = confirm("Apakah anda yakin ingin melaporkan unggahan atau pengguna ini karena melanggar peraturan?");
+  if (x)
+      return confirm;
+  else
+    return false;
+}
+
 
     function requestCfs() {
         var idc_glo_url = (location.protocol == "https:" ? "https://" : "http://");

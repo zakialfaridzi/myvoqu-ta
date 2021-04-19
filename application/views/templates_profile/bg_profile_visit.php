@@ -59,7 +59,7 @@
                                                     <button class="btn btn-primary" style="background-color: #6fb8df; margin-top: 4px; outline: none;">Ikuti lagi pengguna?</button>
                                                 </form>
 
-                                            <?php elseif($fl->id_userfollow == $this->session->userdata('id') and $fl->id_usertarget == $this->session->userdata('id')) : ?>
+                                            <?php elseif($fl->total == 0) : ?>
                                                 <form method="post" action="<?= base_url('friend/addFollow') . "/" . $this->uri->segment('3'); ?>">
                                                     <input type="hidden" name="id_usertarget" value="<?= $this->uri->segment('3') ?>">
                                                     <input type="hidden" name="id_userfollow" value="<?= $this->session->userdata('id'); ?>">
@@ -99,19 +99,19 @@
                 <li><a href=" <?= base_url('friend/followingvisit') . "/" . $this->uri->segment('3'); ?>" class="<?= $active; ?>">Diikuti</a></li>
                 <li><a href="<?= base_url('friend/followersvisit') . "/" . $this->uri->segment('3'); ?>" class="<?= $active; ?>">Pengikut </a></li>
 				</ul>
-				<tr style="height: 50px;">
-                <td>
+				
                 <ul class="follow-me list-inline">
                                         <li>
                                             <a class="btn btn-primary" style="background-color: #6fb8df; color:white; outline: none;" href="<?= base_url('chat/chat2/') . $this->uri->segment('3'); ?>">
                                                 Kirim Pesan
                                             </a>
                                         </li>
-                                        <li>
-                </td>
-                <td>
+                </ul>
+                                        
+                
                 <?php foreach ($pollow as $fl) : ?>
-                                        <?php if($fl->id_userfollow == $this->session->userdata('id') and $fl->id_usertarget == $this->uri->segment('3') and $fl->stat == 1) : ?>
+                
+                                        <?php if($fl->stat == 1) : ?>
                                                 <form method="post" action="<?= base_url('friend/updateUnFollow') . "/" . $this->uri->segment('3'); ?> ">
                                                     <input type="hidden" name="id_usertarget" value="<?= $this->uri->segment('3') ?>">
                                                     <input type="hidden" name="id_userfollow" value="<?= $this->session->userdata('id'); ?>">
@@ -124,7 +124,7 @@
 
                                                 </form>
 
-                                            <?php elseif($fl->id_userfollow == $this->session->userdata('id') and $fl->id_usertarget == $this->uri->segment('3') and $fl->stat == 2) : ?>
+                                            <?php elseif($fl->stat == 2) : ?>
                                                 <form method="post" action="<?= base_url('friend/updateFollow') . "/" . $this->uri->segment('3'); ?> ">
                                                     <input type="hidden" name="id_usertarget" value="<?= $this->uri->segment('3') ?>">
                                                     <input type="hidden" name="id_userfollow" value="<?= $this->session->userdata('id'); ?>">
@@ -135,7 +135,7 @@
                                                     <button class="btn btn-primary" style="background-color: #6fb8df; ; outline: none;">Ikuti lagi pengguna?</button>
                                                 </form>
 
-                                            <?php elseif(is_null($fl->id_userfollow == $this->session->userdata('id') and $fl->id_usertarget == $this->uri->segment('3'))): ?>
+                                            <?php elseif($fl->total == 0): ?>
                                                 <form method="post" action="<?= base_url('friend/addFollow') . "/" . $this->uri->segment('3'); ?>">
                                                     <input type="hidden" name="id_usertarget" value="<?= $this->uri->segment('3') ?>">
                                                     <input type="hidden" name="id_userfollow" value="<?= $this->session->userdata('id'); ?>">
@@ -147,8 +147,8 @@
                                                 </form>
                                             <?php endif; ?>
                                     <?php endforeach; ?>
-                                        </li>
-                                    </ul>
+                                
+                                       
                 </td>
                 </tr>
                                     
