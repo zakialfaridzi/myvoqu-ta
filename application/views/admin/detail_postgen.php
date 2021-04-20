@@ -46,7 +46,7 @@ if (strpos($post->html, $word) !== false): ?>
 					<?php endif;?>
 				</tr>
 			</table>
-			<a href="<?php echo base_url('Admin/indexPostingGen'); ?>" class="btn btn-primary">Kembali</a>
+			<a href="<?php echo base_url('KelolaUnggahanUmum'); ?>" class="btn btn-primary">Kembali</a>
 		</div>
 	</div>
 </div>

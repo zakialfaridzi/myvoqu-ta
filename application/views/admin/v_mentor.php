@@ -24,11 +24,11 @@
 				<i class="fa fa-download"></i> Ekspor
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a href="<?php echo base_url('Admin/printMentor'); ?>" target="_blank" rel="noreferrer"
+				<a href="<?php echo base_url('KelolaMentor/printMentor'); ?>" target="_blank" rel="noreferrer"
 					class="dropdown-item"><i class="fa fa-print"></i> Print</a>
-				<a href="<?php echo base_url('Admin/pdfMentor'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
+				<a href="<?php echo base_url('KelolaMentor/pdfMentor'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
 					PDF</a>
-				<a href="<?php echo base_url('Admin/excelMentor'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
+				<a href="<?php echo base_url('KelolaMentor/excelMentor'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
 					Excel</a>
 
 			</div>
@@ -72,11 +72,11 @@ foreach ($mentor as $m): ?>
 						</td>
 						<?php endif;?>
 						<td>
-							<?php echo anchor('Admin/detailMentor/' . $m->id, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
+							<?php echo anchor('KelolaMentor/detailMentor/' . $m->id, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
 						</td>
 						<?php if ($m->verified == 0): ?>
 						<td onclick="return confirm('Verifikasi Mentor?');">
-							<?php echo anchor('Admin/verifyMentor/' . $m->id, '<div class="btn btn-warning btn-sm"><i class="fa fa-check"></i> Verifikasi</div>') ?>
+							<?php echo anchor('KelolaMentor/verifyMentor/' . $m->id, '<div class="btn btn-warning btn-sm"><i class="fa fa-check"></i> Verifikasi</div>') ?>
 						</td>
 						<?php else: ?>
 						<td>
@@ -85,15 +85,15 @@ foreach ($mentor as $m): ?>
 						<?php endif;?>
 						<?php if ($m->is_active == 2 || $m->is_active == 0): ?>
 						<td onclick="return confirm('Aktivasi Mentor?');">
-							<?php echo anchor('Admin/activateMentor/' . $m->id, '<div class="btn btn-warning btn-sm"><i class="fa fa-check"></i> Aktivasi</div>') ?>
+							<?php echo anchor('KelolaMentor/activateMentor/' . $m->id, '<div class="btn btn-warning btn-sm"><i class="fa fa-check"></i> Aktivasi</div>') ?>
 						</td>
 						<?php else: ?>
 						<td onclick="return confirm('Non Aktivasi Mentor?');">
-							<?php echo anchor('Admin/deactivateMentor/' . $m->id, '<div class="btn btn-warning btn-sm"><i class="fas fa-exclamation-triangle"></i> Non Aktivasi</div>') ?>
+							<?php echo anchor('KelolaMentor/deactivateMentor/' . $m->id, '<div class="btn btn-warning btn-sm"><i class="fas fa-exclamation-triangle"></i> Non Aktivasi</div>') ?>
 						</td>
 						<?php endif;?>
 						<td onclick="return confirm('Hapus Mentor?');">
-							<?php echo anchor('Admin/hapusMentor/' . $m->id, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
+							<?php echo anchor('KelolaMentor/hapusMentor/' . $m->id, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
 						</td>
 					</tr>
 					<?php endforeach;?>

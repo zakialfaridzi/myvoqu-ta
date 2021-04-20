@@ -17,7 +17,7 @@
     </div>
 
     <div class="content">
-    <form action="<?php echo base_url('Admin/updateTodo/' . $this->uri->segment(3)); ?>" method="post">
+    <form action="<?php echo base_url('ToDoListAdmin/updateTodo/' . $this->uri->segment(3)); ?>" method="post">
                 <div class="form-group">
                     <label>Nama Kegiatan</label>
                     <input type="hidden" name="id" id="id" class="form-control col-3" value="<?php echo $this->uri->segment(3); ?>">

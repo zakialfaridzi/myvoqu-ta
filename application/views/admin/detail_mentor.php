@@ -34,10 +34,10 @@
                     <th>Grup yang diajar</th>
 					<td>
                     <?php foreach ($allgroup as $group): if ($group['owner'] == $detail->id) {?>
-							        <ul>
-							            <li><?=$group['nama'];?></li>
-							        </ul>
-							    <?php }
+									        <ul>
+									            <li><?=$group['nama'];?></li>
+									        </ul>
+									    <?php }
 endforeach;?>
                     </td>
                 </tr>
@@ -90,7 +90,7 @@ endforeach;?>
                     <td><img src="<?php echo base_url(); ?>assets/foto/<?php echo $detail->sertif; ?>" width="150" height="150"></td>
                 </tr>
             </table>
-            <a href="<?php echo base_url('Admin/indexMentor'); ?>" class="btn btn-primary">Kembali</a>
+            <a href="<?php echo base_url('KelolaMentor'); ?>" class="btn btn-primary">Kembali</a>
         </div>
     </div>
 </div>

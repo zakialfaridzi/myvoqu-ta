@@ -25,15 +25,15 @@
 				<i class="fa fa-download"></i> Ekspor
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a href="<?php echo base_url('Admin/printPengumuman'); ?>" target="_blank" rel="noreferrer"
+				<a href="<?php echo base_url('PengumumanAdmin/printPengumuman'); ?>" target="_blank" rel="noreferrer"
 					class="dropdown-item"><i class="fa fa-print"></i> Print</a>
-				<a href="<?php echo base_url('Admin/pdfPengumuman'); ?>" class="dropdown-item"><i
+				<a href="<?php echo base_url('PengumumanAdmin/pdfPengumuman'); ?>" class="dropdown-item"><i
 						class="fa fa-file"></i> PDF</a>
-				<a href="<?php echo base_url('Admin/excelPengumuman'); ?>" class="dropdown-item"><i
+				<a href="<?php echo base_url('PengumumanAdmin/excelPengumuman'); ?>" class="dropdown-item"><i
 						class="fa fa-file"></i> Excel</a>
 			</div>
 			&emsp;
-			<?php echo anchor('Admin/createPengumuman', '<button type="button" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Buat Pengumuman Baru</button>') ?>
+			<?php echo anchor('PengumumanAdmin/createPengumuman', '<button type="button" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Buat Pengumuman Baru</button>') ?>
 		</div>
 
 		<div class="table-responsive-sm">
@@ -54,10 +54,10 @@ foreach ($pengumuman as $u): ?>
 						<td><?php echo $u->isi_pengumuman ?></td>
 						<td><?php echo date("Y-m-d H:i:s", strtotime('+5 hours', $u->datepost)); ?></td>
 						<td>
-							<?php echo anchor('Admin/editPengumuman/' . $u->id, '<div class="btn btn-info btn-sm"><i class="fa fa-check"></i> Sunting</div>') ?>
+							<?php echo anchor('PengumumanAdmin/editPengumuman/' . $u->id, '<div class="btn btn-info btn-sm"><i class="fa fa-check"></i> Sunting</div>') ?>
 						</td>
 						<td onclick="return confirm('Hapus Pengumuman?');">
-							<?php echo anchor('Admin/deletePengumuman/' . $u->id, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
+							<?php echo anchor('PengumumanAdmin/deletePengumuman/' . $u->id, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
 						</td>
 					</tr>
 					<?php endforeach;?>

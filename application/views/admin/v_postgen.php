@@ -24,11 +24,11 @@
 				<i class="fa fa-download"></i> Ekspor
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a href="<?php echo base_url('Admin/printPostingGen'); ?>" target="_blank" rel="noreferrer"
+				<a href="<?php echo base_url('KelolaUnggahanUmum/printPostingGen'); ?>" target="_blank" rel="noreferrer"
 					class="dropdown-item"><i class="fa fa-print"></i> Print</a>
-				<a href="<?php echo base_url('Admin/pdfPostingGen'); ?>" class="dropdown-item"><i
+				<a href="<?php echo base_url('KelolaUnggahanUmum/pdfPostingGen'); ?>" class="dropdown-item"><i
 						class="fa fa-file"></i> PDF</a>
-				<a href="<?php echo base_url('Admin/excelPostingGen'); ?>" class="dropdown-item"><i
+				<a href="<?php echo base_url('KelolaUnggahanUmum/excelPostingGen'); ?>" class="dropdown-item"><i
 						class="fa fa-file"></i> Excel</a>
 			</div>
 		</div>
@@ -50,10 +50,10 @@ foreach ($post as $u): ?>
 						<td><?php echo $u->id_posting ?></td>
 						<td><?php echo $u->caption ?></td>
 						<td>
-							<?php echo anchor('Admin/detailPostingGen/' . $u->id_posting, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
+							<?php echo anchor('KelolaUnggahanUmum/detailPostingGen/' . $u->id_posting, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
 						</td>
 						<td onclick="return confirm('Hapus Unggahan?');">
-							<?php echo anchor('Admin/DelPosGen/' . $u->id_posting, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
+							<?php echo anchor('KelolaUnggahanUmum/HapusPostGen/' . $u->id_posting, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
 						</td>
 					</tr>
 					<?php endforeach;?>

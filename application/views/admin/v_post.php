@@ -24,11 +24,11 @@
 				<i class="fa fa-download"></i> Ekspor
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a href="<?php echo base_url('Admin/printPosting'); ?>" target="_blank" rel="noreferrer"
+				<a href="<?php echo base_url('KelolaUnggahan/printPosting'); ?>" target="_blank" rel="noreferrer"
 					class="dropdown-item"><i class="fa fa-print"></i> Print</a>
-				<a href="<?php echo base_url('Admin/pdfPosting'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
+				<a href="<?php echo base_url('KelolaUnggahan/pdfPosting'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
 					PDF</a>
-				<a href="<?php echo base_url('Admin/excelPosting'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
+				<a href="<?php echo base_url('KelolaUnggahan/excelPosting'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
 					Excel</a>
 				<!-- <a href="" class="dropdown-item"><i class="fa fa-file"></i> send pdf</a> -->
 			</div>
@@ -63,10 +63,10 @@ foreach ($post as $u): ?>
 						</td>
 						<?php endif;?>
 						<td>
-							<?php echo anchor('Admin/detailPosting/' . $u->id_posting, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
+							<?php echo anchor('KelolaUnggahan/detailPosting/' . $u->id_posting, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
 						</td>
 						<td onclick="return confirm('Hapus Post?');">
-							<?php echo anchor('Admin/hapusPosting/' . $u->id_posting, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
+							<?php echo anchor('KelolaUnggahan/hapusPosting/' . $u->id_posting, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
 						</td>
 					</tr>
 					<?php endforeach;?>

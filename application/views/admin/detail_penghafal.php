@@ -107,7 +107,7 @@
                     <td><img src="<?php echo base_url(); ?>assets_user/images/<?php echo $detail->image; ?>" width="150" height="150"></td>
                 </tr>
             </table>
-            <a href="<?php echo base_url('Admin/indexPenghafal'); ?>" class="btn btn-primary">Kembali</a>
+            <a href="<?php echo base_url('KelolaPenghafal/'); ?>" class="btn btn-primary">Kembali</a>
         </div>
     </div>
 </div>
