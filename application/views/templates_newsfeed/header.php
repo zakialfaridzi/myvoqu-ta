@@ -291,6 +291,7 @@ endforeach;?>
 
                 <script type="text/javascript">
                 $('#pay-button').click(function(event) {
+ 
                     event.preventDefault();
                     $(this).attr("disabled", "disabled");
                     var nominal = $("#nominal").val();

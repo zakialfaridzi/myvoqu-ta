@@ -881,7 +881,7 @@ class Admin extends CI_Controller
 
         if ((substr($fileName, -3, 3) == 'mp4') || (substr($fileName, -3, 3) == 'mkv') || (substr($fileName, -3, 3) == 'flv')) {
 
-            $html .= '<video class="post-video" controls width="500" height="500">';
+            $html = '<video class="post-video" controls width="500" height="500">';
             $html .= '<source src=' . base_url('assets_user/file_upload/');
             $html .= $fileName . ' type="video/mp4">';
             $html .= '</video>';
@@ -1268,8 +1268,8 @@ class Admin extends CI_Controller
         $config = [
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_user' => 'tepung1123@gmail.com',
-            'smtp_pass' => 'haM9p{&3r?GRP{.}',
+            'smtp_user' => 'unregistered30@gmail.com',
+            'smtp_pass' => 'Medellincartel13!',
             'smtp_port' => 465,
             'mailtype' => 'html',
             'charset' => 'utf-8',
