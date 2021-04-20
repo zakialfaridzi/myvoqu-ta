@@ -58,7 +58,6 @@ $smileys = array(
     ':coolcheese:' => array('shade_cheese.gif', '19', '19', 'cool cheese'),
     ':vampire:' => array('vampire.gif', '19', '19', 'vampire'),
     ':snake:' => array('snake.gif', '19', '19', 'snake'),
-    ':exclaim:' => array('exclaim.gif', '19', '19', 'exclaim'),
     ':question:' => array('question.gif', '19', '19', 'question'),
 
 );

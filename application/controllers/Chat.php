@@ -131,7 +131,7 @@ class Chat extends CI_Controller
             $this->load->library('table');
 
             $image_array = get_clickable_smileys(base_url() . 'assets/smileys/', 'comment');
-            $col_array = $this->table->make_columns($image_array, 20);
+            $col_array = $this->table->make_columns($image_array, 13);
 
             $data['smiley_table'] = $this->table->generate($col_array);
             $data['otherUser'] = $this->User_model->getOherUserData();
