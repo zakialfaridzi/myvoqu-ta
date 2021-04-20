@@ -228,7 +228,7 @@ endforeach;?>
 
 
 
-                                    <div class="alert alert-info alert-dismissible show" role="alert">
+                                    <div class="alert alert-warning alert-dismissible show" role="alert">
                                         Minimal pengisian wallet adalah <strong>Rp10.0000,00</strong>
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
