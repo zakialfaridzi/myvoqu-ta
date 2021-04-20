@@ -2,7 +2,7 @@
 <script>
 var from = null,
     start = 0,
-    url = 'http://localhost/myvoqu/Chat/chat.php';
+    url = '<?=base_url('')?>/Chat/chat.php';
 $(document).ready(function() {
     from = "Anon"
     load();

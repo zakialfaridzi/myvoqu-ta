@@ -128,6 +128,7 @@ class Library extends CI_Controller
         $data['idlogin'] = $this->Materi_model->getLog($idlog);
         $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
         $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
