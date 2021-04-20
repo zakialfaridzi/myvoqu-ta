@@ -9,6 +9,11 @@ class Colab extends CI_Controller
         parent::__construct();
         $this->load->model('User_model');
         $this->load->library('form_validation');
+        if (empty($this->session->userdata('id'))) {
+
+            redirect('auth');
+
+        }
 
         $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
 
@@ -38,7 +43,9 @@ class Colab extends CI_Controller
 		</button>
 		</div>');
         redirect('auth');
+
     }
+
     public function index()
     {
         $data['saldo_wallet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
@@ -75,8 +82,52 @@ class Colab extends CI_Controller
 
             $this->load->view('templates_newsfeed/topbar', $data);
             $this->load->view('templates_newsfeed/header', $data);
+            $this->load->view('colab/choose_participant', $data);
+            $this->load->view('templates_newsfeed/footer');
+        }
+    }
+
+    public function doColab()
+    {
+        $data['saldo_wallet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['search'] = 'none';
+        $data['upload'] = '';
+        $data['colorSearch'] = '#0486FE';
+        $data['posting'] = $this->User_model->getPosting();
+        $data['comment'] = $this->User_model->getComment();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['allUser'] = $this->User_model->getUserData();
+        $data['user'] = $this->User_model->getUser();
+        $data['title'] = 'Home';
+        $data2['notification'] = $this->User_model->getNotification();
+        $data['idpost'] = $this->User_model->getidpost();
+        $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
+        $data['suggestion'] = $this->User_model->getSuggest();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
+
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
+
+        if (empty($data['user']['email'])) {
+            $this->sessionLogin();
+        } elseif ($data['user']['role_id'] == 1) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger ">
+            Your access is only for admin, sorry :(
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+            redirect('admin');
+        } else {
+            $data['otherUser'] = $this->User_model->getOtherUserData();
+            // $data['kode'] = $code;
+            $this->load->view('templates_newsfeed/topbar', $data);
+            $this->load->view('templates_newsfeed/header', $data);
             $this->load->view('colab/index', $data);
             $this->load->view('templates_newsfeed/footer');
         }
     }
+
+	
+
 }
