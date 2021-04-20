@@ -24,11 +24,11 @@
 				<i class="fa fa-download"></i> Ekspor
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a href="<?php echo base_url('Admin/printGroup'); ?>" target="_blank" rel="noreferrer"
+				<a href="<?php echo base_url('KelolaGrup/printGroup'); ?>" target="_blank" rel="noreferrer"
 					class="dropdown-item"><i class="fa fa-print"></i> Print</a>
-				<a href="<?php echo base_url('Admin/pdfGroup'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
+				<a href="<?php echo base_url('KelolaGrup/pdfGroup'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
 					PDF</a>
-				<a href="<?php echo base_url('Admin/excelGroup'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
+				<a href="<?php echo base_url('KelolaGrup/excelGroup'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
 					Excel</a>
 			</div>
 		</div>
@@ -46,10 +46,10 @@ foreach ($group as $m): ?>
 						<td><?php echo $no++; ?></td>
 						<td><?php echo $m->nama ?></td>
 						<td>
-							<?php echo anchor('Admin/detailGroup/' . $m->id, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
+							<?php echo anchor('KelolaGrup/detailGroup/' . $m->id, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
 						</td>
 						<td onclick="return confirm('Hapus Grup?');">
-							<?php echo anchor('Admin/hapusGroup/' . $m->id, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
+							<?php echo anchor('KelolaGrup/hapusGroup/' . $m->id, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
 						</td>
 					</tr>
 					<?php endforeach;?>

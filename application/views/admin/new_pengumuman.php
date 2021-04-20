@@ -17,7 +17,7 @@
     </div>
 
     <div class="content m-2">
-    <form action="<?php echo base_url('Admin/savePengumuman') ?>" method="post">
+    <form action="<?php echo base_url('PengumumanAdmin/savePengumuman') ?>" method="post">
                 <div class="form-group">
                     <label>Isi Pengumuman</label>
                     <input type="text" name="namapengumuman" id='namapengumuman' class="form-control col-3" required>

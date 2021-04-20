@@ -65,7 +65,7 @@
                     </tr>
                 <?php endforeach;?>
             </table>
-            <a href="<?php echo base_url('Admin/indexPosting'); ?>" class="btn btn-primary">Kembali</a>
+            <a href="<?php echo base_url('KelolaUnggahan'); ?>" class="btn btn-primary">Kembali</a>
         </div>
     </div>
 </div>

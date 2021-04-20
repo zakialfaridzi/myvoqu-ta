@@ -17,7 +17,7 @@
     </div>
 
     <div class="content m-2">
-    <form action="<?php echo base_url('Admin/saveTodo') ?>" method="post">
+    <form action="<?php echo base_url('ToDoListAdmin/saveTodo') ?>" method="post">
                 <div class="form-group">
                     <label>Nama Kegiatan</label>
                     <input type="text" name="namatodo" id='namatodo' class="form-control col-3" required>

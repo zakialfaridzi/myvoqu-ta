@@ -44,7 +44,7 @@
         <?php endforeach;?>
 
 
-        <h5 class="grey">Postingan Admin</h5>
+        <h5 class="grey">Materi dari Admin</h5>
 
         <?php foreach ($postgen as $pst): ?>
         <div class="follow-user">

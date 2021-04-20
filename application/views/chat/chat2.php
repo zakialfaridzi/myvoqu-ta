@@ -27,7 +27,7 @@
                                     <div class="chat-item">
                                         <div class="chat-item-header">
                                             <h5><?= $pst->name; ?></h5>
-                                            <small class="text-muted">Dikirimkan pada <?= date('d F Y h:m:sa ', $pst->date); ?></small>
+                                            <small class="text-muted"> <?= date('d F Y h:m:sa ', $pst->date); ?></small>
                                         </div>
                                         <p>
                                             <?php
@@ -46,9 +46,14 @@
                 <div class="post-comment" style="height: 250px;">
                     <?php echo smiley_js(); ?>
                     <form method="post" action="<?= base_url('Chat/kirimPesan') . "/" . $this->uri->segment('3'); ?>">
-                        <input type="text" name="isi_pesan" id="comment" class="form-control" placeholder="Ketik Pesan">
+                <div class="form-group col-md-9 col-xs-9">
+                    <input type="text" name="isi_pesan" id="comment" class="form-control" placeholder="Ketik Pesan">
                         <input type="hidden" name="id" value="<?= $this->session->userdata('id'); ?>">
-                        <input type="submit" class="btn-primary" style="height: 45px; margin-left:460px; margin-top: 7px; background-color: #6fb8df; scroll-behavior: smooth;" value="Kirim">
+                </div>
+                <div class="form-group col-md-3 col-xs-3">
+                        <input type="submit" class="btn-primary" style="background-color: #6fb8df; margin-left:-10px; scroll-behavior: smooth;" value="Kirim">
+                </div>
+                        
                     </form>
                     <p>Klik untuk memasukan emoticon</p>
                     <?php echo $smiley_table; ?>

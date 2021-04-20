@@ -15,7 +15,7 @@
                       <img src="<?php echo base_url() ?>/assets/foto/<?php echo $mhs->image ?>" height="160" width="160" style="border-radius: 10%" alt="User Image">
                   </div>
                   <div class="info">
-                      <a href="<?php echo base_url('Admin/indexProfile/') ?>" class="d-block"><?php
+                      <a href="<?php echo base_url('ProfileAdmin/') ?>" class="d-block"><?php
 echo $mhs->name
 ?>
                       </a>
@@ -29,7 +29,7 @@ echo $mhs->name
                       <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                       <li class="nav-item">
-                          <a href="<?php echo base_url('Admin/index/'); ?>" class="nav-link <?php echo $this->uri->segment(2) == '' || $this->uri->segment(2) == 'index' ? 'active' : '' ?>">
+                          <a href="<?php echo base_url('Admin'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'Admin' ? 'active' : '' ?>">
                               <i class="nav-icon fas fa-home"></i>
                               <p>
                                   Dashboard
@@ -46,7 +46,7 @@ echo $mhs->name
                           </a>
                           <ul class="nav nav-treeview">
                               <li class="nav-item ml-3">
-                                  <a href="<?php echo base_url('Admin/indexPenghafal/'); ?>" class="nav-link <?php echo $this->uri->segment(2) == 'indexPenghafal' ? 'active' : '' ?>">
+                                  <a href="<?php echo base_url('KelolaPenghafal/'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'KelolaPenghafal' ? 'active' : '' ?>">
                                       <i class="nav-icon fas fa-users"></i>
                                       <p>
                                           Kelola Penghafal
@@ -54,7 +54,7 @@ echo $mhs->name
                                   </a>
                               </li>
                               <li class="nav-item ml-3">
-                                  <a href="<?php echo base_url('Admin/indexMentor/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'indexMentor' ? 'active' : '' ?>">
+                                  <a href="<?php echo base_url('KelolaMentor/') ?>" class="nav-link <?php echo $this->uri->segment(1) == 'KelolaMentor' ? 'active' : '' ?>">
                                       <i class="nav-icon fas fa-chalkboard-teacher"></i>
                                       <p>
                                           Kelola Mentor
@@ -62,7 +62,7 @@ echo $mhs->name
                                   </a>
                               </li>
                               <li class="nav-item ml-3">
-                                  <a href="<?php echo base_url('Admin/indexPosting/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'indexPosting' ? 'active' : '' ?>">
+                                  <a href="<?php echo base_url('KelolaUnggahan/') ?>" class="nav-link <?php echo $this->uri->segment(1) == 'KelolaUnggahan' ? 'active' : '' ?>">
                                       <i class="nav-icon fas fa-upload"></i>
                                       <p>
                                           Kelola Unggahan
@@ -70,7 +70,7 @@ echo $mhs->name
                                   </a>
                               </li>
                               <li class="nav-item ml-3">
-                                  <a href="<?php echo base_url('Admin/indexPostingGen/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'indexPostingGen' ? 'active' : '' ?>">
+                                  <a href="<?php echo base_url('KelolaUnggahanUmum') ?>" class="nav-link <?php echo $this->uri->segment(1) == 'KelolaUnggahanUmum' ? 'active' : '' ?>">
                                       <i class="nav-icon fas fa-upload"></i>
                                       <p>
                                           Kelola Materi Umum
@@ -78,7 +78,7 @@ echo $mhs->name
                                   </a>
                               </li>
                               <li class="nav-item ml-3">
-                                  <a href="<?php echo base_url('Admin/indexGroup/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'indexGroup' ? 'active' : '' ?>">
+                                  <a href="<?php echo base_url('KelolaGrup') ?>" class="nav-link <?php echo $this->uri->segment(1) == 'KelolaGrup' ? 'active' : '' ?>">
                                       <i class="nav-icon fa fa-users"></i>
                                       <p>
                                           Kelola Grup Hafalan
@@ -88,7 +88,7 @@ echo $mhs->name
                           </ul>
                       </li>
                       <li class="nav-item">
-                          <a href="<?php echo base_url('Admin/pagepostGen/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'pagepostGen' ? 'active' : '' ?>">
+                          <a href="<?php echo base_url('UnggahMateriUmum') ?>" class="nav-link <?php echo $this->uri->segment(1) == 'UnggahMateriUmum' ? 'active' : '' ?>">
                               <i class="nav-icon fas fa-book-open"></i>
                               <p>
                                   Unggah Materi Umum
@@ -96,7 +96,7 @@ echo $mhs->name
                           </a>
                       </li>
                       <li class="nav-item">
-                          <a href="<?php echo base_url('Admin/indexPengumuman/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'indexPengumuman' ? 'active' : '' ?>">
+                          <a href="<?php echo base_url('PengumumanAdmin') ?>" class="nav-link <?php echo $this->uri->segment(1) == 'PengumumanAdmin' ? 'active' : '' ?>">
                               <i class="nav-icon fas fa-exclamation-circle"></i>
                               <p>
                                   Buat Pengumuman
@@ -104,7 +104,7 @@ echo $mhs->name
                           </a>
                       </li>
                       <li class="nav-item">
-                          <a href="<?php echo base_url('Admin/indexTodo/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'indexTodo' ? 'active' : '' ?>">
+                          <a href="<?php echo base_url('ToDoListAdmin') ?>" class="nav-link <?php echo $this->uri->segment(1) == 'ToDoListAdmin' ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-tasks"></i>
                               <p>
                                   Daftar Kegiatan Admin

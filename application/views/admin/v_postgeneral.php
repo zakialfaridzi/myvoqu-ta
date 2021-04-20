@@ -17,7 +17,7 @@
 
     <div class="content">
         <?php echo $this->session->flashdata('message'); ?>
-        <form action="<?php echo base_url() . 'Admin/postingGen'; ?>" method="post" enctype="multipart/form-data">
+        <form action="<?php echo base_url() . 'UnggahMateriUmum/postingGen'; ?>" method="post" enctype="multipart/form-data">
             <div class="form-group col-4">
                 <label>Caption (Keterangan)</label>
                 <input type="hidden" name="id" id="id" class="form-control">

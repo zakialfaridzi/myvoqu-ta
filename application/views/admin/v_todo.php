@@ -25,15 +25,15 @@
 				<i class="fa fa-download"></i> Ekspor
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a href="<?php echo base_url('Admin/printTodo'); ?>" target="_blank" rel="noreferrer"
+				<a href="<?php echo base_url('ToDoListAdmin/printTodo'); ?>" target="_blank" rel="noreferrer"
 					class="dropdown-item"><i class="fa fa-print"></i> Print</a>
-				<a href="<?php echo base_url('Admin/pdfTodo'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
+				<a href="<?php echo base_url('ToDoListAdmin/pdfTodo'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
 					PDF</a>
-				<a href="<?php echo base_url('Admin/excelTodo'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
+				<a href="<?php echo base_url('ToDoListAdmin/excelTodo'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
 					Excel</a>
 			</div>
 			&emsp;
-			<?php echo anchor('Admin/createTodo', '<button type="button" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Buat Kegiatan Baru</button>') ?>
+			<?php echo anchor('ToDoListAdmin/createTodo', '<button type="button" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Buat Kegiatan Baru</button>') ?>
 		</div>
 
 		<div class="table-responsive-sm">
@@ -53,18 +53,18 @@ foreach ($todo as $u): ?>
 						<td><?php echo $u->task_name ?></td>
 						<?php if ($u->state != 1): ?>
 						<td onclick="return confirm('Selesaikan Kegiatan?');">
-							<?php echo anchor('Admin/doneTodo/' . $u->id, '<div class="btn btn-primary btn-sm"><i class="fa fa-check"></i> Selesai</div>') ?>
+							<?php echo anchor('ToDoListAdmin/doneTodo/' . $u->id, '<div class="btn btn-primary btn-sm"><i class="fa fa-check"></i> Selesai</div>') ?>
 						</td>
 						<?php else: ?>
 						<td onclick="return confirm('Belum Selesaikan Kegiatan?');">
-							<?php echo anchor('Admin/undoneTodo/' . $u->id, '<div class="btn btn-danger btn-sm"><i class="fas fa-check"></i> Belum Selesai</div>') ?>
+							<?php echo anchor('ToDoListAdmin/undoneTodo/' . $u->id, '<div class="btn btn-danger btn-sm"><i class="fas fa-check"></i> Belum Selesai</div>') ?>
 						</td>
 						<?php endif;?>
 						<td>
-							<?php echo anchor('Admin/editTodo/' . $u->id, '<div class="btn btn-info btn-sm"><i class="fa fa-check"></i> Sunting</div>') ?>
+							<?php echo anchor('ToDoListAdmin/editTodo/' . $u->id, '<div class="btn btn-info btn-sm"><i class="fa fa-check"></i> Sunting</div>') ?>
 						</td>
 						<td onclick="return confirm('Hapus Kegiatan?');">
-							<?php echo anchor('Admin/deleteTodo/' . $u->id, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
+							<?php echo anchor('ToDoListAdmin/deleteTodo/' . $u->id, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
 						</td>
 					</tr>
 					<?php endforeach;?>

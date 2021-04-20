@@ -151,6 +151,7 @@ echo $str;
                     
                 </form>
                 <?php endif;?>
+                
             </div>
 
 
@@ -172,7 +173,7 @@ echo $str;
 
         </div>
         <p>Klik untuk memasukan emoticon!</p>
-        <?php echo $smiley_table; ?>
+        <div style="justify-content: center;"><?php echo $smiley_table; ?></div>
     </div>
 </div>
 </div>
