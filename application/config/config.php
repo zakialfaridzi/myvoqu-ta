@@ -28,7 +28,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 // $config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT_NAME']);
 // http://ae662992cfe3.ap.ngrok.io/myvoqu/
 
-$config['base_url'] = 'https://8d858c329b67.ap.ngrok.io/myvoqu/';
+$config['base_url'] = 'http://localhost/myvoqu/';
 
 /*
 |--------------------------------------------------------------------------
