@@ -26,13 +26,13 @@ keyword.addEventListener("keyup", function () {
 
 		xhr.open(
 			"GET",
-			"http://localhost/myvoqu/friend/getUserByName/" + keyword.value,
+			"https://8d858c329b67.ap.ngrok.io/myvoqu/friend/getUserByName/" + keyword.value,
 			true
 		);
 	} else {
 		xhr.open(
 			"GET",
-			"http://localhost/myvoqu/infaq/getUserByNameMentor/" + keyword.value,
+			"https://8d858c329b67.ap.ngrok.io/myvoqu/infaq/getUserByNameMentor/" + keyword.value,
 			true
 		);
 	}
