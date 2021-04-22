@@ -49,7 +49,11 @@ class KelolaGrup extends CI_Controller
     public function printGroup()
     {
         $data['mahasiswa'] = $this->Admin_model->tampil_group();
+        $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
+        $this->load->view('templates/headerGroup');
+        $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/print_group', $data);
+        $this->load->view('templates/footer');
     }
 
     public function pdfGroup()

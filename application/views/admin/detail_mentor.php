@@ -10,7 +10,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Beranda</a></li>
-                            <li class="breadcrumb-item">Data Mentor MyVoqu</li>
+                            <li class="breadcrumb-item"><a href="<?php echo base_url('KelolaMentor') ?>">Data Mentor MyVoqu</a></li>
                             <li class="breadcrumb-item active">Detil Data Mentor MyVoqu</li>
                         </ol>
                     </div><!-- /.col -->
@@ -34,10 +34,10 @@
                     <th>Grup yang diajar</th>
 					<td>
                     <?php foreach ($allgroup as $group): if ($group['owner'] == $detail->id) {?>
-									        <ul>
-									            <li><?=$group['nama'];?></li>
-									        </ul>
-									    <?php }
+											        <ul>
+											            <li><?=$group['nama'];?></li>
+											        </ul>
+											    <?php }
 endforeach;?>
                     </td>
                 </tr>

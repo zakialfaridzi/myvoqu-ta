@@ -10,7 +10,7 @@
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
 							<li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Beranda</a></li>
-							<li class="breadcrumb-item">Data Unggahan Materi Umum</li>
+							<li class="breadcrumb-item"><a href="<?php echo base_url('KelolaUnggahanUmum') ?>">Data Unggahan Materi Umum</a></li>
 							<li class="breadcrumb-item active">Detil Unggahan Materi Umum MyVoqu</li>
 						</ol>
 					</div><!-- /.col -->

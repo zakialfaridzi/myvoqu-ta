@@ -43,7 +43,7 @@
             </ul>
 
             <!-- SEARCH FORM -->
-            <?php echo form_open('Admin/searchPenghafal') ?>
+            <?php echo form_open('KelolaPenghafal/searchPenghafal') ?>
             <div class="input-group input-group-sm">
 
 
@@ -65,7 +65,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <div class="dropdown-divider"></div>
-                        <a href="<?php echo base_url('Admin/indexProfile') ?>" class="dropdown-item">
+                        <a href="<?php echo base_url('ProfileAdmin/') ?>" class="dropdown-item">
                             <i class="fas fa-user-circle"></i> My Profile
                         </a>
                         <div class=" dropdown-divider">

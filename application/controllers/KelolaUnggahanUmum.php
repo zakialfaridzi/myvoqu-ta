@@ -50,7 +50,11 @@ class KelolaUnggahanUmum extends CI_Controller
     public function printPostingGen()
     {
         $data['post'] = $this->Admin_model->tampil_postgen();
+        $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
+        $this->load->view('templates/headerPostGen');
+        $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/print_postgen', $data);
+        $this->load->view('templates/footer');
     }
 
     public function pdfPostingGen()

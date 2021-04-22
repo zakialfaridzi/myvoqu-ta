@@ -95,7 +95,11 @@ class KelolaPenghafal extends CI_Controller
     public function printPenghafal()
     {
         $data['mahasiswa'] = $this->Admin_model->tampil_data();
+        $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/print_users', $data);
+        $this->load->view('templates/footer');
     }
 
     public function pdfPenghafal()
