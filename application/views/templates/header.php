@@ -66,12 +66,12 @@
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <div class="dropdown-divider"></div>
                         <a href="<?php echo base_url('ProfileAdmin/') ?>" class="dropdown-item">
-                            <i class="fas fa-user-circle"></i> My Profile
+                            <i class="fas fa-user-circle"></i> Profil Admin
                         </a>
                         <div class=" dropdown-divider">
                         </div>
                         <a href="<?php echo base_url('Admin/logout') ?>" class="dropdown-item">
-                            <i class="fas fa-sign-out-alt"></i> Log Out
+                            <i class="fas fa-sign-out-alt"></i> Keluar
                         </a>
                     </div>
                 </li>
