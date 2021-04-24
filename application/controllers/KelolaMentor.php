@@ -57,12 +57,6 @@ class KelolaMentor extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function printMentor()
-    {
-        $data['mahasiswa'] = $this->Admin_model->tampil_mentor();
-        $this->load->view('admin/print_mentor', $data);
-    }
-
     public function verifyMentor($id)
     {
         $data = array(
@@ -116,7 +110,15 @@ class KelolaMentor extends CI_Controller
 	</div>');
 
         redirect('KelolaMentor/');
+    }
 
+    public function printMentor()
+    {
+        $data['mahasiswa'] = $this->Admin_model->tampil_mentor();
+        $data['title'] = "Data Mentor MyVoQu";
+        $this->load->view('templates/headerMentor');
+        $this->load->view('admin/print_mentor', $data);
+        $this->load->view('templates/footer');
     }
 
     public function pdfMentor()

@@ -30,21 +30,6 @@ class ProfileAdmin extends CI_Controller
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_profad', $data);
         $this->load->view('templates/footer');
-
-        // $upload_image = $_FILES['image']['name'];
-        // if ($upload_image) {
-        //     $config['allowed_types'] = 'jpg|jpeg|png|gif';
-        //     $config['max_size'] = '10000';
-        //     $config['upload_path'] = './assets/foto/';
-
-        //     $this->load->library('upload', $config);
-        //     if ($this->upload->do_upload('image')) {
-        //         $new_image = $this->upload->data('file_name');
-        //         $this->db->set('image', $new_image);
-        //     } else {
-        //         echo $this->upload->display_errors();
-        //     }
-        // }
     }
 
     public function updateProfile()

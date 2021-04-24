@@ -50,7 +50,11 @@ class KelolaUnggahan extends CI_Controller
     public function printPosting()
     {
         $data['post'] = $this->Admin_model->tampil_post();
+        $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
+        $this->load->view('templates/headerPosting');
+        $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/print_post', $data);
+        $this->load->view('templates/footer');
     }
 
     public function pdfPosting()

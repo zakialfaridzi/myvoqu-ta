@@ -90,7 +90,11 @@ class PengumumanAdmin extends CI_Controller
     public function printPengumuman()
     {
         $data['mahasiswa'] = $this->Admin_model->tampil_pengumuman();
+        $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/print_pengumuman', $data);
+        $this->load->view('templates/footer');
     }
 
     public function pdfPengumuman()

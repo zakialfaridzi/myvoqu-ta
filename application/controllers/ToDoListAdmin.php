@@ -118,7 +118,11 @@ class ToDoListAdmin extends CI_Controller
     public function printTodo()
     {
         $data['mahasiswa'] = $this->Admin_model->tampil_todo();
+        $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/print_todo', $data);
+        $this->load->view('templates/footer');
     }
 
     public function pdfTodo()
