@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?=$judul;?></title>
+    <title><?php echo $judul; ?></title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -43,11 +43,11 @@
             </ul>
 
             <!-- SEARCH FORM -->
-            <?php echo form_open('KelolaPenghafal/searchPenghafal') ?>
+            <?php echo form_open('ToDoListAdmin/searchTodo') ?>
             <div class="input-group input-group-sm">
 
 
-                <input class="form-control form-control-navbar" type="search" placeholder="Cari" aria-label="Search" name="search" id="search">
+                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
                 <div class="input-group-append">
                     <button class="btn btn-navbar" type="submit">
                         <i class="fas fa-search"></i>
@@ -65,7 +65,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <div class="dropdown-divider"></div>
-                        <a href="<?php echo base_url('ProfileAdmin/') ?>" class="dropdown-item">
+                        <a href="<?php echo base_url('ProfileAdmin') ?>" class="dropdown-item">
                             <i class="fas fa-user-circle"></i> Profil Admin
                         </a>
                         <div class=" dropdown-divider">

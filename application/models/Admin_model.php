@@ -407,6 +407,15 @@ class Admin_model extends CI_model
         return $this->db->get_where('tasks', ['id' => $id])->row_array();
     }
 
+    public function get_searchTodo($search)
+    {
+        $this->db->select('*');
+        $this->db->from('tasks');
+        $this->db->like('task_name', $search);
+        $this->db->or_like('id', $search);
+        return $this->db->get()->result();
+    }
+
     public function tampil_pengumuman()
     {
         $data = $this->db->query('select * from pengumuman')->result();
@@ -445,5 +454,14 @@ class Admin_model extends CI_model
     public function getPengumumanById($id)
     {
         return $this->db->get_where('pengumuman', ['id' => $id])->row_array();
+    }
+
+    public function get_searchPengumuman($search)
+    {
+        $this->db->select('*');
+        $this->db->from('pengumuman');
+        $this->db->like('isi_pengumuman', $search);
+        $this->db->or_like('id', $search);
+        return $this->db->get()->result();
     }
 }

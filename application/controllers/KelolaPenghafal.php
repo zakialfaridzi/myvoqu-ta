@@ -13,7 +13,8 @@ class KelolaPenghafal extends CI_Controller
     {
         $data['user'] = $this->Admin_model->tampil_data();
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/header');
+        $dats['judul'] = "Admin | Kelola Data Penghafal";
+        $this->load->view('templates/header', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_penghafal', $data);
         $this->load->view('templates/footer');
@@ -86,7 +87,9 @@ class KelolaPenghafal extends CI_Controller
         $data['detail'] = $detail;
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
 
-        $this->load->view('templates/header');
+        $dats['judul'] = "Admin | Detil Data Penghafal";
+        $this->load->view('templates/header', $dats);
+
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/detail_penghafal', $data);
         $this->load->view('templates/footer');
@@ -96,7 +99,8 @@ class KelolaPenghafal extends CI_Controller
     {
         $data['mahasiswa'] = $this->Admin_model->tampil_data();
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/header');
+        $dats['judul'] = "Admin | Print Data Penghafal";
+        $this->load->view('templates/header', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/print_users', $data);
         $this->load->view('templates/footer');
@@ -169,7 +173,8 @@ class KelolaPenghafal extends CI_Controller
         $data['user'] = $this->Admin_model->get_search($search);
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
 
-        $this->load->view('templates/header');
+        $dats['judul'] = "Admin | Kelola Data Penghafal";
+        $this->load->view('templates/header', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_penghafal', $data);
         $this->load->view('templates/footer');

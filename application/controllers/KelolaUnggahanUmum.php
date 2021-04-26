@@ -13,7 +13,8 @@ class KelolaUnggahanUmum extends CI_Controller
     {
         $data['post'] = $this->Admin_model->tampil_postgen();
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerPostGen');
+        $dats['judul'] = "Admin | Kelola Data Materi Umum";
+        $this->load->view('templates/headerPostGen', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_postgen', $data);
         $this->load->view('templates/footer');
@@ -41,7 +42,8 @@ class KelolaUnggahanUmum extends CI_Controller
         $detail = $this->Admin_model->detail_postgen($id);
         $data['post'] = $detail;
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerPostGen');
+        $dats['judul'] = "Admin | Detil Data Materi Umum";
+        $this->load->view('templates/headerPostGen', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/detail_postgen', $data);
         $this->load->view('templates/footer');
@@ -51,7 +53,8 @@ class KelolaUnggahanUmum extends CI_Controller
     {
         $data['post'] = $this->Admin_model->tampil_postgen();
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerPostGen');
+        $dats['judul'] = "Admin | Print Data Materi Umum";
+        $this->load->view('templates/headerPostGen', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/print_postgen', $data);
         $this->load->view('templates/footer');
@@ -123,7 +126,8 @@ class KelolaUnggahanUmum extends CI_Controller
         $search = $this->input->post('search');
         $data['post'] = $this->Admin_model->get_searchPostgen($search);
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerPostGen');
+        $dats['judul'] = "Admin | Kelola Data Materi Umum";
+        $this->load->view('templates/headerPostGen', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_postgen', $data);
         $this->load->view('templates/footer');

@@ -12,7 +12,8 @@ class ProfileAdmin extends CI_Controller
     public function index()
     {
         $data['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/header');
+        $dats['judul'] = "Admin | Kelola Profil Admin";
+        $this->load->view('templates/header', $dats);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('admin/v_profad', $data);
         $this->load->view('templates/footer');
@@ -26,7 +27,8 @@ class ProfileAdmin extends CI_Controller
 
         $data['mahasiswa'] = $this->Admin_model->edit_data($where, 'user')->result();
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/header');
+        $dats['judul'] = "Admin | Kelola Profil Admin";
+        $this->load->view('templates/header', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_profad', $data);
         $this->load->view('templates/footer');

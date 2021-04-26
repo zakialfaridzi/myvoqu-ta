@@ -13,7 +13,8 @@ class KelolaUnggahan extends CI_Controller
     {
         $data['post'] = $this->Admin_model->tampil_post();
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerPosting');
+        $dats['judul'] = "Admin | Kelola Data Unggahan";
+        $this->load->view('templates/headerPosting', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_post', $data);
         $this->load->view('templates/footer');
@@ -41,7 +42,8 @@ class KelolaUnggahan extends CI_Controller
         $data['post2'] = $this->Admin_model->detail_post2($id);
         $data['suka'] = $this->Admin_model->getSukaById($id);
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerPosting');
+        $dats['judul'] = "Admin | Detil Data Unggahan";
+        $this->load->view('templates/headerPosting', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/detail_post', $data);
         $this->load->view('templates/footer');
@@ -51,7 +53,8 @@ class KelolaUnggahan extends CI_Controller
     {
         $data['post'] = $this->Admin_model->tampil_post();
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerPosting');
+        $dats['judul'] = "Admin | Print Data Unggahan";
+        $this->load->view('templates/headerPosting', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/print_post', $data);
         $this->load->view('templates/footer');
@@ -123,7 +126,8 @@ class KelolaUnggahan extends CI_Controller
         $search = $this->input->post('search');
         $data['post'] = $this->Admin_model->get_searchPost($search);
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerPosting');
+        $dats['judul'] = "Admin | Kelola Data Unggahan";
+        $this->load->view('templates/headerPosting', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_post', $data);
         $this->load->view('templates/footer');

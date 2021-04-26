@@ -13,7 +13,8 @@ class KelolaMentor extends CI_Controller
     {
         $data['mentor'] = $this->Admin_model->tampil_mentor();
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerMentor');
+        $dats['judul'] = "Admin | Kelola Data Mentor";
+        $this->load->view('templates/headerMentor', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_mentor', $data);
         $this->load->view('templates/footer');
@@ -50,8 +51,8 @@ class KelolaMentor extends CI_Controller
         $data['detail'] = $detail;
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
         $data['allgroup'] = $this->Admin_model->detail_mentor2();
-
-        $this->load->view('templates/headerMentor');
+        $dats['judul'] = "Admin | Detil Data Mentor";
+        $this->load->view('templates/headerMentor', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/detail_mentor', $data);
         $this->load->view('templates/footer');
@@ -115,8 +116,8 @@ class KelolaMentor extends CI_Controller
     public function printMentor()
     {
         $data['mahasiswa'] = $this->Admin_model->tampil_mentor();
-        $data['title'] = "Data Mentor MyVoQu";
-        $this->load->view('templates/headerMentor');
+        $data['judul'] = "Print Data Mentor MyVoQu";
+        $this->load->view('templates/headerMentor', $data);
         $this->load->view('admin/print_mentor', $data);
         $this->load->view('templates/footer');
     }
@@ -190,8 +191,8 @@ class KelolaMentor extends CI_Controller
         $search = $this->input->post('search');
         $data['mentor'] = $this->Admin_model->get_searchMentor($search);
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-
-        $this->load->view('templates/headerMentor');
+        $dats['judul'] = "Admin | Kelola Data Mentor";
+        $this->load->view('templates/headerMentor', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_mentor', $data);
         $this->load->view('templates/footer');

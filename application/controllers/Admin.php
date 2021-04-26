@@ -12,7 +12,7 @@ class Admin extends CI_Controller
     public function index()
     {
         $data['user'] = $this->Admin_model->getAdmin();
-        $data['title'] = 'My Profile';
+        $data['judul'] = 'Admin | Dashboard';
 
         if (empty($data['user']['email'])) {
 

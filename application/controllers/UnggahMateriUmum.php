@@ -12,7 +12,8 @@ class UnggahMateriUmum extends CI_Controller
     public function index()
     {
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerMentor');
+        $dats['judul'] = "Admin | Unggah Materi Umum";
+        $this->load->view('templates/headerPostGen', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_postgeneral');
         $this->load->view('templates/footer');
