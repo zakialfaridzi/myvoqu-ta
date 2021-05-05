@@ -49,7 +49,7 @@ foreach ($post as $u): ?>
 						<td><?php echo $no++; ?></td>
 						<td><?php echo $u->id_posting ?></td>
 						<td><?php echo $u->caption ?></td>
-						<td><?php echo date("Y-m-d H:i:s", strtotime('+5 hours', $u->date_post)); ?></td>s
+						<td><?php echo date("Y-m-d H:i:s", strtotime('+5 hours', $u->date_post)); ?></td>
 						<td>
 							<?php echo anchor('KelolaUnggahanUmum/detailPostingGen/' . $u->id_posting, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
 						</td>
