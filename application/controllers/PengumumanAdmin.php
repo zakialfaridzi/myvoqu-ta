@@ -134,6 +134,8 @@ class PengumumanAdmin extends CI_Controller
 
         $obj->getActiveSheet()->setCellValue('A1', 'NO');
         $obj->getActiveSheet()->setCellValue('B1', 'Isi Pengumuman');
+        $obj->getActiveSheet()->setCellValue('C1', 'Pembuat');
+        $obj->getActiveSheet()->setCellValue('D1', 'Tanggal Buat');
 
         $baris = 2;
         $no = 1;
@@ -141,6 +143,8 @@ class PengumumanAdmin extends CI_Controller
         foreach ($data['mahasiswa'] as $mhs) {
             $obj->getActiveSheet()->setCellValue('A' . $baris, $no++);
             $obj->getActiveSheet()->setCellValue('B' . $baris, $mhs->isi_pengumuman);
+            $obj->getActiveSheet()->setCellValue('C' . $baris, $mhs->name);
+            $obj->getActiveSheet()->setCellValue('D' . $baris, date("Y-m-d H:i:s", strtotime('+5 hours', $mhs->datepost)));
 
             $baris++;
         }

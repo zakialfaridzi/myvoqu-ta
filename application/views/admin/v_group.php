@@ -38,6 +38,7 @@
 					<tr>
 						<th>NO</th>
 						<th>Nama Grup</th>
+						<th>Deskripsi</th>
 						<th colspan="3">Aksi</th>
 					</tr>
 					<?php $no = 1;
@@ -45,6 +46,7 @@ foreach ($group as $m): ?>
 					<tr>
 						<td><?php echo $no++; ?></td>
 						<td><?php echo $m->nama ?></td>
+						<td><?php echo $m->deskripsi ?></td>
 						<td>
 							<?php echo anchor('KelolaGrup/detailGroup/' . $m->id, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
 						</td>

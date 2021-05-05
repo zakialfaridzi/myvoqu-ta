@@ -24,12 +24,14 @@
 					<tr>
 						<th>NO</th>
 						<th>Isi Pengumuman</th>
+						<th>Pembuat</th>
 						<th>Tanggal Buat</th>
 					</tr>
 					<?php $no = 1;
 foreach ($mahasiswa as $u): ?>
 					<tr>
 						<td><?php echo $no++; ?></td>
+						<td><?php echo $u->name; ?></td>
 						<td><?php echo $u->isi_pengumuman ?></td>
 						<td><?php echo date("Y-m-d H:i:s", strtotime('+5 hours', $u->datepost)); ?></td>
 					</tr>

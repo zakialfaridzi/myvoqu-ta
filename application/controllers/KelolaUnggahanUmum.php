@@ -92,9 +92,9 @@ class KelolaUnggahanUmum extends CI_Controller
         $obj->setActiveSheetIndex(0);
 
         $obj->getActiveSheet()->setCellValue('A1', 'NO');
-        $obj->getActiveSheet()->setCellValue('B1', 'id_posting');
-        $obj->getActiveSheet()->setCellValue('C1', 'caption');
-        $obj->getActiveSheet()->setCellValue('D1', 'date post');
+        $obj->getActiveSheet()->setCellValue('B1', 'Id_posting');
+        $obj->getActiveSheet()->setCellValue('C1', 'Caption');
+        $obj->getActiveSheet()->setCellValue('D1', 'Tanggal Unggah');
 
         $baris = 2;
         $no = 1;
@@ -103,7 +103,7 @@ class KelolaUnggahanUmum extends CI_Controller
             $obj->getActiveSheet()->setCellValue('A' . $baris, $no++);
             $obj->getActiveSheet()->setCellValue('B' . $baris, $mhs->id_posting);
             $obj->getActiveSheet()->setCellValue('C' . $baris, $mhs->caption);
-            $obj->getActiveSheet()->setCellValue('D' . $baris, $mhs->date_post);
+            $obj->getActiveSheet()->setCellValue('D' . $baris, date("Y-m-d H:i:s", strtotime('+5 hours', $mhs->date_post)));
 
             $baris++;
         }

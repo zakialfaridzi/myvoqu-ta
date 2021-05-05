@@ -93,8 +93,10 @@ class KelolaUnggahan extends CI_Controller
 
         $obj->getActiveSheet()->setCellValue('A1', 'NO');
         $obj->getActiveSheet()->setCellValue('B1', 'Nama');
-        $obj->getActiveSheet()->setCellValue('C1', 'id_posting');
-        $obj->getActiveSheet()->setCellValue('D1', 'caption');
+        $obj->getActiveSheet()->setCellValue('C1', 'Role (peran)');
+        $obj->getActiveSheet()->setCellValue('D1', 'Caption');
+        $obj->getActiveSheet()->setCellValue('E1', 'Tanggal Unggah');
+        $obj->getActiveSheet()->setCellValue('F1', 'Id_posting');
 
         $baris = 2;
         $no = 1;
@@ -102,8 +104,15 @@ class KelolaUnggahan extends CI_Controller
         foreach ($data['mahasiswa'] as $mhs) {
             $obj->getActiveSheet()->setCellValue('A' . $baris, $no++);
             $obj->getActiveSheet()->setCellValue('B' . $baris, $mhs->name);
-            $obj->getActiveSheet()->setCellValue('C' . $baris, $mhs->id_posting);
+            if ($mhs->role_id == 2) {
+                $stat = "Penghafal";
+            } elseif ($mhs->role_id == 3) {
+                $stat = "Mentor";
+            }
+            $obj->getActiveSheet()->setCellValue('C' . $baris, $stat);
             $obj->getActiveSheet()->setCellValue('D' . $baris, $mhs->caption);
+            $obj->getActiveSheet()->setCellValue('E' . $baris, date("Y-m-d H:i:s", strtotime('+5 hours', $mhs->date_post)));
+            $obj->getActiveSheet()->setCellValue('F' . $baris, $mhs->id_posting);
 
             $baris++;
         }

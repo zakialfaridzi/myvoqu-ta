@@ -161,6 +161,7 @@ class ToDoListAdmin extends CI_Controller
 
         $obj->getActiveSheet()->setCellValue('A1', 'NO');
         $obj->getActiveSheet()->setCellValue('B1', 'Nama To-Do');
+        $obj->getActiveSheet()->setCellValue('C1', 'Status');
 
         $baris = 2;
         $no = 1;
@@ -168,6 +169,12 @@ class ToDoListAdmin extends CI_Controller
         foreach ($data['mahasiswa'] as $mhs) {
             $obj->getActiveSheet()->setCellValue('A' . $baris, $no++);
             $obj->getActiveSheet()->setCellValue('B' . $baris, $mhs->task_name);
+            if ($mhs->state != 1) {
+                $stat = "Belum Selesai";
+            } else {
+                $stat = "Selesai";
+            }
+            $obj->getActiveSheet()->setCellValue('C' . $baris, $stat);
 
             $baris++;
         }

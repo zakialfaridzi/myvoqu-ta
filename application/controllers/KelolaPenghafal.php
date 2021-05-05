@@ -141,15 +141,28 @@ class KelolaPenghafal extends CI_Controller
         $obj->getActiveSheet()->setCellValue('B1', 'Nama');
         $obj->getActiveSheet()->setCellValue('C1', 'Email');
         $obj->getActiveSheet()->setCellValue('D1', 'Jenis Kelamin');
+        $obj->getActiveSheet()->setCellValue('E1', 'Status Aktivasi');
+        $obj->getActiveSheet()->setCellValue('F1', 'Status');
 
         $baris = 2;
         $no = 1;
-
         foreach ($data['mahasiswa'] as $mhs) {
             $obj->getActiveSheet()->setCellValue('A' . $baris, $no++);
             $obj->getActiveSheet()->setCellValue('B' . $baris, $mhs->name);
             $obj->getActiveSheet()->setCellValue('C' . $baris, $mhs->email);
             $obj->getActiveSheet()->setCellValue('D' . $baris, $mhs->gender);
+            if ($mhs->is_active == 2 || $mhs->is_active == 0) {
+                $statusaktivasi = "Tidak Aktif";
+            } else {
+                $statusaktivasi = "Aktif";
+            }
+            $obj->getActiveSheet()->setCellValue('E' . $baris, $statusaktivasi);
+            if ($mhs->status == "offline-dot" || $mhs->status == "") {
+                $statusjaringan = 'Luring';
+            } else {
+                $statusjaringan = 'Daring';
+            }
+            $obj->getActiveSheet()->setCellValue('F' . $baris, $statusjaringan);
 
             $baris++;
         }

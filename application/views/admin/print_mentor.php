@@ -25,7 +25,7 @@
 						<th>Nama</th>
 						<th>Email</th>
 						<th>Instansi</th>
-						<th>Status</th>
+						<th colspan="3"	>Status</th>
 					</tr>
 					<?php $no = 1;
 foreach ($mahasiswa as $m): ?>

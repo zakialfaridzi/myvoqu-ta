@@ -42,6 +42,7 @@
 						<th>Keterangan (Caption)</th>
 						<th>Nama Pengguna</th>
 						<th>Role (Peranan)</th>
+						<th>Tanggal Unggah</th>
 						<th colspan="2">
 							Aksi
 						</th>
@@ -62,6 +63,7 @@ foreach ($post as $u): ?>
 							<?php echo "Mentor"; ?>
 						</td>
 						<?php endif;?>
+						<td><?php echo date("Y-m-d H:i:s", strtotime('+5 hours', $u->date_post)); ?></td>
 						<td>
 							<?php echo anchor('KelolaUnggahan/detailPosting/' . $u->id_posting, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
 						</td>
