@@ -42,6 +42,7 @@
 					<tr>
 						<th>NO</th>
 						<th>Isi Pengumuman</th>
+						<th>Pembuat</th>
 						<th>Tanggal Buat</th>
 						<th colspan="2">
 							Aksi
@@ -52,6 +53,7 @@ foreach ($pengumuman as $u): ?>
 					<tr>
 						<td><?php echo $no++; ?></td>
 						<td><?php echo $u->isi_pengumuman ?></td>
+						<td><?php echo $u->name ?></td>
 						<td><?php echo date("Y-m-d H:i:s", strtotime('+5 hours', $u->datepost)); ?></td>
 						<td>
 							<?php echo anchor('PengumumanAdmin/editPengumuman/' . $u->id, '<div class="btn btn-info btn-sm"><i class="fa fa-check"></i> Sunting</div>') ?>
