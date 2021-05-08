@@ -14,7 +14,8 @@ class ToDoListAdmin extends CI_Controller
         $this->load->model('Admin_model');
         $data['todo'] = $this->Admin_model->tampil_todo();
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/header');
+        $dats['judul'] = "Admin | Kelola Data To-Do List";
+        $this->load->view('templates/headerTodo', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_todo', $data);
         $this->load->view('templates/footer');
@@ -22,9 +23,9 @@ class ToDoListAdmin extends CI_Controller
 
     public function createTodo()
     {
-        $data['todotitle'] = 'Tambah To-Do';
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/header');
+        $dats['judul'] = "Admin | Buat Data To-Do List";
+        $this->load->view('templates/headerTodo', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/new_todo');
         $this->load->view('templates/footer');
@@ -78,7 +79,8 @@ class ToDoListAdmin extends CI_Controller
         $data['row'] = $this->Admin_model->edit_todo($id);
         $data['row2'] = $this->Admin_model->getTodoById($id);
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/header');
+        $dats['judul'] = "Admin | Sunting Data To-Do List";
+        $this->load->view('templates/headerTodo', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/edit_todo', $data);
         $this->load->view('templates/footer');
@@ -119,7 +121,8 @@ class ToDoListAdmin extends CI_Controller
     {
         $data['mahasiswa'] = $this->Admin_model->tampil_todo();
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/header');
+        $dats['judul'] = "Admin | Print Data To-Do List";
+        $this->load->view('templates/headerTodo', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/print_todo', $data);
         $this->load->view('templates/footer');
@@ -158,6 +161,7 @@ class ToDoListAdmin extends CI_Controller
 
         $obj->getActiveSheet()->setCellValue('A1', 'NO');
         $obj->getActiveSheet()->setCellValue('B1', 'Nama To-Do');
+        $obj->getActiveSheet()->setCellValue('C1', 'Status');
 
         $baris = 2;
         $no = 1;
@@ -165,6 +169,12 @@ class ToDoListAdmin extends CI_Controller
         foreach ($data['mahasiswa'] as $mhs) {
             $obj->getActiveSheet()->setCellValue('A' . $baris, $no++);
             $obj->getActiveSheet()->setCellValue('B' . $baris, $mhs->task_name);
+            if ($mhs->state != 1) {
+                $stat = "Belum Selesai";
+            } else {
+                $stat = "Selesai";
+            }
+            $obj->getActiveSheet()->setCellValue('C' . $baris, $stat);
 
             $baris++;
         }
@@ -180,5 +190,17 @@ class ToDoListAdmin extends CI_Controller
         $writer = PHPExcel_IOFactory::createWriter($obj, 'Excel2007');
         $writer->save('php://output');
         exit;
+    }
+
+    public function searchTodo()
+    {
+        $search = $this->input->post('search');
+        $data['todo'] = $this->Admin_model->get_searchTodo($search);
+        $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
+        $dats['judul'] = "Admin | Kelola Data Pengumuman";
+        $this->load->view('templates/headerTodo', $dats);
+        $this->load->view('templates/sidebar', $dats);
+        $this->load->view('admin/v_pengumuman', $data);
+        $this->load->view('templates/footer');
     }
 }

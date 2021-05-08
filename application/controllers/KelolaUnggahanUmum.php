@@ -13,7 +13,8 @@ class KelolaUnggahanUmum extends CI_Controller
     {
         $data['post'] = $this->Admin_model->tampil_postgen();
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerPostGen');
+        $dats['judul'] = "Admin | Kelola Data Materi Umum";
+        $this->load->view('templates/headerPostGen', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_postgen', $data);
         $this->load->view('templates/footer');
@@ -41,7 +42,8 @@ class KelolaUnggahanUmum extends CI_Controller
         $detail = $this->Admin_model->detail_postgen($id);
         $data['post'] = $detail;
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerPostGen');
+        $dats['judul'] = "Admin | Detil Data Materi Umum";
+        $this->load->view('templates/headerPostGen', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/detail_postgen', $data);
         $this->load->view('templates/footer');
@@ -51,7 +53,8 @@ class KelolaUnggahanUmum extends CI_Controller
     {
         $data['post'] = $this->Admin_model->tampil_postgen();
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerPostGen');
+        $dats['judul'] = "Admin | Print Data Materi Umum";
+        $this->load->view('templates/headerPostGen', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/print_postgen', $data);
         $this->load->view('templates/footer');
@@ -89,9 +92,9 @@ class KelolaUnggahanUmum extends CI_Controller
         $obj->setActiveSheetIndex(0);
 
         $obj->getActiveSheet()->setCellValue('A1', 'NO');
-        $obj->getActiveSheet()->setCellValue('B1', 'id_posting');
-        $obj->getActiveSheet()->setCellValue('C1', 'caption');
-        $obj->getActiveSheet()->setCellValue('D1', 'date post');
+        $obj->getActiveSheet()->setCellValue('B1', 'Id_posting');
+        $obj->getActiveSheet()->setCellValue('C1', 'Caption');
+        $obj->getActiveSheet()->setCellValue('D1', 'Tanggal Unggah');
 
         $baris = 2;
         $no = 1;
@@ -100,7 +103,7 @@ class KelolaUnggahanUmum extends CI_Controller
             $obj->getActiveSheet()->setCellValue('A' . $baris, $no++);
             $obj->getActiveSheet()->setCellValue('B' . $baris, $mhs->id_posting);
             $obj->getActiveSheet()->setCellValue('C' . $baris, $mhs->caption);
-            $obj->getActiveSheet()->setCellValue('D' . $baris, $mhs->date_post);
+            $obj->getActiveSheet()->setCellValue('D' . $baris, date("Y-m-d H:i:s", strtotime('+5 hours', $mhs->date_post)));
 
             $baris++;
         }
@@ -123,7 +126,8 @@ class KelolaUnggahanUmum extends CI_Controller
         $search = $this->input->post('search');
         $data['post'] = $this->Admin_model->get_searchPostgen($search);
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerPostGen');
+        $dats['judul'] = "Admin | Kelola Data Materi Umum";
+        $this->load->view('templates/headerPostGen', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_postgen', $data);
         $this->load->view('templates/footer');

@@ -13,7 +13,8 @@ class KelolaUnggahan extends CI_Controller
     {
         $data['post'] = $this->Admin_model->tampil_post();
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerPosting');
+        $dats['judul'] = "Admin | Kelola Data Unggahan";
+        $this->load->view('templates/headerPosting', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_post', $data);
         $this->load->view('templates/footer');
@@ -41,7 +42,8 @@ class KelolaUnggahan extends CI_Controller
         $data['post2'] = $this->Admin_model->detail_post2($id);
         $data['suka'] = $this->Admin_model->getSukaById($id);
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerPosting');
+        $dats['judul'] = "Admin | Detil Data Unggahan";
+        $this->load->view('templates/headerPosting', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/detail_post', $data);
         $this->load->view('templates/footer');
@@ -51,7 +53,8 @@ class KelolaUnggahan extends CI_Controller
     {
         $data['post'] = $this->Admin_model->tampil_post();
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerPosting');
+        $dats['judul'] = "Admin | Print Data Unggahan";
+        $this->load->view('templates/headerPosting', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/print_post', $data);
         $this->load->view('templates/footer');
@@ -90,8 +93,10 @@ class KelolaUnggahan extends CI_Controller
 
         $obj->getActiveSheet()->setCellValue('A1', 'NO');
         $obj->getActiveSheet()->setCellValue('B1', 'Nama');
-        $obj->getActiveSheet()->setCellValue('C1', 'id_posting');
-        $obj->getActiveSheet()->setCellValue('D1', 'caption');
+        $obj->getActiveSheet()->setCellValue('C1', 'Role (peran)');
+        $obj->getActiveSheet()->setCellValue('D1', 'Caption');
+        $obj->getActiveSheet()->setCellValue('E1', 'Tanggal Unggah');
+        $obj->getActiveSheet()->setCellValue('F1', 'Id_posting');
 
         $baris = 2;
         $no = 1;
@@ -99,8 +104,15 @@ class KelolaUnggahan extends CI_Controller
         foreach ($data['mahasiswa'] as $mhs) {
             $obj->getActiveSheet()->setCellValue('A' . $baris, $no++);
             $obj->getActiveSheet()->setCellValue('B' . $baris, $mhs->name);
-            $obj->getActiveSheet()->setCellValue('C' . $baris, $mhs->id_posting);
+            if ($mhs->role_id == 2) {
+                $stat = "Penghafal";
+            } elseif ($mhs->role_id == 3) {
+                $stat = "Mentor";
+            }
+            $obj->getActiveSheet()->setCellValue('C' . $baris, $stat);
             $obj->getActiveSheet()->setCellValue('D' . $baris, $mhs->caption);
+            $obj->getActiveSheet()->setCellValue('E' . $baris, date("Y-m-d H:i:s", strtotime('+5 hours', $mhs->date_post)));
+            $obj->getActiveSheet()->setCellValue('F' . $baris, $mhs->id_posting);
 
             $baris++;
         }
@@ -123,7 +135,8 @@ class KelolaUnggahan extends CI_Controller
         $search = $this->input->post('search');
         $data['post'] = $this->Admin_model->get_searchPost($search);
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerPosting');
+        $dats['judul'] = "Admin | Kelola Data Unggahan";
+        $this->load->view('templates/headerPosting', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_post', $data);
         $this->load->view('templates/footer');

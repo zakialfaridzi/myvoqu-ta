@@ -38,7 +38,7 @@
 					<tr>
 						<th>NO</th>
 						<th>ID Unggah (ID Post)</th>
-						<th>Keterangan (Caption)</th>
+						<th>Keterangan (Caption)</th><th>Tanggal Unggah</th>
 						<th colspan="2">
 							Aksi
 						</th>
@@ -49,6 +49,7 @@ foreach ($post as $u): ?>
 						<td><?php echo $no++; ?></td>
 						<td><?php echo $u->id_posting ?></td>
 						<td><?php echo $u->caption ?></td>
+						<td><?php echo date("Y-m-d H:i:s", strtotime('+5 hours', $u->date_post)); ?></td>
 						<td>
 							<?php echo anchor('KelolaUnggahanUmum/detailPostingGen/' . $u->id_posting, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
 						</td>

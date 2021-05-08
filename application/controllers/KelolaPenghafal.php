@@ -13,7 +13,8 @@ class KelolaPenghafal extends CI_Controller
     {
         $data['user'] = $this->Admin_model->tampil_data();
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/header');
+        $dats['judul'] = "Admin | Kelola Data Penghafal";
+        $this->load->view('templates/header', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_penghafal', $data);
         $this->load->view('templates/footer');
@@ -86,7 +87,9 @@ class KelolaPenghafal extends CI_Controller
         $data['detail'] = $detail;
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
 
-        $this->load->view('templates/header');
+        $dats['judul'] = "Admin | Detil Data Penghafal";
+        $this->load->view('templates/header', $dats);
+
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/detail_penghafal', $data);
         $this->load->view('templates/footer');
@@ -96,7 +99,8 @@ class KelolaPenghafal extends CI_Controller
     {
         $data['mahasiswa'] = $this->Admin_model->tampil_data();
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/header');
+        $dats['judul'] = "Admin | Print Data Penghafal";
+        $this->load->view('templates/header', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/print_users', $data);
         $this->load->view('templates/footer');
@@ -137,15 +141,28 @@ class KelolaPenghafal extends CI_Controller
         $obj->getActiveSheet()->setCellValue('B1', 'Nama');
         $obj->getActiveSheet()->setCellValue('C1', 'Email');
         $obj->getActiveSheet()->setCellValue('D1', 'Jenis Kelamin');
+        $obj->getActiveSheet()->setCellValue('E1', 'Status Aktivasi');
+        $obj->getActiveSheet()->setCellValue('F1', 'Status');
 
         $baris = 2;
         $no = 1;
-
         foreach ($data['mahasiswa'] as $mhs) {
             $obj->getActiveSheet()->setCellValue('A' . $baris, $no++);
             $obj->getActiveSheet()->setCellValue('B' . $baris, $mhs->name);
             $obj->getActiveSheet()->setCellValue('C' . $baris, $mhs->email);
             $obj->getActiveSheet()->setCellValue('D' . $baris, $mhs->gender);
+            if ($mhs->is_active == 2 || $mhs->is_active == 0) {
+                $statusaktivasi = "Tidak Aktif";
+            } else {
+                $statusaktivasi = "Aktif";
+            }
+            $obj->getActiveSheet()->setCellValue('E' . $baris, $statusaktivasi);
+            if ($mhs->status == "offline-dot" || $mhs->status == "") {
+                $statusjaringan = 'Luring';
+            } else {
+                $statusjaringan = 'Daring';
+            }
+            $obj->getActiveSheet()->setCellValue('F' . $baris, $statusjaringan);
 
             $baris++;
         }
@@ -169,7 +186,8 @@ class KelolaPenghafal extends CI_Controller
         $data['user'] = $this->Admin_model->get_search($search);
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
 
-        $this->load->view('templates/header');
+        $dats['judul'] = "Admin | Kelola Data Penghafal";
+        $this->load->view('templates/header', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_penghafal', $data);
         $this->load->view('templates/footer');

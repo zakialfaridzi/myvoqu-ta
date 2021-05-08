@@ -41,8 +41,9 @@
 						<th>Nama</th>
 						<th>Email</th>
 						<th>Instansi</th>
+						<th>Status Aktivasi</th>
 						<th>Status</th>
-						<th colspan="5">
+						<th colspan="4">
 							<center>Aksi</center>
 						</th>
 					</tr>
@@ -53,15 +54,6 @@ foreach ($mentor as $m): ?>
 						<td><?php echo $m->name ?></td>
 						<td><?php echo $m->email ?></td>
 						<td><?php echo $m->instansi ?></td>
-						<?php if ($m->status == "offline-dot" || $m->status == ""): ?>
-						<td>
-							<?php echo "<span class='badge badge-danger'>Luring</span>"; ?>
-						</td>
-						<?php else: ?>
-						<td>
-							<?php echo "<span class='badge badge-primary'>Daring</span>"; ?>
-						</td>
-						<?php endif;?>
 						<?php if ($m->is_active == 2 || $m->is_active == 0): ?>
 						<td>
 							<?php echo "<span class='badge badge-danger'>Tidak Aktif</span>"; ?>
@@ -69,6 +61,15 @@ foreach ($mentor as $m): ?>
 						<?php else: ?>
 						<td>
 							<?php echo "<span class='badge badge-primary'>Aktif</span>"; ?>
+						</td>
+						<?php endif;?>
+						<?php if ($m->status == "offline-dot" || $m->status == ""): ?>
+						<td>
+							<?php echo "<span class='badge badge-danger'>Luring</span>"; ?>
+						</td>
+						<?php else: ?>
+						<td>
+							<?php echo "<span class='badge badge-primary'>Daring</span>"; ?>
 						</td>
 						<?php endif;?>
 						<td>

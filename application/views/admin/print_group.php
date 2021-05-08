@@ -23,12 +23,14 @@
 					<tr>
 						<th>NO</th>
 						<th>Nama Grup</th>
+						<th>Deskripsi</th>
 					</tr>
 					<?php $no = 1;
 foreach ($mahasiswa as $m): ?>
 					<tr>
 						<td><?php echo $no++; ?></td>
 						<td><?php echo $m->nama ?></td>
+						<td><?php echo $m->deskripsi ?></td>
 					</tr>
 					<?php endforeach;?>
 				</table>

@@ -14,7 +14,8 @@ class PengumumanAdmin extends CI_Controller
         $this->load->model('Admin_model');
         $data['pengumuman'] = $this->Admin_model->tampil_pengumuman();
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/header');
+        $dats['judul'] = "Admin | Kelola Data Pengumuman Admin";
+        $this->load->view('templates/headerPengumuman', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_pengumuman', $data);
         $this->load->view('templates/footer');
@@ -24,7 +25,8 @@ class PengumumanAdmin extends CI_Controller
     {
         $data['todotitle'] = 'Tambah Pengumuman';
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/header');
+        $dats['judul'] = "Admin | Buat Pengumuman Admin";
+        $this->load->view('templates/headerPengumuman', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/new_pengumuman');
         $this->load->view('templates/footer');
@@ -50,7 +52,8 @@ class PengumumanAdmin extends CI_Controller
         $data['row'] = $this->Admin_model->edit_pengumuman($id);
         $data['row2'] = $this->Admin_model->getPengumumanById($id);
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/header');
+        $dats['judul'] = "Admin | Sunting Data Pengumuman Admin";
+        $this->load->view('templates/headerPengumuman', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/edit_pengumuman', $data);
         $this->load->view('templates/footer');
@@ -91,7 +94,8 @@ class PengumumanAdmin extends CI_Controller
     {
         $data['mahasiswa'] = $this->Admin_model->tampil_pengumuman();
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/header');
+        $dats['judul'] = "Admin | Print Data Pengumuman Admin";
+        $this->load->view('templates/headerPengumuman', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/print_pengumuman', $data);
         $this->load->view('templates/footer');
@@ -130,6 +134,8 @@ class PengumumanAdmin extends CI_Controller
 
         $obj->getActiveSheet()->setCellValue('A1', 'NO');
         $obj->getActiveSheet()->setCellValue('B1', 'Isi Pengumuman');
+        $obj->getActiveSheet()->setCellValue('C1', 'Pembuat');
+        $obj->getActiveSheet()->setCellValue('D1', 'Tanggal Buat');
 
         $baris = 2;
         $no = 1;
@@ -137,6 +143,8 @@ class PengumumanAdmin extends CI_Controller
         foreach ($data['mahasiswa'] as $mhs) {
             $obj->getActiveSheet()->setCellValue('A' . $baris, $no++);
             $obj->getActiveSheet()->setCellValue('B' . $baris, $mhs->isi_pengumuman);
+            $obj->getActiveSheet()->setCellValue('C' . $baris, $mhs->name);
+            $obj->getActiveSheet()->setCellValue('D' . $baris, date("Y-m-d H:i:s", strtotime('+5 hours', $mhs->datepost)));
 
             $baris++;
         }
@@ -152,5 +160,18 @@ class PengumumanAdmin extends CI_Controller
         $writer = PHPExcel_IOFactory::createWriter($obj, 'Excel2007');
         $writer->save('php://output');
         exit;
+    }
+
+    public function searchPengumuman()
+    {
+        $search = $this->input->post('search');
+        $data['pengumuman'] = $this->Admin_model->get_searchPengumuman($search);
+        $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
+
+        $dats['judul'] = "Admin | Kelola Data Pengumuman";
+        $this->load->view('templates/headerPengumuman', $dats);
+        $this->load->view('templates/sidebar', $dats);
+        $this->load->view('admin/v_pengumuman', $data);
+        $this->load->view('templates/footer');
     }
 }

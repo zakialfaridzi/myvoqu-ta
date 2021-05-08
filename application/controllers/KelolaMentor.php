@@ -13,7 +13,8 @@ class KelolaMentor extends CI_Controller
     {
         $data['mentor'] = $this->Admin_model->tampil_mentor();
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerMentor');
+        $dats['judul'] = "Admin | Kelola Data Mentor";
+        $this->load->view('templates/headerMentor', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_mentor', $data);
         $this->load->view('templates/footer');
@@ -50,8 +51,8 @@ class KelolaMentor extends CI_Controller
         $data['detail'] = $detail;
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
         $data['allgroup'] = $this->Admin_model->detail_mentor2();
-
-        $this->load->view('templates/headerMentor');
+        $dats['judul'] = "Admin | Detil Data Mentor";
+        $this->load->view('templates/headerMentor', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/detail_mentor', $data);
         $this->load->view('templates/footer');
@@ -115,8 +116,8 @@ class KelolaMentor extends CI_Controller
     public function printMentor()
     {
         $data['mahasiswa'] = $this->Admin_model->tampil_mentor();
-        $data['title'] = "Data Mentor MyVoQu";
-        $this->load->view('templates/headerMentor');
+        $data['judul'] = "Print Data Mentor MyVoQu";
+        $this->load->view('templates/headerMentor', $data);
         $this->load->view('admin/print_mentor', $data);
         $this->load->view('templates/footer');
     }
@@ -157,6 +158,8 @@ class KelolaMentor extends CI_Controller
         $obj->getActiveSheet()->setCellValue('C1', 'Kode Mentor');
         $obj->getActiveSheet()->setCellValue('D1', 'Instansi');
         $obj->getActiveSheet()->setCellValue('E1', 'Email');
+        $obj->getActiveSheet()->setCellValue('F1', 'Status Aktivasi');
+        $obj->getActiveSheet()->setCellValue('G1', 'Status');
 
         $baris = 2;
         $no = 1;
@@ -167,6 +170,18 @@ class KelolaMentor extends CI_Controller
             $obj->getActiveSheet()->setCellValue('C' . $baris, $mhs->id);
             $obj->getActiveSheet()->setCellValue('D' . $baris, $mhs->instansi);
             $obj->getActiveSheet()->setCellValue('E' . $baris, $mhs->email);
+            if ($mhs->is_active == 2 || $mhs->is_active == 0) {
+                $statusaktivasi = "Tidak Aktif";
+            } else {
+                $statusaktivasi = "Aktif";
+            }
+            $obj->getActiveSheet()->setCellValue('F' . $baris, $statusaktivasi);
+            if ($mhs->status == "offline-dot" || $mhs->status == "") {
+                $statusjaringan = 'Luring';
+            } else {
+                $statusjaringan = 'Daring';
+            }
+            $obj->getActiveSheet()->setCellValue('G' . $baris, $statusjaringan);
 
             $baris++;
         }
@@ -190,8 +205,8 @@ class KelolaMentor extends CI_Controller
         $search = $this->input->post('search');
         $data['mentor'] = $this->Admin_model->get_searchMentor($search);
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-
-        $this->load->view('templates/headerMentor');
+        $dats['judul'] = "Admin | Kelola Data Mentor";
+        $this->load->view('templates/headerMentor', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_mentor', $data);
         $this->load->view('templates/footer');

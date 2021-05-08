@@ -13,7 +13,8 @@ class KelolaGrup extends CI_Controller
     {
         $data['group'] = $this->Admin_model->tampil_group();
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerGroup');
+        $dats['judul'] = "Admin | Kelola Data Grup Hafalan";
+        $this->load->view('templates/headerGroup', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_group', $data);
         $this->load->view('templates/footer');
@@ -24,7 +25,8 @@ class KelolaGrup extends CI_Controller
         $data['post'] = $this->Admin_model->detail_group($id);
         $data['post2'] = $this->Admin_model->detail_group2($id);
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerGroup');
+        $dats['judul'] = "Admin | Detil Data Grup Hafalan";
+        $this->load->view('templates/headerGroup', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/detail_group', $data);
         $this->load->view('templates/footer');
@@ -50,7 +52,8 @@ class KelolaGrup extends CI_Controller
     {
         $data['mahasiswa'] = $this->Admin_model->tampil_group();
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerGroup');
+        $dats['judul'] = "Admin | Print Data Grup Hafalan";
+        $this->load->view('templates/headerGroup', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/print_group', $data);
         $this->load->view('templates/footer');
@@ -120,7 +123,8 @@ class KelolaGrup extends CI_Controller
         $search = $this->input->post('search');
         $data['group'] = $this->Admin_model->get_searchGroup($search);
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $this->load->view('templates/headerGroup');
+        $dats['judul'] = "Admin | Kelola Data Grup Hafalan";
+        $this->load->view('templates/headerGroup', $dats);
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/v_group', $data);
         $this->load->view('templates/footer');
