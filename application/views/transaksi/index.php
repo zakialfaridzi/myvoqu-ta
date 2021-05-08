@@ -8,7 +8,7 @@ https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css -->
 
 <div class="chat-room">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-sm-12">
             <!-- Contact List in Left-->
 
             <table id="example" class="table table-striped table-bordered">
@@ -20,7 +20,7 @@ https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css -->
                         <th>Tanggal</th>
                         <th>Status</th>
 
-                        <th>Aksi</th>
+
 
                     </tr>
                 </thead>
@@ -44,9 +44,7 @@ foreach ($transaksi_wallet as $tw): ?>
                             <?php endif;?>
                         </td>
 
-                        <td>
-                            <buntton class="btn btn-info"><i class="fas fa-eye"></i> Detail</buntton>
-                        </td>
+
                     </tr>
                     <?php endforeach;?>
 
@@ -68,9 +66,7 @@ foreach ($transaksi_wallet as $tw): ?>
                         <td>
                             <a class="badge badge-success" style="background-color: forestgreen;">Berhasil</a>
                         </td>
-                        <td>
-                            <buntton class="btn btn-info"><i class="fas fa-eye"></i> Detail</buntton>
-                        </td>
+
                     </tr>
 
                     <?php endforeach?>

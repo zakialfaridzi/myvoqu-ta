@@ -84,7 +84,7 @@ class Colab extends CI_Controller
           </div>');
             redirect('admin');
         } else {
-            $data['otherUser'] = $this->User_model->getOtherUserData();
+            $data['otherUser'] = $this->User_model->getOherUserData();
 
             $this->load->view('templates_newsfeed/topbar', $data);
             $this->load->view('templates_newsfeed/header', $data);
@@ -125,7 +125,7 @@ class Colab extends CI_Controller
           </div>');
             redirect('admin');
         } else {
-            $data['otherUser'] = $this->User_model->getOtherUserData();
+            $data['otherUser'] = $this->User_model->getOherUserData();
             // $data['kode'] = $code;
             $this->load->view('templates_newsfeed/topbar', $data);
             $this->load->view('templates_newsfeed/header', $data);

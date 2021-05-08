@@ -45,17 +45,16 @@ class Transaksi extends CI_Controller
 
     public function index()
     {
-        $data['upload'] = 'none';
+        $data['search'] = 'none';
+        $data['upload'] = '';
+        $data['colorSearch'] = '#0486FE';
+        $data['posting'] = $this->User_model->getPosting();
+        $data['comment'] = $this->User_model->getComment();
         $data['postgen'] = $this->User_model->getPostgen();
-        $data['search'] = '';
-        $data['colorSearch'] = 'black';
         $data['allUser'] = $this->User_model->getUserData();
         $data['user'] = $this->User_model->getUser();
-        $data['otherUser'] = $this->User_model->getMentorData();
-        $data['allotherUser'] = $this->User_model->getallOtherUserData();
         $data['title'] = 'Home';
-        $data['allUsers'] = $this->User_model->viewAllUsers();
-        $data['follow'] = $this->User_model->getFollow();
+        $data2['notification'] = $this->User_model->getNotification();
         $data['idpost'] = $this->User_model->getidpost();
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['suggestion'] = $this->User_model->getSuggest();
@@ -85,6 +84,9 @@ class Transaksi extends CI_Controller
           </div>');
             redirect('admin');
         } else {
+
+            $data['otherUser'] = $this->User_model->getOherUserData();
+
             $this->load->view('templates_newsfeed/topbar', $data);
             $this->load->view('templates_newsfeed/header', $data);
             $this->load->view('transaksi/index', $data);
