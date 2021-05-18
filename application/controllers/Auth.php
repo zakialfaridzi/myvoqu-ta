@@ -141,6 +141,7 @@ class Auth extends CI_Controller
             $this->load->view('templates/auth_footer2');
         } else {
             $email = $this->input->post('email', true);
+
             $data = [
                 'name' => htmlspecialchars($this->input->post('name', true)),
                 'gender' => htmlspecialchars($this->input->post('gender')),

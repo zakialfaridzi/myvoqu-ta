@@ -291,6 +291,7 @@ endforeach;?>
 
                 <script type="text/javascript">
                 $('#pay-button').click(function(event) {
+                    // alert('clicked')
 
                     event.preventDefault();
                     $(this).attr("disabled", "disabled");
