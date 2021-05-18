@@ -24,6 +24,7 @@
 					<tr>
 						<th>NO</th>
 						<th>Nama Kegiatan</th>
+						<th>Status</th>
 					</tr>
 					<?php $no = 1;
 foreach ($mahasiswa as $u): ?>
