@@ -14,7 +14,7 @@ $id_user = isset($_POST['id_user']) ? $_POST['id_user'] : null;
 
 if (!empty($message) && !empty($from)) {
 
-    $sql = "INSERT INTO `chatall` (`message`, `from`, `id_user`) VALUES ('" . $message . "','" . $from . "','" . $id_user . "')";
+    $sql = "INSERT INTO `chatall` (`message`, `from`, `id_user`) VALUES ('" . $message . "','" . $from . "','" . $id_user . "' )";
     $result['send_status'] = $db->query($sql);
 }
 

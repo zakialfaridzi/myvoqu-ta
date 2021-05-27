@@ -8,7 +8,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Beranda</a></li>
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/indexTodo/'); ?>">Daftar Kegiatan Admin MyVoQu</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('ToDoListAdmin/'); ?>">Daftar Kegiatan Admin MyVoQu</a></li>
                         <li class="breadcrumb-item active">Membuat Daftar Kegiatan </li>
                     </ol>
                 </div><!-- /.col -->
@@ -17,7 +17,7 @@
     </div>
 
     <div class="content m-2">
-    <form action="<?php echo base_url('Admin/saveTodo') ?>" method="post">
+    <form action="<?php echo base_url('ToDoListAdmin/saveTodo') ?>" method="post">
                 <div class="form-group">
                     <label>Nama Kegiatan</label>
                     <input type="text" name="namatodo" id='namatodo' class="form-control col-3" required>

@@ -10,7 +10,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Beranda</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/'); ?>">Beranda</a></li>
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
                 </div><!-- /.col -->
@@ -36,7 +36,7 @@
                         <div class="icon">
                             <i class="ion ion-person"></i>
                         </div>
-                        <a href="<?php echo base_url('Admin/indexPenghafal/'); ?>" class="small-box-footer">Info Lebih <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?php echo base_url('KelolaPenghafal/'); ?>" class="small-box-footer">Info Lebih <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -53,7 +53,7 @@
                         <div class="icon">
                             <i class="ion ion-person-stalker"></i>
                         </div>
-                        <a href="<?php echo base_url('Admin/indexMentor/'); ?>" class="small-box-footer">Info Lebih <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?php echo base_url('KelolaMentor/'); ?>" class="small-box-footer">Info Lebih <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -70,7 +70,7 @@
                         <div class="icon">
                             <i class="ion ion-chatboxes"></i>
                         </div>
-                        <a href="<?php echo base_url('Admin/indexGroup/') ?>" class="small-box-footer">Info Lebih <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?php echo base_url('KelolaGrup/') ?>" class="small-box-footer">Info Lebih <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -87,7 +87,7 @@
                         <div class="icon">
                             <i class="ion ion-upload"></i>
                         </div>
-                        <a href="<?php echo base_url('Admin/indexPosting/'); ?>" class="small-box-footer">Info Lebih <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?php echo base_url('KelolaUnggahan/'); ?>" class="small-box-footer">Info Lebih <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->

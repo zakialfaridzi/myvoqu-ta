@@ -7,7 +7,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Beranda</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/'); ?>">Beranda</a></li>
                         <li class="breadcrumb-item active">Sunting Data Profil Admin Myvoqu</li>
                     </ol>
                 </div><!-- /.col -->
@@ -18,7 +18,7 @@
     <div class="content">
     <?php echo $this->session->flashdata('message'); ?>
         <?php foreach ($mahasiswa as $mhs): ?>
-            <form action="<?php echo base_url() . 'Admin/updateProfile'; ?>" method="post" enctype="multipart/form-data">
+            <form action="<?php echo base_url() . 'ProfileAdmin/updateProfile'; ?>" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <input type="hidden"  id="old"  name="old"  value="<?php echo $mhs->image ?>">
                     <center><img src="<?php echo base_url() ?>/assets/foto/<?php echo $mhs->image ?>" height="200" width="200" style="border-radius: 50%"></center>

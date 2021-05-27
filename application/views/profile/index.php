@@ -24,6 +24,12 @@
                                     name="caption" id="caption"></textarea>
                                 <?=form_error('caption', '<small class="text-danger pl-3">', '</small>');?>
                         </div>
+
+
+
+
+
+
                     </div>
                     <div class="col-md-5 col-sm-5">
                         <div class="tools">
@@ -39,6 +45,7 @@
 
 
                             </ul>
+
                             <button class="btn btn-primary pull-right"
                                 style="background-color: #6fb8df;outline: none;">Unggah</button>
 

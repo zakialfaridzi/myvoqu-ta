@@ -23,7 +23,13 @@ class Chat extends CI_Controller
 
             if ($topup_berhasil_terakhr['status_code'] == 200) {
                 $saldo_skrg = $saldo_dpt['saldo'] + $topup_berhasil_terakhr['gross_amount'];
-                $this->db->update('transaksi_topup_dompet', ['status_code' => 199], ['id_user' => $this->session->userdata('id')]);
+
+                $where = [
+                    'id_user' => $this->session->userdata('id'),
+                    'status_code' => 200,
+                ];
+
+                $this->db->update('transaksi_topup_dompet', ['status_code' => 199], $where);
 
                 $data_saldo = [
                     'saldo' => $saldo_skrg,
@@ -110,9 +116,9 @@ class Chat extends CI_Controller
 
         $saldo_dompet = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
 
-        $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
+        // $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
 
-        $data['saldosekarang'] = $saldo_dompet['saldo'] + $topup_berhasil_terakhr['gross_amount'];
+        // $data['saldosekarang'] = $saldo_dompet['saldo'] + $topup_berhasil_terakhr['gross_amount'];
         $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
         $data['postgen'] = $this->User_model->getPostgen();
 
@@ -131,7 +137,7 @@ class Chat extends CI_Controller
             $this->load->library('table');
 
             $image_array = get_clickable_smileys(base_url() . 'assets/smileys/', 'comment');
-            $col_array = $this->table->make_columns($image_array, 20);
+            $col_array = $this->table->make_columns($image_array, 13);
 
             $data['smiley_table'] = $this->table->generate($col_array);
             $data['otherUser'] = $this->User_model->getOherUserData();
@@ -165,9 +171,9 @@ class Chat extends CI_Controller
 
         $saldo_dompet = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
 
-        $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
+        // $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
 
-        $data['saldosekarang'] = $saldo_dompet['saldo'] + $topup_berhasil_terakhr['gross_amount'];
+        // $data['saldosekarang'] = $saldo_dompet['saldo'] + $topup_berhasil_terakhr['gross_amount'];
         $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
 
         // $data['postgen'] = $this->User_model->getPostgen();

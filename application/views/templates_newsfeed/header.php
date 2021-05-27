@@ -52,7 +52,7 @@
                         </li>
 
                         <li><i class="fa fa-video text-muted" style="color: black;"></i>
-                            <div><a href="<?=base_url('./Colab');?>" target="_blank">Kolaborasi</a></div>
+                            <div><a href="<?=base_url('Colab/');?>">Kolaborasi</a></div>
                         </li>
 
                     </ul>
@@ -219,7 +219,7 @@ endforeach;?>
 
 
 
-                                    <div class="alert alert-info alert-dismissible show" role="alert">
+                                    <div class="alert alert-warning alert-dismissible show" role="alert">
                                         Minimal pengisian wallet adalah <strong>Rp10.0000,00</strong>
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -282,6 +282,8 @@ endforeach;?>
 
                 <script type="text/javascript">
                 $('#pay-button').click(function(event) {
+                    // alert('clicked')
+
                     event.preventDefault();
                     $(this).attr("disabled", "disabled");
                     var nominal = $("#nominal").val();

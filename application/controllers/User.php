@@ -25,7 +25,13 @@ class User extends CI_Controller
 
             if ($topup_berhasil_terakhr['status_code'] == 200) {
                 $saldo_skrg = $saldo_dpt['saldo'] + $topup_berhasil_terakhr['gross_amount'];
-                $this->db->update('transaksi_topup_dompet', ['status_code' => 199], ['id_user' => $this->session->userdata('id')]);
+
+                $where = [
+                    'id_user' => $this->session->userdata('id'),
+                    'status_code' => 200,
+                ];
+
+                $this->db->update('transaksi_topup_dompet', ['status_code' => 199], $where);
 
                 $data_saldo = [
                     'saldo' => $saldo_skrg,
@@ -359,7 +365,7 @@ class User extends CI_Controller
             $this->load->helper('smiley');
             $this->load->library('table');
             $image_array = get_clickable_smileys(base_url() . 'assets/smileys/', 'comment');
-            $col_array = $this->table->make_columns($image_array, 20);
+            $col_array = $this->table->make_columns($image_array, 13);
 
             $data['smiley_table'] = $this->table->generate($col_array);
             $data['otherUser'] = $this->User_model->getOherUserData();

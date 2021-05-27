@@ -43,7 +43,7 @@
         <input type="hidden" name="id_posting" value="<?= $pst->id_posting; ?>">
         <input type="hidden" name="id" value="<?= $this->session->userdata('id'); ?>">
         <a class="btn text-red">
-            <button class="fas fa-exclamation" style="border : 0;" name="report"> Laporkan! </button> </a>
+            <button class="fas fa-exclamation" style="border : 0;" name="report" onclick="if (!confirm('Apakah anda yakin akan melaporkan unggahan atau pengguna ini karena melanggar peraturan?')) { return false }"> Laporkan! </button> </a>
     </form>
 <?php elseif ($pst->id_user != $this->session->userdata('id') and $rpt->report == 1) : ?>
 

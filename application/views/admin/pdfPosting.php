@@ -18,6 +18,7 @@
                 <th>Nama</th>
                 <th>ID Posting</th>
                 <th>Caption</th>
+                <th>Tanggal Unggah</th>
                 <th>Foto</th>
             </tr>
 
@@ -28,6 +29,7 @@ foreach ($mahasiswa as $mhs): ?>
                     <td><?php echo $mhs->name ?></td>
                     <td><?php echo $mhs->id_posting ?></td>
                     <td><?php echo $mhs->caption ?></td>
+                    <td><?php echo date("Y-m-d H:i:s", strtotime('+5 hours', $mhs->date_post)); ?></td>
                     <td><?php echo $mhs->html ?></td>
                 </tr>
             <?php endforeach;?>

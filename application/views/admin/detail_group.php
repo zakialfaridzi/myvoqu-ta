@@ -9,8 +9,8 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Beranda</a></li>
-                            <li class="breadcrumb-item">Data Grup Hafalan MyVoqu</li>
+                            <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/'); ?>">Beranda</a></li>
+                            <li class="breadcrumb-item"><a href="<?php echo base_url('KelolaGrup') ?>">Data Grup Hafalan MyVoqu</a></li>
                             <li class="breadcrumb-item active">Detil Data Grup Hafalan MyVoqu</li>
                         </ol>
                     </div><!-- /.col -->
@@ -55,7 +55,7 @@
                     </tr>
                 <?php endforeach;?>
             </table>
-            <a href="<?php echo base_url('Admin/indexGroup'); ?>" class="btn btn-primary">Kembali</a>
+            <a href="<?php echo base_url('KelolaGrup'); ?>" class="btn btn-primary">Kembali</a>
         </div>
     </div>
 </div>

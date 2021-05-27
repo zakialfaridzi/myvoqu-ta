@@ -4,49 +4,7 @@
 <div class="col-md-2" style="margin-top: 10px;position: sticky;">
     <div class="suggestions" id="sticky-sidebar">
 
-        <h5 class="grey">Pengumuman</h5>
-        <?php foreach ($pengumuman as $pgu): ?>
-        <div class="alert alert-info alert-dismissible show" role="alert">
-
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <p><?=$pgu->isi_pengumuman?></p>
-
-        </div>
-        <?php endforeach;?>
-
-
-        <h5 class="grey">Postingan Admin</h5>
-
-        <?php foreach ($postgen as $pst): ?>
-        <div class="follow-user">
-
-            <a href="<?=base_url() . 'User/getIdpostgen/' . $pst->id_posting;?>"><?=$pst->html;?></a>
-
-            <!-- <video class="post-video" controls width="500" height="500">
-                <source src="base_url('assets_user/file_upload/' . $pst->fileName)?>" type=" video/mp4">
-            </video>
-
-            <img src="base_url('assets_user/images/' . $ou->image);?>" alt="" class='post-image'/> -->
-
-            <!-- <div class="video-wrapper"><video class="post-video" controls width="500" height="500">
-                    <source src=http://localhost/myvoqu/assets_user/file_upload/60753efdcecbb.mp4 type="video/mp4">
-                </video></div> -->
-            <!-- <img src=http://localhost/myvoqu/assets_user/file_upload/6075429d3ef62.png alt="post-image"
-                class="img-responsive post-image" width="100" /> -->
-
-            <!-- <div class="video-wrapper"><video class="post-video" controls width="500" height="500"><source src= http://localhost/myvoqu/assets_user/file_upload/60767409abca0.mp4 type="video/mp4"></video></div> -->
-        </div>
-        <?php endforeach;?>
-
-
-
-
-
-
-        <h5 class="grey">Mungkin anda kenal ?</h5>
+    <h5 class="grey">Mungkin anda kenal ?</h5>
         <?php foreach ($suggestion as $ou): ?>
         <div class="follow-user">
             <img src="<?=base_url('assets_user/images/' . $ou->image);?>" alt="" class="profile-photo-sm pull-left" />
@@ -69,6 +27,46 @@
             </div>
         </div>
         <?php endforeach?>
+
+        <hr>
+
+        <h5 class="grey">Pengumuman</h5>
+        <?php foreach ($pengumuman as $pgu): ?>
+        <div class="alert alert-info alert-dismissible show" role="alert">
+
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <p><?=$pgu->isi_pengumuman?></p>
+
+        </div>
+        <?php endforeach;?>
+
+
+        <h5 class="grey">Materi dari Admin</h5>
+
+        <?php foreach ($postgen as $pst): ?>
+        <div class="follow-user">
+
+            <a href="<?=base_url() . 'User/getIdpostgen/' . $pst->id_posting;?>"><?=$pst->html;?></a>
+
+            <!-- <video class="post-video" controls width="500" height="500">
+                <source src="base_url('assets_user/file_upload/' . $pst->fileName)?>" type=" video/mp4">
+            </video>
+
+            <img src="base_url('assets_user/images/' . $ou->image);?>" alt="" class='post-image'/> -->
+
+            <!-- <div class="video-wrapper"><video class="post-video" controls width="500" height="500">
+                    <source src=http://localhost/myvoqu/assets_user/file_upload/60753efdcecbb.mp4 type="video/mp4">
+                </video></div> -->
+            <!-- <img src=http://localhost/myvoqu/assets_user/file_upload/6075429d3ef62.png alt="post-image"
+                class="img-responsive post-image" width="100" /> -->
+
+            <!-- <div class="video-wrapper"><video class="post-video" controls width="500" height="500"><source src= http://localhost/myvoqu/assets_user/file_upload/60767409abca0.mp4 type="video/mp4"></video></div> -->
+        </div>
+        <?php endforeach;?>
+
 
         <!-- <h5 class="grey">Iklan <i class="fas fa-ad"></i></h5>
             <div class="follow-user">
