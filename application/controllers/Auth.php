@@ -169,7 +169,7 @@ class Auth extends CI_Controller
             $this->_sendEmail($token, 'verify');
 
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Congratulation</strong> your account has been created. Please activate your account!
+            <strong>Selamat</strong> akun anda sudah dibuat. Tolong aktivasi akun anda melalui email!
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -200,11 +200,11 @@ class Auth extends CI_Controller
         if ($type == 'verify') {
 
             $this->email->subject('Account Verification');
-            $this->email->message('click this link to verify your account : <a href="' . base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Activate</a>');
+            $this->email->message('Klik link ini untuk aktivasi akun anda : <a href="' . base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Activate</a> <br> Token aktivasi akan berlaku selama 2x24 jam, lebih dari itu token tidak akan berlaku kembali');
         } else if ($type == 'forgot') {
 
             $this->email->subject('Reset Password');
-            $this->email->message('click this link to reset your password : <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
+            $this->email->message('Klik link ini untuk mengubah password akun anda : <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a> <br> Token aktivasi akan berlaku selama 2x24 jam, lebih dari itu token tidak akan berlaku kembali');
         }
 
         if ($this->email->send()) {
@@ -240,7 +240,7 @@ class Auth extends CI_Controller
                     $this->db->delete('user_token', ['email' => $email]);
 
                     $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Congratulation</strong> ' . $email . ' has been activated. Please Login!
+            <strong>Selamat!</strong> ' . $email . ' sudah aktif. Silahkan Login!
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -261,7 +261,7 @@ class Auth extends CI_Controller
                 }
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-           Account activation failed! Wrong token.
+           Aktivasi akun gagal! Token salah.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -270,7 +270,7 @@ class Auth extends CI_Controller
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-           Account activation failed! Wrong email.
+			Aktivasi akun gagal! Email salah.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -484,6 +484,7 @@ class Auth extends CI_Controller
             ];
 
             $this->db->insert('user', $data);
+            // $this->db->insert('infaq', $data);
 
             //gausah kirim aktivasi ke email, admin nge acc baru kirim aktivasi ke email
 

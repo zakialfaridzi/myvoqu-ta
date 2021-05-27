@@ -13,14 +13,15 @@ if ($this->session->userdata['role_id'] == 3) { ?>
             if ($group['owner'] == $this->session->userdata['id']) {
         ?>
                 <div class="col-md-4 col-sm-6" style="float: left;">
-                    <d class="card" style="width: 18rem;">
+                    <div class="card" style="width: 18rem;">
                         <img src="<?= base_url() . 'assets/img/group/' . $group['image'] ?>" class="card-img-top" alt="profile-cover" style="height: 160px; width: 180px;">
                         <div class="card-body">
-                            <div class="friend-info">
+                            <div class="friend-info" style="padding: 1rem;">
                                 <h5><a href="<?= base_url(); ?>group/inGroup/<?= $group['id']; ?>" class="profile-link"><?= $group['nama']; ?></a></h5>
                                 <p><?= $group['deskripsi']; ?></p>
                             </div>
                         </div>
+                    </div>
                 </div>
         <?php }
         endforeach; ?>
@@ -29,14 +30,15 @@ if ($this->session->userdata['role_id'] == 3) { ?>
     <div class="row">
         <?php foreach ($detgroup as $ugroup) : ?>
             <div class="col-md-4 col-sm-6" style="float: left;">
-                <d class="card" style="width: 18rem;">
+                <div class="card" style="width: 18rem;">
                     <img src="<?= base_url() . 'assets/img/group/' . $ugroup['image'] ?>" class="card-img-top" alt="profile-cover" style="height: 160px; width: 180px;">
                     <div class="card-body">
-                        <div class="friend-info">
+                        <div class="friend-info" style="padding: 1rem;">
                             <h5><a href="<?= base_url(); ?>group/inGroup/<?= $ugroup['id_group']; ?>" class="profile-link"><?= $ugroup['nama']; ?></a></h5>
                             <p><?= $ugroup['deskripsi']; ?></p>
                         </div>
                     </div>
+                </div>
             </div>
         <?php endforeach; ?>
     </div>
@@ -46,7 +48,6 @@ if ($this->session->userdata['role_id'] == 3) { ?>
 
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -65,12 +66,11 @@ if ($this->session->userdata['role_id'] == 3) { ?>
                         <small class="form-text text-danger"><?= form_error('Deskripsi'); ?></small>
                         <input type="text" name="image" id="image" value="default.png" hidden>
                     </div>
-            </div>
+                </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
                 <button type="submit" class="btn btn-info">Submit</button>
             </div>
-
             </form>
         </div>
 

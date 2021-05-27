@@ -122,7 +122,7 @@
         ?>
         <?php foreach ($comment as $cmt) : ?>
             <div class="post-comment">
-                <img src="<?= base_url('assets_user/'); ?>images/default.png" alt="" class="profile-photo-sm" />
+                <img src="<?= base_url('assets_user/images/').$cmt->image; ?>" alt="" class="profile-photo-sm" />
                 <p><a href="timeline.html" class="profile-link"> <?= $cmt->name; ?> </a> <br>
                     <?php
                     $str = $cmt->comment;

@@ -16,16 +16,12 @@
 <span>null</span>aku ga di Bandung 
 <span>rian</span>aku di bandung 
 <span>s</span>asdas 
-<span>null</span>asdwdasd 
-<span>null</span>asdwd 
-<span>null</span>asdw 
-<span>null</span>asd w
-<span>null</span>das d
-<span>null</span>wd a
-<span>null</span>sdw d
-<span>null</span>as d
-<span>null</span>wd as
-<span>null</span>dw d
-<span>null</span>as d
-<span>null</span>wd as
-<span>null</span>d 
+<span>anon</span>hallo 
+<span>fydhia</span>hallo 
+<span>anon</span>hallo fydhia 
+<span>adasdas</span>asdasda 
+<span>aasdda</span>adassad 
+<span>adasd</span>adas 
+<span>aasdda</span>asdasd 
+<span>aasdda</span>asdasda 
+<span>aasdda</span>adasd 

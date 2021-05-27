@@ -13,7 +13,12 @@
                 </div>
 
                 <div class="form-button full-width">
-                    <button type="submit" class="ibtn btn-success">Kirim Link </button>
+                    <button type="submit" class="ibtn btn-success" onclick="hide()" id="submit">Kirim Link </button>
+
+                    <button class="ibtn btn-success" disabled style="display: none;" id="load_forgot">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        <span class="sr-only">Loading...</span>
+                    </button>
                 </div>
 
             </form>
@@ -26,3 +31,10 @@
 </div>
 </div>
 </div>
+
+<script>
+function hide() {
+    $('#submit').hide();
+    $('#load_forgot').show();
+}
+</script>

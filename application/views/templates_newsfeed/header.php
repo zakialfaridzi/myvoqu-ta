@@ -27,7 +27,7 @@
                     <ul class="nav-news-feed">
 
                         <li><i class="far fa-bell" style="color: tomato;"></i>
-                            <div><a href="<?=base_url('notification')?>">Notifikasi</a></div>
+                            <div><a href="<?=base_url('notifikasi')?>">Notifikasi</a></div>
                         </li>
 
                         <li><i class="fas fa-book-reader" style="color: burlywood;"></i>
@@ -47,7 +47,7 @@
                         </li>
 
                         <li><i class="fas fa-comment-dots" style="color: black;"></i>
-                            <div><a href="<?=base_url('./Chat');?>" target="_blank">Ngobrol Dengan Semua Pengguna</a>
+                            <div><a href="<?=base_url('Chatall/');?>">Ngobrol Dengan Semua Pengguna</a>
                             </div>
                         </li>
 
@@ -80,6 +80,8 @@ endforeach;?>
                 <!--chat block ends-->
             </div>
             <div class="col-md-7">
+
+
 
                 <div id="fp"></div>
 
@@ -170,3 +172,164 @@ endforeach;?>
 
                 <!-- Kamu memilih foto/video <strong>papa.jpg<
 /strong> ya! -->
+                <div class="alert alert-success alert-dismissible show" role="alert">
+
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="alert-heading">Saldo VOQU-Wallet</h4>
+                    <p>Saldo dana kamu sekarang adalah
+                        <strong>Rp<?=number_format($saldo_dompet['saldo'], 2, ',', '.')?></strong>
+                        <i class="fas fa-wallet"></i>
+                    </p>
+                    <p>
+                        <a class="btn btn-success" data-toggle="modal" data-target="#tambahDana"><i
+                                class="fas fa-plus"></i> Top Up</a>
+
+                        <a class="btn btn-warning" href="<?=base_url('transaksi/')?>"><i class="fas fa-history"></i>
+                            Riwayat</a>
+                        <!-- <a class="btn btn-info" data-toggle="modal" data-target="#myModal" data-id="<?=$au->id?>"
+                            id="showInfaqModal">Infaq</a> -->
+                    </p>
+
+                </div>
+
+                <?=$this->session->flashdata('alert')?>
+
+
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="tambahDana" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Top up VOQU-Wallet <i class="fas fa-wallet"></i></h4>
+                            </div>
+                            <div class="modal-body" id="modal_view">
+
+                                <form id="payment-form" method="post" action="<?=site_url()?>/snap/finish">
+                                    <input type="hidden" name="result_type" id="result-type" value="">
+
+                                    <input type="hidden" name="result_data" id="result-data" value="">
+
+
+
+                                    <div class="alert alert-info alert-dismissible show" role="alert">
+                                        Minimal pengisian wallet adalah <strong>Rp10.0000,00</strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Nominal Pengisian</label>
+                                        <input type="number" class="form-control"
+                                            placeholder="Masukan Nominal Pengisian" name="nominal_topup" id="nominal"
+                                            required message="minimal top up adalah Rp10.000,00">
+                                        <small style="color: red;display:none" id="errorMsg"><i>*minimal top up adalah
+                                                Rp10.000,00</i></small>
+
+                                    </div>
+
+
+
+
+
+
+
+                                    <input type="hidden" name="redirect" value="<?=$this->uri->segment(1)?>">
+
+
+
+                                    <input type="hidden" name="email" value="<?=$this->session->userdata('email')?>"
+                                        id="email">
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                                <button class="btn btn-info" id="pay-button" style="display: none;">Bayar</button>
+                            </div>
+                            </form>
+
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+                <script>
+                $("#nominal").keyup(function() {
+                    if ($('#nominal').val() < 10000) {
+                        $('#errorMsg').show();
+                        $('#pay-button').hide();
+                    } else {
+                        $('#errorMsg').hide();
+                        $('#pay-button').show();
+                    }
+                });
+                </script>
+
+                <script type="text/javascript">
+                $('#pay-button').click(function(event) {
+                    event.preventDefault();
+                    $(this).attr("disabled", "disabled");
+                    var nominal = $("#nominal").val();
+                    var email = $("#email").val();
+                    $.ajax({
+                        type: 'POST',
+                        url: '<?=site_url()?>/snap/token',
+                        data: {
+                            nominal: nominal,
+                            email: email,
+                        },
+                        cache: false,
+
+                        success: function(data) {
+                            //location = data;
+
+                            console.log('token = ' + data);
+
+                            var resultType = document.getElementById('result-type');
+                            var resultData = document.getElementById('result-data');
+
+                            function changeResult(type, data) {
+                                $("#result-type").val(type);
+                                $("#result-data").val(JSON.stringify(data));
+                                //resultType.innerHTML = type;
+                                //resultData.innerHTML = JSON.stringify(data);
+                            }
+
+                            snap.pay(data, {
+
+                                onSuccess: function(result) {
+                                    changeResult('success', result);
+                                    console.log(result.status_message);
+                                    console.log(result);
+                                    $("#payment-form").submit();
+                                },
+                                onPending: function(result) {
+                                    changeResult('pending', result);
+                                    console.log(result.status_message);
+                                    $("#payment-form").submit();
+                                },
+                                onError: function(result) {
+                                    changeResult('error', result);
+                                    console.log(result.status_message);
+                                    $("#payment-form").submit();
+                                }
+                            });
+                        }
+                    });
+                });
+                </script>

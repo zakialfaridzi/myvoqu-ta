@@ -1,5 +1,7 @@
 <div class="friend-list">
     <div class="row">
+
+
         <div id="container">
             <?php foreach ($otherUser as $au): ?>
             <div class="col-md-6 col-sm-6">
@@ -28,6 +30,14 @@
             </div>
             <?php endforeach;?>
         </div>
+
+
+
+
+
+
+
+
 
     </div>
 </div>

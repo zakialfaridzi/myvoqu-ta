@@ -8,13 +8,14 @@
             <div class="feed-item">
                 <div class="live-activity">
                     <p>
-                    <a href="<?= base_url('Friend/visitProfile/').$p['id_user'] ?>" class="profile-link" style="color: #0486FE;">
-                        <?php if($p['role_id'] == 3) : ?>
-                            <?= $p['name'] ?> <span class="badge badge-primary">Mentor</span>
-                        <?php else : ?>
-                            <?= $p['name'] ?>
-                        <?php endif; ?>
-                    </a> <?= $p['notif'] ?> </p>
+                        <a href="<?= base_url('Friend/visitProfile/') . $p['id_user'] ?>" class="profile-link" style="color: #0486FE;">
+                            <?php if ($p['role_id'] == 3) : ?>
+                                <?= $p['name'] ?> <span class="badge badge-primary">Mentor</span>
+                            <?php else : ?>
+                                <?= $p['name'] ?>
+                            <?php endif; ?>
+                        </a> <?= $p['notif'] ?>
+                    </p>
                     <p class="text-muted">On <br> <?= $p['date'] ?></p>
                 </div>
             </div>
@@ -34,14 +35,6 @@
 
 <!-- Footer
     ================================================= -->
-
-
-
-
-
-
-
-
 <!--preloader-->
 <div id="spinner-wrapper">
     <div class="spinner"></div>
@@ -76,6 +69,68 @@
 <script src="<?= base_url('assets_user/') ?>js/jquery.sticky-kit.min.js"></script>
 <script src="<?= base_url('assets_user/') ?>js/jquery.scrollbar.min.js"></script>
 <script src="<?= base_url('assets_user/') ?>js/script.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"> -->
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#nama_surah").on("input", function() {
+            var options = {};
+            options.url = "<?= base_url('assets_user/') ?>json/quran.json";
+            options.type = "GET";
+            options.data = {
+                "criteria": $("#nama_surah").val()
+            };
+            options.dataType = "json";
+            options.success = function(data) {
+                // console.log(data.chapters[0].name_simple);
+                $("#list-surah").empty();
+                for (var i = 0; i < data.chapters.length; i++) {
+                    $("#list-surah").append("<option value=" + data.chapters[i].name_simple + " data-id=" + data.chapters[i].verses_count + "></option>");
+                }
+            };
+            $.ajax(options);
+            $('#list-ayat').find('option').remove().end().append('<option disabled selected>Pilih Ayat</option>');
+            var ayatSurah = $("#list-surah option[value='" + $('#nama_surah').val() + "']").attr('data-id');
+            var options = $("#list-ayat");
+            var options2 = $("#list-ayat2");
+            for (var i = 1; i <= ayatSurah; i++) {
+                options.append("<option value=" + i + ">" + i + "</option>");
+            }
+            options.on('change', function() {
+                $('#list-ayat2').find('option').remove().end().append('<option disabled selected>Pilih Ayat</option>');
+                var ayat = $('select[name=fromAyat] option').filter(':selected').val();
+                var options = $("#list-ayat2");
+                if (ayatSurah == ayat) {
+                    $('#list-ayat2').prop('disabled', 'disabled');
+                } else {
+                    $('#list-ayat2').prop('disabled', false);
+                    for (var i = 1; i <= ayatSurah; i++) {
+                        if (i <= ayat) {
+                            options.append("<option value=" + i + " disabled>" + i + "</option>");
+                        } else {
+                            options.append("<option value=" + i + ">" + i + "</option>");
+                        }
+                    }
+                }
+
+            });
+        });
+    });
+
+    $(document).ready(function () {
+    $(".setorBtn").click(function () {
+        // console.log($(this).data('nama_surah'));
+        $('form #nama_surah').val($(this).data('nama_surah'));
+        $('form #from_ayat').val($(this).data('ayat1'));
+        $('form #to_ayat').val($(this).data('ayat2'));
+        $('form #idGroup').val($(this).data('idg'));
+        $('form #idUser').val($(this).data('idu'));
+        $('form #idTugas').val($(this).data('idt'));
+
+    });
+});
+</script>
 
 <script type="text/javascript">
     if (self == top) {
@@ -125,14 +180,11 @@
 </script>
 
 <script src="<?= base_url('assets_user/js/pindah.js'); ?>"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
 </script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
-    integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous">
 </script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

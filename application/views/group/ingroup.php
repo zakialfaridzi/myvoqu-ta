@@ -3,6 +3,7 @@
 		<div class="row">
 			<div class="col-md-3"></div>
 			<div class="col-md-7">
+				<div id="fp"></div>
 				<!-- Post Create Box
                 ================================================= -->
 				<div class="create-post">
@@ -10,7 +11,7 @@
 						<div class="col-md-7 col-sm-7">
 							<div class="form-group">
 								<img src="<?= base_url('assets_user/') ?>images/<?= $i->image;  ?>" alt="" class="profile-photo-md" />
-								<form action="<?= base_url('group/posting') . "/" . $this->uri->segment('3'); ?>" method="post" enctype="multipart/form-data">
+								<form action="<?= base_url('group/posting/postingan') . "/" . $this->uri->segment('3'); ?>" method="post" enctype="multipart/form-data">
 									<textarea cols="30" rows="1" class="form-control" placeholder="Bagikan hafalan mu.." name="caption" id="caption"></textarea>
 									<?= form_error('caption', '<small class="text-danger pl-3">', '</small>'); ?>
 							</div>
@@ -20,17 +21,10 @@
 								<ul class="publishing-tools list-inline">
 									<li class="nav-item">
 										<label for="file-input-gambar">
-											<a class="nav-link"><i class="fa fa-video text-muted"></i></a>
+											<a class="nav-link"><i class="fas fa-photo-video"></i></a>
 										</label>
-										<input type="file" id="file-input-gambar" style="display: none;" name="file">
+										<input type="file" id="file-input-gambar" style="display: none;" name="file" multiple onchange="GetFileSizeNameAndType()">
 									</li>
-									<!-- <li class="nav-item">
-										<label for="file-input-video">
-											<a class="nav-link"><i class="fa fa-video text-muted"></i></a>
-										</label>
-										<input type="file" id="file-input-video" style="display: none;" name="video">
-									</li> -->
-
 								</ul>
 								<button class="btn btn-primary pull-right" style="background-color: #6fb8df;outline: none;">Upload</button>
 
@@ -41,6 +35,25 @@
 						</div>
 					</div>
 				</div><!-- Post Create Box End-->
+				<?php foreach ($hafalan as $key => $value) { ?>
+					<div class="alert alert-info" role="alert">
+						Tugas hafalan surah
+						<?= $value->nama_surah ?>
+						ayat
+						<?= $value->from_ayat ?>
+						<?php if ($value->to_ayat != null) { ?>
+							- <?= $value->to_ayat ?>
+							<?php if ($this->session->userdata('role_id') == 2) { ?>
+								<button class="btn btn-warning pull-right setorBtn" data-toggle="modal" data-target="#setorHafalan" data-idu="<?= $this->session->userdata('id') ?>" data-nama_surah="<?= $value->nama_surah ?>" data-ayat1="<?= $value->from_ayat ?>" data-ayat2="<?= $value->to_ayat ?>" data-idg="<?= $value->id_group ?>" data-idt="<?= $value->id_tugas ?>">Setor Hafalan</button>
+							<?php } ?>
+						<?php } else { ?>
+							<?php if ($this->session->userdata('role_id') == 2) { ?>
+								<button class="btn btn-warning pull-right setorBtn" data-toggle="modal" data-target="#setorHafalan" data-idu="<?= $this->session->userdata('id') ?>" data-nama_surah="<?= $value->nama_surah ?>" data-ayat1="<?= $value->from_ayat ?>" data-ayat2="<?= $value->to_ayat ?>" data-idg="<?= $value->id_group ?>" data-idt="<?= $value->id_tugas ?>">Setor Hafalan</button>
+							<?php } ?>
+						<?php } ?>
+
+					</div>
+				<?php } ?>
 				<?= $this->session->flashdata('message'); ?>
 				<!-- Post Content
                 ================================================= -->
@@ -90,10 +103,64 @@
 
 				<!-- Post Content
                 ================================================= -->
+				<script type="text/javascript">
+					function GetFileSizeNameAndType() {
+						var fi = document.getElementById('file-input-gambar'); // GET THE FILE INPUT AS VARIABLE.
 
+						var totalFileSize = 0;
+
+						// VALIDATE OR CHECK IF ANY FILE IS SELECTED.
+						if (fi.files.length > 0) {
+							// RUN A LOOP TO CHECK EACH SELECTED FILE.
+							for (var i = 0; i <= fi.files.length - 1; i++) {
+								//ACCESS THE SIZE PROPERTY OF THE ITEM OBJECT IN FILES COLLECTION. IN THIS WAY ALSO GET OTHER PROPERTIES LIKE FILENAME AND FILETYPE
+								var fsize = fi.files.item(i).size;
+								totalFileSize = totalFileSize + fsize;
+								document.getElementById('fp').innerHTML =
+									document.getElementById('fp').innerHTML +
+									'<div class="alert alert-success alert-dismissible show" role="alert"> Kamu memilih foto/video <strong>' +
+									fi.files.
+								item(i).name + '</strong > ' +
+									'ya!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> </div>'
+							}
+						}
+					}
+				</script>
 
 				<!-- Post Content
                 ================================================= -->
 
 
+				<div class="modal fade" id="setorHafalan" role="dialog">
+				<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Setor Hafalan</h4>
+						</div>
+						<div class="modal-body">
+							<form action="<?= base_url('group/posting/hafalan/') . $this->uri->segment('3'); ?>" method="post" enctype="multipart/form-data">
+								<div class="form-group">
+									<input type="hidden" id="idUser" name="id_user" value="">
+									<input type="hidden" id="idGroup" name="id_group" value="">
+									<input type="hidden" id="nama_surah" name="nama_surah" value="">
+									<input type="hidden" id="from_ayat" name="from_ayat" value="">
+									<input type="hidden" id="to_ayat" name="to_ayat" value="">
+									<input type="hidden" id="idTugas" name="id_tugas" value="">
+									<label for="file">Pilih Hafalan</label>
+									<input type="file" class="form-control" id="file-input-gambar" name="file">
+								</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+							<button type="submit" class="btn btn-info">Submit</button>
+						</div>
+						</form>
+					</div>
+
+				</div>
 			</div>
+			</div>
+
+			

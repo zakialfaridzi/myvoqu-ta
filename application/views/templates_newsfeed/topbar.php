@@ -22,6 +22,9 @@
 
         <link rel="stylesheet" href="<?=base_url('assets_user/');?>css/bootstrap.min.css" />
 
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css">
+
 
 
 
@@ -48,6 +51,11 @@
 
         <!--Favicon-->
         <link rel="shortcut icon" type="image/png" href="<?=base_url('assets_login/');?>images/mvq.png" />
+
+        <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+            data-client-key="SB-Mid-client-zOtZeaNaY9E2eWja"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
     </head>
 
     <body style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ">
@@ -95,13 +103,24 @@
 
 
                         </ul>
+
+                        <?php
+$search_by = "";
+if ($this->uri->segment(1) == "friend") {
+    $search_by = "Teman";
+
+} else {
+    $search_by = "Mentor";
+}?>
+
                         <form class="navbar-form navbar-right hidden-sm">
                             <div class="form-group" style="display: <?=$search;?>;">
                                 <i class="icon ion-android-search " style="color: <?=$colorSearch;?> ;"></i>
-                                <input type="text" class="form-control" placeholder="Search People"
+                                <input type="text" class="form-control" placeholder="Cari <?=$search_by?>"
                                     style="background-color: white; color: #323232;" id="keyword">
                             </div>
                         </form>
+
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container -->
             </nav>

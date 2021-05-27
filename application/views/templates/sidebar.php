@@ -96,6 +96,14 @@ echo $mhs->name
                           </a>
                       </li>
                       <li class="nav-item">
+                          <a href="<?php echo base_url('Admin/indexPengumuman/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'indexPengumuman' ? 'active' : '' ?>">
+                              <i class="nav-icon fas fa-exclamation-circle"></i>
+                              <p>
+                                  Buat Pengumuman
+                              </p>
+                          </a>
+                      </li>
+                      <li class="nav-item">
                           <a href="<?php echo base_url('Admin/indexTodo/') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'indexTodo' ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-tasks"></i>
                               <p>

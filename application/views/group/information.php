@@ -65,17 +65,25 @@
                             <h4 class="modal-title">Informasi Tugas Hafalan</h4>
                         </div>
                         <div class="modal-body">
-                            <form action="<?= base_url('Group/tambahInfo') . "/" . $this->uri->segment('3'); ?>" method="post">
+                            <form action="<?= base_url('Group/tambahInfo/tugas/') . $this->uri->segment('3'); ?>" method="post">
                                 <div class="form-group">
-                                    <input type="text" value="<?= $this->uri->segment('3'); ?>" name="idgroup" id="idgroup" hidden>
                                     <input type="text" value="<?= $this->session->userdata('id'); ?>" name="iduser" id="iduser" hidden>
                                     <label for="nama">Nama Surah</label>
-                                    <input type="text" name="nama" class="form-control" id="nama" placeholder="Al-Baqarah">
+                                    <input type="text" name="nama" class="form-control" id="nama_surah" placeholder="Pilih Surah" list="list-surah" required>
+                                    <datalist id="list-surah">
+                                        <!-- <option value="Internet Explorer"> -->
+                                    </datalist>
                                     <small class="form-text text-danger"><?= form_error('nama'); ?></small>
-                                    <label for="nama">Ayat Ke</label>
-                                    <input type="number" name="ayat" class="form-control" id="ayat" placeholder="Ayat 5">
+                                    <label for="fromAyat">Ayat ke</label>
+                                    <select name="fromAyat" class="form-control" id="list-ayat" required>
+                                        <!-- <option value="Internet Explorer"> -->
+                                    </select>
+                                    <label for="toAyat">Sampai Ayat :</label>
+                                    <select name="toAyat" class="form-control" id="list-ayat2">
+                                        <!-- <option value="Internet Explorer"> -->
+                                    </select>
                                     <small class="form-text text-danger"><?= form_error('ayat'); ?></small>
-                                    <label for="nama">Catatan</label>
+                                    <label for="catatan">Catatan</label>
                                     <input type="text" name="catatan" class="form-control" id="catatan" placeholder="(Opsional) Tambahkan Catatan">
                                     <small class="form-text text-danger"><?= form_error('catatan'); ?></small>
                                     <input type="hidden" name="hafalan" class="form-control" value="1">
@@ -92,28 +100,28 @@
 
         </div>
         <div class="modal fade" id="modalInfo" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Buat Informasi</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form action="<?= base_url('Group/tambahInfo') . "/" . $this->uri->segment('3'); ?>" method="POST">
-                                <div class="form-group">
-                                    <form action="<?= base_url('user/posting'); ?>" method="post" enctype="multipart/form-data">
-                                        <input type="text" value="<?= $this->uri->segment('3'); ?>" name="idgroup" id="idgroup" hidden>
-                                        <input type="text" value="<?= $this->session->userdata('id'); ?>" name="iduser" id="iduser" hidden>
-                                        <input type="hidden" name="hafalan" class="form-control" value="0">
-                                        <textarea cols="30" rows="3" class="form-control" placeholder="Write the information" name="informasi" id="informasi"></textarea>
-                                        <?= form_error('caption', '<small class="text-danger pl-3">', '</small>'); ?>
-                                </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                            <button type="submit" class="btn btn-info">Submit</button>
-                        </div>
-                        </form>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Buat Informasi</h4>
                     </div>
+                    <div class="modal-body">
+                        <form action="<?= base_url('Group/tambahInfo/info/') .  $this->uri->segment('3'); ?>" method="POST">
+                            <div class="form-group">
+                                <form action="<?= base_url('user/posting'); ?>" method="post" enctype="multipart/form-data">
+                                    <input type="text" value="<?= $this->session->userdata('id'); ?>" name="iduser" id="iduser" hidden>
+                                    <textarea cols="30" rows="3" class="form-control" placeholder="Write the information" name="informasi" id="informasi" required></textarea>
+                                    <?= form_error('caption', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-info">Submit</button>
+                    </div>
+                    </form>
                 </div>
             </div>
+        </div>
+
+        

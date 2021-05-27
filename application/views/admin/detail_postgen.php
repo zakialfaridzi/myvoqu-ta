@@ -32,10 +32,22 @@
                 </tr>
 				<tr>
 					<th>Unggahan</th>
-					<td><?php echo $post->html; ?></td>
+					<?php
+$word = "video";
+
+if (strpos($post->html, $word) !== false): ?>
+					<td>
+						<?=$post->html;?>
+					</td>
+					<?php else: ?>
+					<td>
+						<img src="<?=base_url()?>assets_user/file_upload/<?=$post->fileName?>" alt="post-image"class="img-responsive post-image"  style="border-radius: 5px 5px 5px 5px; width:466px; height:350px;"/>
+					</td>
+					<?php endif;?>
 				</tr>
 			</table>
 			<a href="<?php echo base_url('Admin/indexPostingGen'); ?>" class="btn btn-primary">Kembali</a>
 		</div>
 	</div>
 </div>
+

@@ -8,7 +8,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?=$title?></title>
-        <link rel="stylesheet" type="text/css" href="<?=base_url('assets_login/');?>css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="<?=base_url('assets_login/');?>css/fontawesome-all.min.css">
         <link rel="stylesheet" type="text/css" href="<?=base_url('assets_login/');?>css/iofrm-style.css">
         <link rel="stylesheet" type="text/css" href="<?=base_url('assets_login/');?>css/iofrm-theme5.css">

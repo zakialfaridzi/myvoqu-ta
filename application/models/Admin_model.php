@@ -237,6 +237,13 @@ class Admin_model extends CI_model
         return $res;
     }
 
+    public function getSukaById($id)
+    {
+        $query = $this->db->query("SELECT id, status, count(status) jumlahsuka FROM suka s where status = 1 and id_posting = $id");
+
+        return $query->result();
+    }
+
     public function detail_post2($id)
     {
         $query = $this->db->query("select * from posting where id_posting = $id");
@@ -398,5 +405,45 @@ class Admin_model extends CI_model
     public function getTodoById($id)
     {
         return $this->db->get_where('tasks', ['id' => $id])->row_array();
+    }
+
+    public function tampil_pengumuman()
+    {
+        $data = $this->db->query('select * from pengumuman')->result();
+        return $data;
+    }
+
+    public function tambah_pengumuman()
+    {
+        $data = ['isi_pengumuman' => $this->input->post('namapengumuman', true), 'datepost' => time()];
+
+        $this->db->insert('pengumuman', $data);
+    }
+
+    public function edit_pengumuman($id)
+    {
+        $this->db->from('pengumuman');
+        $this->db->where('id', $id);
+        return $this->db->get()->row_array();
+    }
+
+    public function update_pengumuman($id)
+    {
+        $data = ['isi_pengumuman' => $this->input->post('namapengumuman', true), 'datepost' => time()];
+
+        $this->db->where('id', $id);
+        $this->db->update('pengumuman', $data);
+
+    }
+
+    public function delete_pengumuman($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('pengumuman');
+    }
+
+    public function getPengumumanById($id)
+    {
+        return $this->db->get_where('pengumuman', ['id' => $id])->row_array();
     }
 }

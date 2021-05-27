@@ -10,6 +10,28 @@ class Group extends CI_Controller
         $this->load->model('User_model');
         $this->load->model('Group_model');
         $this->load->library('form_validation');
+
+        if (empty($this->session->userdata('id'))) {
+            redirect('auth');
+        }
+
+        $topup_berhasil_terakhr = $this->User_model->last_transaksi_topup($this->session->userdata('id'));
+
+        $saldo_dpt = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+
+        if (!is_null($topup_berhasil_terakhr)) {
+
+            if ($topup_berhasil_terakhr['status_code'] == 200) {
+                $saldo_skrg = $saldo_dpt['saldo'] + $topup_berhasil_terakhr['gross_amount'];
+                $this->db->update('transaksi_topup_dompet', ['status_code' => 199], ['id_user' => $this->session->userdata('id')]);
+
+                $data_saldo = [
+                    'saldo' => $saldo_skrg,
+                ];
+
+                $this->db->update('dompet', $data_saldo, ['id_user' => $this->session->userdata('id')]);
+            }
+        }
     }
 
     public function sessionLogin()
@@ -25,6 +47,7 @@ class Group extends CI_Controller
 
     public function index()
     {
+        $data['postgen'] = $this->User_model->getPostgen();
         $iduser = $this->session->userdata['id'];
         $data['search'] = 'none';
         $data['colorSearch'] = '#0486FE';
@@ -36,6 +59,11 @@ class Group extends CI_Controller
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data['title'] = 'Group';
         $data['suggestion'] = $this->User_model->getSuggest();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
+
+        // $data['saldo_wallet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        // $data['postgen'] = $this->User_model->getPostgen();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -114,6 +142,9 @@ class Group extends CI_Controller
         $data['allgroup'] = $this->Group_model->getGroup();
         $data['active'] = 'active';
         $data['notifGroup'] = $this->Group_model->getNotif($id);
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -160,6 +191,9 @@ class Group extends CI_Controller
         $data['allgroup'] = $this->Group_model->getGroup();
         $data['active'] = 'active';
         $data['notifGroup'] = $this->Group_model->getNotif($id);
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -205,6 +239,10 @@ class Group extends CI_Controller
         $data['title'] = 'Group Feeds';
         $data['active'] = 'active';
         $data['notifGroup'] = $this->Group_model->getNotif($id);
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
+        $data['hafalan'] = $this->Group_model->gethafalan($id)->result();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -237,6 +275,9 @@ class Group extends CI_Controller
         $data['active'] = 'active';
         $data['anggota'] = $this->Group_model->getAnggota();
         $data['notifGroup'] = $this->Group_model->getNotif($id);
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -271,6 +312,9 @@ class Group extends CI_Controller
         $data['active'] = 'active';
         $data['allinfo'] = $this->Group_model->getInfoGroup();
         $data['notifGroup'] = $this->Group_model->getNotif($id);
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -306,6 +350,9 @@ class Group extends CI_Controller
         $data['active'] = 'active';
         $data['allinfo'] = $this->Group_model->getInfoGroup();
         $data['notifGroup'] = $this->Group_model->getNotif($id);
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -340,6 +387,9 @@ class Group extends CI_Controller
         $data['active'] = 'active';
         $data['allinfo'] = $this->Group_model->getInfoGroup();
         $data['notifGroup'] = $this->Group_model->getNotif($id);
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -365,49 +415,48 @@ class Group extends CI_Controller
         redirect('Group');
     }
 
-    public function tambahInfo($idg)
+    public function tambahInfo($type, $idg)
     {
-        if ($this->input->post('hafalan') == '0') {
-            $this->form_validation->set_rules('informasi', 'Informasi', 'required');
-            if ($this->form_validation->run() == false){
+        if ($type == 'tugas') {
+            $this->form_validation->set_rules('nama', 'Nama Surah', 'required');
+            if ($this->form_validation->run() == false) {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger ">
                     Gagal Dibuat, ada yang belum terisi
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
             </div>');
-            }else{
-            $datainfo = [
-                "info" => $this->input->post('informasi', true),
-                "id_group" => $this->input->post('idgroup', true),
-                "id_user" => $this->input->post('iduser', true),
-                'hafalan' => $this->input->post('hafalan', true)
-            ];
-            $this->Group_model->addInfo($datainfo);
-            redirect('group/info/' . $idg);
+                redirect('group/info/' . $idg);
+            } else {
+                $datainfo = [
+                    "nama_surah" => $this->input->post('nama', true),
+                    "id_group" => $idg,
+                    "from_ayat" => $this->input->post('fromAyat', true),
+                    "to_ayat" => $this->input->post('toAyat', true),
+                    'catatan' => $this->input->post('catatan', true),
+                    'id_user' => $this->input->post('iduser', true)
+                ];
+                $this->Group_model->addInfo('tugas_hafalan', $datainfo);
+                redirect('group/info/' . $idg);
             }
         } else {
-            $this->form_validation->set_rules('nama', 'nama surah', 'required');
-            $this->form_validation->set_rules('ayat', 'ayat surah', 'required');
-            if ($this->form_validation->run() == false){
+            $this->form_validation->set_rules('informasi', 'Informasi', 'required');
+            if ($this->form_validation->run() == false) {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger ">
                     Gagal Dibuat, ada yang belum terisi
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
             </div>');
-            } else{
-                $namaSurah = $this->input->post('nama', true);
-                $ayatSurah = $this->input->post('ayat', true);
-                $catatan = $this->input->post('catatan', true);
-            $datainfo = [
-                "info" => 'Buat Hafalan Mengenai Surah ' . $namaSurah . ' Ayat Ke ' . $ayatSurah . ' ' . $catatan ,
-                "id_group" => $this->input->post('idgroup', true),
-                "id_user" => $this->input->post('iduser', true),
-                'hafalan' => $this->input->post('hafalan', true)
-            ];
-            $this->Group_model->addInfo($datainfo);
-            redirect('group/info/' . $idg);
+                redirect('group/info/' . $idg);
+            } else {
+                $datainfo = [
+                    "info" => $this->input->post('informasi', true),
+                    "id_group" => $idg,
+                    "id_user" => $this->input->post('iduser', true)
+                ];
+                $this->Group_model->addInfo('group_information', $datainfo);
+                redirect('group/info/' . $idg);
             }
         }
     }
@@ -426,6 +475,9 @@ class Group extends CI_Controller
         $data['getAllUser'] = $this->Group_model->getAllUser();
         $data['cek'] = $this->Group_model->cekAnggota();
         $data['notifGroup'] = $this->Group_model->getNotif($id);
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -452,10 +504,10 @@ class Group extends CI_Controller
         $this->load->view('ajax/friend.php', $data);
     }
 
-    public function inviteUser($idg)
+    public function inviteUser($idg, $id)
     {
         $data = [
-            'id_user' => $this->input->post('iduser'),
+            'id_user' => $id,
             'id_group' => $idg,
         ];
         $this->Group_model->tambahUser($data);
@@ -469,50 +521,114 @@ class Group extends CI_Controller
         redirect('group/listAnggota/' . $idg);
     }
 
-    public function posting($idg)
+    public function posting($type, $idg)
     {
-        $this->form_validation->set_rules('caption', 'Caption', 'trim');
+        if ($type == 'postingan') {
+            $this->form_validation->set_rules('caption', 'Caption', 'trim');
 
-        if ($this->form_validation->run() == false) {
-            $this->index();
-        } else {
-            $caption = htmlspecialchars($this->input->post('caption', true));
-            $id_user = htmlspecialchars($this->input->post('id_user', true));
-            $fileName = $this->_uploadFile($idg);
-
-            if ((substr($fileName, -3, 3) == 'mp4') || (substr($fileName, -3, 3) == 'flv')) {
-                $html = '<div class="video-wrapper">';
-                $html .= '<video class="post-video" controls>';
-                $html .= '<source src=' . base_url('assets_user/file_upload/');
-                $html .= $fileName . ' type="video/mp4">';
-                $html .= '</video></div>';
+            if ($this->form_validation->run() == false) {
+                $this->index();
             } else {
-                $html = '<img src=' . base_url('assets_user/file_upload/');
-                $html .= $fileName . ' alt="post-image"';
-                $html .= 'class="img-responsive post-image" />';
-            }
+                $caption = htmlspecialchars($this->input->post('caption', true));
+                $id_user = htmlspecialchars($this->input->post('id_user', true));
+                $fileName = $this->_uploadFile($idg);
 
-            $data = [
-                'caption' => $caption,
-                'id_group' => $idg,
-                'id_user' => $id_user,
-                'fileName' => $fileName,
-                'html' => $html,
-            ];
+                if ((substr($fileName, -3, 3) == 'mp4') || (substr($fileName, -3, 3) == 'flv')) {
+                    $html = '<div class="video-wrapper">';
+                    $html .= '<video class="post-video" controls>';
+                    $html .= '<source src=' . base_url('assets_user/file_upload/');
+                    $html .= $fileName . ' type="video/mp4">';
+                    $html .= '</video></div>';
+                } else {
+                    $html = '<img src=' . base_url('assets_user/file_upload/');
+                    $html .= $fileName . ' alt="post-image"';
+                    $html .= 'class="img-responsive post-image" />';
+                }
 
-            //siapkan token
-            $this->session->set_flashdata('message', '<small> br</small>');
+                $data = [
+                    'caption' => $caption,
+                    'id_group' => $idg,
+                    'id_user' => $id_user,
+                    'fileName' => $fileName,
+                    'html' => $html,
+                ];
 
-            $this->db->insert('group_postingan', $data);
+                //siapkan token
+                $this->session->set_flashdata('message', '<small> br</small>');
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible show" role="alert">
+                $this->db->insert('group_postingan', $data);
+
+                $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible show" role="alert">
 		<strong>Congratulations!</strong> your post is uploaded.
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
 		</div>');
 
-            redirect('group/inGroup/' . $idg);
+                redirect('group/inGroup/' . $idg);
+            }
+        } else {
+            $this->form_validation->set_rules('nama_surah', 'Nama Surah', 'trim');
+
+            if ($this->form_validation->run() == false) {
+                $this->ingroup($idg);
+            } else {
+                $surah = $this->input->post('nama_surah', true);
+                $ayat = $this->input->post('from_ayat', true);
+                $ayat2 = $this->input->post('to_ayat', true);
+                $id_user = $this->input->post('id_user', true);
+                $id_group = $idg;
+                $id_tugas = $this->input->post('id_tugas', true);
+                $fileName = $this->_uploadFile($idg);
+
+                if ((substr($fileName, -3, 3) == 'mp4') || (substr($fileName, -3, 3) == 'flv')) {
+                    $html = '<div class="video-wrapper">';
+                    $html .= '<video class="post-video" controls>';
+                    $html .= '<source src=' . base_url('assets_user/file_upload/');
+                    $html .= $fileName . ' type="video/mp4">';
+                    $html .= '</video></div>';
+                } else {
+                    $html = '<img src=' . base_url('assets_user/file_upload/');
+                    $html .= $fileName . ' alt="post-image"';
+                    $html .= 'class="img-responsive post-image" />';
+                }
+                if ($ayat2 != null) {
+                    $data = [
+                        'caption' => 'Setoran surah '. $surah . ' ayat '. $ayat . '-' . $ayat2,
+                        'id_group' => $idg,
+                        'id_user' => $id_user,
+                        'fileName' => $fileName,
+                        'html' => $html,
+                    ];
+                }else{
+                    $data = [
+                        'caption' => 'Setoran surah '. $surah . ' ayat '. $ayat,
+                        'id_group' => $idg,
+                        'id_user' => $id_user,
+                        'fileName' => $fileName,
+                        'html' => $html,
+                    ];
+                }
+                $report = [
+                    'id_tugas' => $id_tugas,
+                    'id_user' => $id_user,
+                    'id_group' => $idg
+                ];
+                //siapkan token
+                $this->session->set_flashdata('message', '<small> br</small>');
+
+                $this->db->insert('group_postingan', $data);
+                $this->db->insert('report_hafalan', $report);
+
+                $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible show" role="alert">
+		<strong>Congratulations!</strong> your post is uploaded.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		</div>');
+
+                redirect('group/inGroup/' . $idg);
+            }
         }
     }
     private function _uploadFile($id)
@@ -597,6 +713,11 @@ class Group extends CI_Controller
         // $data['idpost'] = $this->Group_model->getidpost();
         // $data['report'] = $this->Group_model->getReport();
         // $data['jumlahfollowers'] = $this->Group_model->getJumlahFollowers();
+
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
+
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
         } elseif ($data['user']['role_id'] == 1) {

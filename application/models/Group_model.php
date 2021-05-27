@@ -64,14 +64,14 @@ class Group_model extends CI_Model
         $this->db->delete('grup');
     }
 
-    public function addInfo($data)
+    public function addInfo($table, $data)
     {
-        $this->db->insert('group_information', $data);
+        $this->db->insert($table, $data);
     }
 
     public function getInfoGroup()
     {
-        return $this->db->query('SELECT info, name, date_post FROM group_information g join user u on(g.id_user=u.id) where id_group = ' . $this->uri->segment('3') . ' AND hafalan = 0 order by date_post desc limit 1')->result_array();
+        return $this->db->query('SELECT info, name, date_post FROM group_information g join user u on(g.id_user=u.id) where id_group = ' . $this->uri->segment('3') . ' order by date_post desc limit 1')->result_array();
 
         // return $this->db->query('SELECT info, name FROM group_information g join user u on(g.id_user = u.id) where id_group = ' . $this->uri->segment('3') . ' ')->result();
     }
@@ -94,7 +94,7 @@ class Group_model extends CI_Model
 
     public function cekAnggota()
     {
-        return $this->db->query('select distinct id, image, name, gender from user u left join anggota a on u.id=a.id_user where role_id <> 3 and role_id <> 1 and ifnull(id_group, 0) <> ' . $this->uri->segment('3') . ' and id not in (select id_user from anggota where id_group = ' . $this->uri->segment('3') . ')')->result_array();
+        return $this->db->query('select distinct id, image, name, gender, bio from user u left join anggota a on u.id=a.id_user where role_id <> 3 and role_id <> 1 and ifnull(id_group, 0) <> ' . $this->uri->segment('3') . ' and id not in (select id_user from anggota where id_group = ' . $this->uri->segment('3') . ')')->result_array();
     }
 
     public function tambahUser($data)
@@ -164,6 +164,11 @@ class Group_model extends CI_Model
     public function getNotif($id)
     {
         return $this->db->query('SELECT role_id, id_user, name, notif, date from group_notif g join user u on g.id_user=u.id where id_group = '. $id .' order by date desc limit 5')->result_array();
+    }
+
+    public function gethafalan($id)
+    {
+        return $this->db->get_where('tugas_hafalan', array('id_group' => $id));
     }
     // public function getidpost()
     // {

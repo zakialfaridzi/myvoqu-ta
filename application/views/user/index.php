@@ -5,12 +5,12 @@
 
 <?=$this->session->flashdata('mm');?>
 
-
 <?php foreach ($posting as $pst): ?>
 
 <div class="post-content">
 
     <input type="hidden" value="<?=$pst->id_posting;?>" id="id_post">
+
 
 
     <?=$pst->html;?>
@@ -22,7 +22,9 @@
         <input type="hidden" name="id_posting" value="<?=$pst->id_posting;?>">
         <input type="hidden" name="id" value="<?=$this->session->userdata('id');?>">
         <a class="btn text-red">
-            <button class="fas fa-exclamation" style="border : 0;" name="report"> Laporkan! </button> </a>
+            <button class="" style="border : 0;background-color: transparent;" name="report"><i
+                    class="fas fa-exclamation"></i>
+                Laporkan! </button> </a>
     </form>
     <?php elseif ($pst->id_user != $this->session->userdata('id') and $rpt->report == 1): ?>
 
@@ -44,7 +46,7 @@
         <div class="post-detail">
             <div class="user-info">
                 <h5><?php if ($pst->id == $this->session->userdata('id')): ?>
-                    <a href="<?=base_url('profile')?>"><?=$pst->name;?></a>
+                    <a href="<?=base_url('profile/')?>"><?=$pst->name;?></a>
                     <?php else: ?>
                     <a href="<?=base_url('friend/visitProfile/') . $pst->id_user;?>"><?=$pst->name;?></a>
                     <?php endif;?>
@@ -71,40 +73,7 @@
 
 
 
-<?php foreach ($postgen as $pst): ?>
 
-<div class="post-content">
-
-    <input type="hidden" value="<?=$pst->id_posting;?>" id="id_post">
-
-
-    <?=$pst->html;?>
-
-    <?php if ($pst->id_user == $this->session->userdata('id')): ?>
-    <i class="fas fa-trash" style="color: tomato;margin-left:18px;"></i>
-    <a href="<?=base_url();?>user/deletePost/<?=$pst->id_posting;?>" style="text-decoration:none;">Hapus</a>
-
-    <?php endif;?>
-
-    <div class="post-container">
-        <img src="<?=base_url('assets/');?>foto/<?=$pst->image;?>" alt="user" class="profile-photo-md pull-left" />
-        <div class="post-detail">
-            <div class="user-info">
-                <h5><a href="timeline.html" class="profile-link"><?=$pst->name;?></a>&emsp;<span
-                        class="badge badge-pill badge-danger">Admin</span></h5>
-                <p class="text-muted">Diunggah pada <?=date('d F Y ', $pst->date_post);?></p>
-            </div>
-            <div class="line-divider"></div>
-            <div class="post-text">
-                <p><?=$pst->caption;?> </p>
-            </div>
-            <div class="line-divider"></div>
-            <?=$this->session->flashdata('nn');?>
-        </div>
-    </div>
-</div>
-
-<?php endforeach;?>
 <!-- Post Content=================================================-->
 
 

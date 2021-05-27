@@ -67,8 +67,9 @@ class User_model extends CI_model
 
     public function getMentorData()
     {
-        return $this->db->query('SELECT * FROM user
-        where role_id = 3')->result();
+        $gender = $this->session->userdata('gender');
+
+        return $this->db->query("SELECT *,(SELECT ROUND(avg(rating)) FROM infaq WHERE id_mentor = id) avg_rating FROM user where role_id = 3 AND gender = '$gender' ORDER BY id ASC LIMIT 6")->result();
     }
 
     public function deletePostUser($id)
@@ -90,6 +91,16 @@ class User_model extends CI_model
         $gender = $this->session->userdata('gender');
 
         $query = $this->db->query("SELECT * FROM user where id <> '$id' and name LIKE '%$name%' and role_id IN(2) and gender = '$gender'");
+
+        return $query->result();
+    }
+
+    public function getUserNameMentor($name)
+    {
+        $id = $this->session->userdata('id');
+        $gender = $this->session->userdata('gender');
+
+        $query = $this->db->query("SELECT *,(SELECT ROUND(avg(rating)) FROM infaq i JOIN user u on(i.id_mentor = u.id) WHERE u.name LIKE '%$name%') avg_rating FROM user where id <> '$id' and name LIKE '%$name%' and role_id IN(3) and gender = '$gender' ORDER BY id ASC LIMIT 6");
 
         return $query->result();
     }
@@ -167,6 +178,13 @@ class User_model extends CI_model
         return $query->result();
     }
 
+    public function getPostGenById($id)
+    {
+        $query = $this->db->query("SELECT * from postgen p  join user u on(u.id = p.id_user) where id_posting = $id");
+
+        return $query->result();
+    }
+
     public function getCommentById($id)
     {
         $query = $this->db->query("SELECT * FROM comment c join user u using(id) where id_posting = $id order by id_comment desc");
@@ -215,7 +233,7 @@ class User_model extends CI_model
     {
         return $this->db->query('SELECT * FROM follow')->result();
     }
-
+    
     // public function getFollow()
     // {
     //     return $this->db->query('SELECT distinct id_follow, stat, id_userfollow, id_usertarget, name, id, image, bio FROM user right join follow on follow.id_userfollow = user.id
@@ -364,7 +382,12 @@ class User_model extends CI_model
 
     public function getPostgen()
     {
-        return $this->db->query('SELECT * FROM postgen p join user u on(p.id_user = u.id) order by p.id_posting desc')->result();
+        return $this->db->query('SELECT * FROM postgen p join user u on(p.id_user = u.id) order by p.id_posting desc limit 3')->result();
+    }
+
+    public function getPengumuman()
+    {
+        return $this->db->query('SELECT * FROM pengumuman order by id desc limit 1')->result();
     }
 
     public function getFollowingVisit()
@@ -388,6 +411,22 @@ class User_model extends CI_model
     public function getUserPostProfileVisit()
     {
         return $this->db->query('SELECT * FROM posting p join user u on(p.id_user = u.id) where id = ' . $this->uri->segment('3') . ' order by p.id_posting desc')->result();
+    }
+
+    public function getRatingMentor()
+    {
+        return $this->db->query('SELECT avg(rating) avg_rating FROM infaq GROUP BY id_mentor')->result();
+    }
+
+    public function getUserInfaqSum($id)
+    {
+
+        return $this->db->query("SELECT sum(nominal) jml_infaq FROM `infaq` WHERE tanggal_infaq = DATE(NOW()) AND id_user_infaq = '$id'")->row_array();
+    }
+
+    public function last_transaksi_topup($id)
+    {
+        return $this->db->query("SELECT * FROM `transaksi_topup_dompet` WHERE status_code = 200 AND id_user ='$id' ORDER BY transaction_time DESC")->row_array();
     }
 
 }
