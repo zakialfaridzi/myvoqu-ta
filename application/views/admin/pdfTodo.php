@@ -16,6 +16,7 @@
             <tr>
                 <th>No</th>
                 <th>Nama Kegiatan</th>
+                <th>Tanggal Buat</th>
                 <th>Status</th>
             </tr>
 
@@ -24,6 +25,7 @@ foreach ($mahasiswa as $mhs): ?>
                 <tr>
                     <td><?php echo $no++; ?></td>
                     <td><?php echo $mhs->task_name ?></td>
+                    <td><?php echo date("Y-m-d H:i:s", strtotime('+5 hours', $mhs->datepost)); ?></td>
                     <?php if ($mhs->state == '1'): ?>
                         <td><?php echo "Selesai" ?></td>
                     <?php else: ?>
