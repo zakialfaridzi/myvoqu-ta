@@ -1,8 +1,7 @@
 <!-- Chat Room
             ================================================= -->
-<div class="chat-room" >
+<div class="chat-room">
     <b>Semua Pesan Yang Diterima</b>
-
 
     <a href="<?=base_url('chat/pilihUser');?>"
         style='float:right; color:white; background-color: #6FB8DF; border:none; border-radius: 10px;'><b> &nbsp;
@@ -12,10 +11,10 @@
 
             <!-- Contact List in Left-->
 
-            <ul class="nav nav-tabs contact-list scrollbar-wrapper scrollbar-outer" >
-                
+            <ul class="nav nav-tabs contact-list scrollbar-wrapper scrollbar-outer">
+
                 <?php rsort($pesan);
-                foreach ($pesan as $pst): ?>
+foreach ($pesan as $pst): ?>
 
                 <li class="active" style="height: 100px;">
                     <a href="<?=base_url('chat/chat2/') . $pst->id;?>">
