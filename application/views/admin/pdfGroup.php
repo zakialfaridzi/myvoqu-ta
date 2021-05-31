@@ -26,7 +26,7 @@ foreach ($mahasiswa as $mhs): ?>
                     <td><?php echo $no++; ?></td>
                     <td><?php echo $mhs->nama ?></td>
                     <td><?php echo $mhs->deskripsi ?></td>
-                    <td><?php echo $mhs->image ?></td>
+					<td><img src="<?php echo base_url() ?>/assets/img/group/<?php echo $mhs->image ?>" height="100" width="100" alt=""></td>
                 </tr>
             <?php endforeach;?>
         </table>

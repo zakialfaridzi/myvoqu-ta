@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2021 at 06:28 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.3.27
+-- Generation Time: May 30, 2021 at 06:06 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -189,6 +189,14 @@ CREATE TABLE `anggota` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `anggota`
+--
+
+INSERT INTO `anggota` (`id_anggota`, `id_user`, `id_group`) VALUES
+(10, 129, 32),
+(12, 129, 33);
+
+--
 -- Triggers `anggota`
 --
 DELIMITER $$
@@ -222,23 +230,19 @@ CREATE TABLE `chatall` (
   `id` int(11) NOT NULL,
   `message` text NOT NULL,
   `from` varchar(128) NOT NULL,
-  `created` timestamp NOT NULL DEFAULT current_timestamp()
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `chatall`
 --
 
-INSERT INTO `chatall` (`id`, `message`, `from`, `created`) VALUES
-(1, 'hei', 'Anon', '2021-04-14 16:14:28'),
-(2, 'iya hallo', 'Anon', '2021-04-14 16:15:01'),
-(3, 'M?', 'Anon', '2021-04-14 16:15:03'),
-(4, 'F', 'Anon', '2021-04-14 16:15:05'),
-(5, 'Hhaha', 'Anon', '2021-04-14 16:15:07'),
-(6, 'more', 'Anon', '2021-04-14 16:15:15'),
-(7, 'scrooll', 'Anon', '2021-04-14 16:15:16'),
-(8, 'chat udah live dan riwayatnya masuk ke db', 'Anon', '2021-04-14 16:16:17'),
-(9, 'okee', 'Anon', '2021-04-14 16:23:37');
+INSERT INTO `chatall` (`id`, `message`, `from`, `created`, `id_user`) VALUES
+(8, 'asdsadsa', 'Muhammad Abizard', '2021-04-19 20:44:54', 129),
+(9, 'test', 'Muhammad Abizard', '2021-04-19 20:54:49', 129),
+(10, 'asdsadasdasdasdasdasdas\nasdasdasdasdasdsadsadas\nadasdasdsa\n', 'Muhammad Abizard', '2021-04-19 20:56:14', 129),
+(11, 'asd', 'Muhammad Abizard', '2021-04-20 06:21:19', 129);
 
 -- --------------------------------------------------------
 
@@ -315,9 +319,11 @@ CREATE TABLE `dompet` (
 --
 
 INSERT INTO `dompet` (`id_dompet`, `saldo`, `id_user`) VALUES
-(1, '5000', 129),
-(2, '5000', 130),
-(9, '0', 134);
+(1, '0', 129),
+(2, '10000', 130),
+(10, '0', 135),
+(13, '0', 138),
+(16, '0', 141);
 
 -- --------------------------------------------------------
 
@@ -393,11 +399,19 @@ INSERT INTO `follow` (`id_follow`, `stat`, `date`, `id_userfollow`, `id_usertarg
 (50, 2, '1618314853', 129, 129, 'Muhammad Abizard', 'Hello World!', '6075a3c8b2c47.jpg'),
 (51, 2, '1618319213', 129, 114, 'Fydhia Helmi Ramadhan', 'Hello Myvoqu!', '6075504d4bb97.png'),
 (52, 2, '1618314853', 130, 130, 'Ustad Abi', 'Hello World!', 'default_male.png'),
-(53, 2, '1618314853', 131, 131, 'Muhammad Abizard', 'Hello World!', 'Group_123.jpg'),
+(53, 2, '1618314853', 131, 131, 'ADMIN - Zaki', 'Hello World!', 'SIDANG_FOTO.png'),
 (54, 2, '1618382009', 132, 132, 'Muhammad Abizard', 'Hello World!', 'default_male.png'),
 (55, 2, '1618382086', 133, 133, 'Muhammad Abizardaa', 'Hello World!', 'default_male.png'),
 (56, 2, '1618314853', 134, 134, 'Muhammad Haitsam', 'Hello World!', '6075a3c8b2c47.jpg'),
-(57, 1, '1618396759', 134, 129, 'Muhammad Abizard', 'Hello World!', '6075a3c8b2c47.jpg');
+(57, 1, '1618396759', 134, 129, 'Muhammad Abizard', 'Hello World!', '6075a3c8b2c47.jpg'),
+(58, 2, '1618314853', 135, 135, 'Ustad Haitsam', 'Hello World!', 'default_male.png'),
+(59, 2, '1618314853', 136, 136, 'Muhammad Abizard', 'Hello World!', '6075a3c8b2c47.jpg'),
+(60, 2, '1618314853', 137, 137, 'Ustad Haitsam', 'Hello World!', 'default_male.png'),
+(61, 2, '1618314853', 138, 138, 'ADMIN - ABI', 'Hello World!', 'v.png'),
+(62, 2, '1621314609', 139, 139, 'Ustad Mori', 'Hello World!', 'default_male.png'),
+(63, 2, '1618314853', 140, 140, 'Muhammad Abizardx', 'Hello World!', '6075a3c8b2c47.jpg'),
+(64, 2, '1622362432', 141, 141, 'Ustad Abel', 'Hello World!', 'default_male.png'),
+(65, 1, '1622366761', 141, 129, 'Muhammad Abizard', 'Hello World!', '6075a3c8b2c47.jpg');
 
 --
 -- Triggers `follow`
@@ -489,7 +503,11 @@ INSERT INTO `group_notif` (`id_notif`, `notif`, `id_group`, `id_user`, `date`) V
 (12, 'Posted on Timeline', 30, 114, '2021-04-13 13:42:22'),
 (13, 'Announce Information', 30, 118, '2021-04-13 13:43:09'),
 (14, 'Joined This Group', 30, 123, '2021-04-13 14:11:00'),
-(15, 'Posted on Timeline', 30, 123, '2021-04-13 14:14:45');
+(15, 'Posted on Timeline', 30, 123, '2021-04-13 14:14:45'),
+(16, 'Joined This Group', 32, 129, '2021-04-23 20:03:12'),
+(17, 'Joined This Group', 32, 134, '2021-04-23 20:03:13'),
+(18, 'Kicked From This Group', 32, 134, '2021-05-18 12:03:35'),
+(19, 'Joined This Group', 33, 129, '2021-05-30 16:31:35');
 
 -- --------------------------------------------------------
 
@@ -535,6 +553,14 @@ CREATE TABLE `grup` (
   `owner` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `grup`
+--
+
+INSERT INTO `grup` (`id`, `nama`, `deskripsi`, `image`, `owner`) VALUES
+(32, 'Grup Hafalan HOTS', 'Grup yang berada di bawah naungan HOTS.', 'default.png', 135),
+(33, 'grup hafalan dota', 'yuk hafalan', '60b35d8a63e7c.png', 141);
+
 -- --------------------------------------------------------
 
 --
@@ -568,7 +594,7 @@ CREATE TABLE `infaq` (
 --
 
 INSERT INTO `infaq` (`id_infaq`, `rating`, `nominal`, `tanggal_infaq`, `id_user_infaq`, `id_mentor`) VALUES
-(4, 5, '5000', '2021-04-14', 129, 130);
+(9, 5, '10000', '2021-04-21', 134, 130);
 
 -- --------------------------------------------------------
 
@@ -761,7 +787,47 @@ INSERT INTO `notification` (`id_notification`, `notif`, `date`, `id_posting`, `i
 (371, 'like on your post', '', 281, 129, 0),
 (372, 'Mulai Mengikuti Anda.', '1618314853', 0, 134, 134),
 (373, 'Mulai Mengikuti Anda.', '1618396759', 0, 134, 129),
-(374, 'like on your post', '', 282, 129, 0);
+(374, 'like on your post', '', 282, 129, 0),
+(375, 'like on your post', '', 283, 129, 0),
+(376, 'like on your post', '', 284, 129, 0),
+(377, 'comment on your post: \" :wow: :wow:\"', '1618424941', 284, 129, 129),
+(378, 'unlike on your post', '1618424945', 284, 129, 0),
+(379, 'unlike on your post', '1618424947', 284, 129, 0),
+(380, 'delete comment on your post: \" :wow: :wow:\"', '1618424941', 284, 129, 129),
+(381, 'like on your post', '', 285, 129, 0),
+(382, 'Mulai Mengikuti Anda.', '1618314853', 0, 135, 135),
+(383, 'Mulai Mengikuti Anda.', '1618314853', 0, 136, 136),
+(384, 'Mulai Mengikuti Anda.', '1618314853', 0, 137, 137),
+(385, 'like on your post', '', 286, 134, 0),
+(386, 'Mulai Mengikuti Anda.', '1618314853', 0, 138, 138),
+(387, 'Mulai Mengikuti Anda.', '1621314609', 0, 139, 139),
+(388, 'like on your post', '', 287, 129, 0),
+(389, 'Mulai Mengikuti Anda.', '1618314853', 0, 140, 140),
+(390, 'Mulai Mengikuti Anda.', '1622362432', 0, 141, 141),
+(391, 'Mulai Mengikuti Anda.', '1622366761', 0, 141, 129),
+(392, 'like on your post', '', 288, 141, 0),
+(393, 'like on your post', '', 289, 141, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pengumuman`
+--
+
+CREATE TABLE `pengumuman` (
+  `id` int(11) NOT NULL,
+  `isi_pengumuman` text NOT NULL,
+  `datepost` varchar(500) NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pengumuman`
+--
+
+INSERT INTO `pengumuman` (`id`, `isi_pengumuman`, `datepost`, `id_user`) VALUES
+(7, 'dasasd as', '1620196186', 131),
+(9, 'x', '1622389968', 131);
 
 -- --------------------------------------------------------
 
@@ -818,6 +884,16 @@ CREATE TABLE `postgen` (
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `postgen`
+--
+
+INSERT INTO `postgen` (`id_posting`, `caption`, `fileName`, `html`, `date_post`, `id_user`) VALUES
+(70, ' Hannan Attaki ngajinya bagus banget', '6092b9123e9fe.mkv', '<video class=\"post-video\" controls width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/6092b9123e9fe.mkv type=\"video/mp4\"></video>', '1620228370', 131),
+(71, 'Do qui qui qui saepe', '60a350c385f70.png', '<img src=http://localhost/myvoqu/assets_user/file_upload/60a350c385f70.png alt=\"post-image\"class=\"img-responsive post-image\"  style=\"border-radius: 5px 5px 5px 5px;\"/>', '1621315779', 131),
+(72, 'tez', '60a350d4de28a.mkv', '<video class=\"post-video\" controls width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/60a350d4de28a.mkv type=\"video/mp4\"></video>', '1621315796', 131),
+(73, 'materi bagus', '60b2509a9e744.png', '<img src=http://localhost/myvoqu/assets_user/file_upload/60b2509a9e744.png alt=\"post-image\"class=\"img-responsive post-image\"  style=\"border-radius: 5px 5px 5px 5px;\"/>', '1622298778', 131);
+
 -- --------------------------------------------------------
 
 --
@@ -839,7 +915,8 @@ CREATE TABLE `posting` (
 --
 
 INSERT INTO `posting` (`id_posting`, `caption`, `id_user`, `name`, `fileName`, `html`, `date_post`) VALUES
-(282, 'testing', 129, '', '6076c68f52a5f.mp4', '<div class=\"video-wrapper\"><video class=\"post-video\" controls  width=\"500\" height=\"500\"><source src= http://7600f3cd41b5.ap.ngrok.io/myvoqu/assets_user/file_upload/6076c68f52a5f.mp4 type=\"video/mp4\"></video></div>', '1618396815');
+(287, 'test', 129, '', '60a34eb3a1b66.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60a34eb3a1b66.jpg alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 350px;\" />', '1621315251'),
+(289, 'tesk', 141, '', '60b360983c203.mp4', '<div class=\"video-wrapper\"><video class=\"post-video\" controls  width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/60b360983c203.mp4 type=\"video/mp4\"></video></div>', '1622368408');
 
 --
 -- Triggers `posting`
@@ -946,7 +1023,16 @@ INSERT INTO `report` (`id_report`, `report`, `date`, `id_posting`, `id_user`) VA
 (108, 0, '', 279, 129),
 (109, 0, '', 280, 129),
 (110, 0, '', 281, 129),
-(111, 0, '', 282, 129);
+(111, 0, '', 282, 129),
+(112, 0, '', 283, 129),
+(113, 0, '', 284, 129),
+(114, 0, '', 285, 129),
+(115, 1, '1618665145', 285, 134),
+(116, 0, '', 286, 134),
+(117, 0, '', 287, 129),
+(118, 0, '', 288, 141),
+(119, 1, '1622368007', 287, 141),
+(120, 0, '', 289, 141);
 
 -- --------------------------------------------------------
 
@@ -1025,7 +1111,14 @@ INSERT INTO `suka` (`id_suka`, `status`, `date`, `id_posting`, `id`, `id_tujuan`
 (237, 2, '', 279, 129, 0),
 (238, 2, '', 280, 129, 0),
 (239, 2, '', 281, 129, 0),
-(240, 2, '', 282, 129, 0);
+(240, 2, '', 282, 129, 0),
+(241, 2, '', 283, 129, 0),
+(242, 2, '1618424947', 284, 129, 0),
+(243, 2, '', 285, 129, 0),
+(244, 2, '', 286, 134, 0),
+(245, 2, '', 287, 129, 0),
+(246, 2, '', 288, 141, 0),
+(247, 2, '', 289, 141, 0);
 
 --
 -- Triggers `suka`
@@ -1063,6 +1156,7 @@ CREATE TABLE `tasks` (
   `id` int(11) NOT NULL,
   `task_name` varchar(150) NOT NULL,
   `state` int(11) NOT NULL,
+  `datepost` varchar(500) NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1070,11 +1164,10 @@ CREATE TABLE `tasks` (
 -- Dumping data for table `tasks`
 --
 
-INSERT INTO `tasks` (`id`, `task_name`, `state`, `id_user`) VALUES
-(45, 'Cek data-data penghafal hari ini', 0, 0),
-(46, 'Verifikasi mentor yang baru', 0, 0),
-(47, 'Unggah materi umum', 1, 0),
-(48, 'Lakukan Aktivasi Penghafal', 1, 0);
+INSERT INTO `tasks` (`id`, `task_name`, `state`, `datepost`, `id_user`) VALUES
+(56, 'xa', 0, '', 138),
+(59, 'Mollit tenetur delenxasxasdasx', 0, '1622389623', 131),
+(60, 'xca', 1, '1622389739', 131);
 
 -- --------------------------------------------------------
 
@@ -1084,22 +1177,16 @@ INSERT INTO `tasks` (`id`, `task_name`, `state`, `id_user`) VALUES
 
 CREATE TABLE `transaksi_topup_dompet` (
   `order_id` char(12) NOT NULL,
+  `name` varchar(250) NOT NULL,
   `gross_amount` int(11) NOT NULL,
   `payment_type` varchar(13) NOT NULL,
   `transaction_time` varchar(19) NOT NULL,
-  `bank` varchar(10) NOT NULL,
-  `va_number` varchar(30) NOT NULL,
-  `pdf_url` text NOT NULL,
+  `bank` varchar(10) DEFAULT NULL,
+  `va_number` varchar(30) DEFAULT NULL,
+  `pdf_url` text DEFAULT NULL,
   `status_code` char(3) NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `transaksi_topup_dompet`
---
-
-INSERT INTO `transaksi_topup_dompet` (`order_id`, `gross_amount`, `payment_type`, `transaction_time`, `bank`, `va_number`, `pdf_url`, `status_code`, `id_user`) VALUES
-('78610271', 10000, 'bank_transfer', '2021-04-14 23:26:30', 'bca', '46612882139', 'https://app.sandbox.midtrans.com/snap/v1/transactions/63dd9a29-acb3-44dd-85d7-8b8227b1d8ed/pdf', '199', 129);
 
 -- --------------------------------------------------------
 
@@ -1185,7 +1272,26 @@ INSERT INTO `trigger_user` (`no`, `id`, `name`, `email`, `role_id`, `aksi`, `tgl
 (120, 129, '', '', 0, 'Ada yang baru delete posting', '2021-04-14 14:04:53'),
 (121, 129, '', '', 0, 'Ada yang baru delete posting', '2021-04-14 14:09:57'),
 (122, 129, '', '', 0, 'Ada yang baru delete posting', '2021-04-14 16:10:30'),
-(123, 130, 'Muhammad Abizard', 'm.abizard1123@gmail.com', 3, 'Muhammad Abizard yang baru melakukan update profile menjadi Ustad Abi', '2021-04-14 17:31:37');
+(123, 130, 'Muhammad Abizard', 'm.abizard1123@gmail.com', 3, 'Muhammad Abizard yang baru melakukan update profile menjadi Ustad Abi', '2021-04-14 17:31:37'),
+(124, 129, 'background chat all', '', 0, 'Ada yang baru delete posting', '2021-04-14 23:32:27'),
+(125, 129, 'testing', '', 0, 'Ada yang baru delete posting', '2021-04-15 00:29:53'),
+(126, 129, '', '', 0, 'Ada yang baru delete posting', '2021-04-15 01:29:12'),
+(127, 131, 'Muhammad Abizard', 'jaki@gmail.com', 1, 'Muhammad Abizard yang baru melakukan update profile menjadi Zaki Al Faridzi', '2021-04-20 13:44:38'),
+(128, 131, 'Zaki Al Faridzi', 'jaki@gmail.com', 1, 'Zaki Al Faridzi yang baru melakukan update profile menjadi Zaki', '2021-04-20 20:30:06'),
+(129, 131, 'Zaki', 'jaki@gmail.com', 1, 'Zaki yang baru melakukan update profile menjadi Zaki AF', '2021-04-20 20:30:32'),
+(130, 131, 'Zaki AF', 'jaki@gmail.com', 1, 'Zaki AF yang baru melakukan update profile menjadi Zaki Al Faridzi', '2021-04-20 20:31:32'),
+(131, 131, 'Zaki Al Faridzi', 'jaki@gmail.com', 1, 'Zaki Al Faridzi yang baru melakukan update profile menjadi Zaki Al Faridz', '2021-04-20 20:31:41'),
+(132, 131, 'Zaki Al Faridz', 'jaki@gmail.com', 1, 'Zaki Al Faridz yang baru melakukan update profile menjadi Zaki Al Faridzasd', '2021-04-20 20:32:04'),
+(133, 131, 'Zaki Al Faridzasd', 'jaki@gmail.com', 1, 'Zaki Al Faridzasd yang baru melakukan update profile menjadi Zaki Al ', '2021-04-20 20:32:48'),
+(134, 129, 'Al Muzzammil', '', 0, 'Ada yang baru delete posting', '2021-04-20 20:59:48'),
+(135, 131, 'Zaki Al ', 'jaki@gmail.com', 1, 'Zaki Al  yang baru melakukan update profile menjadi Zaki Al Faridzi', '2021-04-21 21:06:47'),
+(136, 131, 'Zaki Al Faridzi', 'jaki@gmail.com', 1, 'Zaki Al Faridzi yang baru melakukan update profile menjadi Zaki Al Faridzii', '2021-04-22 11:24:37'),
+(137, 134, 'yuk belajar ngaji bersama ustad', '', 0, 'Ada yang baru delete posting', '2021-05-05 22:28:14'),
+(138, 131, 'Zaki Al Faridzii', 'jaki@gmail.com', 1, 'Zaki Al Faridzii yang baru melakukan update profile menjadi Zaki Al Faridzi', '2021-05-18 12:32:11'),
+(139, 131, 'Zaki Al Faridzi', 'jaki@gmail.com', 1, 'Zaki Al Faridzi yang baru melakukan update profile menjadi Zaki Al ', '2021-05-27 19:39:07'),
+(140, 131, 'Zaki Al ', 'jaki@gmail.com', 1, 'Zaki Al  yang baru melakukan update profile menjadi Zaki Al Faridzi', '2021-05-27 19:39:26'),
+(141, 131, 'Zaki Al Faridzi', 'jaki@gmail.com', 1, 'Zaki Al Faridzi yang baru melakukan update profile menjadi ADMIN - Zaki', '2021-05-29 21:32:15'),
+(142, 141, 'keeb', '', 0, 'Ada yang baru delete posting', '2021-05-30 16:47:32');
 
 -- --------------------------------------------------------
 
@@ -1218,10 +1324,12 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `gender`, `email`, `image`, `passsword`, `role_id`, `is_active`, `date_created`, `status`, `birthdate`, `city`, `bio`, `work`, `instansi`, `sertif`, `verified`) VALUES
-(129, 'Muhammad Abizard', 'Male', 'abizard@student.telkomuniversity.ac.id', '6075a3c8b2c47.jpg', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 2, 1, 1618314853, 'online-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
-(130, 'Ustad Abi', 'Male', 'm.abizard1123@gmail.com', 'default_male.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 3, 1, 1618314853, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
-(131, 'Muhammad Abizard', 'Male', 'zaki@gmail.com', 'Group_123.jpg', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 1, 1, 1618314853, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
-(134, 'Muhammad Haitsam', 'Male', 'isam@gmail.com', '6075a3c8b2c47.jpg', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 2, 1, 1618314853, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0);
+(129, 'Muhammad Abizard', 'Male', 'abizard@student.telkomuniversity.ac.id', '6075a3c8b2c47.jpg', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 2, 1, 1618314853, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(130, 'Ustad Abi', 'Male', 'm.abizard1123@gmail.com', 'default_male.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 3, 1, 1618314853, 'offline-dot', '0000-00-00', '', 'Hello World!', '', 'HOTS', '', 1),
+(131, 'ADMIN - Zaki', 'Male', 'jaki@gmail.com', 'SIDANG_FOTO.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 1, 1, 1618314853, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(135, 'Ustad Haitsam', 'Male', 'haitsam@gmail.com', 'default_male.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 3, 1, 1618314853, 'offline-dot', '2021-04-23', 'bandung', 'Hello World!', '', 'MUHAMMADIYAH', '', 1),
+(138, 'ADMIN - ABI', 'Male', 'abi@gmail.com', 'v.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 1, 1, 1618314853, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(141, 'Ustad Abel', 'Male', 'abel@gmail.com', 'default_male.png', '$2y$10$Gre9bP5TEPmXBDNdZeCjEeqJ9I/3.R.p4DlQiVKx3eRcGhMgCJz86', 3, 1, 1622362432, 'online-dot', '2021-05-30', 'Jakarta', 'Hello World!', 'Masjid Istiqlal', 'ISTIQLAL', '60b34940df24e.jpg', 1);
 
 --
 -- Triggers `user`
@@ -1323,7 +1431,17 @@ INSERT INTO `user_token` (`id`, `email`, `token`, `date_created`) VALUES
 (70, 'rahmat@gmail.com', '/Ol6TjQUaPuL8+9BMWuO4UmGptXtnNh3nTKbF+HCqHc=', 1618281865),
 (74, 'superadmin@mail.com', 'Z4k+A6Ko3MisXoZMztx1ssPnptOwXGZW4qT/bzNrj3k=', 1618298702),
 (77, 'm.abizard1123@gmail.com', 'jpb88k/RPx7u9xAAukWePJgkhuqjG6LE/IYL1jNclM0=', 1618382009),
-(78, 'm.abizard1123@gmail.com', '/8onNSjGtNylZ2nho0H3Iwc7Rdc03Zzd3DuzPplVvqY=', 1618382086);
+(78, 'm.abizard1123@gmail.com', '/8onNSjGtNylZ2nho0H3Iwc7Rdc03Zzd3DuzPplVvqY=', 1618382086),
+(79, 'abizard@student.telkomuniversity.ac.id', 't06Wm7ivs5P45B8Qy+B6JA8mQsO0eDaGvPGi7IXUcQA=', 1618421907),
+(80, 'abizard@student.telkomuniversity.ac.id', 'gDX1oiNtGLezYnx5JmqEp4Sb1hdf8vSfET4v5zIYXPo=', 1618421935),
+(81, 'm.abizard1123@gmail.com', 'g9AJDOQ4PNb77U/UGeqRxpjFSfV583DERh/zspC0BAk=', 1618904919),
+(82, 'haitsam@gmail.com', '2b0hrpL2lzrGKen64ssBteR4ec6XNQ67JguXdzxd7bA=', 1618926411),
+(83, 'haitsam@gmail.com', 'JRZWEPrUN7dleTn1ewy0X6r9TvvrhdHRphaMa/sU3LY=', 1618926591),
+(84, 'haitsam@gmail.com', 'iMklxMRWJgoc446cpvLTA83yLe7jjJ6n+1QQvLU5iDY=', 1618926723),
+(85, 'haitsam@gmail.com', 'fzH3q0Dhr+KBtiWTjHUragS+eP7V127ZHep9GAknegc=', 1619182701),
+(86, 'mori@gmail.com', '9HoaK73T7Y5yp1OZHq1GlDebVp5F2BbzLogJUhnYkJU=', 1621314624),
+(87, 'abel@gmail.com', 'Sxa9H/OaU5K1GY7sKEmminDTJueSPcrph88UWTTJAf4=', 1622362507),
+(88, 'abel@gmail.com', '77/vaoZWO5Z7j/DO3RMxm9ucMU98RxChUeajR/bBeWc=', 1622362518);
 
 --
 -- Indexes for dumped tables
@@ -1341,7 +1459,8 @@ ALTER TABLE `anggota`
 -- Indexes for table `chatall`
 --
 ALTER TABLE `chatall`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_user_chat` (`id_user`);
 
 --
 -- Indexes for table `comment`
@@ -1353,7 +1472,8 @@ ALTER TABLE `comment`
 -- Indexes for table `dompet`
 --
 ALTER TABLE `dompet`
-  ADD PRIMARY KEY (`id_dompet`);
+  ADD PRIMARY KEY (`id_dompet`),
+  ADD KEY `fk_user_dompet` (`id_user`);
 
 --
 -- Indexes for table `follow`
@@ -1441,6 +1561,13 @@ ALTER TABLE `notification`
   ADD PRIMARY KEY (`id_notification`);
 
 --
+-- Indexes for table `pengumuman`
+--
+ALTER TABLE `pengumuman`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_ADMINPENGUMUMAN` (`id_user`);
+
+--
 -- Indexes for table `pesan`
 --
 ALTER TABLE `pesan`
@@ -1477,13 +1604,14 @@ ALTER TABLE `suka`
 --
 ALTER TABLE `tasks`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fkIDuser` (`id_user`);
+  ADD KEY `FK_ADMINTASK` (`id_user`);
 
 --
 -- Indexes for table `transaksi_topup_dompet`
 --
 ALTER TABLE `transaksi_topup_dompet`
-  ADD PRIMARY KEY (`order_id`);
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `fk_user_topup` (`id_user`);
 
 --
 -- Indexes for table `trigger_user`
@@ -1517,31 +1645,31 @@ ALTER TABLE `user_token`
 -- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `chatall`
 --
 ALTER TABLE `chatall`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `dompet`
 --
 ALTER TABLE `dompet`
-  MODIFY `id_dompet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_dompet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `id_follow` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id_follow` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `group_comment`
@@ -1559,7 +1687,7 @@ ALTER TABLE `group_information`
 -- AUTO_INCREMENT for table `group_notif`
 --
 ALTER TABLE `group_notif`
-  MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `group_postingan`
@@ -1571,7 +1699,7 @@ ALTER TABLE `group_postingan`
 -- AUTO_INCREMENT for table `grup`
 --
 ALTER TABLE `grup`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `hafalan`
@@ -1583,7 +1711,7 @@ ALTER TABLE `hafalan`
 -- AUTO_INCREMENT for table `infaq`
 --
 ALTER TABLE `infaq`
-  MODIFY `id_infaq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_infaq` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `katmateri`
@@ -1613,7 +1741,13 @@ ALTER TABLE `menu_item`
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `id_notification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=375;
+  MODIFY `id_notification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=394;
+
+--
+-- AUTO_INCREMENT for table `pengumuman`
+--
+ALTER TABLE `pengumuman`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `pesan`
@@ -1625,43 +1759,43 @@ ALTER TABLE `pesan`
 -- AUTO_INCREMENT for table `postgen`
 --
 ALTER TABLE `postgen`
-  MODIFY `id_posting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id_posting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `posting`
 --
 ALTER TABLE `posting`
-  MODIFY `id_posting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=283;
+  MODIFY `id_posting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=290;
 
 --
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `id_report` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id_report` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- AUTO_INCREMENT for table `suka`
 --
 ALTER TABLE `suka`
-  MODIFY `id_suka` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=241;
+  MODIFY `id_suka` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
 
 --
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `trigger_user`
 --
 ALTER TABLE `trigger_user`
-  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 
 --
 -- AUTO_INCREMENT for table `user_role`
@@ -1673,7 +1807,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `user_token`
 --
 ALTER TABLE `user_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- Constraints for dumped tables
@@ -1685,6 +1819,18 @@ ALTER TABLE `user_token`
 ALTER TABLE `anggota`
   ADD CONSTRAINT `fk_id_group` FOREIGN KEY (`id_group`) REFERENCES `grup` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_id_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `chatall`
+--
+ALTER TABLE `chatall`
+  ADD CONSTRAINT `fk_user_chat` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `dompet`
+--
+ALTER TABLE `dompet`
+  ADD CONSTRAINT `fk_user_dompet` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `group_comment`
@@ -1709,7 +1855,13 @@ ALTER TABLE `group_postingan`
 -- Constraints for table `grup`
 --
 ALTER TABLE `grup`
-  ADD CONSTRAINT `fkUser` FOREIGN KEY (`owner`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `fkUser` FOREIGN KEY (`owner`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `pengumuman`
+--
+ALTER TABLE `pengumuman`
+  ADD CONSTRAINT `FK_ADMINPENGUMUMAN` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `postgen`
@@ -1722,6 +1874,18 @@ ALTER TABLE `postgen`
 --
 ALTER TABLE `posting`
   ADD CONSTRAINT `fiduser` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `tasks`
+--
+ALTER TABLE `tasks`
+  ADD CONSTRAINT `FK_ADMINTASK` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `transaksi_topup_dompet`
+--
+ALTER TABLE `transaksi_topup_dompet`
+  ADD CONSTRAINT `fk_user_topup` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 DELIMITER $$
 --

@@ -75,23 +75,24 @@ define("DOMPDF_LIB_DIR", DOMPDF_DIR . "/lib");
  * http://fyneworks.blogspot.com/2007/08/php-documentroot-in-iis-windows-servers.html
  */
 if (!isset($_SERVER['DOCUMENT_ROOT'])) {
-  $path = "";
+    $path = "";
 
-  if (isset($_SERVER['SCRIPT_FILENAME']))
-    $path = $_SERVER['SCRIPT_FILENAME'];
-  elseif (isset($_SERVER['PATH_TRANSLATED']))
-    $path = str_replace('\\\\', '\\', $_SERVER['PATH_TRANSLATED']);
+    if (isset($_SERVER['SCRIPT_FILENAME'])) {
+        $path = $_SERVER['SCRIPT_FILENAME'];
+    } elseif (isset($_SERVER['PATH_TRANSLATED'])) {
+        $path = str_replace('\\\\', '\\', $_SERVER['PATH_TRANSLATED']);
+    }
 
-  $_SERVER['DOCUMENT_ROOT'] = str_replace('\\', '/', substr($path, 0, 0 - strlen($_SERVER['PHP_SELF'])));
+    $_SERVER['DOCUMENT_ROOT'] = str_replace('\\', '/', substr($path, 0, 0 - strlen($_SERVER['PHP_SELF'])));
 }
 
 /** Include the custom config file if it exists */
 if (file_exists(DOMPDF_DIR . "/dompdf_config.custom.inc.php")) {
-  require_once(DOMPDF_DIR . "/dompdf_config.custom.inc.php");
+    require_once DOMPDF_DIR . "/dompdf_config.custom.inc.php";
 }
 
 //FIXME: Some function definitions rely on the constants defined by DOMPDF. However, might this location prove problematic?
-require_once(DOMPDF_INC_DIR . "/functions.inc.php");
+require_once DOMPDF_INC_DIR . "/functions.inc.php";
 
 /**
  * The location of the DOMPDF font directory
@@ -152,7 +153,7 @@ def("DOMPDF_TEMP_DIR", sys_get_temp_dir());
  * should be an absolute path.
  * This is only checked on command line call by dompdf.php, but not by
  * direct class use like:
- * $dompdf = new DOMPDF();	$dompdf->load_html($htmldata); $dompdf->render(); $pdfdata = $dompdf->output();
+ * $dompdf = new DOMPDF();    $dompdf->load_html($htmldata); $dompdf->render(); $pdfdata = $dompdf->output();
  */
 def("DOMPDF_CHROOT", realpath(DOMPDF_DIR));
 
@@ -181,10 +182,11 @@ def("DOMPDF_UNICODE_ENABLED", true);
  *
  * @link http://ttf2pt1.sourceforge.net/
  */
-if (strpos(PHP_OS, "WIN") === false)
-  def("TTF2AFM", DOMPDF_LIB_DIR . "/ttf2ufm/ttf2ufm-src/ttf2pt1");
-else
-  def("TTF2AFM", "C:\\Program Files\\GnuWin32\\bin\\ttf2pt1.exe");
+if (strpos(PHP_OS, "WIN") === false) {
+    def("TTF2AFM", DOMPDF_LIB_DIR . "/ttf2ufm/ttf2ufm-src/ttf2pt1");
+} else {
+    def("TTF2AFM", "C:\\Program Files\\GnuWin32\\bin\\ttf2pt1.exe");
+}
 
 /**
  * The PDF rendering backend to use
@@ -335,7 +337,7 @@ def("DOMPDF_ENABLE_JAVASCRIPT", true);
  *
  * @var bool
  */
-def("DOMPDF_ENABLE_REMOTE", false);
+def("DOMPDF_ENABLE_REMOTE", true);
 
 /**
  * The debug output log
@@ -366,74 +368,78 @@ def("DOMPDF_ENABLE_CSS_FLOAT", false);
  */
 function DOMPDF_autoload($class)
 {
-  $filename = DOMPDF_INC_DIR . "/" . mb_strtolower($class) . ".cls.php";
+    $filename = DOMPDF_INC_DIR . "/" . mb_strtolower($class) . ".cls.php";
 
-  if (is_file($filename))
-    require_once($filename);
+    if (is_file($filename)) {
+        require_once $filename;
+    }
+
 }
 
 // If SPL autoload functions are available (PHP >= 5.1.2)
 if (function_exists("spl_autoload_register")) {
-  $autoload = "DOMPDF_autoload";
-  $funcs = spl_autoload_functions();
+    $autoload = "DOMPDF_autoload";
+    $funcs = spl_autoload_functions();
 
-  // No functions currently in the stack. 
-  if ($funcs === false) {
-    spl_autoload_register($autoload);
-  }
+    // No functions currently in the stack.
+    if ($funcs === false) {
+        spl_autoload_register($autoload);
+    }
 
-  // If PHP >= 5.3 the $prepend argument is available
-  else if (version_compare(PHP_VERSION, '5.3', '>=')) {
-    spl_autoload_register($autoload, true, true);
-  } else {
-    // Unregister existing autoloaders... 
-    $compat = version_compare(PHP_VERSION, '5.1.2', '<=') &&
-      version_compare(PHP_VERSION, '5.1.0', '>=');
+    // If PHP >= 5.3 the $prepend argument is available
+    else if (version_compare(PHP_VERSION, '5.3', '>=')) {
+        spl_autoload_register($autoload, true, true);
+    } else {
+        // Unregister existing autoloaders...
+        $compat = version_compare(PHP_VERSION, '5.1.2', '<=') &&
+        version_compare(PHP_VERSION, '5.1.0', '>=');
 
-    foreach ($funcs as $func) {
-      if (is_array($func)) {
-        // :TRICKY: There are some compatibility issues and some 
-        // places where we need to error out 
-        $reflector = new ReflectionMethod($func[0], $func[1]);
-        if (!$reflector->isStatic()) {
-          throw new Exception('This function is not compatible with non-static object methods due to PHP Bug #44144.');
+        foreach ($funcs as $func) {
+            if (is_array($func)) {
+                // :TRICKY: There are some compatibility issues and some
+                // places where we need to error out
+                $reflector = new ReflectionMethod($func[0], $func[1]);
+                if (!$reflector->isStatic()) {
+                    throw new Exception('This function is not compatible with non-static object methods due to PHP Bug #44144.');
+                }
+
+                // Suprisingly, spl_autoload_register supports the
+                // Class::staticMethod callback format, although call_user_func doesn't
+                if ($compat) {
+                    $func = implode('::', $func);
+                }
+
+            }
+
+            spl_autoload_unregister($func);
         }
 
-        // Suprisingly, spl_autoload_register supports the 
-        // Class::staticMethod callback format, although call_user_func doesn't 
-        if ($compat) $func = implode('::', $func);
-      }
+        // Register the new one, thus putting it at the front of the stack...
+        spl_autoload_register($autoload);
 
-      spl_autoload_unregister($func);
+        // Now, go back and re-register all of our old ones.
+        foreach ($funcs as $func) {
+            spl_autoload_register($func);
+        }
+
+        // Be polite and ensure that userland autoload gets retained
+        if (function_exists("__autoload")) {
+            spl_autoload_register("__autoload");
+        }
     }
-
-    // Register the new one, thus putting it at the front of the stack... 
-    spl_autoload_register($autoload);
-
-    // Now, go back and re-register all of our old ones. 
-    foreach ($funcs as $func) {
-      spl_autoload_register($func);
-    }
-
-    // Be polite and ensure that userland autoload gets retained
-    if (function_exists("__autoload")) {
-      spl_autoload_register("__autoload");
-    }
-  }
 } else if (!function_exists("__autoload")) {
-  /**
-   * Default __autoload() function
-   *
-   * @param string $class
-   */
-  function spl_autoload_register($class)
-  {
-    DOMPDF_autoload($class);
-  }
+    /**
+     * Default __autoload() function
+     *
+     * @param string $class
+     */
+    function spl_autoload_register($class)
+    {
+        DOMPDF_autoload($class);
+    }
 }
 
 // ### End of user-configurable options ###
-
 
 /**
  * Ensure that PHP is working with text internally using UTF8 character encoding.

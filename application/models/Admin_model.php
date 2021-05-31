@@ -355,7 +355,7 @@ class Admin_model extends CI_model
 
     public function tambah_todo()
     {
-        $data = ['task_name' => $this->input->post('namatodo', true), 'id_user' => $this->session->userdata('id')];
+        $data = ['task_name' => $this->input->post('namatodo', true), 'datepost' => time(), 'id_user' => $this->session->userdata('id')];
 
         $this->db->insert('tasks', $data);
     }
@@ -364,6 +364,7 @@ class Admin_model extends CI_model
     {
         $data = array(
             'state' => '1',
+            'datepost' => time(),
         );
 
         $this->db->where('id', $id);
@@ -374,6 +375,7 @@ class Admin_model extends CI_model
     {
         $data = array(
             'state' => '0',
+            'datepost' => time(),
         );
 
         $this->db->where('id', $id);
@@ -389,7 +391,7 @@ class Admin_model extends CI_model
 
     public function update_todo($id)
     {
-        $data = ['task_name' => $this->input->post('namatodo', true)];
+        $data = ['task_name' => $this->input->post('namatodo', true), 'datepost' => time()];
 
         $this->db->where('id', $id);
         $this->db->update('tasks', $data);
