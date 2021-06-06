@@ -26,7 +26,7 @@
 										<input type="file" id="file-input-gambar" style="display: none;" name="file" multiple onchange="GetFileSizeNameAndType()">
 									</li>
 								</ul>
-								<button class="btn btn-primary pull-right" style="background-color: #6fb8df;outline: none;">Upload</button>
+								<button class="btn btn-primary pull-right" style="background-color: #6fb8df;outline: none;">Unggah</button>
 
 								<input type="hidden" value="<?= $this->session->userdata('id'); ?>" name="id_user" id="id_user">
 								</form>
@@ -44,11 +44,27 @@
 						<?php if ($value->to_ayat != null) { ?>
 							- <?= $value->to_ayat ?>
 							<?php if ($this->session->userdata('role_id') == 2) { ?>
-								<button class="btn btn-warning pull-right setorBtn" data-toggle="modal" data-target="#setorHafalan" data-idu="<?= $this->session->userdata('id') ?>" data-nama_surah="<?= $value->nama_surah ?>" data-ayat1="<?= $value->from_ayat ?>" data-ayat2="<?= $value->to_ayat ?>" data-idg="<?= $value->id_group ?>" data-idt="<?= $value->id_tugas ?>">Setor Hafalan</button>
+								<button class="btn btn-warning pull-right setorBtn" data-toggle="modal" data-target="#setorHafalan" data-idu="<?= $this->session->userdata('id') ?>" data-nama_surah="<?= $value->nama_surah ?>" data-ayat1="<?= $value->from_ayat ?>" data-ayat2="<?= $value->to_ayat ?>" data-idg="<?= $value->id_group ?>" data-idt="<?= $value->id_tugas ?>"
+								<?php 
+								foreach ($postHafalan as $key => $pstHafalan) {
+									if ($value->id_tugas == $pstHafalan->tugas && $this->session->userdata('id') == $pstHafalan->id_user) {
+										echo "disabled";
+									}
+								}
+								?>
+								>Setor Hafalan</button>
 							<?php } ?>
 						<?php } else { ?>
 							<?php if ($this->session->userdata('role_id') == 2) { ?>
-								<button class="btn btn-warning pull-right setorBtn" data-toggle="modal" data-target="#setorHafalan" data-idu="<?= $this->session->userdata('id') ?>" data-nama_surah="<?= $value->nama_surah ?>" data-ayat1="<?= $value->from_ayat ?>" data-ayat2="<?= $value->to_ayat ?>" data-idg="<?= $value->id_group ?>" data-idt="<?= $value->id_tugas ?>">Setor Hafalan</button>
+								<button class="btn btn-warning pull-right setorBtn" data-toggle="modal" data-target="#setorHafalan" data-idu="<?= $this->session->userdata('id') ?>" data-nama_surah="<?= $value->nama_surah ?>" data-ayat1="<?= $value->from_ayat ?>" data-ayat2="<?= $value->to_ayat ?>" data-idg="<?= $value->id_group ?>" data-idt="<?= $value->id_tugas ?>"
+								<?php 
+								foreach ($postHafalan as $key => $pstHafalan) {
+									if ($value->id_tugas == $postHafalan->tugas && $this->session->userdata('id') == $pstHafalan->id_user) {
+										echo "disabled";
+									}
+								}
+								?>
+								>Setor Hafalan</button>
 							<?php } ?>
 						<?php } ?>
 

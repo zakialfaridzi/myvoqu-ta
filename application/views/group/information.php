@@ -69,7 +69,7 @@
                                 <div class="form-group">
                                     <input type="text" value="<?= $this->session->userdata('id'); ?>" name="iduser" id="iduser" hidden>
                                     <label for="nama">Nama Surah</label>
-                                    <input type="text" name="nama" class="form-control" id="nama_surah" placeholder="Pilih Surah" list="list-surah" required>
+                                    <input type="text" name="nama" class="form-control" id="nama_surah" placeholder="Pilih Surah Contoh : Al-Fatihah" list="list-surah" required>
                                     <datalist id="list-surah">
                                         <!-- <option value="Internet Explorer"> -->
                                     </datalist>

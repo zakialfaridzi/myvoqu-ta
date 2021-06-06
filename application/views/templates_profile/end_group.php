@@ -69,6 +69,7 @@
 <script src="<?= base_url('assets_user/') ?>js/jquery.sticky-kit.min.js"></script>
 <script src="<?= base_url('assets_user/') ?>js/jquery.scrollbar.min.js"></script>
 <script src="<?= base_url('assets_user/') ?>js/script.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"> -->
 
 </script>
@@ -118,18 +119,51 @@
         });
     });
 
-    $(document).ready(function () {
-    $(".setorBtn").click(function () {
-        // console.log($(this).data('nama_surah'));
-        $('form #nama_surah').val($(this).data('nama_surah'));
-        $('form #from_ayat').val($(this).data('ayat1'));
-        $('form #to_ayat').val($(this).data('ayat2'));
-        $('form #idGroup').val($(this).data('idg'));
-        $('form #idUser').val($(this).data('idu'));
-        $('form #idTugas').val($(this).data('idt'));
+    $(document).ready(function() {
+        $(".setorBtn").click(function() {
+            // console.log($(this).data('nama_surah'));
+            $('form #nama_surah').val($(this).data('nama_surah'));
+            $('form #from_ayat').val($(this).data('ayat1'));
+            $('form #to_ayat').val($(this).data('ayat2'));
+            $('form #idGroup').val($(this).data('idg'));
+            $('form #idUser').val($(this).data('idu'));
+            $('form #idTugas').val($(this).data('idt'));
 
+        });
     });
-});
+
+    $(".DetailPenugasan").click(function() {
+        var id = $(this).data('id');
+        var idg = this.href.substring(this.href.lastIndexOf('/') + 1);
+        var url = "<?= base_url('Group/getData/postHafalan/'); ?>" + id;
+        var url2 = "<?= base_url('Group/getData/anggota/'); ?>"+idg;
+        $.get(url, function(data) {
+            store = JSON.parse(data);
+            $.get(url2, function(data2) {
+                store2 = JSON.parse(data2);
+                for (let i = 0; i < store2.length; i++) {
+                    if (store2[i].id_user == store[i].id_user) {
+                        $('#sudah-setor').append(`<li class="list-group-item">${store2[i].name}<span class="pull-right" style="font-size: 1em; color: green;"><i class="fas fa-check-circle"></i></span></li>`);
+                    }else{
+                        $('#belum-setor').append(`<li class="list-group-item">${store2[i].name}</li>`);
+                    }
+                }
+            });
+        });
+        // console.log(store);
+    });
+    $(".closeModalPenugasan").click(function() {
+        $('#sudah-setor').html(' ');
+    });
+
+
+    // $(document).ready(function() {
+    //     $("#ModalPenugasan").click(function() {
+    //         console.log('test');
+    //         $('#statistik').modal('show');
+
+    //     });
+    // });
 </script>
 
 <script type="text/javascript">

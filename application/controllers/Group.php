@@ -233,6 +233,17 @@ class Group extends CI_Controller
         }
     }
 
+    public function getData($type, $id)
+    {
+        if ($type == 'postHafalan') {
+            $data = $this->Group_model->getStoredHafalan($id)->result();
+            echo json_encode($data);
+        }elseif ($type == "anggota") {
+            $data = $this->Group_model->getAnggotaGroup($id);
+            echo json_encode($data);
+        }
+    }
+
     public function inGroup($id)
     {
         $data['datagroup'] = $this->Group_model->getDataGroup($id);
@@ -249,7 +260,7 @@ class Group extends CI_Controller
         $data['postgen'] = $this->User_model->getPostgen();
         $data['pengumuman'] = $this->User_model->getPengumuman();
         $data['hafalan'] = $this->Group_model->gethafalan($id)->result();
-
+        $data['postHafalan'] = $this->Group_model->getPostHafalan($id)->result();
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
         } elseif ($data['user']['role_id'] == 1) {
@@ -605,6 +616,7 @@ class Group extends CI_Controller
                         'id_user' => $id_user,
                         'fileName' => $fileName,
                         'html' => $html,
+                        'tugas' => $id_tugas
                     ];
                 }else{
                     $data = [
@@ -613,6 +625,7 @@ class Group extends CI_Controller
                         'id_user' => $id_user,
                         'fileName' => $fileName,
                         'html' => $html,
+                        'tugas' => $id_tugas
                     ];
                 }
                 $report = [

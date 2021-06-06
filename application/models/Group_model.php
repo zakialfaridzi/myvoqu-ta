@@ -107,6 +107,12 @@ class Group_model extends CI_Model
         return $this->db->query('SELECT id_anggota, id_user, name, bio, image FROM anggota a join user u on(a.id_user=u.id) where id_group = ' . $this->uri->segment('3') . ' ')->result_array();
     }
 
+    public function getAnggotaGroup($id)
+    {
+        return $this->db->query('SELECT id_anggota, id_user, name, bio, image FROM anggota a join user u on(a.id_user=u.id) where id_group = ' . $id . ' ')->result_array();
+    }
+
+
     public function kickAnggota($id)
     {
         $this->db->where('id_anggota', $id);
@@ -170,6 +176,26 @@ class Group_model extends CI_Model
     {
         return $this->db->get_where('tugas_hafalan', array('id_group' => $id));
     }
+
+    public function getPostHafalan($id)
+    {
+       $this->db->select('*');
+       $this->db->from('group_postingan');
+       $this->db->where('tugas is NOT NULL', NULL, FALSE);
+       $this->db->where('id_group', $id);
+       return $this->db->get();
+    }
+
+    public function getStoredHafalan($id)
+    {
+        $this->db->select('a.id_user, u.name, rh.created_at');
+        $this->db->from('anggota a');
+        $this->db->join('user u', 'a.id_user=u.id', 'left');
+        $this->db->join('report_hafalan rh', 'a.id_user=rh.id_user', 'left');
+        $this->db->where('rh.id_tugas', $id);
+        return $this->db->get();
+    }
+
     // public function getidpost()
     // {
     //     $query = $this->db->query("SELECT id_posting+1 id_posting FROM suka order by id_posting desc limit 1");
