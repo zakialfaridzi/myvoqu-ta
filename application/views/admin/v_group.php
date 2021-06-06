@@ -7,7 +7,7 @@
 				</div><!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Beranda</a></li>
+						<li class="breadcrumb-item"><a href="<?php echo base_url('Admin/'); ?>">Beranda</a></li>
 						<li class="breadcrumb-item active">Data Grup Hafalan MyVoqu</li>
 					</ol>
 				</div><!-- /.col -->
@@ -24,11 +24,11 @@
 				<i class="fa fa-download"></i> Ekspor
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a href="<?php echo base_url('Admin/printGroup'); ?>" target="_blank" rel="noreferrer"
+				<a href="<?php echo base_url('KelolaGrup/printGroup'); ?>" target="_blank" rel="noreferrer"
 					class="dropdown-item"><i class="fa fa-print"></i> Print</a>
-				<a href="<?php echo base_url('Admin/pdfGroup'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
+				<a href="<?php echo base_url('KelolaGrup/pdfGroup'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
 					PDF</a>
-				<a href="<?php echo base_url('Admin/excelGroup'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
+				<a href="<?php echo base_url('KelolaGrup/excelGroup'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
 					Excel</a>
 			</div>
 		</div>
@@ -37,19 +37,25 @@
 				<table class="table mt-2">
 					<tr>
 						<th>NO</th>
+						<th>Foto Grup</th>
 						<th>Nama Grup</th>
+						<th>Deskripsi</th>
+						<th>Pemilik Grup</th>
 						<th colspan="3">Aksi</th>
 					</tr>
 					<?php $no = 1;
 foreach ($group as $m): ?>
 					<tr>
 						<td><?php echo $no++; ?></td>
+						<td><img src="<?php echo base_url() ?>/assets/img/group/<?php echo $m->img ?>" height="100" width="100" alt=""></td>
 						<td><?php echo $m->nama ?></td>
+						<td><?php echo $m->deskripsi ?></td>
+						<td><?php echo $m->name ?></td>
 						<td>
-							<?php echo anchor('Admin/detailGroup/' . $m->id, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
+							<?php echo anchor('KelolaGrup/detailGroup/' . $m->gid, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
 						</td>
 						<td onclick="return confirm('Hapus Grup?');">
-							<?php echo anchor('Admin/hapusGroup/' . $m->id, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
+							<?php echo anchor('KelolaGrup/hapusGroup/' . $m->gid, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
 						</td>
 					</tr>
 					<?php endforeach;?>

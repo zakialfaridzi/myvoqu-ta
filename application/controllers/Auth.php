@@ -141,6 +141,7 @@ class Auth extends CI_Controller
             $this->load->view('templates/auth_footer2');
         } else {
             $email = $this->input->post('email', true);
+
             $data = [
                 'name' => htmlspecialchars($this->input->post('name', true)),
                 'gender' => htmlspecialchars($this->input->post('gender')),
@@ -184,8 +185,8 @@ class Auth extends CI_Controller
         $config = [
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_user' => 'tepung1123@gmail.com',
-            'smtp_pass' => 'BismillaH123!',
+            'smtp_user' => 'unregistered30@gmail.com',
+            'smtp_pass' => 'Medellincartel13!',
             'smtp_port' => 465,
             'mailtype' => 'html',
             'charset' => 'utf-8',

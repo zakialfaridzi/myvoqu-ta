@@ -7,7 +7,7 @@
 				</div><!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Beranda</a></li>
+						<li class="breadcrumb-item"><a href="<?php echo base_url('Admin/'); ?>">Beranda</a></li>
 						<li class="breadcrumb-item active">Data Penghafal MyVoqu</li>
 					</ol>
 				</div><!-- /.col -->
@@ -25,11 +25,11 @@
 				<i class="fa fa-download"></i> Ekspor
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a href="<?php echo base_url('Admin/printPenghafal'); ?>" target="_blank" rel="noreferrer"
+				<a href="<?php echo base_url('KelolaPenghafal/printPenghafal'); ?>" target="_blank" rel="noreferrer"
 					class="dropdown-item"><i class="fa fa-print"></i> Print</a>
-				<a href="<?php echo base_url('Admin/pdfPenghafal'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
+				<a href="<?php echo base_url('KelolaPenghafal/pdfPenghafal'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
 					PDF</a>
-				<a href="<?php echo base_url('Admin/excelPenghafal'); ?>" class="dropdown-item"><i
+				<a href="<?php echo base_url('KelolaPenghafal/excelPenghafal'); ?>" class="dropdown-item"><i
 						class="fa fa-file"></i> Excel</a>
 			</div>
 		</div>
@@ -71,18 +71,18 @@ foreach ($user as $u): ?>
 						</td>
 						<?php endif;?>
 						<td>
-							<?php echo anchor('Admin/detailPenghafal/' . $u->id, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
+							<?php echo anchor('KelolaPenghafal/detailPenghafal/' . $u->id, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
 						</td>
 						<td onclick="return confirm('Hapus Penghafal?');">
-							<?php echo anchor('Admin/hapusPenghafal/' . $u->id, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
+							<?php echo anchor('KelolaPenghafal/hapusPenghafal/' . $u->id, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
 						</td>
 						<?php if ($u->is_active == 2 || $u->is_active == 0): ?>
 						<td onclick="return confirm('Aktivasi Penghafal?');">
-							<?php echo anchor('Admin/activatePenghafal/' . $u->id, '<div class="btn btn-warning btn-sm"><i class="fa fa-check"></i> Aktivasi</div>') ?>
+							<?php echo anchor('KelolaPenghafal/activatePenghafal/' . $u->id, '<div class="btn btn-warning btn-sm"><i class="fa fa-check"></i> Aktivasi</div>') ?>
 						</td>
 						<?php else: ?>
 						<td onclick="return confirm('Non Aktivasi Penghafal?');">
-							<?php echo anchor('Admin/deactivatePenghafal/' . $u->id, '<div class="btn btn-warning btn-sm"><i class="fas fa-exclamation-triangle"></i> Non Aktivasi</div>') ?>
+							<?php echo anchor('KelolaPenghafal/deactivatePenghafal/' . $u->id, '<div class="btn btn-warning btn-sm"><i class="fas fa-exclamation-triangle"></i> Non Aktivasi</div>') ?>
 						</td>
 						<?php endif;?>
 					</tr>

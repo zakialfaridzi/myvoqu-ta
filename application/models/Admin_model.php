@@ -317,7 +317,7 @@ class Admin_model extends CI_model
 
     public function tampil_group()
     {
-        $query = $this->db->query("select * from grup");
+        $query = $this->db->query("SELECT *, grup.id as gid, user.id as uid, grup.image as img FROM grup join user on grup.owner = user.id");
         return $query->result();
     }
 
@@ -349,13 +349,13 @@ class Admin_model extends CI_model
     ///////////////todo
     public function tampil_todo()
     {
-        $data = $this->db->query('select * from tasks')->result();
-        return $data;
+        $id = $this->session->userdata('id');
+        return $this->db->get_where('tasks', ['id_user' => $id])->result();
     }
 
     public function tambah_todo()
     {
-        $data = ['task_name' => $this->input->post('namatodo', true)];
+        $data = ['task_name' => $this->input->post('namatodo', true), 'datepost' => time(), 'id_user' => $this->session->userdata('id')];
 
         $this->db->insert('tasks', $data);
     }
@@ -364,6 +364,7 @@ class Admin_model extends CI_model
     {
         $data = array(
             'state' => '1',
+            'datepost' => time(),
         );
 
         $this->db->where('id', $id);
@@ -374,6 +375,7 @@ class Admin_model extends CI_model
     {
         $data = array(
             'state' => '0',
+            'datepost' => time(),
         );
 
         $this->db->where('id', $id);
@@ -389,7 +391,7 @@ class Admin_model extends CI_model
 
     public function update_todo($id)
     {
-        $data = ['task_name' => $this->input->post('namatodo', true)];
+        $data = ['task_name' => $this->input->post('namatodo', true), 'datepost' => time()];
 
         $this->db->where('id', $id);
         $this->db->update('tasks', $data);
@@ -407,15 +409,24 @@ class Admin_model extends CI_model
         return $this->db->get_where('tasks', ['id' => $id])->row_array();
     }
 
+    public function get_searchTodo($search)
+    {
+        $this->db->select('*');
+        $this->db->from('tasks');
+        $this->db->like('task_name', $search);
+        $this->db->or_like('id', $search);
+        return $this->db->get()->result();
+    }
+
     public function tampil_pengumuman()
     {
-        $data = $this->db->query('select * from pengumuman')->result();
+        $data = $this->db->query('select p.id,p.isi_pengumuman,p.datepost,u.name from pengumuman p join user u on p.id_user=u.id')->result();
         return $data;
     }
 
     public function tambah_pengumuman()
     {
-        $data = ['isi_pengumuman' => $this->input->post('namapengumuman', true), 'datepost' => time()];
+        $data = ['isi_pengumuman' => $this->input->post('namapengumuman', true), 'datepost' => time(), 'id_user' => $this->session->userdata('id')];
 
         $this->db->insert('pengumuman', $data);
     }
@@ -429,7 +440,7 @@ class Admin_model extends CI_model
 
     public function update_pengumuman($id)
     {
-        $data = ['isi_pengumuman' => $this->input->post('namapengumuman', true), 'datepost' => time()];
+        $data = ['isi_pengumuman' => $this->input->post('namapengumuman', true), 'datepost' => time(), 'id_user' => $this->session->userdata('id')];
 
         $this->db->where('id', $id);
         $this->db->update('pengumuman', $data);
@@ -445,5 +456,14 @@ class Admin_model extends CI_model
     public function getPengumumanById($id)
     {
         return $this->db->get_where('pengumuman', ['id' => $id])->row_array();
+    }
+
+    public function get_searchPengumuman($search)
+    {
+        $this->db->select('pengumuman.id, pengumuman.isi_pengumuman, pengumuman.datepost, user.name');
+        $this->db->from('pengumuman');
+        $this->db->like('isi_pengumuman', $search);
+        $this->db->join('user', 'pengumuman.id_user=user.id');
+        return $this->db->get()->result();
     }
 }

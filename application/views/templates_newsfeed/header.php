@@ -52,7 +52,7 @@
                         </li>
 
                         <li><i class="fa fa-video text-muted" style="color: black;"></i>
-                            <div><a href="<?=base_url('./Colab');?>" target="_blank">Kolaborasi</a></div>
+                            <div><a href="<?=base_url('Colab/');?>">Kolaborasi</a></div>
                         </li>
 
                     </ul>
@@ -291,6 +291,8 @@ endforeach;?>
 
                 <script type="text/javascript">
                 $('#pay-button').click(function(event) {
+                    // alert('clicked')
+
                     event.preventDefault();
                     $(this).attr("disabled", "disabled");
                     var nominal = $("#nominal").val();

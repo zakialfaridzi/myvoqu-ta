@@ -10,7 +10,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Beranda</a></li>
-							<li class="breadcrumb-item">Data Unggahan</li>
+							<li class="breadcrumb-item"><a href="<?php echo base_url('KelolaUnggahan') ?>">Data Unggahan</a></li>
 							<li class="breadcrumb-item active">Detil Unggahan</li>
                         </ol>
                     </div><!-- /.col -->
@@ -65,7 +65,7 @@
                     </tr>
                 <?php endforeach;?>
             </table>
-            <a href="<?php echo base_url('Admin/indexPosting'); ?>" class="btn btn-primary">Kembali</a>
+            <a href="<?php echo base_url('KelolaUnggahan'); ?>" class="btn btn-primary">Kembali</a>
         </div>
     </div>
 </div>

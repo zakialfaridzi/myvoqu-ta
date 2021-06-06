@@ -7,7 +7,7 @@
 				</div><!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Beranda</a></li>
+						<li class="breadcrumb-item"><a href="<?php echo base_url('Admin/'); ?>">Beranda</a></li>
 						<li class="breadcrumb-item">Data Unggahan Materi Umum</li>
 					</ol>
 				</div><!-- /.col -->
@@ -24,11 +24,11 @@
 				<i class="fa fa-download"></i> Ekspor
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a href="<?php echo base_url('Admin/printPostingGen'); ?>" target="_blank" rel="noreferrer"
+				<a href="<?php echo base_url('KelolaUnggahanUmum/printPostingGen'); ?>" target="_blank" rel="noreferrer"
 					class="dropdown-item"><i class="fa fa-print"></i> Print</a>
-				<a href="<?php echo base_url('Admin/pdfPostingGen'); ?>" class="dropdown-item"><i
+				<a href="<?php echo base_url('KelolaUnggahanUmum/pdfPostingGen'); ?>" class="dropdown-item"><i
 						class="fa fa-file"></i> PDF</a>
-				<a href="<?php echo base_url('Admin/excelPostingGen'); ?>" class="dropdown-item"><i
+				<a href="<?php echo base_url('KelolaUnggahanUmum/excelPostingGen'); ?>" class="dropdown-item"><i
 						class="fa fa-file"></i> Excel</a>
 			</div>
 		</div>
@@ -37,8 +37,10 @@
 				<table class="table mt-2">
 					<tr>
 						<th>NO</th>
+						<th>Isi Unggahan</th>
 						<th>ID Unggah (ID Post)</th>
 						<th>Keterangan (Caption)</th>
+						<th>Tanggal Unggah</th>
 						<th colspan="2">
 							Aksi
 						</th>
@@ -47,13 +49,26 @@
 foreach ($post as $u): ?>
 					<tr>
 						<td><?php echo $no++; ?></td>
+						<?php
+$word = "video";
+
+if (strpos($u->html, $word) !== false): ?>
+					<td>
+						<video class="post-video" controls  width="150" height="150" alt="post-video"><source src="<?=base_url()?>assets_user/file_upload/<?=$u->fileName?>" alt="post-video" type="video/mp4"></video>
+					</td>
+					<?php else: ?>
+					<td>
+						<img src="<?=base_url()?>assets_user/file_upload/<?=$u->fileName?>" alt="post-image"class="img-responsive post-image"  style="border-radius: 5px 5px 5px 5px; width:100px; height:100px;"/>
+					</td>
+					<?php endif;?>
 						<td><?php echo $u->id_posting ?></td>
 						<td><?php echo $u->caption ?></td>
+						<td><?php echo date("Y-m-d H:i:s", strtotime('+5 hours', $u->date_post)); ?></td>
 						<td>
-							<?php echo anchor('Admin/detailPostingGen/' . $u->id_posting, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
+							<?php echo anchor('KelolaUnggahanUmum/detailPostingGen/' . $u->id_posting, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
 						</td>
 						<td onclick="return confirm('Hapus Unggahan?');">
-							<?php echo anchor('Admin/DelPosGen/' . $u->id_posting, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
+							<?php echo anchor('KelolaUnggahanUmum/HapusPostGen/' . $u->id_posting, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
 						</td>
 					</tr>
 					<?php endforeach;?>

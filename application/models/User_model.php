@@ -198,10 +198,10 @@ class User_model extends CI_model
 
         return $query->result();
     }
- 
+
     public function getSukaaById($id)
     {
-        $query = $this->db->query('SELECT *, count(*) as total FROM suka where id = ' . $this->session->userdata('id') . ' and id_posting = ' . $this->uri->segment('3') .'');
+        $query = $this->db->query('SELECT *, count(*) as total FROM suka where id = ' . $this->session->userdata('id') . ' and id_posting = ' . $this->uri->segment('3') . '');
 
         return $query->result();
     }
@@ -231,10 +231,9 @@ class User_model extends CI_model
 
     public function getPollow()
     {
-        return $this->db->query('SELECT *, count(*) as total FROM follow where id_userfollow = ' . $this->session->userdata('id') . ' and id_usertarget = ' . $this->uri->segment('3') .'')->result();
+        return $this->db->query('SELECT *, count(*) as total FROM follow where id_userfollow = ' . $this->session->userdata('id') . ' and id_usertarget = ' . $this->uri->segment('3') . '')->result();
     }
 
-    
     // public function getFollow()
     // {
     //     return $this->db->query('SELECT distinct id_follow, stat, id_userfollow, id_usertarget, name, id, image, bio FROM user right join follow on follow.id_userfollow = user.id

@@ -7,7 +7,7 @@
 				</div><!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Beranda</a></li>
+						<li class="breadcrumb-item"><a href="<?php echo base_url('Admin/'); ?>">Beranda</a></li>
 						<li class="breadcrumb-item active">Data Unggahan</li>
 					</ol>
 				</div><!-- /.col -->
@@ -24,11 +24,11 @@
 				<i class="fa fa-download"></i> Ekspor
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a href="<?php echo base_url('Admin/printPosting'); ?>" target="_blank" rel="noreferrer"
+				<a href="<?php echo base_url('KelolaUnggahan/printPosting'); ?>" target="_blank" rel="noreferrer"
 					class="dropdown-item"><i class="fa fa-print"></i> Print</a>
-				<a href="<?php echo base_url('Admin/pdfPosting'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
+				<a href="<?php echo base_url('KelolaUnggahan/pdfPosting'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
 					PDF</a>
-				<a href="<?php echo base_url('Admin/excelPosting'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
+				<a href="<?php echo base_url('KelolaUnggahan/excelPosting'); ?>" class="dropdown-item"><i class="fa fa-file"></i>
 					Excel</a>
 				<!-- <a href="" class="dropdown-item"><i class="fa fa-file"></i> send pdf</a> -->
 			</div>
@@ -38,10 +38,12 @@
 				<table class="table mt-2">
 					<tr>
 						<th>NO</th>
+						<th>Isi Unggahan</th>
 						<th>ID Unggah (ID Post)</th>
 						<th>Keterangan (Caption)</th>
 						<th>Nama Pengguna</th>
 						<th>Role (Peranan)</th>
+						<th>Tanggal Unggah</th>
 						<th colspan="2">
 							Aksi
 						</th>
@@ -50,6 +52,18 @@
 foreach ($post as $u): ?>
 					<tr>
 						<td><?php echo $no++; ?></td>
+						<?php
+$word = "video";
+
+if (strpos($u->html, $word) !== false): ?>
+					<td>
+						<video class="post-video" controls  width="150" height="150"><source src="<?=base_url()?>assets_user/file_upload/<?=$u->fileName?>" type="video/mp4"></video>
+					</td>
+					<?php else: ?>
+					<td>
+						<img src="<?=base_url()?>assets_user/file_upload/<?=$u->fileName?>" alt="post-image"class="img-responsive post-image"  style="border-radius: 5px 5px 5px 5px; width:100px; height:100px;"/>
+					</td>
+					<?php endif;?>
 						<td><?php echo $u->id_posting ?></td>
 						<td><?php echo $u->caption ?></td>
 						<td><?php echo $u->name ?></td>
@@ -62,11 +76,12 @@ foreach ($post as $u): ?>
 							<?php echo "Mentor"; ?>
 						</td>
 						<?php endif;?>
+						<td><?php echo date("Y-m-d H:i:s", strtotime('+5 hours', $u->date_post)); ?></td>
 						<td>
-							<?php echo anchor('Admin/detailPosting/' . $u->id_posting, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
+							<?php echo anchor('KelolaUnggahan/detailPosting/' . $u->id_posting, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
 						</td>
 						<td onclick="return confirm('Hapus Post?');">
-							<?php echo anchor('Admin/hapusPosting/' . $u->id_posting, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
+							<?php echo anchor('KelolaUnggahan/hapusPosting/' . $u->id_posting, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
 						</td>
 					</tr>
 					<?php endforeach;?>

@@ -10,7 +10,7 @@
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
 							<li class="breadcrumb-item"><a href="<?php echo base_url('Admin/index/'); ?>">Beranda</a></li>
-							<li class="breadcrumb-item">Data Unggahan Materi Umum</li>
+							<li class="breadcrumb-item"><a href="<?php echo base_url('KelolaUnggahanUmum') ?>">Data Unggahan Materi Umum</a></li>
 							<li class="breadcrumb-item active">Detil Unggahan Materi Umum MyVoqu</li>
 						</ol>
 					</div><!-- /.col -->
@@ -46,7 +46,7 @@ if (strpos($post->html, $word) !== false): ?>
 					<?php endif;?>
 				</tr>
 			</table>
-			<a href="<?php echo base_url('Admin/indexPostingGen'); ?>" class="btn btn-primary">Kembali</a>
+			<a href="<?php echo base_url('KelolaUnggahanUmum'); ?>" class="btn btn-primary">Kembali</a>
 		</div>
 	</div>
 </div>

@@ -17,8 +17,8 @@
                 <th>NO</th>
                 <th>ID Posting</th>
                 <th>Caption</th>
-                <th>Reports</th>
-                <th>Foto</th>
+                <th>Tanggal Unggah</th>
+                <th>Isi Unggahan</th>
             </tr>
 
             <?php $no = 1;
@@ -27,8 +27,19 @@ foreach ($mahasiswa as $mhs): ?>
                     <td><?php echo $no++; ?></td>
                     <td><?php echo $mhs->id_posting ?></td>
                     <td><?php echo $mhs->caption ?></td>
-                    <td><?php echo 4; ?></td>
-                    <td><?php echo $mhs->html ?></td>
+                    <td><?php echo date("Y-m-d H:i:s", strtotime('+5 hours', $mhs->date_post)); ?></td>
+                    <?php
+$word = "video";
+
+if (strpos($mhs->html, $word) !== false): ?>
+					<td>
+						<video class="post-video" controls  width="150" height="150" alt="post-video"><source alt="post-video" src="<?=base_url()?>assets_user/file_upload/<?=$mhs->fileName?>" type="video/mp4"></video>
+					</td>
+					<?php else: ?>
+					<td>
+						<img src="<?=base_url()?>assets_user/file_upload/<?=$mhs->fileName?>" alt="post-image"class="img-responsive post-image"  style="border-radius: 5px 5px 5px 5px; width:100px; height:100px;"/>
+					</td>
+					<?php endif;?>
                 </tr>
             <?php endforeach;?>
         </table>
