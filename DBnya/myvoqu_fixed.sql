@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2021 at 06:06 PM
+-- Generation Time: Jun 06, 2021 at 05:04 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.19
 
@@ -189,14 +189,6 @@ CREATE TABLE `anggota` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `anggota`
---
-
-INSERT INTO `anggota` (`id_anggota`, `id_user`, `id_group`) VALUES
-(10, 129, 32),
-(12, 129, 33);
-
---
 -- Triggers `anggota`
 --
 DELIMITER $$
@@ -233,16 +225,6 @@ CREATE TABLE `chatall` (
   `created` timestamp NOT NULL DEFAULT current_timestamp(),
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `chatall`
---
-
-INSERT INTO `chatall` (`id`, `message`, `from`, `created`, `id_user`) VALUES
-(8, 'asdsadsa', 'Muhammad Abizard', '2021-04-19 20:44:54', 129),
-(9, 'test', 'Muhammad Abizard', '2021-04-19 20:54:49', 129),
-(10, 'asdsadasdasdasdasdasdas\nasdasdasdasdasdsadsadas\nadasdasdsa\n', 'Muhammad Abizard', '2021-04-19 20:56:14', 129),
-(11, 'asd', 'Muhammad Abizard', '2021-04-20 06:21:19', 129);
 
 -- --------------------------------------------------------
 
@@ -319,11 +301,29 @@ CREATE TABLE `dompet` (
 --
 
 INSERT INTO `dompet` (`id_dompet`, `saldo`, `id_user`) VALUES
-(1, '0', 129),
-(2, '10000', 130),
-(10, '0', 135),
 (13, '0', 138),
-(16, '0', 141);
+(19, '0', 144),
+(20, '0', 145),
+(21, '0', 146),
+(22, '0', 147),
+(23, '0', 148),
+(24, '0', 149),
+(25, '0', 150),
+(26, '0', 151),
+(27, '0', 152),
+(28, '0', 153),
+(29, '0', 154),
+(30, '0', 155),
+(31, '0', 156),
+(32, '0', 157),
+(33, '0', 158),
+(34, '0', 159),
+(35, '0', 160),
+(36, '0', 161),
+(37, '0', 162),
+(38, '0', 163),
+(39, '0', 164),
+(40, '0', 165);
 
 -- --------------------------------------------------------
 
@@ -399,7 +399,7 @@ INSERT INTO `follow` (`id_follow`, `stat`, `date`, `id_userfollow`, `id_usertarg
 (50, 2, '1618314853', 129, 129, 'Muhammad Abizard', 'Hello World!', '6075a3c8b2c47.jpg'),
 (51, 2, '1618319213', 129, 114, 'Fydhia Helmi Ramadhan', 'Hello Myvoqu!', '6075504d4bb97.png'),
 (52, 2, '1618314853', 130, 130, 'Ustad Abi', 'Hello World!', 'default_male.png'),
-(53, 2, '1618314853', 131, 131, 'ADMIN - Zaki', 'Hello World!', 'SIDANG_FOTO.png'),
+(53, 2, '1618314853', 131, 131, 'ADMIN - Zaki', 'Hello World!', 't128olv9kli61.png'),
 (54, 2, '1618382009', 132, 132, 'Muhammad Abizard', 'Hello World!', 'default_male.png'),
 (55, 2, '1618382086', 133, 133, 'Muhammad Abizardaa', 'Hello World!', 'default_male.png'),
 (56, 2, '1618314853', 134, 134, 'Muhammad Haitsam', 'Hello World!', '6075a3c8b2c47.jpg'),
@@ -411,7 +411,31 @@ INSERT INTO `follow` (`id_follow`, `stat`, `date`, `id_userfollow`, `id_usertarg
 (62, 2, '1621314609', 139, 139, 'Ustad Mori', 'Hello World!', 'default_male.png'),
 (63, 2, '1618314853', 140, 140, 'Muhammad Abizardx', 'Hello World!', '6075a3c8b2c47.jpg'),
 (64, 2, '1622362432', 141, 141, 'Ustad Abel', 'Hello World!', 'default_male.png'),
-(65, 1, '1622366761', 141, 129, 'Muhammad Abizard', 'Hello World!', '6075a3c8b2c47.jpg');
+(65, 1, '1622366761', 141, 129, 'Muhammad Abizard', 'Hello World!', '6075a3c8b2c47.jpg'),
+(66, 2, '1622987385', 142, 142, 'Ustad Ais', 'Hello World!', 'default_male.png'),
+(67, 2, '1622989159', 143, 143, 'Asep Sudasep', 'Hello World!', 'default_male.png'),
+(68, 2, '1622989228', 144, 144, 'Asep Sudasep', 'Hello World!', 'default_male.png'),
+(69, 2, '1622989284', 145, 145, 'Endar Parisian', 'Hello World!', 'default_female.png'),
+(70, 2, '1622989334', 146, 146, 'Surya Nurhalimah', 'Hello World!', 'default_male.png'),
+(71, 2, '1622989391', 147, 147, 'Nurdin Bagus', 'Hello World!', 'default_male.png'),
+(72, 2, '1622989430', 148, 148, 'Bambang Sibambang', 'Hello World!', 'default_male.png'),
+(73, 2, '1622989477', 149, 149, 'Abizzy Al Tareq', 'Hello World!', 'default_male.png'),
+(74, 2, '1622989504', 150, 150, 'Surinem', 'Hello World!', 'default_female.png'),
+(75, 2, '1622989521', 151, 151, 'Dea', 'Hello World!', 'default_female.png'),
+(76, 2, '1622989558', 152, 152, 'Sheva', 'Hello World!', 'default_female.png'),
+(77, 2, '1622989581', 153, 153, 'Tera', 'Hello World!', 'default_female.png'),
+(78, 2, '1622989608', 154, 154, 'Sobaqam', 'Hello World!', 'default_male.png'),
+(79, 2, '1622989789', 155, 155, 'Naam', 'Hello World!', 'default_male.png'),
+(80, 2, '1622989808', 156, 156, 'Hayfa', 'Hello World!', 'default_female.png'),
+(81, 2, '1622989831', 157, 157, 'Outemu', 'Hello World!', 'default_male.png'),
+(82, 2, '1622989900', 158, 158, 'Gofar', 'Hello World!', 'default_male.png'),
+(83, 2, '1622989931', 159, 159, 'Qori', 'Hello World!', 'default_male.png'),
+(84, 2, '1622989960', 160, 160, 'Kailh', 'Hello World!', 'default_male.png'),
+(85, 2, '1622990006', 161, 161, 'Artisan', 'Hello World!', 'default_female.png'),
+(86, 2, '1622990043', 162, 162, 'Hipyo', 'Hello World!', 'default_female.png'),
+(87, 2, '1622990095', 163, 163, 'Avilla', 'Hello World!', 'default_female.png'),
+(88, 2, '1622990138', 164, 164, 'Himalaya', 'Hello World!', 'default_female.png'),
+(89, 2, '1622990210', 165, 165, 'Ustad Zaki', 'Hello World!', 'default_male.png');
 
 --
 -- Triggers `follow`
@@ -507,7 +531,9 @@ INSERT INTO `group_notif` (`id_notif`, `notif`, `id_group`, `id_user`, `date`) V
 (16, 'Joined This Group', 32, 129, '2021-04-23 20:03:12'),
 (17, 'Joined This Group', 32, 134, '2021-04-23 20:03:13'),
 (18, 'Kicked From This Group', 32, 134, '2021-05-18 12:03:35'),
-(19, 'Joined This Group', 33, 129, '2021-05-30 16:31:35');
+(19, 'Joined This Group', 33, 129, '2021-05-30 16:31:35'),
+(20, 'Kicked From This Group', 32, 129, '2021-06-06 21:16:11'),
+(21, 'Kicked From This Group', 33, 129, '2021-06-06 21:16:11');
 
 -- --------------------------------------------------------
 
@@ -552,14 +578,6 @@ CREATE TABLE `grup` (
   `image` varchar(150) NOT NULL,
   `owner` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `grup`
---
-
-INSERT INTO `grup` (`id`, `nama`, `deskripsi`, `image`, `owner`) VALUES
-(32, 'Grup Hafalan HOTS', 'Grup yang berada di bawah naungan HOTS.', 'default.png', 135),
-(33, 'grup hafalan dota', 'yuk hafalan', '60b35d8a63e7c.png', 141);
 
 -- --------------------------------------------------------
 
@@ -806,7 +824,31 @@ INSERT INTO `notification` (`id_notification`, `notif`, `date`, `id_posting`, `i
 (390, 'Mulai Mengikuti Anda.', '1622362432', 0, 141, 141),
 (391, 'Mulai Mengikuti Anda.', '1622366761', 0, 141, 129),
 (392, 'like on your post', '', 288, 141, 0),
-(393, 'like on your post', '', 289, 141, 0);
+(393, 'like on your post', '', 289, 141, 0),
+(394, 'Mulai Mengikuti Anda.', '1622987385', 0, 142, 142),
+(395, 'Mulai Mengikuti Anda.', '1622989159', 0, 143, 143),
+(396, 'Mulai Mengikuti Anda.', '1622989228', 0, 144, 144),
+(397, 'Mulai Mengikuti Anda.', '1622989284', 0, 145, 145),
+(398, 'Mulai Mengikuti Anda.', '1622989334', 0, 146, 146),
+(399, 'Mulai Mengikuti Anda.', '1622989391', 0, 147, 147),
+(400, 'Mulai Mengikuti Anda.', '1622989430', 0, 148, 148),
+(401, 'Mulai Mengikuti Anda.', '1622989477', 0, 149, 149),
+(402, 'Mulai Mengikuti Anda.', '1622989504', 0, 150, 150),
+(403, 'Mulai Mengikuti Anda.', '1622989521', 0, 151, 151),
+(404, 'Mulai Mengikuti Anda.', '1622989558', 0, 152, 152),
+(405, 'Mulai Mengikuti Anda.', '1622989581', 0, 153, 153),
+(406, 'Mulai Mengikuti Anda.', '1622989608', 0, 154, 154),
+(407, 'Mulai Mengikuti Anda.', '1622989789', 0, 155, 155),
+(408, 'Mulai Mengikuti Anda.', '1622989808', 0, 156, 156),
+(409, 'Mulai Mengikuti Anda.', '1622989831', 0, 157, 157),
+(410, 'Mulai Mengikuti Anda.', '1622989900', 0, 158, 158),
+(411, 'Mulai Mengikuti Anda.', '1622989931', 0, 159, 159),
+(412, 'Mulai Mengikuti Anda.', '1622989960', 0, 160, 160),
+(413, 'Mulai Mengikuti Anda.', '1622990006', 0, 161, 161),
+(414, 'Mulai Mengikuti Anda.', '1622990043', 0, 162, 162),
+(415, 'Mulai Mengikuti Anda.', '1622990095', 0, 163, 163),
+(416, 'Mulai Mengikuti Anda.', '1622990138', 0, 164, 164),
+(417, 'Mulai Mengikuti Anda.', '1622990210', 0, 165, 165);
 
 -- --------------------------------------------------------
 
@@ -826,8 +868,16 @@ CREATE TABLE `pengumuman` (
 --
 
 INSERT INTO `pengumuman` (`id`, `isi_pengumuman`, `datepost`, `id_user`) VALUES
-(7, 'dasasd as', '1620196186', 131),
-(9, 'x', '1622389968', 131);
+(12, 'Jangan lupa baca AlQuran guys!', '1622991104', 131),
+(13, 'Kita harus selalu sholat 5 waktu guys!', '1622990827', 131),
+(14, 'Jangan lupa beramal ya!', '1622990834', 131),
+(16, 'Jangan lupa berbuat baik ya guys!', '1622990878', 131),
+(17, 'Kita adalah hamba allah', '1622990893', 131),
+(18, 'Myvoqu punya fitur baru loh, ayo di cari sendirii hehe', '1622990924', 131),
+(19, 'Admin baru saja unggah materi islami baru lohh', '1622990993', 131),
+(20, 'Kepada penghafal yang kasar akan di non aktivasi ya akunnya', '1622991027', 131),
+(21, 'Kepada penghafal yang mengunggah hal yang tidak patut, akan di hapus ya unggahannya!', '1622991060', 131),
+(22, 'PERINGATAN - Admin akan mengawasi pengguna yang mengganggu ya!', '1622991093', 131);
 
 -- --------------------------------------------------------
 
@@ -889,10 +939,16 @@ CREATE TABLE `postgen` (
 --
 
 INSERT INTO `postgen` (`id_posting`, `caption`, `fileName`, `html`, `date_post`, `id_user`) VALUES
-(70, ' Hannan Attaki ngajinya bagus banget', '6092b9123e9fe.mkv', '<video class=\"post-video\" controls width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/6092b9123e9fe.mkv type=\"video/mp4\"></video>', '1620228370', 131),
-(71, 'Do qui qui qui saepe', '60a350c385f70.png', '<img src=http://localhost/myvoqu/assets_user/file_upload/60a350c385f70.png alt=\"post-image\"class=\"img-responsive post-image\"  style=\"border-radius: 5px 5px 5px 5px;\"/>', '1621315779', 131),
-(72, 'tez', '60a350d4de28a.mkv', '<video class=\"post-video\" controls width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/60a350d4de28a.mkv type=\"video/mp4\"></video>', '1621315796', 131),
-(73, 'materi bagus', '60b2509a9e744.png', '<img src=http://localhost/myvoqu/assets_user/file_upload/60b2509a9e744.png alt=\"post-image\"class=\"img-responsive post-image\"  style=\"border-radius: 5px 5px 5px 5px;\"/>', '1622298778', 131);
+(76, 'Materinya bagus banget nih', '60bcdeb09da30.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60bcdeb09da30.jpg alt=\"post-image\"class=\"img-responsive post-image\"  style=\"border-radius: 5px 5px 5px 5px;\"/>', '1622990512', 131),
+(77, 'Bacaan yang cukup ngena, silahkan dibaca', '60bcdecb1c3f8.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60bcdecb1c3f8.jpg alt=\"post-image\"class=\"img-responsive post-image\"  style=\"border-radius: 5px 5px 5px 5px;\"/>', '1622990539', 131),
+(78, 'Ngajinya keren banget, silahkan di cek ya', '60bcdeee947f1.mkv', '<video class=\"post-video\" controls width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/60bcdeee947f1.mkv type=\"video/mp4\"></video>', '1622990574', 131),
+(79, 'Bacaan Al Fatihah yang sangat merdu', '60bcdf10b6afb.mkv', '<video class=\"post-video\" controls width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/60bcdf10b6afb.mkv type=\"video/mp4\"></video>', '1622990608', 131),
+(80, 'Suaranya merdu sekali, silahkan pelajari ya', '60bcdf3023887.mp4', '<video class=\"post-video\" controls width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/60bcdf3023887.mp4 type=\"video/mp4\"></video>', '1622990640', 131),
+(81, 'Selamat idul adha kawan kawan', '60bcdf4324b15.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60bcdf4324b15.jpg alt=\"post-image\"class=\"img-responsive post-image\"  style=\"border-radius: 5px 5px 5px 5px;\"/>', '1622990659', 131),
+(82, 'Selamat tahun baru Hijriah teman-teman.', '60bcdf5ea8dd3.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60bcdf5ea8dd3.jpg alt=\"post-image\"class=\"img-responsive post-image\"  style=\"border-radius: 5px 5px 5px 5px;\"/>', '1622990686', 131),
+(83, 'Kata-katanya sangat mendalam teman teman', '60bcdf713192f.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60bcdf713192f.jpg alt=\"post-image\"class=\"img-responsive post-image\"  style=\"border-radius: 5px 5px 5px 5px;\"/>', '1622990705', 131),
+(84, 'Imam ini bacaannya sangat merdu', '60bcdf9200475.mp4', '<video class=\"post-video\" controls width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/60bcdf9200475.mp4 type=\"video/mp4\"></video>', '1622990738', 131),
+(85, 'Kita harus rajin ibadah ya guys!', '60bcdfaf3b111.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60bcdfaf3b111.jpg alt=\"post-image\"class=\"img-responsive post-image\"  style=\"border-radius: 5px 5px 5px 5px;\"/>', '1622990767', 131);
 
 -- --------------------------------------------------------
 
@@ -909,14 +965,6 @@ CREATE TABLE `posting` (
   `html` varchar(250) NOT NULL,
   `date_post` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `posting`
---
-
-INSERT INTO `posting` (`id_posting`, `caption`, `id_user`, `name`, `fileName`, `html`, `date_post`) VALUES
-(287, 'test', 129, '', '60a34eb3a1b66.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60a34eb3a1b66.jpg alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 350px;\" />', '1621315251'),
-(289, 'tesk', 141, '', '60b360983c203.mp4', '<div class=\"video-wrapper\"><video class=\"post-video\" controls  width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/60b360983c203.mp4 type=\"video/mp4\"></video></div>', '1622368408');
 
 --
 -- Triggers `posting`
@@ -1166,8 +1214,17 @@ CREATE TABLE `tasks` (
 
 INSERT INTO `tasks` (`id`, `task_name`, `state`, `datepost`, `id_user`) VALUES
 (56, 'xa', 0, '', 138),
-(59, 'Mollit tenetur delenxasxasdasx', 0, '1622389623', 131),
-(60, 'xca', 1, '1622389739', 131);
+(62, 'sidang TA', 0, '1622443539', 138),
+(63, 'Cek-cek data pengguna', 0, '1622991172', 131),
+(64, 'Jangan lupa backup seluruh database', 0, '1622991183', 131),
+(65, 'Cek unggahan yang mengganggu', 0, '1622991194', 131),
+(66, 'Hapus unggahan yang memiliki banyak laporan', 0, '1622991204', 131),
+(67, 'Jangan lupa unggah materi umum!', 0, '1622991220', 131),
+(68, 'Jangan lupa buat pengumuman untuk penghafal dan mentor', 0, '1622991247', 131),
+(69, 'Jangan lupa cek seluruh data aplikasi', 0, '1622991304', 131),
+(70, 'Ekspor data akun penghafal ke excel', 0, '1622991341', 131),
+(71, 'Ekspor data unggahan ke bentuk print', 0, '1622991402', 131),
+(72, 'Buat pengumuman ke penghafal/mentor kalau ada fitur baru', 0, '1622991396', 131);
 
 -- --------------------------------------------------------
 
@@ -1291,7 +1348,10 @@ INSERT INTO `trigger_user` (`no`, `id`, `name`, `email`, `role_id`, `aksi`, `tgl
 (139, 131, 'Zaki Al Faridzi', 'jaki@gmail.com', 1, 'Zaki Al Faridzi yang baru melakukan update profile menjadi Zaki Al ', '2021-05-27 19:39:07'),
 (140, 131, 'Zaki Al ', 'jaki@gmail.com', 1, 'Zaki Al  yang baru melakukan update profile menjadi Zaki Al Faridzi', '2021-05-27 19:39:26'),
 (141, 131, 'Zaki Al Faridzi', 'jaki@gmail.com', 1, 'Zaki Al Faridzi yang baru melakukan update profile menjadi ADMIN - Zaki', '2021-05-29 21:32:15'),
-(142, 141, 'keeb', '', 0, 'Ada yang baru delete posting', '2021-05-30 16:47:32');
+(142, 141, 'keeb', '', 0, 'Ada yang baru delete posting', '2021-05-30 16:47:32'),
+(143, 131, 'ADMIN - Zaki', 'jaki@gmail.com', 1, 'ADMIN - Zaki yang baru melakukan update profile menjadi ADMIN - Zakii', '2021-06-06 20:34:54'),
+(144, 141, 'tesk', '', 0, 'Ada yang baru delete posting', '2021-06-06 21:16:20'),
+(145, 131, 'ADMIN - Zakii', 'jaki@gmail.com', 1, 'ADMIN - Zakii yang baru melakukan update profile menjadi ADMIN - Zaki', '2021-06-06 21:57:09');
 
 -- --------------------------------------------------------
 
@@ -1324,12 +1384,30 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `gender`, `email`, `image`, `passsword`, `role_id`, `is_active`, `date_created`, `status`, `birthdate`, `city`, `bio`, `work`, `instansi`, `sertif`, `verified`) VALUES
-(129, 'Muhammad Abizard', 'Male', 'abizard@student.telkomuniversity.ac.id', '6075a3c8b2c47.jpg', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 2, 1, 1618314853, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
-(130, 'Ustad Abi', 'Male', 'm.abizard1123@gmail.com', 'default_male.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 3, 1, 1618314853, 'offline-dot', '0000-00-00', '', 'Hello World!', '', 'HOTS', '', 1),
-(131, 'ADMIN - Zaki', 'Male', 'jaki@gmail.com', 'SIDANG_FOTO.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 1, 1, 1618314853, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
-(135, 'Ustad Haitsam', 'Male', 'haitsam@gmail.com', 'default_male.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 3, 1, 1618314853, 'offline-dot', '2021-04-23', 'bandung', 'Hello World!', '', 'MUHAMMADIYAH', '', 1),
+(131, 'ADMIN - Zaki', 'Male', 'jaki@gmail.com', 't128olv9kli61.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 1, 1, 1618314853, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (138, 'ADMIN - ABI', 'Male', 'abi@gmail.com', 'v.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 1, 1, 1618314853, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
-(141, 'Ustad Abel', 'Male', 'abel@gmail.com', 'default_male.png', '$2y$10$Gre9bP5TEPmXBDNdZeCjEeqJ9I/3.R.p4DlQiVKx3eRcGhMgCJz86', 3, 1, 1622362432, 'online-dot', '2021-05-30', 'Jakarta', 'Hello World!', 'Masjid Istiqlal', 'ISTIQLAL', '60b34940df24e.jpg', 1);
+(144, 'Asep Sudasep', 'Male', 'asep@gmail.com', 'default_male.png', '$2y$10$oDtBiq94.isc0OCvom.QDuR7uA.5BuNzwcXrboLIaGshT4LTehM1O', 2, 0, 1622989228, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(145, 'Endar Parisian', 'Female', 'endar@gmail.com', 'default_female.png', '$2y$10$oogXwOXrzoc4KCq7vE2kA.yNzPQUpKulqF9L2kR4YBWhbcGZX06iq', 2, 0, 1622989284, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(146, 'Surya Nurhalimah', 'Male', 'surya@gmail.com', 'default_male.png', '$2y$10$Y50JrQG2OA9vvgQFSWY/XOb3si/3eEqoysuAvv.iGoCxtm.E1K9yW', 2, 0, 1622989334, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(147, 'Nurdin Bagus', 'Male', 'nurdin@gmail.com', 'default_male.png', '$2y$10$HMvOlhQToVs4TWLOUvbdsOiKS7QwppWm.jNriv8DdA5QYzarmHFXO', 2, 0, 1622989391, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(148, 'Bambang Sibambang', 'Male', 'bambang@gmail.com', 'default_male.png', '$2y$10$3SjuioySLZzEFsaB5/6.HerOCVae7xXsIMfdMkKKlTPusdJM/cAQW', 2, 0, 1622989430, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(149, 'Abizzy Al Tareq', 'Male', 'abizzy@gmail.com', 'default_male.png', '$2y$10$qBt7p6bai3KftmNlxjkMEe40gANj5M05JBYau.XAuXGJNcdXHDZy.', 2, 0, 1622989477, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(150, 'Surinem', 'Female', 'surinem@gmail.com', 'default_female.png', '$2y$10$lOgCUUE8OKxSqYsX2XKNBOKkK8FDvBGNtJUV9AKQZQFyTcuWdFAw2', 2, 0, 1622989504, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(151, 'Dea', 'Female', 'dea@gmail.com', 'default_female.png', '$2y$10$bQEIInl51NElKcoSBwEbL.rCcrZNjncL8VR9IMHDtn17tQMdvYgBS', 2, 0, 1622989521, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(152, 'Sheva', 'Female', 'sheva@gmail.com', 'default_female.png', '$2y$10$xjiTC3KBjsCrxRZeAUOTge3KfpCPW7NUOxSEwSEc8ZjRFtkZPViHS', 2, 0, 1622989558, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(153, 'Tera', 'Female', 'tera@gmail.com', 'default_female.png', '$2y$10$zZKe6FGdQjtFvYup7WrgkeLHvqmRdPEQUb9WHqerWOxi.u84f1Om.', 2, 0, 1622989581, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(154, 'Sobaqam', 'Male', 'sobaqam@gmail.com', 'default_male.png', '$2y$10$muO67UKiiyb2eb9taxHrJuZC2Az6Je2Dt/vu84EehnBD/T9UCam22', 2, 1, 1622989608, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(155, 'Naam', 'Male', 'naam@gmail.com', 'default_male.png', '$2y$10$Xzd7UjTDftjL/awxNFipruAvvDhHRF1/IDoygBnGTrGgyJL66uWb2', 3, 0, 1622989789, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdbdd0b10d.png', 0),
+(156, 'Hayfa', 'Female', 'hayfa@gmail.com', 'default_female.png', '$2y$10$cuiseINQrQ.rB/Rb5FBX9OK1rOWiMydxVNPIPa8aHQRSb4eJE20oq', 3, 0, 1622989808, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdbf0cfeb7.png', 0),
+(157, 'Outemu', 'Male', 'outemu@gmail.com', 'default_male.png', '$2y$10$4VVUwAOovLOZSXZRrCYP1eKC/qsXu8Glw1HfjFUklTjv1/i0s73BC', 3, 0, 1622989831, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdc06e61d1.png', 0),
+(158, 'Gofar', 'Male', 'gofar@gmail.com', 'default_male.png', '$2y$10$qHYoYWrei4mQpKQjo3ibpuceqUSsZWze9VKXu/9OSTqdwSqFEU3Ry', 3, 0, 1622989900, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdc4c4e6f3.png', 0),
+(159, 'Qori', 'Male', 'qori@gmail.com', 'default_male.png', '$2y$10$bcW3p8iSFaCzceu1yUci0eKF/sE34Bc/RK12fcRz6YZXdYe9P2LYa', 3, 0, 1622989931, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdc6b7559f.png', 0),
+(160, 'Kailh', 'Male', 'kailh@gmail.com', 'default_male.png', '$2y$10$QbAJbH5pBfk.nxPxxglglehQjT4WhAYeGpTQK38DIvp58yeiiWSV.', 3, 0, 1622989960, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdc88e0096.jpeg', 0),
+(161, 'Artisan', 'Female', 'artisan@gmail.com', 'default_female.png', '$2y$10$7RjYCGM5va9xJsvV4dfwbuVK9zcOZ5ST8QZJKmH8RYXGmJA4v3ukq', 3, 0, 1622990006, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdcb68950e.png', 0),
+(162, 'Hipyo', 'Female', 'hipyo@gmail.com', 'default_female.png', '$2y$10$opcnZCSZgDsLvCfPMi950.fusqk.pyGeCGa9Jtd4S2vbjysOn/jgy', 3, 0, 1622990043, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdcdb7b4db.png', 0),
+(163, 'Avilla', 'Female', 'avilla@gmail.com', 'default_female.png', '$2y$10$j4Jenlp4YZAgNQcUCtEwZ.8te1I8mcWCnU8u5GNrBbhgYD3o2yROe', 3, 0, 1622990095, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdd0fe3065.png', 0),
+(164, 'Himalaya', 'Female', 'himalaya@gmail.com', 'default_female.png', '$2y$10$8RryDm8w0uOl/Hk0542eAeoqWugjzMvPPQzRNeKVyiXwFvPSG5vya', 3, 0, 1622990138, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdd3a1526e.jpg', 0),
+(165, 'Ustad Zaki', 'Male', 'zack.ridzi@gmail.com', 'default_male.png', '$2y$10$iThs4gPo8DLHzIH67y8/lu7096Zdmu0VIpbRI5/YhQix4GM85ATqO', 3, 1, 1622990210, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdd8287cac.png', 1);
 
 --
 -- Triggers `user`
@@ -1441,7 +1519,25 @@ INSERT INTO `user_token` (`id`, `email`, `token`, `date_created`) VALUES
 (85, 'haitsam@gmail.com', 'fzH3q0Dhr+KBtiWTjHUragS+eP7V127ZHep9GAknegc=', 1619182701),
 (86, 'mori@gmail.com', '9HoaK73T7Y5yp1OZHq1GlDebVp5F2BbzLogJUhnYkJU=', 1621314624),
 (87, 'abel@gmail.com', 'Sxa9H/OaU5K1GY7sKEmminDTJueSPcrph88UWTTJAf4=', 1622362507),
-(88, 'abel@gmail.com', '77/vaoZWO5Z7j/DO3RMxm9ucMU98RxChUeajR/bBeWc=', 1622362518);
+(88, 'abel@gmail.com', '77/vaoZWO5Z7j/DO3RMxm9ucMU98RxChUeajR/bBeWc=', 1622362518),
+(89, 'abel@gmail.com', '+Z+qMYV1SOOTdhRo6HlYt9p9WKGVFosJ8DtpLhG9Y9k=', 1622727248),
+(90, 'ais@gmail.com', '6d3GT5+NTWI/lSoVoLrd8sPi5VfvFuunWhQKegT24RQ=', 1622987400),
+(91, 'ais@gmail.com', 'qTxVVa8FeL3MxdcI1h9GwBrZ4p/3y5XyCnhyPusmylA=', 1622987460),
+(92, 'ais@gmail.com', 'j45eD8pnUNTsSne0E/dS37CS8YMvfrG7ZAilZRkso4k=', 1622987506),
+(93, 'ais@gmail.com', 'gIdKUPU9foXq0o9UIGy8vuk8iUbjxo4XYPepqthirHI=', 1622987594),
+(94, 'ais@gmail.com', '3ySBmuOKg+XzVpb7BvutfCanTxJDWA6XSKQ24oyCbYk=', 1622987853),
+(95, 'ais@gmail.com', 'FNO9i7VXusaapPfFVuLiGsgJn4NwNXB3FHjEWnfpKEo=', 1622987948),
+(96, 'asep@gmail.com', 'cSeLBFdfM/YHiqyUWN266YAPvqEP26YnbfKFrlddi2I=', 1622989159),
+(97, 'asep@gmail.com', 'B0Vzo2zoW/d3Lrynwcbre7/lQZh210HkM8FgNCZhHOI=', 1622989228),
+(98, 'endar@gmail.com', 'Iz6GthTUEfH9AzsNdFLyuOfncPzKvY5kPeW+L2f9Oh4=', 1622989284),
+(99, 'surya@gmail.com', '6a6QZv3BEvcZyz7FfqBGWSjahnZzZ+1294oWQdBrEkg=', 1622989334),
+(100, 'nurdin@gmail.com', '3eT9CMvgqrrbFP9vhWWW/+MmNuE1KMw3o76N+A32Kgw=', 1622989391),
+(101, 'bambang@gmail.com', 'iLeLtPyrN/RGQvVhCsEDb9v3AtiQUk2LIeku5jl3dlM=', 1622989430),
+(102, 'abizzy@gmail.com', 'mRsLrYcvWu77cLZ/qEkUo3hkLLB5hOvTTsbKi3MyHcI=', 1622989477),
+(103, 'surinem@gmail.com', 'cEex8CMk6VfodKgwTanFguGk+/WrP3ZbXhr54aHPO0U=', 1622989504),
+(104, 'dea@gmail.com', 'ujpmwpJA8FVudrr37LYsKcSti/l73Xn2QWh+CQAgI8E=', 1622989521),
+(105, 'sheva@gmail.com', 'VQdxQbQPA3eIF6uRuZxF/7ofAej5la1YJOtrs7YBcqs=', 1622989558),
+(106, 'tera@gmail.com', 'S5iKXX9C33sva9o+XruAPKDIpC6hChVGIywesX8RhPw=', 1622989581);
 
 --
 -- Indexes for dumped tables
@@ -1663,13 +1759,13 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `dompet`
 --
 ALTER TABLE `dompet`
-  MODIFY `id_dompet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_dompet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `id_follow` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id_follow` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT for table `group_comment`
@@ -1687,7 +1783,7 @@ ALTER TABLE `group_information`
 -- AUTO_INCREMENT for table `group_notif`
 --
 ALTER TABLE `group_notif`
-  MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `group_postingan`
@@ -1741,13 +1837,13 @@ ALTER TABLE `menu_item`
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `id_notification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=394;
+  MODIFY `id_notification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=418;
 
 --
 -- AUTO_INCREMENT for table `pengumuman`
 --
 ALTER TABLE `pengumuman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `pesan`
@@ -1759,7 +1855,7 @@ ALTER TABLE `pesan`
 -- AUTO_INCREMENT for table `postgen`
 --
 ALTER TABLE `postgen`
-  MODIFY `id_posting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id_posting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `posting`
@@ -1783,19 +1879,19 @@ ALTER TABLE `suka`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `trigger_user`
 --
 ALTER TABLE `trigger_user`
-  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
+  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
 
 --
 -- AUTO_INCREMENT for table `user_role`
@@ -1807,7 +1903,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `user_token`
 --
 ALTER TABLE `user_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- Constraints for dumped tables
