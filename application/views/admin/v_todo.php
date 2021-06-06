@@ -42,6 +42,7 @@
 					<tr>
 						<th>NO</th>
 						<th>Nama Kegiatan</th>
+						<th>Tanggal Buat</th>
 						<th colspan="5">
 							<center>Aksi</center>
 						</th>
@@ -51,6 +52,7 @@ foreach ($todo as $u): ?>
 					<tr>
 						<td><?php echo $no++; ?></td>
 						<td><?php echo $u->task_name ?></td>
+						<td><?php echo date("Y-m-d H:i:s", strtotime('+5 hours', $u->datepost)); ?></td>
 						<?php if ($u->state != 1): ?>
 						<td onclick="return confirm('Selesaikan Kegiatan?');">
 							<?php echo anchor('ToDoListAdmin/doneTodo/' . $u->id, '<div class="btn btn-primary btn-sm"><i class="fa fa-check"></i> Selesai</div>') ?>

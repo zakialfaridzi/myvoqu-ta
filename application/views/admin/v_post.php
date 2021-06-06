@@ -38,6 +38,7 @@
 				<table class="table mt-2">
 					<tr>
 						<th>NO</th>
+						<th>Isi Unggahan</th>
 						<th>ID Unggah (ID Post)</th>
 						<th>Keterangan (Caption)</th>
 						<th>Nama Pengguna</th>
@@ -51,6 +52,18 @@
 foreach ($post as $u): ?>
 					<tr>
 						<td><?php echo $no++; ?></td>
+						<?php
+$word = "video";
+
+if (strpos($u->html, $word) !== false): ?>
+					<td>
+						<video class="post-video" controls  width="150" height="150"><source src="<?=base_url()?>assets_user/file_upload/<?=$u->fileName?>" type="video/mp4"></video>
+					</td>
+					<?php else: ?>
+					<td>
+						<img src="<?=base_url()?>assets_user/file_upload/<?=$u->fileName?>" alt="post-image"class="img-responsive post-image"  style="border-radius: 5px 5px 5px 5px; width:100px; height:100px;"/>
+					</td>
+					<?php endif;?>
 						<td><?php echo $u->id_posting ?></td>
 						<td><?php echo $u->caption ?></td>
 						<td><?php echo $u->name ?></td>

@@ -37,21 +37,25 @@
 				<table class="table mt-2">
 					<tr>
 						<th>NO</th>
+						<th>Foto Grup</th>
 						<th>Nama Grup</th>
 						<th>Deskripsi</th>
+						<th>Pemilik Grup</th>
 						<th colspan="3">Aksi</th>
 					</tr>
 					<?php $no = 1;
 foreach ($group as $m): ?>
 					<tr>
 						<td><?php echo $no++; ?></td>
+						<td><img src="<?php echo base_url() ?>/assets/img/group/<?php echo $m->img ?>" height="100" width="100" alt=""></td>
 						<td><?php echo $m->nama ?></td>
 						<td><?php echo $m->deskripsi ?></td>
+						<td><?php echo $m->name ?></td>
 						<td>
-							<?php echo anchor('KelolaGrup/detailGroup/' . $m->id, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
+							<?php echo anchor('KelolaGrup/detailGroup/' . $m->gid, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
 						</td>
 						<td onclick="return confirm('Hapus Grup?');">
-							<?php echo anchor('KelolaGrup/hapusGroup/' . $m->id, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
+							<?php echo anchor('KelolaGrup/hapusGroup/' . $m->gid, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</div>') ?>
 						</td>
 					</tr>
 					<?php endforeach;?>

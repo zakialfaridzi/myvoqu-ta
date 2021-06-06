@@ -23,8 +23,8 @@
 				<table class="table mt-2">
 					<tr>
 						<th>NO</th>
-						<th>Isi Pengumuman</th>
 						<th>Pembuat</th>
+						<th>Isi Pengumuman</th>
 						<th>Tanggal Buat</th>
 					</tr>
 					<?php $no = 1;

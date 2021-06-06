@@ -93,6 +93,7 @@ class KelolaGrup extends CI_Controller
         $obj->getActiveSheet()->setCellValue('A1', 'NO');
         $obj->getActiveSheet()->setCellValue('B1', 'Nama');
         $obj->getActiveSheet()->setCellValue('C1', 'Deskripsi');
+        $obj->getActiveSheet()->setCellValue('D1', 'Pemilik Grup');
 
         $baris = 2;
         $no = 1;
@@ -101,6 +102,7 @@ class KelolaGrup extends CI_Controller
             $obj->getActiveSheet()->setCellValue('A' . $baris, $no++);
             $obj->getActiveSheet()->setCellValue('B' . $baris, $mhs->nama);
             $obj->getActiveSheet()->setCellValue('C' . $baris, $mhs->deskripsi);
+            $obj->getActiveSheet()->setCellValue('D' . $baris, $mhs->name);
 
             $baris++;
         }
