@@ -317,7 +317,7 @@ class Admin_model extends CI_model
 
     public function tampil_group()
     {
-        $query = $this->db->query("select * from grup");
+        $query = $this->db->query("SELECT *, grup.id as gid, user.id as uid, grup.image as img FROM grup join user on grup.owner = user.id");
         return $query->result();
     }
 

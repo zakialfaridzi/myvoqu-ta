@@ -25,14 +25,16 @@
 						<th>Foto Grup</th>
 						<th>Nama Grup</th>
 						<th>Deskripsi</th>
+						<th>Pemilik Grup</th>
 					</tr>
 					<?php $no = 1;
 foreach ($mahasiswa as $m): ?>
 					<tr>
 						<td><?php echo $no++; ?></td>
-						<td><img src="<?php echo base_url() ?>/assets/img/group/<?php echo $m->image ?>" height="100" width="100" alt=""></td>
+						<td><img src="<?php echo base_url() ?>/assets/img/group/<?php echo $m->img ?>" height="100" width="100" alt=""></td>
 						<td><?php echo $m->nama ?></td>
 						<td><?php echo $m->deskripsi ?></td>
+						<td><?php echo $m->name ?></td>
 					</tr>
 					<?php endforeach;?>
 				</table>
