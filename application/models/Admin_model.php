@@ -460,10 +460,10 @@ class Admin_model extends CI_model
 
     public function get_searchPengumuman($search)
     {
-        $this->db->select('*');
+        $this->db->select('pengumuman.id, pengumuman.isi_pengumuman, pengumuman.datepost, user.name');
         $this->db->from('pengumuman');
         $this->db->like('isi_pengumuman', $search);
-        $this->db->or_like('id', $search);
+        $this->db->join('user', 'pengumuman.id_user=user.id');
         return $this->db->get()->result();
     }
 }
