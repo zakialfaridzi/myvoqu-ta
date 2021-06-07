@@ -4,7 +4,7 @@
 <div class="col-md-2" style="margin-top: 10px;position: sticky;">
     <div class="suggestions" id="sticky-sidebar">
 
-    <h5 class="grey">Mungkin anda kenal ?</h5>
+        <h5 class="grey">Mungkin anda kenal ?</h5>
         <?php foreach ($suggestion as $ou): ?>
         <div class="follow-user">
             <img src="<?=base_url('assets_user/images/' . $ou->image);?>" alt="" class="profile-photo-sm pull-left" />
