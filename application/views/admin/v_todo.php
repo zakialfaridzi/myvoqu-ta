@@ -42,7 +42,7 @@
 					<tr>
 						<th>NO</th>
 						<th>Nama Kegiatan</th>
-						<th>Tanggal Buat</th>
+						<th>Tanggal</th>
 						<th colspan="5">
 							<center>Aksi</center>
 						</th>

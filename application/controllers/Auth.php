@@ -77,7 +77,6 @@ class Auth extends CI_Controller
                         $this->db->set('status', 'online-dot');
                         $this->db->where('email', $email);
                         $this->db->update('user');
-
                         redirect('user');
                     }
                 } else {
@@ -108,7 +107,6 @@ class Auth extends CI_Controller
               <span aria-hidden="true">&times;</span>
             </button>
           </div>');
-
             redirect('auth');
         }
     }
