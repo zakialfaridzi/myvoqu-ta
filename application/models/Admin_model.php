@@ -205,7 +205,7 @@ class Admin_model extends CI_model
         $this->db->select('*');
         $this->db->like('name', $search);
         $this->db->or_like('instansi', $search);
-        $this->db->where("role_id='3'");
+        $this->db->where("role_id", "3");
         return $this->db->from('user')
             ->get()
             ->result();

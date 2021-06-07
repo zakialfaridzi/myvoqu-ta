@@ -43,7 +43,7 @@
 						<th>NO</th>
 						<th>Isi Pengumuman</th>
 						<th>Pembuat</th>
-						<th>Tanggal Buat</th>
+						<th>Tanggal</th>
 						<th colspan="2">
 							Aksi
 						</th>
