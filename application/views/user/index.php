@@ -22,7 +22,8 @@
         <input type="hidden" name="id_posting" value="<?=$pst->id_posting;?>">
         <input type="hidden" name="id" value="<?=$this->session->userdata('id');?>">
         <a class="btn text-red">
-            <button class="" style="border : 0;background-color: transparent;" name="report" onclick="if (!confirm('Apakah anda yakin akan melaporkan unggahan atau pengguna ini karena melanggar peraturan?')) { return false }"><i
+            <button class="" style="border : 0;background-color: transparent;" name="report"
+                onclick="if (!confirm('Apakah anda yakin akan melaporkan unggahan atau pengguna ini karena melanggar peraturan?')) { return false }"><i
                     class="fas fa-exclamation"></i>
                 Laporkan! </button> </a>
     </form>
