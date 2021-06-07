@@ -90,7 +90,7 @@
                 <?php endif;?>
             </div>
             <div class="row">
-                <div class="form-group col-xs-6">
+                <div class="form-group col-xs-12">
                     <label for="city"> Kota</label>
                     <input id="city" class="form-control input-group-lg" type="text" name="city" title="Enter city"
                         placeholder="Your city" value="<?=$i->city;?>" autocomplete="off">

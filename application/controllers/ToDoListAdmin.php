@@ -197,10 +197,10 @@ class ToDoListAdmin extends CI_Controller
         $search = $this->input->post('search');
         $data['todo'] = $this->Admin_model->get_searchTodo($search);
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
-        $dats['judul'] = "Admin | Kelola Data Pengumuman";
+        $dats['judul'] = "Admin | Kelola Data Kegiatan";
         $this->load->view('templates/headerTodo', $dats);
         $this->load->view('templates/sidebar', $dats);
-        $this->load->view('admin/v_pengumuman', $data);
+        $this->load->view('admin/v_todo', $data);
         $this->load->view('templates/footer');
     }
 }
