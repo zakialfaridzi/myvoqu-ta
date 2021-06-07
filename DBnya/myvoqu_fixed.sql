@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2021 at 10:23 AM
+-- Generation Time: Jun 07, 2021 at 04:29 PM
 -- Server version: 10.4.18-MariaDB
--- PHP Version: 7.3.27
+-- PHP Version: 7.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -256,7 +256,25 @@ CREATE TABLE `comment` (
 INSERT INTO `comment` (`id_comment`, `comment`, `date`, `id_posting`, `id`, `id_tujuan`) VALUES
 (2, 'mantap', '1618282121', 231, 114, 114),
 (3, 'Mantap', '1618289250', 234, 114, 117),
-(5, 'test :roll: :roll:', '1618296007', 262, 114, 124);
+(5, 'test :roll: :roll:', '1618296007', 262, 114, 124),
+(8, 'Merdu Sekali Pak Surya', '1623074562', 297, 144, 146),
+(9, 'Merdeka!!', '1623074585', 296, 144, 146),
+(10, 'Semangat Pak Asepp!!', '1623074616', 294, 144, 146),
+(11, 'Subhannallah', '1623074639', 299, 144, 147),
+(12, 'Wah Pak Nurdin memang berbakat! :cheese:', '1623074700', 298, 144, 147),
+(13, 'Terimakasih pak Asep :red:', '1623074780', 297, 146, 146),
+(14, 'Allahuakbar!!', '1623074827', 296, 146, 146),
+(15, 'Wah suaranya bikin saya minder Pak', '1623074894', 292, 146, 144),
+(16, 'Tiasa ngabimbing putra abdi pak?', '1623074938', 291, 146, 144),
+(17, 'salah fokus ka sajadahna saee pisann :)', '1623074996', 290, 146, 144),
+(18, 'Saee pisann', '1623075038', 299, 146, 147),
+(19, 'wah tiasa ngabentuk kapal kitu, berbakat Pak  :cheese:', '1623075093', 298, 146, 147),
+(20, 'Haturnuhun sadayana! :red: :-)', '1623075155', 299, 147, 147),
+(21, 'Barade didamelkeun?', '1623075208', 298, 147, 147),
+(22, 'Lanjutkan pak!', '1623075254', 292, 147, 144),
+(23, 'Estetik mun ceuk barudak ayenamah :lol:', '1623075306', 290, 147, 144),
+(24, 'Tarikan ah suarana, merdu ulah dilaun laun', '1623075400', 297, 147, 146),
+(25, 'Wariskeun kang suantena ka abdi', '1623075606', 292, 154, 144);
 
 --
 -- Triggers `comment`
@@ -443,7 +461,16 @@ INSERT INTO `follow` (`id_follow`, `stat`, `date`, `id_userfollow`, `id_usertarg
 (86, 2, '1622990043', 162, 162, 'Hipyo', 'Hello World!', 'default_female.png'),
 (87, 2, '1622990095', 163, 163, 'Avilla', 'Hello World!', 'default_female.png'),
 (88, 2, '1622990138', 164, 164, 'Himalaya', 'Hello World!', 'default_female.png'),
-(89, 2, '1622990210', 165, 165, 'Ustad Zaki', 'Hello World!', 'default_male.png');
+(89, 2, '1622990210', 165, 165, 'Ustad Zaki', 'Hello World!', 'default_male.png'),
+(90, 1, '1623074547', 144, 146, 'Surya Nurhalimah', 'Hello World!', 'default_male.png'),
+(91, 1, '1623074628', 144, 147, 'Nurdin Bagus', 'Hello World!', 'default_male.png'),
+(92, 1, '1623074850', 146, 144, 'Asep Sudasep', 'Hello World!', 'default_male.png'),
+(93, 1, '1623075002', 146, 147, 'Nurdin Bagus', 'Hello World!', 'default_male.png'),
+(94, 1, '1623075046', 146, 148, 'Bambang Sibambang', 'Hello World!', 'default_male.png'),
+(95, 1, '1623075180', 147, 144, 'Asep Sudasep', 'Hello World!', 'default_male.png'),
+(96, 1, '1623075590', 154, 144, 'Asep Sudasep', 'Hello World!', 'default_male.png'),
+(97, 1, '1623075578', 154, 146, 'Surya Nurhalimah', 'Hello World!', 'default_male.png'),
+(98, 1, '1623075580', 154, 147, 'Nurdin Bagus', 'Hello World!', 'default_male.png');
 
 --
 -- Triggers `follow`
@@ -867,7 +894,51 @@ INSERT INTO `notification` (`id_notification`, `notif`, `date`, `id_posting`, `i
 (424, 'like on your post', '', 296, 146, 0),
 (425, 'like on your post', '', 297, 146, 0),
 (426, 'like on your post', '', 298, 147, 0),
-(427, 'like on your post', '', 299, 147, 0);
+(427, 'like on your post', '', 299, 147, 0),
+(428, 'Mulai Mengikuti Anda.', '1623074547', 0, 144, 146),
+(429, 'comment on your post: \"Merdu Sekali Pak Surya\"', '1623074562', 297, 144, 146),
+(430, 'like on your post', '1623074564', 297, 144, 146),
+(431, 'like on your post', '1623074578', 296, 144, 146),
+(432, 'comment on your post: \"Merdeka!!\"', '1623074585', 296, 144, 146),
+(433, 'comment on your post: \"Semangat Pak Asepp!!\"', '1623074616', 294, 144, 146),
+(434, 'like on your post', '1623074618', 294, 144, 146),
+(435, 'Mulai Mengikuti Anda.', '1623074628', 0, 144, 147),
+(436, 'comment on your post: \"Subhannallah\"', '1623074639', 299, 144, 147),
+(437, 'like on your post', '1623074642', 299, 144, 147),
+(438, 'like on your post', '1623074657', 298, 144, 147),
+(439, 'comment on your post: \"Wah Pak Nurdin memang berbakat! :cheese:\"', '1623074700', 298, 144, 147),
+(440, 'comment on your post: \"Terimakasih pak Asep :red:\"', '1623074780', 297, 146, 146),
+(441, 'unlike on your post', '1623074782', 297, 146, 0),
+(442, 'comment on your post: \"Allahuakbar!!\"', '1623074827', 296, 146, 146),
+(443, 'unlike on your post', '1623074830', 296, 146, 0),
+(444, 'Mulai Mengikuti Anda.', '1623074850', 0, 146, 144),
+(445, 'comment on your post: \"Wah suaranya bikin saya minder Pak\"', '1623074894', 292, 146, 144),
+(446, 'like on your post', '1623074896', 292, 146, 144),
+(447, 'like on your post', '1623074910', 291, 146, 144),
+(448, 'comment on your post: \"Tiasa ngabimbing putra abdi pak?\"', '1623074938', 291, 146, 144),
+(449, 'like on your post', '1623074964', 290, 146, 144),
+(450, 'comment on your post: \"salah fokus ka sajadahna saee pisann :)\"', '1623074996', 290, 146, 144),
+(451, 'Mulai Mengikuti Anda.', '1623075002', 0, 146, 147),
+(452, 'like on your post', '1623075011', 299, 146, 147),
+(453, 'comment on your post: \"Saee pisann\"', '1623075038', 299, 146, 147),
+(454, 'Mulai Mengikuti Anda.', '1623075046', 0, 146, 148),
+(455, 'comment on your post: \"wah tiasa ngabentuk kapal kitu, berbakat Pak  :cheese:\"', '1623075093', 298, 146, 147),
+(456, 'like on your post', '1623075100', 298, 146, 147),
+(457, 'comment on your post: \"Haturnuhun sadayana! :red: :-)\"', '1623075155', 299, 147, 147),
+(458, 'unlike on your post', '1623075159', 299, 147, 0),
+(459, 'Mulai Mengikuti Anda.', '1623075180', 0, 147, 144),
+(460, 'comment on your post: \"Barade didamelkeun?\"', '1623075208', 298, 147, 147),
+(461, 'unlike on your post', '1623075211', 298, 147, 0),
+(462, 'comment on your post: \"Lanjutkan pak!\"', '1623075254', 292, 147, 144),
+(463, 'like on your post', '1623075256', 292, 147, 144),
+(464, 'comment on your post: \"Estetik mun ceuk barudak ayenamah :lol:\"', '1623075306', 290, 147, 144),
+(465, 'like on your post', '1623075309', 290, 147, 144),
+(466, 'like on your post', '1623075325', 297, 147, 146),
+(467, 'comment on your post: \"Tarikan ah suarana, merdu ulah dilaun laun\"', '1623075400', 297, 147, 146),
+(468, 'Mulai Mengikuti Anda.', '1623075576', 0, 154, 144),
+(469, 'Mulai Mengikuti Anda.', '1623075578', 0, 154, 146),
+(470, 'Mulai Mengikuti Anda.', '1623075580', 0, 154, 147),
+(471, 'comment on your post: \"Wariskeun kang suantena ka abdi\"', '1623075606', 292, 154, 144);
 
 -- --------------------------------------------------------
 
@@ -920,7 +991,16 @@ CREATE TABLE `pesan` (
 
 INSERT INTO `pesan` (`id_pesan`, `id_pengirim`, `id_penerima`, `pesan`, `date`, `sudah_dibaca`, `image`) VALUES
 (48, 114, 124, 'hallo abizard  :-) :-)', 1618295943, 'belum', ''),
-(49, 124, 114, 'hallo juga helmi :-P :-P', 1618295962, 'belum', '');
+(49, 124, 114, 'hallo juga helmi :-P :-P', 1618295962, 'belum', ''),
+(50, 144, 146, 'kang surya sehat?', 1623075689, 'belum', ''),
+(51, 144, 147, 'Kang Nurdin, Ngadamel kaligrafi sabarahanya?', 1623075731, 'belum', ''),
+(52, 147, 144, 'Mangga Pak Asep, saiklashna :)', 1623075765, 'belum', ''),
+(53, 146, 144, 'Alhamdulillah, sawalerna kumaha damang?', 1623075808, 'belum', ''),
+(54, 146, 147, 'Kaligrafina sae pisann, hoyong ah ngadamel', 1623075849, 'belum', ''),
+(55, 147, 146, 'Mangga kang, bade anu kumaha?', 1623075880, 'belum', ''),
+(56, 144, 146, 'Damang kang, bade masihan info minggu payun aya pangaosan di bumi abdi kang,  tong hilap sumpingnya!', 1623076012, 'belum', ''),
+(57, 144, 147, 'Ngadamel 1 kang, haturnuhunnya', 1623076046, 'belum', ''),
+(58, 146, 144, 'Alhamdulillah, muhun insya allah sumping, pangaosan naon kang?', 1623076093, 'belum', '');
 
 --
 -- Triggers `pesan`
@@ -1218,10 +1298,23 @@ INSERT INTO `suka` (`id_suka`, `status`, `date`, `id_posting`, `id`, `id_tujuan`
 (251, 2, '', 293, 144, 0),
 (252, 2, '', 294, 146, 0),
 (253, 2, '', 295, 146, 0),
-(254, 2, '', 296, 146, 0),
-(255, 2, '', 297, 146, 0),
-(256, 2, '', 298, 147, 0),
-(257, 2, '', 299, 147, 0);
+(254, 1, '1623074830', 296, 146, 0),
+(255, 1, '1623074782', 297, 146, 0),
+(256, 1, '1623075211', 298, 147, 0),
+(257, 1, '1623075159', 299, 147, 0),
+(258, 1, '1623074564', 297, 144, 146),
+(259, 1, '1623074578', 296, 144, 146),
+(260, 1, '1623074618', 294, 144, 146),
+(261, 1, '1623074642', 299, 144, 147),
+(262, 1, '1623074657', 298, 144, 147),
+(263, 1, '1623074896', 292, 146, 144),
+(264, 1, '1623074910', 291, 146, 144),
+(265, 1, '1623074964', 290, 146, 144),
+(266, 1, '1623075011', 299, 146, 147),
+(267, 1, '1623075100', 298, 146, 147),
+(268, 1, '1623075256', 292, 147, 144),
+(269, 1, '1623075309', 290, 147, 144),
+(270, 1, '1623075325', 297, 147, 146);
 
 --
 -- Triggers `suka`
@@ -1451,7 +1544,7 @@ INSERT INTO `user` (`id`, `name`, `gender`, `email`, `image`, `passsword`, `role
 (138, 'ADMIN - ABI', 'Male', 'abi@gmail.com', 'v.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 1, 1, 1618314853, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (144, 'Asep Sudasep', 'Male', 'asep@gmail.com', 'default_male.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 2, 1, 1622989228, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (145, 'Endar Parisian', 'Female', 'endar@gmail.com', 'default_female.png', '$2y$10$oogXwOXrzoc4KCq7vE2kA.yNzPQUpKulqF9L2kR4YBWhbcGZX06iq', 2, 0, 1622989284, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
-(146, 'Surya Nurhalimah', 'Male', 'surya@gmail.com', 'default_male.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 2, 1, 1622989334, 'online-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(146, 'Surya Nurhalimah', 'Male', 'surya@gmail.com', 'default_male.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 2, 1, 1622989334, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (147, 'Nurdin Bagus', 'Male', 'nurdin@gmail.com', 'default_male.png', '$2y$10$HMvOlhQToVs4TWLOUvbdsOiKS7QwppWm.jNriv8DdA5QYzarmHFXO', 2, 1, 1622989391, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (148, 'Bambang Sibambang', 'Male', 'bambang@gmail.com', 'default_male.png', '$2y$10$3SjuioySLZzEFsaB5/6.HerOCVae7xXsIMfdMkKKlTPusdJM/cAQW', 2, 0, 1622989430, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (149, 'Abizzy Al Tareq', 'Male', 'abizzy@gmail.com', 'default_male.png', '$2y$10$qBt7p6bai3KftmNlxjkMEe40gANj5M05JBYau.XAuXGJNcdXHDZy.', 2, 0, 1622989477, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
@@ -1459,7 +1552,7 @@ INSERT INTO `user` (`id`, `name`, `gender`, `email`, `image`, `passsword`, `role
 (151, 'Dea', 'Female', 'dea@gmail.com', 'default_female.png', '$2y$10$bQEIInl51NElKcoSBwEbL.rCcrZNjncL8VR9IMHDtn17tQMdvYgBS', 2, 0, 1622989521, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (152, 'Sheva', 'Female', 'sheva@gmail.com', 'default_female.png', '$2y$10$xjiTC3KBjsCrxRZeAUOTge3KfpCPW7NUOxSEwSEc8ZjRFtkZPViHS', 2, 0, 1622989558, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (153, 'Tera', 'Female', 'tera@gmail.com', 'default_female.png', '$2y$10$zZKe6FGdQjtFvYup7WrgkeLHvqmRdPEQUb9WHqerWOxi.u84f1Om.', 2, 0, 1622989581, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
-(154, 'Sobaqam', 'Male', 'sobaqam@gmail.com', 'default_male.png', '$2y$10$muO67UKiiyb2eb9taxHrJuZC2Az6Je2Dt/vu84EehnBD/T9UCam22', 2, 1, 1622989608, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(154, 'Sobaqam', 'Male', 'sobaqam@gmail.com', 'default_male.png', '$2y$10$muO67UKiiyb2eb9taxHrJuZC2Az6Je2Dt/vu84EehnBD/T9UCam22', 2, 1, 1622989608, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (155, 'Naam', 'Male', 'naam@gmail.com', 'default_male.png', '$2y$10$Xzd7UjTDftjL/awxNFipruAvvDhHRF1/IDoygBnGTrGgyJL66uWb2', 3, 0, 1622989789, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdbdd0b10d.png', 0),
 (156, 'Hayfa', 'Female', 'hayfa@gmail.com', 'default_female.png', '$2y$10$cuiseINQrQ.rB/Rb5FBX9OK1rOWiMydxVNPIPa8aHQRSb4eJE20oq', 3, 0, 1622989808, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdbf0cfeb7.png', 0),
 (157, 'Outemu', 'Male', 'outemu@gmail.com', 'default_male.png', '$2y$10$4VVUwAOovLOZSXZRrCYP1eKC/qsXu8Glw1HfjFUklTjv1/i0s73BC', 3, 0, 1622989831, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdc06e61d1.png', 0),
@@ -1816,7 +1909,7 @@ ALTER TABLE `chatall`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `dompet`
@@ -1828,7 +1921,7 @@ ALTER TABLE `dompet`
 -- AUTO_INCREMENT for table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `id_follow` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id_follow` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT for table `group_comment`
@@ -1900,7 +1993,7 @@ ALTER TABLE `menu_item`
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `id_notification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=428;
+  MODIFY `id_notification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=472;
 
 --
 -- AUTO_INCREMENT for table `pengumuman`
@@ -1912,7 +2005,7 @@ ALTER TABLE `pengumuman`
 -- AUTO_INCREMENT for table `pesan`
 --
 ALTER TABLE `pesan`
-  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `postgen`
@@ -1936,7 +2029,7 @@ ALTER TABLE `report`
 -- AUTO_INCREMENT for table `suka`
 --
 ALTER TABLE `suka`
-  MODIFY `id_suka` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
+  MODIFY `id_suka` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=271;
 
 --
 -- AUTO_INCREMENT for table `tasks`
