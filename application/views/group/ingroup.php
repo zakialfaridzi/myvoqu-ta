@@ -57,7 +57,10 @@
 								}
 								?>
 								>Setor Hafalan</button>
-							<?php } ?>
+							<?php }elseif ($this->session->userdata('role_id') == 3) { ?>
+                                <button class="btn btn-warning pull-right lihatSetoran" data-toggle="modal" data-target="#listSetoran" data-idu="<?= $this->session->userdata('id') ?>" data-nama_surah="<?= $value->nama_surah ?>" data-ayat1="<?= $value->from_ayat ?>" data-ayat2="<?= $value->to_ayat ?>" data-idg="<?= $value->id_group ?>" data-idt="<?= $value->id_tugas ?>">
+                                Lihat Setoran</button>
+                            <?php } ?>
 						<?php } else { ?>
 							<?php if ($this->session->userdata('role_id') == 2) { ?>
 								<button class="btn btn-warning pull-right setorBtn" data-toggle="modal" data-target="#setorHafalan" data-idu="<?= $this->session->userdata('id') ?>" data-nama_surah="<?= $value->nama_surah ?>" data-ayat1="<?= $value->from_ayat ?>" data-ayat2="<?= $value->to_ayat ?>" data-idg="<?= $value->id_group ?>" data-idt="<?= $value->id_tugas ?>"
@@ -149,35 +152,54 @@
 
 
 				<div class="modal fade" id="setorHafalan" role="dialog">
-				<div class="modal-dialog">
-					<!-- Modal content-->
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Setor Hafalan</h4>
+					<div class="modal-dialog">
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Setor Hafalan</h4>
+							</div>
+							<div class="modal-body">
+								<form action="<?= base_url('group/posting/hafalan/') . $this->uri->segment('3'); ?>" method="post" enctype="multipart/form-data">
+									<div class="form-group">
+										<input type="hidden" id="idUser" name="id_user" value="">
+										<input type="hidden" id="idGroup" name="id_group" value="">
+										<input type="hidden" id="nama_surah" name="nama_surah" value="">
+										<input type="hidden" id="from_ayat" name="from_ayat" value="">
+										<input type="hidden" id="to_ayat" name="to_ayat" value="">
+										<input type="hidden" id="idTugas" name="id_tugas" value="">
+										<label for="file">Pilih Hafalan</label>
+										<input type="file" class="form-control" id="file-input-gambar" name="file">
+									</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+								<button type="submit" class="btn btn-info">Submit</button>
+							</div>
+							</form>
 						</div>
-						<div class="modal-body">
-							<form action="<?= base_url('group/posting/hafalan/') . $this->uri->segment('3'); ?>" method="post" enctype="multipart/form-data">
-								<div class="form-group">
-									<input type="hidden" id="idUser" name="id_user" value="">
-									<input type="hidden" id="idGroup" name="id_group" value="">
-									<input type="hidden" id="nama_surah" name="nama_surah" value="">
-									<input type="hidden" id="from_ayat" name="from_ayat" value="">
-									<input type="hidden" id="to_ayat" name="to_ayat" value="">
-									<input type="hidden" id="idTugas" name="id_tugas" value="">
-									<label for="file">Pilih Hafalan</label>
-									<input type="file" class="form-control" id="file-input-gambar" name="file">
-								</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-							<button type="submit" class="btn btn-info">Submit</button>
-						</div>
-						</form>
 					</div>
-
 				</div>
-			</div>
+				<div class="modal fade" id="listSetoran" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" id="close-listSetoran" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Yang sudah menghafal</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="list-group" id="stored-name">
+                                
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" id="close-listSetoran" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                            </div>
+                        </div>
+
+                    </div>
+			    </div>
 			</div>
 
 			
