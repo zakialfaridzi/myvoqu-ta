@@ -71,7 +71,7 @@
                                     <label for="nama">Nama Surah</label>
                                     <input type="text" name="nama" class="form-control" id="nama_surah" placeholder="Pilih Surah Contoh : Al-Fatihah" list="list-surah" required>
                                     <datalist id="list-surah">
-                                        <!-- <option value="Internet Explorer"> -->
+                                        
                                     </datalist>
                                     <small class="form-text text-danger"><?= form_error('nama'); ?></small>
                                     <label for="fromAyat">Ayat ke</label>
@@ -123,5 +123,3 @@
                 </div>
             </div>
         </div>
-
-        

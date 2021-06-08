@@ -21,6 +21,18 @@ class Group_model extends CI_Model
         $this->db->from('group_postingan');
         $this->db->join('user', 'group_postingan.id_user = user.id');
         $this->db->where('id_group', $id);
+        $this->db->where('tugas is null', null, false);
+        $this->db->order_by('date_post', 'DESC');
+        return $this->db->get()->result();
+    }
+
+    public function getPostinganSetoran($id)
+    {
+        $this->db->select('*');
+        $this->db->from('group_postingan');
+        $this->db->join('user', 'group_postingan.id_user = user.id');
+        $this->db->where('id_group', $id);
+        $this->db->where('tugas is not null', null, false);
         $this->db->order_by('date_post', 'DESC');
         return $this->db->get()->result();
     }
@@ -94,7 +106,7 @@ class Group_model extends CI_Model
 
     public function cekAnggota()
     {
-        return $this->db->query('select distinct id, image, name, gender, bio from user u left join anggota a on u.id=a.id_user where role_id <> 3 and role_id <> 1 and ifnull(id_group, 0) <> ' . $this->uri->segment('3') . ' and id not in (select id_user from anggota where id_group = ' . $this->uri->segment('3') . ')')->result_array();
+        return $this->db->query('select distinct id, image, name, gender, bio from user u left join anggota a on u.id=a.id_user where role_id <> 3 and role_id <> 1 and ifnull(id_group, 0) <> ' . $this->uri->segment('3') . ' and id not in (select id_user from anggota where id_group = ' . $this->uri->segment('3') . ') and is_active = 1')->result_array();
     }
 
     public function tambahUser($data)
@@ -188,12 +200,27 @@ class Group_model extends CI_Model
 
     public function getStoredHafalan($id)
     {
-        $this->db->select('a.id_user, u.name, rh.created_at');
+        $this->db->select('a.id_user, u.name, gp.id_posting, rh.created_at');
         $this->db->from('anggota a');
         $this->db->join('user u', 'a.id_user=u.id', 'left');
         $this->db->join('report_hafalan rh', 'a.id_user=rh.id_user', 'left');
-        $this->db->where('rh.id_tugas', $id);
+        $this->db->join('group_postingan gp', 'a.id_user=gp.id_user', 'left');
+        $this->db->where('gp.tugas', $id);
         return $this->db->get();
+    }
+
+    public function getSukaById($id)
+    {
+        $query = $this->db->query("SELECT id, status, count(status) jumlahsuka FROM suka s where status = 1 and id_posting = $id");
+
+        return $query->result();
+    }
+
+    public function getSukaaById($id)
+    {
+        $query = $this->db->query('SELECT *, count(*) as total FROM suka where id = ' . $this->session->userdata('id') . ' and id_posting = ' . $this->uri->segment('3') . '');
+
+        return $query->result();
     }
 
     // public function getidpost()

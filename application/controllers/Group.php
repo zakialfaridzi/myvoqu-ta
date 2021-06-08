@@ -279,6 +279,41 @@ class Group extends CI_Controller
         }
     }
 
+    public function inGroupSetoran($id)
+    {
+        $data['datagroup'] = $this->Group_model->getDataGroup($id);
+        // $data['posting'] = $this->Group_model->getUserPostProfile();
+        $data['search'] = 'none';
+        $data['colorSearch'] = '#0486FE';
+        $data['user'] = $this->User_model->getUser();
+        $data['info'] = $this->Group_model->getInfoProfile($this->session->userdata('id'));
+        $data['postingan'] = $this->Group_model->getPostinganSetoran($id);
+        $data['title'] = 'Group Feeds';
+        $data['active'] = 'active';
+        $data['notifGroup'] = $this->Group_model->getNotif($id);
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
+        $data['hafalan'] = $this->Group_model->gethafalan($id)->result();
+        $data['postHafalan'] = $this->Group_model->getPostHafalan($id)->result();
+        if (empty($data['user']['email'])) {
+            $this->sessionLogin();
+        } elseif ($data['user']['role_id'] == 1) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger ">
+              Your access is only for admin, sorry :(
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>');
+            redirect('admin');
+        } else {
+            $this->load->view('templates_newsfeed/topbar', $data);
+            $this->load->view('templates_profile/bg_groupProfile', $data);
+            $this->load->view('group/inHafalan', $data);
+            $this->load->view('templates_profile/end_group', $data);
+        }
+    }
+
     public function listAnggota($id)
     {
         $data['datagroup'] = $this->Group_model->getDataGroup($id);
@@ -363,13 +398,14 @@ class Group extends CI_Controller
         $data['colorSearch'] = '#0486FE';
         $data['user'] = $this->User_model->getUser();
         $data['info'] = $this->Group_model->getInfoProfile($this->session->userdata('id'));
-        $data['title'] = 'Group Information';
+        $data['title'] = 'Group Chat';
         $data['active'] = 'active';
         $data['allinfo'] = $this->Group_model->getInfoGroup();
         $data['notifGroup'] = $this->Group_model->getNotif($id);
         $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
         $data['postgen'] = $this->User_model->getPostgen();
         $data['pengumuman'] = $this->User_model->getPengumuman();
+        $data['nama_user'] = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -576,7 +612,7 @@ class Group extends CI_Controller
                 $this->db->insert('group_postingan', $data);
 
                 $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible show" role="alert">
-		<strong>Congratulations!</strong> your post is uploaded.
+		<strong>Selamat!</strong> postinganmu berhasil diupload.
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
@@ -640,7 +676,7 @@ class Group extends CI_Controller
                 $this->db->insert('report_hafalan', $report);
 
                 $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible show" role="alert">
-		<strong>Congratulations!</strong> your post is uploaded.
+		<strong>Selamat!</strong> hafalanmu berhasil diupload.
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
@@ -703,7 +739,7 @@ class Group extends CI_Controller
         $this->Group_model->deletePostGroup($idPost);
 
         $this->session->set_flashdata('mm', '<div class="alert alert-success alert-dismissible show" role="alert">
-      	<strong>Congratulations!</strong> your post is deleted.
+      	Postinganmu berhasil dihapus.
       	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
           	<span aria-hidden="true">&times;</span>
       	</button>
@@ -711,24 +747,26 @@ class Group extends CI_Controller
         redirect('group/inGroup/' . $id);
     }
 
-    public function getIdposting($id)
+    public function getIdposting($idg, $idp)
     {
         $data['search'] = 'none';
         $data['upload'] = '';
         $data['colorSearch'] = '#0486FE';
-        $data['posting'] = $this->Group_model->getPostById($id);
-        $data['comment'] = $this->Group_model->getCommentById($id);
-        $data['postingan'] = $this->Group_model->getPostingan($id);
-        // $data['suka'] = $this->Group_model->getSukaById($id);
-        // $data['sukaa'] = $this->Group_model->getSukaaById($id);
+        $data['posting'] = $this->Group_model->getPostById($idp);
+        $data['comment'] = $this->Group_model->getCommentById($idp);
+        $data['postingan'] = $this->Group_model->getPostingan($idp);
+        $data['suka'] = $this->Group_model->getSukaById($idp);
+        $data['sukaa'] = $this->Group_model->getSukaaById($idp);
         $data['allUser'] = $this->Group_model->getUserData($this->session->userdata('id'));
         $data['info'] = $this->Group_model->getInfoProfile($this->session->userdata('id'));
-        $data['datagroup'] = $this->Group_model->getDataGroup($id);
+        $data['datagroup'] = $this->Group_model->getDataGroup($idg);
         $data['user'] = $this->User_model->getUser();
         $data['title'] = 'Home';
+        $data['active'] = 'active';
         $data['idpost'] = $this->User_model->getidpost();
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data2['notification'] = $this->Group_model->getNotification();
+        $data['notifGroup'] = $this->Group_model->getNotif($idg);
         // $data['idpost'] = $this->Group_model->getidpost();
         // $data['report'] = $this->Group_model->getReport();
         // $data['jumlahfollowers'] = $this->Group_model->getJumlahFollowers();
@@ -757,12 +795,9 @@ class Group extends CI_Controller
             $data['otherUser'] = $this->User_model->getOherUserData();
 
             $this->load->view('templates_newsfeed/topbar', $data);
-            // $this->load->view('templates_newsfeed/header', $data);
-            // $this->load->view('templates_profile/bg_groupProfile', $data);
-            //$this->load->view('user/getIdposting', $data);
+            $this->load->view('templates_profile/bg_groupProfile', $data);
             $this->load->view('group/posting', $data);
-            //$this->load->view('templates_profile/end_group', $data);
-            // $this->load->view('templates_newsfeed/footer');
+            $this->load->view('templates_profile/end_group', $data);
         }
     }
 
@@ -793,7 +828,7 @@ class Group extends CI_Controller
         //$this->Group_model->deleteNotification();
 
         $this->session->set_flashdata('nn', '<div class="alert alert-success alert-dismissible show" role="alert">
-      <strong>Congratulations!</strong> your comment is deleted.
+      Komentar berhasil dihapus.
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
       </button>

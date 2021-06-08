@@ -59,7 +59,7 @@ if ($this->session->userdata['role_id'] == 3) { ?>
                     <div class="form-group">
                         <input type="hidden" name="id" value="<?= $this->session->userdata('id'); ?>">
                         <label for="nama">Nama Group</label>
-                        <input type="text" name="nama" class="form-control" id="nama" placeholder="Contoh : Group hafalan surah Al-Baqarah">
+                        <input type="text" name="nama" class="form-control" id="nama" placeholder="Grup Penghafal 30juz">
                         <small class="form-text text-danger"><?= form_error('nama'); ?></small>
                         <label for="nama">Deskripsi Group</label>
                         <input type="text" name="desc" class="form-control" id="desc" placeholder="Deskripsi Group">

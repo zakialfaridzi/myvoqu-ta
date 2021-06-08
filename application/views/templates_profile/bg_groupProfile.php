@@ -23,8 +23,8 @@
 							<!-- <li><a href="#" class="<?= $active; ?>">Materi</a></li> -->
 							<li><a href="<?= base_url('group/listAnggota') . "/" . $nama['id']; ?>" class="<?= $active; ?>">Anggota</a></li>
 							<li><a href="<?= base_url('group/info') . "/" . $nama['id']; ?>" class="<?= $active; ?>">Informasi</a></li>
-							<li><a href="<?= base_url('./Chat') ?>" target="_blank" class="<?= $active; ?>">Chat Group</a></li>
-							<li><a href="<?= base_url('./cc'); ?>" target="_blank" class="<?= $active; ?>">Quiz</a></li>
+							<li><a href="<?= base_url('group/chatGroup/') . $nama['id']; ?>" class="<?= $active; ?>">Chat Group</a></li>
+							<li><a href="<?= base_url('./cc'); ?>" class="<?= $active; ?>">Quiz</a></li>
 
 							<?php if ($user['role_id'] == 3) { ?>
 								<li><a href="#" target="_blank" data-toggle="modal" data-target="#penugasan" class="<?= $active; ?>">Penugasan Hafalan</a></li>

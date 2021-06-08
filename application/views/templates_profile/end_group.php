@@ -1,7 +1,7 @@
 <div class="col-md-2 static">
     <div id="sticky-sidebar">
         <?php foreach ($info as $i) : ?>
-            <h4 class="grey">Group's activity</h4>
+            <h4 class="grey">Aktifitas Grup</h4>
         <?php endforeach; ?>
 
         <?php foreach ($notifGroup as $p) : ?>
@@ -69,6 +69,7 @@
 <script src="<?= base_url('assets_user/') ?>js/jquery.sticky-kit.min.js"></script>
 <script src="<?= base_url('assets_user/') ?>js/jquery.scrollbar.min.js"></script>
 <script src="<?= base_url('assets_user/') ?>js/script.js"></script>
+<script src="<?= base_url('assets_user/') ?>js/select2.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"> -->
 
@@ -84,7 +85,7 @@
             };
             options.dataType = "json";
             options.success = function(data) {
-                // console.log(data.chapters[0].name_simple);
+                console.log(data);
                 $("#list-surah").empty();
                 for (var i = 0; i < data.chapters.length; i++) {
                     $("#list-surah").append("<option value=" + data.chapters[i].name_simple + " data-id=" + data.chapters[i].verses_count + "></option>");
@@ -136,7 +137,7 @@
         var id = $(this).data('id');
         var idg = this.href.substring(this.href.lastIndexOf('/') + 1);
         var url = "<?= base_url('Group/getData/postHafalan/'); ?>" + id;
-        var url2 = "<?= base_url('Group/getData/anggota/'); ?>"+idg;
+        var url2 = "<?= base_url('Group/getData/anggota/'); ?>" + idg;
         $.get(url, function(data) {
             store = JSON.parse(data);
             $.get(url2, function(data2) {
@@ -144,7 +145,7 @@
                 for (let i = 0; i < store2.length; i++) {
                     if (store2[i].id_user == store[i].id_user) {
                         $('#sudah-setor').append(`<li class="list-group-item">${store2[i].name}<span class="pull-right" style="font-size: 1em; color: green;"><i class="fas fa-check-circle"></i></span></li>`);
-                    }else{
+                    } else {
                         $('#belum-setor').append(`<li class="list-group-item">${store2[i].name}</li>`);
                     }
                 }
@@ -156,14 +157,25 @@
         $('#sudah-setor').html(' ');
     });
 
-
-    // $(document).ready(function() {
-    //     $("#ModalPenugasan").click(function() {
-    //         console.log('test');
-    //         $('#statistik').modal('show');
-
-    //     });
-    // });
+    $(document).ready(function() {
+        $(".lihatSetoran").click(function() {
+            // console.log($(this).data('nama_surah'));
+            var id = $(this).data('idt');
+            var idg = $(this).data('idg');
+            var urlPosting = "<?= base_url('Group/getIdposting/'); ?>" + idg;
+            var url = "<?= base_url('Group/getData/postHafalan/'); ?>" + id;
+            $.get(url, function(data) {
+                store = JSON.parse(data);
+                // console.log(store);
+                for (let i = 0; i < store.length; i++) {
+                $('#stored-name').append(`<a href="${urlPosting+'/'+store[i].id_posting}" id='close-listSetoran' class="list-group-item">${store[i].name}</a>`);
+                }
+            });
+        });
+    });
+    $("#close-listSetoran").click(function() {
+        $('#stored-name').html(' ');
+    });
 </script>
 
 <script type="text/javascript">
