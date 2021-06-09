@@ -59,6 +59,16 @@ class Admin_model extends CI_model
         return $query;
     }
 
+    public function getJumlahFollowers($id = null)
+    {
+        return $this->db->query("SELECT count(id_usertarget) jumlahfollowers FROM follow where id_usertarget = $id  and stat =1")->result();
+    }
+
+    public function getJumlahFollowing($id = null)
+    {
+        return $this->db->query("SELECT count(id_userfollow) jumlahfollowing FROM follow where id_userfollow = $id  and stat =1")->result();
+    }
+
     public function get_search($search)
     {
         $this->db->select('*');

@@ -55,6 +55,18 @@
                     <?php endif;?>
                 </tr>
                 <tr>
+                    <th>Jumlah Pengikut</th>
+                    <?php foreach ($jumlahfollowers as $jf): ?>
+                        <td><?=$jf->jumlahfollowers;?> Orang</td>
+                    <?php endforeach;?>
+                </tr>
+                <tr>
+                    <th>Jumlah Mengikuti</th>
+                    <?php foreach ($jumlahfollowing as $jf): ?>
+                        <td><?=$jf->jumlahfollowing;?> Orang</td>
+                    <?php endforeach;?>
+                </tr>
+                <tr>
                     <th>Tanggal Lahir</th>
                     <?php if ($detail->birthdate == "0000-00-00"): ?>
                         <td>

@@ -34,12 +34,24 @@
                     <th>Grup yang diajar</th>
 					<td>
                     <?php foreach ($allgroup as $group): if ($group['owner'] == $detail->id) {?>
-											        <ul>
-											            <li><?=$group['nama'];?></li>
-											        </ul>
-											    <?php }
+												        <ul>
+												            <li><?=$group['nama'];?></li>
+												        </ul>
+												    <?php }
 endforeach;?>
                     </td>
+                </tr>
+                <tr>
+                    <th>Jumlah Pengikut</th>
+                    <?php foreach ($jumlahfollowers as $jf): ?>
+                        <td><?=$jf->jumlahfollowers;?> Orang</td>
+                    <?php endforeach;?>
+                </tr>
+                <tr>
+                    <th>Jumlah Mengikuti</th>
+                    <?php foreach ($jumlahfollowing as $jf): ?>
+                        <td><?=$jf->jumlahfollowing;?> Orang</td>
+                    <?php endforeach;?>
                 </tr>
                 <tr>
                     <th>Tanggal Registrasi</th>
