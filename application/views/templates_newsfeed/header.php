@@ -77,8 +77,6 @@ endforeach;?>
                         </div>
                     </div>
                 </div>
-
-
                 <!--chat block ends-->
             </div>
             <div class="col-md-7">
@@ -102,13 +100,20 @@ endforeach;?>
                             <div class="form-group">
                                 <img src="<?=base_url('assets_user/images/' . $us->image);?>" alt=""
                                     class="profile-photo-md" />
+                                <?php if ($this->uri->segment('2') == 'materi' && $this->session->userdata('role_id') == 3) { ?>
+                                <h4>Buat Materi</h4><br>
+                                    <form action="<?= base_url('library/posting/') . $this->uri->segment('3'); ?>" method="post"
+                                    enctype="multipart/form-data">
+                                    <textarea cols="30" rows="1" class="form-control" placeholder="Ayat"
+                                        name="ayat" id="caption"></textarea>
+                                    <?=form_error('caption', '<small class="text-danger pl-3">', '</small>');?>
+                                <?php }else{ ?>
                                 <form action="<?=base_url('user/posting');?>" method="post"
                                     enctype="multipart/form-data">
-
                                     <textarea cols="30" rows="1" class="form-control" placeholder="Masukkan kata-kata"
                                         name="caption" id="caption"></textarea>
                                     <?=form_error('caption', '<small class="text-danger pl-3">', '</small>');?>
-
+                                <?php } ?>
                             </div>
                         </div>
 
@@ -116,7 +121,6 @@ endforeach;?>
 
                             <div class="tools">
                                 <ul class="publishing-tools list-inline">
-
                                     <li class="nav-item">
                                         <label for="file-input-gambar">
                                             <a class="nav-link"><i class="fas fa-photo-video"></i></a>
@@ -124,28 +128,15 @@ endforeach;?>
                                         <input type="file" id="file-input-gambar" style="display: none;" name="file"
                                             multiple onchange="GetFileSizeNameAndType()">
                                     </li>
-
-
-
-
-
                                 </ul>
                                 <button class="btn btn-primary pull-right"
                                     style="background-color:#6fb8df;">Unggah</button>
-
-
-
                                 <input type="hidden" value="<?=$this->session->userdata('id');?>" name="id_user"
                                     id="id_user">
-
                                 <?php foreach ($idpost as $idpst): ?>
                                 <input type="hidden" value="<?=$idpst->id_posting;?>" name="id_posting">
                                 <?php endforeach;?>
-
                                 </form>
-
-
-
                             </div>
                             <?php endforeach;?>
                         </div>

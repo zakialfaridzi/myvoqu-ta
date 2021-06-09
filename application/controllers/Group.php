@@ -115,13 +115,22 @@ class Group extends CI_Controller
             $data['otherUser'] = $this->User_model->getOherUserData();
             $this->form_validation->set_rules('nama', 'Nama', 'required');
             $this->form_validation->set_rules('desc', 'Desc', 'required');
-            $datagroup = [
-                "nama" => $this->input->post('nama', true),
-                "deskripsi" => $this->input->post('desc', true),
-                "image" => $this->input->post('image', true),
-                "owner" => $this->input->post('id', true),
-            ];
-            $this->Group_model->tambahDataGroup($datagroup);
+            if ($this->form_validation->run() == true) {
+                $datagroup = [
+                    "nama" => $this->input->post('nama', true),
+                    "deskripsi" => $this->input->post('desc', true),
+                    "image" => $this->input->post('image', true),
+                    "owner" => $this->input->post('id', true),
+                ];
+                $this->Group_model->tambahDataGroup($datagroup);
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger ">
+                    Gagal Dibuat, ada yang belum terisi
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>');
+            }
             redirect('group');
         }
     }
@@ -224,6 +233,17 @@ class Group extends CI_Controller
         }
     }
 
+    public function getData($type, $id)
+    {
+        if ($type == 'postHafalan') {
+            $data = $this->Group_model->getStoredHafalan($id)->result();
+            echo json_encode($data);
+        }elseif ($type == "anggota") {
+            $data = $this->Group_model->getAnggotaGroup($id);
+            echo json_encode($data);
+        }
+    }
+
     public function inGroup($id)
     {
         $data['datagroup'] = $this->Group_model->getDataGroup($id);
@@ -239,7 +259,8 @@ class Group extends CI_Controller
         $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
         $data['postgen'] = $this->User_model->getPostgen();
         $data['pengumuman'] = $this->User_model->getPengumuman();
-
+        $data['hafalan'] = $this->Group_model->gethafalan($id)->result();
+        $data['postHafalan'] = $this->Group_model->getPostHafalan($id)->result();
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
         } elseif ($data['user']['role_id'] == 1) {
@@ -254,6 +275,41 @@ class Group extends CI_Controller
             $this->load->view('templates_newsfeed/topbar', $data);
             $this->load->view('templates_profile/bg_groupProfile', $data);
             $this->load->view('group/ingroup', $data);
+            $this->load->view('templates_profile/end_group', $data);
+        }
+    }
+
+    public function inGroupSetoran($id)
+    {
+        $data['datagroup'] = $this->Group_model->getDataGroup($id);
+        // $data['posting'] = $this->Group_model->getUserPostProfile();
+        $data['search'] = 'none';
+        $data['colorSearch'] = '#0486FE';
+        $data['user'] = $this->User_model->getUser();
+        $data['info'] = $this->Group_model->getInfoProfile($this->session->userdata('id'));
+        $data['postingan'] = $this->Group_model->getPostinganSetoran($id);
+        $data['title'] = 'Group Feeds';
+        $data['active'] = 'active';
+        $data['notifGroup'] = $this->Group_model->getNotif($id);
+        $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
+        $data['postgen'] = $this->User_model->getPostgen();
+        $data['pengumuman'] = $this->User_model->getPengumuman();
+        $data['hafalan'] = $this->Group_model->gethafalan($id)->result();
+        $data['postHafalan'] = $this->Group_model->getPostHafalan($id)->result();
+        if (empty($data['user']['email'])) {
+            $this->sessionLogin();
+        } elseif ($data['user']['role_id'] == 1) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger ">
+              Your access is only for admin, sorry :(
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>');
+            redirect('admin');
+        } else {
+            $this->load->view('templates_newsfeed/topbar', $data);
+            $this->load->view('templates_profile/bg_groupProfile', $data);
+            $this->load->view('group/inHafalan', $data);
             $this->load->view('templates_profile/end_group', $data);
         }
     }
@@ -327,6 +383,7 @@ class Group extends CI_Controller
             $this->load->view('templates_profile/bg_groupProfile', $data);
             $this->load->view('group/information', $data);
             $this->load->view('templates_profile/end_group', $data);
+            // $this->load->view('templates_newsfeed/footer');
         }
     }
 
@@ -341,13 +398,14 @@ class Group extends CI_Controller
         $data['colorSearch'] = '#0486FE';
         $data['user'] = $this->User_model->getUser();
         $data['info'] = $this->Group_model->getInfoProfile($this->session->userdata('id'));
-        $data['title'] = 'Group Information';
+        $data['title'] = 'Group Chat';
         $data['active'] = 'active';
         $data['allinfo'] = $this->Group_model->getInfoGroup();
         $data['notifGroup'] = $this->Group_model->getNotif($id);
         $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
         $data['postgen'] = $this->User_model->getPostgen();
         $data['pengumuman'] = $this->User_model->getPengumuman();
+        $data['nama_user'] = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array();
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -410,19 +468,49 @@ class Group extends CI_Controller
         redirect('Group');
     }
 
-    public function tambahInfo($idg)
+    public function tambahInfo($type, $idg)
     {
-        $this->form_validation->set_rules('informasi', 'Informasi', 'required');
-        if ($this->form_validation->run() == false) {
-            redirect('group');
+        if ($type == 'tugas') {
+            $this->form_validation->set_rules('nama', 'Nama Surah', 'required');
+            if ($this->form_validation->run() == false) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger ">
+                    Gagal Dibuat, ada yang belum terisi
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>');
+                redirect('group/info/' . $idg);
+            } else {
+                $datainfo = [
+                    "nama_surah" => $this->input->post('nama', true),
+                    "id_group" => $idg,
+                    "from_ayat" => $this->input->post('fromAyat', true),
+                    "to_ayat" => $this->input->post('toAyat', true),
+                    'catatan' => $this->input->post('catatan', true),
+                    'id_user' => $this->input->post('iduser', true)
+                ];
+                $this->Group_model->addInfo('tugas_hafalan', $datainfo);
+                redirect('group/info/' . $idg);
+            }
         } else {
-            $datainfo = [
-                "info" => $this->input->post('informasi', true),
-                "id_group" => $this->input->post('idgroup', true),
-                "id_user" => $this->input->post('iduser', true),
-            ];
-            $this->Group_model->addInfo($datainfo);
-            redirect('group/info/' . $idg);
+            $this->form_validation->set_rules('informasi', 'Informasi', 'required');
+            if ($this->form_validation->run() == false) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger ">
+                    Gagal Dibuat, ada yang belum terisi
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>');
+                redirect('group/info/' . $idg);
+            } else {
+                $datainfo = [
+                    "info" => $this->input->post('informasi', true),
+                    "id_group" => $idg,
+                    "id_user" => $this->input->post('iduser', true)
+                ];
+                $this->Group_model->addInfo('group_information', $datainfo);
+                redirect('group/info/' . $idg);
+            }
         }
     }
 
@@ -469,10 +557,10 @@ class Group extends CI_Controller
         $this->load->view('ajax/friend.php', $data);
     }
 
-    public function inviteUser($idg)
+    public function inviteUser($idg, $id)
     {
         $data = [
-            'id_user' => $this->input->post('iduser'),
+            'id_user' => $id,
             'id_group' => $idg,
         ];
         $this->Group_model->tambahUser($data);
@@ -486,50 +574,116 @@ class Group extends CI_Controller
         redirect('group/listAnggota/' . $idg);
     }
 
-    public function posting($idg)
+    public function posting($type, $idg)
     {
-        $this->form_validation->set_rules('caption', 'Caption', 'trim');
+        if ($type == 'postingan') {
+            $this->form_validation->set_rules('caption', 'Caption', 'trim');
 
-        if ($this->form_validation->run() == false) {
-            $this->index();
-        } else {
-            $caption = htmlspecialchars($this->input->post('caption', true));
-            $id_user = htmlspecialchars($this->input->post('id_user', true));
-            $fileName = $this->_uploadFile($idg);
-
-            if ((substr($fileName, -3, 3) == 'mp4') || (substr($fileName, -3, 3) == 'flv')) {
-                $html = '<div class="video-wrapper">';
-                $html .= '<video class="post-video" controls>';
-                $html .= '<source src=' . base_url('assets_user/file_upload/');
-                $html .= $fileName . ' type="video/mp4">';
-                $html .= '</video></div>';
+            if ($this->form_validation->run() == false) {
+                $this->index();
             } else {
-                $html = '<img src=' . base_url('assets_user/file_upload/');
-                $html .= $fileName . ' alt="post-image"';
-                $html .= 'class="img-responsive post-image" />';
-            }
+                $caption = htmlspecialchars($this->input->post('caption', true));
+                $id_user = htmlspecialchars($this->input->post('id_user', true));
+                $fileName = $this->_uploadFile($idg);
 
-            $data = [
-                'caption' => $caption,
-                'id_group' => $idg,
-                'id_user' => $id_user,
-                'fileName' => $fileName,
-                'html' => $html,
-            ];
+                if ((substr($fileName, -3, 3) == 'mp4') || (substr($fileName, -3, 3) == 'flv')) {
+                    $html = '<div class="video-wrapper">';
+                    $html .= '<video class="post-video" controls>';
+                    $html .= '<source src=' . base_url('assets_user/file_upload/');
+                    $html .= $fileName . ' type="video/mp4">';
+                    $html .= '</video></div>';
+                } else {
+                    $html = '<img src=' . base_url('assets_user/file_upload/');
+                    $html .= $fileName . ' alt="post-image"';
+                    $html .= 'class="img-responsive post-image" />';
+                }
 
-            //siapkan token
-            $this->session->set_flashdata('message', '<small> br</small>');
+                $data = [
+                    'caption' => $caption,
+                    'id_group' => $idg,
+                    'id_user' => $id_user,
+                    'fileName' => $fileName,
+                    'html' => $html,
+                ];
 
-            $this->db->insert('group_postingan', $data);
+                //siapkan token
+                $this->session->set_flashdata('message', '<small> br</small>');
 
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible show" role="alert">
-		<strong>Congratulations!</strong> your post is uploaded.
+                $this->db->insert('group_postingan', $data);
+
+                $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible show" role="alert">
+		<strong>Selamat!</strong> postinganmu berhasil diupload.
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
 		</div>');
 
-            redirect('group/inGroup/' . $idg);
+                redirect('group/inGroup/' . $idg);
+            }
+        } else {
+            $this->form_validation->set_rules('nama_surah', 'Nama Surah', 'trim');
+
+            if ($this->form_validation->run() == false) {
+                $this->ingroup($idg);
+            } else {
+                $surah = $this->input->post('nama_surah', true);
+                $ayat = $this->input->post('from_ayat', true);
+                $ayat2 = $this->input->post('to_ayat', true);
+                $id_user = $this->input->post('id_user', true);
+                $id_group = $idg;
+                $id_tugas = $this->input->post('id_tugas', true);
+                $fileName = $this->_uploadFile($idg);
+
+                if ((substr($fileName, -3, 3) == 'mp4') || (substr($fileName, -3, 3) == 'flv')) {
+                    $html = '<div class="video-wrapper">';
+                    $html .= '<video class="post-video" controls>';
+                    $html .= '<source src=' . base_url('assets_user/file_upload/');
+                    $html .= $fileName . ' type="video/mp4">';
+                    $html .= '</video></div>';
+                } else {
+                    $html = '<img src=' . base_url('assets_user/file_upload/');
+                    $html .= $fileName . ' alt="post-image"';
+                    $html .= 'class="img-responsive post-image" />';
+                }
+                if ($ayat2 != null) {
+                    $data = [
+                        'caption' => 'Setoran surah '. $surah . ' ayat '. $ayat . '-' . $ayat2,
+                        'id_group' => $idg,
+                        'id_user' => $id_user,
+                        'fileName' => $fileName,
+                        'html' => $html,
+                        'tugas' => $id_tugas
+                    ];
+                }else{
+                    $data = [
+                        'caption' => 'Setoran surah '. $surah . ' ayat '. $ayat,
+                        'id_group' => $idg,
+                        'id_user' => $id_user,
+                        'fileName' => $fileName,
+                        'html' => $html,
+                        'tugas' => $id_tugas
+                    ];
+                }
+                $report = [
+                    'id_tugas' => $id_tugas,
+                    'id_user' => $id_user,
+                    'id_group' => $idg
+                ];
+                //siapkan token
+                $this->session->set_flashdata('message', '<small> br</small>');
+
+                $this->db->insert('group_postingan', $data);
+                $this->db->insert('report_hafalan', $report);
+
+                $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible show" role="alert">
+		<strong>Selamat!</strong> hafalanmu berhasil diupload.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		</div>');
+
+                redirect('group/inGroup/' . $idg);
+            }
         }
     }
     private function _uploadFile($id)
@@ -585,7 +739,7 @@ class Group extends CI_Controller
         $this->Group_model->deletePostGroup($idPost);
 
         $this->session->set_flashdata('mm', '<div class="alert alert-success alert-dismissible show" role="alert">
-      	<strong>Congratulations!</strong> your post is deleted.
+      	Postinganmu berhasil dihapus.
       	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
           	<span aria-hidden="true">&times;</span>
       	</button>
@@ -593,24 +747,26 @@ class Group extends CI_Controller
         redirect('group/inGroup/' . $id);
     }
 
-    public function getIdposting($id)
+    public function getIdposting($idg, $idp)
     {
         $data['search'] = 'none';
         $data['upload'] = '';
         $data['colorSearch'] = '#0486FE';
-        $data['posting'] = $this->Group_model->getPostById($id);
-        $data['comment'] = $this->Group_model->getCommentById($id);
-        $data['postingan'] = $this->Group_model->getPostingan($id);
-        // $data['suka'] = $this->Group_model->getSukaById($id);
-        // $data['sukaa'] = $this->Group_model->getSukaaById($id);
+        $data['posting'] = $this->Group_model->getPostById($idp);
+        $data['comment'] = $this->Group_model->getCommentById($idp);
+        $data['postingan'] = $this->Group_model->getPostingan($idp);
+        $data['suka'] = $this->Group_model->getSukaById($idp);
+        $data['sukaa'] = $this->Group_model->getSukaaById($idp);
         $data['allUser'] = $this->Group_model->getUserData($this->session->userdata('id'));
         $data['info'] = $this->Group_model->getInfoProfile($this->session->userdata('id'));
-        $data['datagroup'] = $this->Group_model->getDataGroup($id);
+        $data['datagroup'] = $this->Group_model->getDataGroup($idg);
         $data['user'] = $this->User_model->getUser();
         $data['title'] = 'Home';
+        $data['active'] = 'active';
         $data['idpost'] = $this->User_model->getidpost();
         $data['jumlahfollowers'] = $this->User_model->getJumlahFollowers();
         $data2['notification'] = $this->Group_model->getNotification();
+        $data['notifGroup'] = $this->Group_model->getNotif($idg);
         // $data['idpost'] = $this->Group_model->getidpost();
         // $data['report'] = $this->Group_model->getReport();
         // $data['jumlahfollowers'] = $this->Group_model->getJumlahFollowers();
@@ -639,12 +795,9 @@ class Group extends CI_Controller
             $data['otherUser'] = $this->User_model->getOherUserData();
 
             $this->load->view('templates_newsfeed/topbar', $data);
-            // $this->load->view('templates_newsfeed/header', $data);
-            //$this->load->view('templates_profile/bg_groupProfile', $data);
-            //$this->load->view('user/getIdposting', $data);
+            $this->load->view('templates_profile/bg_groupProfile', $data);
             $this->load->view('group/posting', $data);
-            //$this->load->view('templates_profile/end_group', $data);
-            // $this->load->view('templates_newsfeed/footer');
+            $this->load->view('templates_profile/end_group', $data);
         }
     }
 
@@ -675,7 +828,7 @@ class Group extends CI_Controller
         //$this->Group_model->deleteNotification();
 
         $this->session->set_flashdata('nn', '<div class="alert alert-success alert-dismissible show" role="alert">
-      <strong>Congratulations!</strong> your comment is deleted.
+      Komentar berhasil dihapus.
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
       </button>

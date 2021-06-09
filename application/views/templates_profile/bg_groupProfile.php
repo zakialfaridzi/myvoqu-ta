@@ -23,8 +23,12 @@
 							<!-- <li><a href="#" class="<?= $active; ?>">Materi</a></li> -->
 							<li><a href="<?= base_url('group/listAnggota') . "/" . $nama['id']; ?>" class="<?= $active; ?>">Anggota</a></li>
 							<li><a href="<?= base_url('group/info') . "/" . $nama['id']; ?>" class="<?= $active; ?>">Informasi</a></li>
-							<li><a href="<?= base_url('./Chat') ?>" target="_blank" class="<?= $active; ?>">Chat Group</a></li>
-							<li><a href="<?= base_url('./cc'); ?>" target="_blank" class="<?= $active; ?>">Quiz</a></li>
+							<li><a href="<?= base_url('group/chatGroup/') . $nama['id']; ?>" class="<?= $active; ?>">Chat Group</a></li>
+							<li><a href="<?= base_url('./cc'); ?>" class="<?= $active; ?>">Quiz</a></li>
+
+							<?php if ($user['role_id'] == 3) { ?>
+								<li><a href="#" target="_blank" data-toggle="modal" data-target="#penugasan" class="<?= $active; ?>">Penugasan Hafalan</a></li>
+							<?php } ?>
 							<!-- <li><a href="#" class="<?= $active; ?>">Ulangan</a></li> -->
 						</ul>
 						<ul class="follow-me list-inline">
@@ -50,14 +54,63 @@
 			<?php endforeach; ?>
 			<div class="mobile-menu">
 				<ul class="list-inline">
-					<li><a href="timline.html" class="active">Timeline</a></li>
-					<li><a href="timeline-about.html">About</a></li>
-					<li><a href="timeline-album.html">Album</a></li>
-					<li><a href="timeline-friends.html">Friends</a></li>
+					<li><a href="timline.html" class="active">Beranda</a></li>
+					<li><a href="timeline-about.html">Anggota</a></li>
+					<li><a href="timeline-album.html">Informasi</a></li>
+					<li><a href="timeline-friends.html">Chat Group</a></li>
 				</ul>
-				<a href="<?= base_url('profile/editProfile') ?>" class="btn-primary" style="text-decoration: none;">Edit Porfile</a>
+				<a href="<?= base_url('profile/editProfile') ?>" class="btn-primary" style="text-decoration: none;">Ubah Grup</a>
 			</div>
 			</div>
 			<!--Timeline Menu for Small Screens End-->
+
+			<!-- Modal -->
+			<div class="modal fade" id="penugasan" role="dialog">
+				<div class="modal-dialog modal-sm">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Penugasan Hafalan</h4>
+						</div>
+						<div class="modal-body" id="modal_view">
+							<?php foreach ($hafalan as $key => $value) { ?>
+								<div class="list-group">
+									<a href="#" class="list-group-item list-group-item-action DetailPenugasan" id="DetailPenugasan" data-toggle="modal" data-target="#statistik" data-id="<?= $value->id_tugas ?>"><?= "Hafalan " . $value->nama_surah . " Ayat " . $value->from_ayat . "-" . $value->to_ayat ?></a>
+								</div>
+							<?php } ?>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Modal -->
+			<div class="modal fade" id="statistik" role="dialog">
+				<div class="modal-dialog modal-dialog-centered">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Setoran Hafalan</h4>
+						</div>
+						<div class="modal-body" id="modal_view">
+							<h5>Sudah Setor</h5>
+							<ul class="list-group" id="sudah-setor">
+								<!-- <li class="list-group-item"></li> -->
+							</ul>
+							<h5>Belum Setor</h5>
+							<ul class="list-group" id="belum-setor">
+								<!-- <li class="list-group-item"><span class="pull-right" style="font-size: 1em; color: red;"><i class="fas fa-times-circle"></i></span>Namanya</li> -->
+							</ul>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default closeModalPenugasan" data-dismiss="modal">Tutup</button>
+						</div>
+					</div>
+				</div>
+			</div>
 
 		</div>

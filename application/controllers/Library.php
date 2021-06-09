@@ -152,7 +152,7 @@ class Library extends CI_Controller
             //PAGINATION
             $this->load->library('pagination');
             //config
-            $config['base_url'] = 'http://af296e5caa26.ap.ngrok.io/myvoqu/library/materi/' . $id;
+            $config['base_url'] = 'http://localhost/myvoqu/library/materi/' . $id;
             $config['total_rows'] = $this->Materi_model->countMateri($idm);
             $config['per_page'] = 4;
 
@@ -189,7 +189,7 @@ class Library extends CI_Controller
             $data['start'] = $this->uri->segment('4');
             $data['materi'] = $this->Materi_model->getAllMateri($idm, $config['per_page'], $data['start']);
             $this->load->view('templates_newsfeed/topbar', $data);
-            $this->load->view('templates_newsfeed/headerMateri', $data);
+            $this->load->view('templates_newsfeed/header', $data);
             $this->load->view('library/materi', $data);
             $this->load->view('templates_newsfeed/footer');
         }
