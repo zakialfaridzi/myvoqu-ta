@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2021 at 01:05 AM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 8.0.3
+-- Generation Time: Jun 09, 2021 at 12:57 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -196,7 +196,11 @@ INSERT INTO `anggota` (`id_anggota`, `id_user`, `id_group`) VALUES
 (13, 144, 40),
 (14, 146, 40),
 (15, 151, 41),
-(16, 147, 42);
+(16, 147, 42),
+(17, 144, 43),
+(18, 147, 43),
+(19, 154, 42),
+(20, 149, 42);
 
 --
 -- Triggers `anggota`
@@ -285,7 +289,8 @@ INSERT INTO `comment` (`id_comment`, `comment`, `date`, `id_posting`, `id`, `id_
 (22, 'Lanjutkan pak!', '1623075254', 292, 147, 144),
 (23, 'Estetik mun ceuk barudak ayenamah :lol:', '1623075306', 290, 147, 144),
 (24, 'Tarikan ah suarana, merdu ulah dilaun laun', '1623075400', 297, 147, 146),
-(25, 'Wariskeun kang suantena ka abdi', '1623075606', 292, 154, 144);
+(25, 'Wariskeun kang suantena ka abdi', '1623075606', 292, 154, 144),
+(26, 'bismillah  :-)', '1623236093', 304, 150, 145);
 
 --
 -- Triggers `comment`
@@ -293,7 +298,7 @@ INSERT INTO `comment` (`id_comment`, `comment`, `date`, `id_posting`, `id`, `id_
 DELIMITER $$
 CREATE TRIGGER `after_penghafal_delete_comment` AFTER DELETE ON `comment` FOR EACH ROW BEGIN
 INSERT INTO backup_tubes.backup_comment_delete
-SET aksi='Delete Comment',
+SET aksi='Hapus Komentar',
 Comment = old.comment,
 id_posting= old.id_posting,
 id_user = old.id,
@@ -481,7 +486,22 @@ INSERT INTO `follow` (`id_follow`, `stat`, `date`, `id_userfollow`, `id_usertarg
 (95, 1, '1623075180', 147, 144, 'Asep Sudasep', 'Hello World!', 'default_male.png'),
 (96, 1, '1623075590', 154, 144, 'Asep Sudasep', 'Hello World!', 'default_male.png'),
 (97, 1, '1623075578', 154, 146, 'Surya Nurhalimah', 'Hello World!', 'default_male.png'),
-(98, 1, '1623075580', 154, 147, 'Nurdin Bagus', 'Hello World!', 'default_male.png');
+(98, 1, '1623075580', 154, 147, 'Nurdin Bagus', 'Hello World!', 'default_male.png'),
+(99, 1, '1623228442', 155, 144, 'Asep Sudasep', 'Hello World!', 'default_male.png'),
+(100, 1, '1623228449', 155, 146, 'Surya Nurhalimah', 'Hello World!', 'default_male.png'),
+(101, 1, '1623228459', 155, 147, 'Nurdin Bagus', 'Hello World!', 'default_male.png'),
+(102, 1, '1623232346', 162, 150, 'Surinem', 'Hello World!', 'default_female.png'),
+(103, 1, '1623232348', 162, 145, 'Endar Parisian', 'Hello World!', 'default_female.png'),
+(104, 1, '1623232746', 165, 144, 'Asep Sudasep', 'Hello World!', 'default_male.png'),
+(105, 1, '1623232752', 165, 149, 'Abizzy Al Tareq', 'Hello World!', 'default_male.png'),
+(106, 1, '1623232797', 165, 146, 'Surya Nurhalimah', 'Hello World!', 'default_male.png'),
+(107, 1, '1623232828', 165, 154, 'Sobaqam', 'Hello World!', 'default_male.png'),
+(108, 1, '1623232908', 165, 148, 'Bambang Sibambang', 'Hello World!', 'default_male.png'),
+(109, 1, '1623235627', 161, 145, 'Endar Parisian', 'Hello World!', 'default_female.png'),
+(110, 1, '1623235797', 145, 161, 'Artisan', 'Hello World!', 'default_female.png'),
+(111, 1, '1623235829', 145, 162, 'Hipyo', 'Hello World!', 'default_female.png'),
+(112, 1, '1623235863', 145, 150, 'Surinem', 'Hello World!', 'default_female.png'),
+(113, 1, '1623236069', 150, 145, 'Endar Parisian', 'Hello World!', 'default_female.png');
 
 --
 -- Triggers `follow`
@@ -585,7 +605,11 @@ INSERT INTO `group_notif` (`id_notif`, `notif`, `id_group`, `id_user`, `date`) V
 (24, 'Posted on Timeline', 40, 144, '2021-06-09 01:47:24'),
 (25, 'Posted on Timeline', 40, 144, '2021-06-09 01:49:22'),
 (26, 'Telah Bergabung', 41, 151, '2021-06-09 05:58:32'),
-(27, 'Telah Bergabung', 42, 147, '2021-06-09 06:04:04');
+(27, 'Telah Bergabung', 42, 147, '2021-06-09 06:04:04'),
+(28, 'Telah Bergabung', 43, 144, '2021-06-09 15:48:56'),
+(29, 'Telah Bergabung', 43, 147, '2021-06-09 15:50:31'),
+(30, 'Telah Bergabung', 42, 154, '2021-06-09 17:13:49'),
+(31, 'Telah Bergabung', 42, 149, '2021-06-09 17:14:21');
 
 -- --------------------------------------------------------
 
@@ -645,9 +669,10 @@ CREATE TABLE `grup` (
 --
 
 INSERT INTO `grup` (`id`, `nama`, `deskripsi`, `image`, `owner`) VALUES
-(40, 'HOTS 323', 'grup ikhwan', 'default.png', 165),
+(40, 'HOTS 323', 'grup ikhwan', '60c093a0ccf7c.png', 165),
 (41, 'Hots 254', 'Grup Ukhti', 'default.png', 161),
-(42, 'HOTS 192', 'Grup Akhi', 'default.png', 165);
+(42, 'HOTS 192', 'Grup Akhi HOTS 192', '60c093f6dc725.jpg', 165),
+(43, 'Grup Hafalan HOTS 1', 'Grup hafalan HOTS bersama Ustad Naam', 'default.png', 155);
 
 -- --------------------------------------------------------
 
@@ -973,7 +998,30 @@ INSERT INTO `notification` (`id_notification`, `notif`, `date`, `id_posting`, `i
 (468, 'Mulai Mengikuti Anda.', '1623075576', 0, 154, 144),
 (469, 'Mulai Mengikuti Anda.', '1623075578', 0, 154, 146),
 (470, 'Mulai Mengikuti Anda.', '1623075580', 0, 154, 147),
-(471, 'comment on your post: \"Wariskeun kang suantena ka abdi\"', '1623075606', 292, 154, 144);
+(471, 'comment on your post: \"Wariskeun kang suantena ka abdi\"', '1623075606', 292, 154, 144),
+(472, 'Mulai Mengikuti Anda.', '1623228442', 0, 155, 144),
+(473, 'Mulai Mengikuti Anda.', '1623228449', 0, 155, 146),
+(474, 'Mulai Mengikuti Anda.', '1623228459', 0, 155, 147),
+(475, 'Menyukai postingan anda', '', 302, 162, 0),
+(476, 'Mulai Mengikuti Anda.', '1623232346', 0, 162, 150),
+(477, 'Mulai Mengikuti Anda.', '1623232348', 0, 162, 145),
+(478, 'Tidak menyukai postingan anda', '1623232511', 302, 162, 0),
+(479, 'Mulai Mengikuti Anda.', '1623232746', 0, 165, 144),
+(480, 'Mulai Mengikuti Anda.', '1623232752', 0, 165, 149),
+(481, 'Mulai Mengikuti Anda.', '1623232797', 0, 165, 146),
+(482, 'Mulai Mengikuti Anda.', '1623232828', 0, 165, 154),
+(483, 'Mulai Mengikuti Anda.', '1623232908', 0, 165, 148),
+(484, 'Menyukai postingan anda', '', 303, 161, 0),
+(485, 'Mulai Mengikuti Anda.', '1623235627', 0, 161, 145),
+(486, 'Tidak menyukai postingan anda', '1623235645', 303, 161, 0),
+(487, 'Mulai Mengikuti Anda.', '1623235797', 0, 145, 161),
+(488, 'Mulai Mengikuti Anda.', '1623235829', 0, 145, 162),
+(489, 'Mulai Mengikuti Anda.', '1623235863', 0, 145, 150),
+(490, 'Menyukai postingan anda', '', 304, 145, 0),
+(491, 'Tidak menyukai postingan anda', '1623235947', 304, 145, 0),
+(492, 'Mulai Mengikuti Anda.', '1623236069', 0, 150, 145),
+(493, 'Menyukai postingan anda', '1623236079', 304, 150, 145),
+(494, 'comment on your post: \"bismillah  :-)\"', '1623236093', 304, 150, 145);
 
 -- --------------------------------------------------------
 
@@ -1043,7 +1091,7 @@ INSERT INTO `pesan` (`id_pesan`, `id_pengirim`, `id_penerima`, `pesan`, `date`, 
 DELIMITER $$
 CREATE TRIGGER `after_penghafal_delete_pesan` AFTER DELETE ON `pesan` FOR EACH ROW BEGIN
 INSERT INTO backup_tubes.backup_pesan_delete
-SET aksi='Delete Pesan',
+SET aksi='Hapus Pesan',
 pesan = old.pesan,
 id_pengirim = old.id_pengirim,
 id_penerima = old.id_penerima,
@@ -1105,16 +1153,9 @@ CREATE TABLE `posting` (
 --
 
 INSERT INTO `posting` (`id_posting`, `caption`, `id_user`, `name`, `fileName`, `html`, `date_post`) VALUES
-(290, 'Yuk Baca Al Quran', 144, '', '60bdd3418849a.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60bdd3418849a.jpg alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 350px;\" />', '1623053121'),
-(291, 'yuk tunggu apalagi? Ngaji bareng aku deh', 144, '', '60bdd3793bc04.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60bdd3793bc04.jpg alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 350px;\" />', '1623053177'),
-(292, 'Al Muzammil 17 by Me, hehehe', 144, '', '60bdd3ae4832d.mp4', '<div class=\"video-wrapper\"><video class=\"post-video\" controls  width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/60bdd3ae4832d.mp4 type=\"video/mp4\"></video></div>', '1623053230'),
-(293, '[OOT] Background Aplikasi MyVoQu Mantep ya', 144, '', '60bdd3ee5327f.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60bdd3ee5327f.jpg alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 350px;\" />', '1623053294'),
-(294, 'Subhanallah, asyik nya membaca Al Quran !!', 146, '', '60bdd458a4201.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60bdd458a4201.jpg alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 350px;\" />', '1623053400'),
-(295, 'Anak kecil aja udah jago baca Al Quran!', 146, '', '60bdd496ae200.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60bdd496ae200.jpg alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 350px;\" />', '1623053462'),
-(296, 'Free Palestine', 146, '', '60bdd4b7b1f10.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60bdd4b7b1f10.jpg alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 350px;\" />', '1623053495'),
-(297, 'Al Muzammil - 9', 146, '', '60bdd577efc2d.mp4', '<div class=\"video-wrapper\"><video class=\"post-video\" controls  width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/60bdd577efc2d.mp4 type=\"video/mp4\"></video></div>', '1623053687'),
-(298, 'kaligrafi buatan nurdin memang bagus!', 147, '', '60bdd5e3a531f.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60bdd5e3a531f.jpg alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 350px;\" />', '1623053795'),
-(299, '', 147, '', '60bdd5f790613.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60bdd5f790613.jpg alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 350px;\" />', '1623053815');
+(302, 'bagus banget ya', 162, '', '60c08f5002a23.png', '<img src=http://localhost/myvoqu/assets_user/file_upload/60c08f5002a23.png alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 350px;\" />', '1623232336'),
+(303, 'Suaranya bagus sekali ya', 161, '', '60c09c2355eca.mp4', '<div class=\"video-wrapper\"><video class=\"post-video\" controls  width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/60c09c2355eca.mp4 type=\"video/mp4\"></video></div>', '1623235619'),
+(304, 'Aku mau bisa merdu seperti dia', 145, '', '60c09d644a8cc.mkv', '<div class=\"video-wrapper\"><video class=\"post-video\" controls  width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/60c09d644a8cc.mkv type=\"video/mp4\"></video></div>', '1623235940');
 
 --
 -- Triggers `posting`
@@ -1164,83 +1205,9 @@ CREATE TABLE `report` (
 --
 
 INSERT INTO `report` (`id_report`, `report`, `date`, `id_posting`, `id_user`) VALUES
-(54, 0, '', 226, 94),
-(55, 0, '', 227, 95),
-(56, 0, '', 228, 94),
-(57, 0, '', 229, 97),
-(58, 0, '', 230, 102),
-(59, 0, '', 231, 114),
-(60, 0, '', 232, 116),
-(61, 0, '', 233, 118),
-(62, 0, '', 234, 117),
-(63, 0, '', 235, 114),
-(64, 0, '', 236, 114),
-(65, 0, '', 237, 114),
-(66, 0, '', 238, 114),
-(67, 0, '', 239, 114),
-(68, 0, '', 240, 114),
-(69, 0, '', 241, 114),
-(70, 0, '', 242, 114),
-(71, 0, '', 243, 114),
-(72, 0, '', 244, 114),
-(73, 1, '1618290086', 244, 117),
-(74, 0, '', 246, 123),
-(75, 0, '', 247, 119),
-(76, 0, '', 248, 119),
-(77, 0, '', 249, 119),
-(78, 0, '', 250, 119),
-(79, 0, '', 251, 114),
-(80, 0, '', 252, 114),
-(81, 0, '', 253, 114),
-(82, 0, '', 254, 114),
-(83, 0, '', 255, 114),
-(84, 0, '', 256, 114),
-(85, 0, '', 257, 114),
-(86, 0, '', 258, 114),
-(87, 0, '', 259, 114),
-(88, 0, '', 260, 114),
-(89, 0, '', 261, 124),
-(90, 0, '', 262, 124),
-(91, 1, '1618295845', 262, 114),
-(92, 0, '', 263, 125),
-(93, 0, '', 264, 114),
-(94, 0, '', 265, 114),
-(95, 0, '', 266, 114),
-(96, 0, '', 267, 114),
-(97, 0, '', 268, 123),
-(98, 0, '', 269, 114),
-(99, 0, '', 270, 126),
-(100, 0, '', 271, 126),
-(101, 0, '', 272, 129),
-(102, 0, '', 273, 129),
-(103, 0, '', 274, 129),
-(104, 0, '', 275, 129),
-(105, 0, '', 276, 129),
-(106, 0, '', 277, 129),
-(107, 0, '', 278, 129),
-(108, 0, '', 279, 129),
-(109, 0, '', 280, 129),
-(110, 0, '', 281, 129),
-(111, 0, '', 282, 129),
-(112, 0, '', 283, 129),
-(113, 0, '', 284, 129),
-(114, 0, '', 285, 129),
-(115, 1, '1618665145', 285, 134),
-(116, 0, '', 286, 134),
-(117, 0, '', 287, 129),
-(118, 0, '', 288, 141),
-(119, 1, '1622368007', 287, 141),
-(120, 0, '', 289, 141),
-(121, 0, '', 290, 144),
-(122, 0, '', 291, 144),
-(123, 0, '', 292, 144),
-(124, 0, '', 293, 144),
-(125, 0, '', 294, 146),
-(126, 0, '', 295, 146),
-(127, 0, '', 296, 146),
-(128, 0, '', 297, 146),
-(129, 0, '', 298, 147),
-(130, 0, '', 299, 147);
+(131, 0, '', 302, 162),
+(132, 0, '', 303, 161),
+(133, 0, '', 304, 145);
 
 -- --------------------------------------------------------
 
@@ -1250,9 +1217,9 @@ INSERT INTO `report` (`id_report`, `report`, `date`, `id_posting`, `id_user`) VA
 
 CREATE TABLE `report_hafalan` (
   `id_hafalan` int(11) NOT NULL,
-  `id_tugas` int(11) DEFAULT 0,
-  `id_user` int(11) DEFAULT 0,
-  `id_group` int(11) DEFAULT 0,
+  `id_tugas` int(11) NOT NULL DEFAULT 0,
+  `id_user` int(11) NOT NULL DEFAULT 0,
+  `id_group` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1283,94 +1250,10 @@ CREATE TABLE `suka` (
 --
 
 INSERT INTO `suka` (`id_suka`, `status`, `date`, `id_posting`, `id`, `id_tujuan`) VALUES
-(183, 1, '1617354203', 226, 94, 0),
-(184, 2, '', 227, 95, 0),
-(185, 2, '', 228, 94, 0),
-(186, 2, '', 229, 97, 0),
-(187, 2, '', 230, 102, 0),
-(188, 2, '', 231, 114, 0),
-(189, 2, '1618285000', 232, 116, 0),
-(190, 2, '', 233, 118, 0),
-(191, 2, '', 234, 117, 0),
-(192, 2, '1618289242', 234, 114, 0),
-(193, 2, '', 235, 114, 0),
-(194, 2, '', 236, 114, 0),
-(195, 2, '', 237, 114, 0),
-(196, 2, '', 238, 114, 0),
-(197, 2, '', 239, 114, 0),
-(198, 2, '', 240, 114, 0),
-(199, 2, '', 241, 114, 0),
-(200, 2, '', 242, 114, 0),
-(201, 2, '', 243, 114, 0),
-(202, 2, '', 244, 114, 0),
-(203, 2, '', 246, 123, 0),
-(204, 2, '', 247, 119, 0),
-(205, 2, '', 248, 119, 0),
-(206, 2, '', 249, 119, 0),
-(207, 2, '', 250, 119, 0),
-(208, 2, '', 251, 114, 0),
-(209, 2, '', 252, 114, 0),
-(210, 2, '', 253, 114, 0),
-(211, 2, '', 254, 114, 0),
-(212, 2, '', 255, 114, 0),
-(213, 2, '', 256, 114, 0),
-(214, 2, '', 257, 114, 0),
-(215, 2, '', 258, 114, 0),
-(216, 2, '', 259, 114, 0),
-(217, 2, '', 260, 114, 0),
-(218, 2, '', 261, 124, 0),
-(219, 2, '1618295766', 262, 124, 0),
-(220, 1, '1618296000', 262, 114, 124),
-(221, 2, '', 263, 125, 0),
-(222, 2, '', 264, 114, 0),
-(223, 2, '', 265, 114, 0),
-(224, 2, '', 266, 114, 0),
-(225, 2, '', 267, 114, 0),
-(226, 2, '', 268, 123, 0),
-(227, 2, '', 269, 114, 0),
-(228, 2, '', 270, 126, 0),
-(229, 2, '', 271, 126, 0),
-(230, 2, '', 272, 129, 0),
-(231, 2, '', 273, 129, 0),
-(232, 2, '1618383628', 274, 129, 0),
-(233, 2, '', 275, 129, 0),
-(234, 2, '', 276, 129, 0),
-(235, 2, '', 277, 129, 0),
-(236, 2, '', 278, 129, 0),
-(237, 2, '', 279, 129, 0),
-(238, 2, '', 280, 129, 0),
-(239, 2, '', 281, 129, 0),
-(240, 2, '', 282, 129, 0),
-(241, 2, '', 283, 129, 0),
-(242, 2, '1618424947', 284, 129, 0),
-(243, 2, '', 285, 129, 0),
-(244, 2, '', 286, 134, 0),
-(245, 2, '', 287, 129, 0),
-(246, 2, '', 288, 141, 0),
-(247, 2, '', 289, 141, 0),
-(248, 2, '', 290, 144, 0),
-(249, 2, '', 291, 144, 0),
-(250, 2, '', 292, 144, 0),
-(251, 2, '', 293, 144, 0),
-(252, 2, '', 294, 146, 0),
-(253, 2, '', 295, 146, 0),
-(254, 1, '1623074830', 296, 146, 0),
-(255, 1, '1623074782', 297, 146, 0),
-(256, 1, '1623075211', 298, 147, 0),
-(257, 1, '1623075159', 299, 147, 0),
-(258, 1, '1623074564', 297, 144, 146),
-(259, 1, '1623074578', 296, 144, 146),
-(260, 1, '1623074618', 294, 144, 146),
-(261, 1, '1623074642', 299, 144, 147),
-(262, 1, '1623074657', 298, 144, 147),
-(263, 1, '1623074896', 292, 146, 144),
-(264, 1, '1623074910', 291, 146, 144),
-(265, 1, '1623074964', 290, 146, 144),
-(266, 1, '1623075011', 299, 146, 147),
-(267, 1, '1623075100', 298, 146, 147),
-(268, 1, '1623075256', 292, 147, 144),
-(269, 1, '1623075309', 290, 147, 144),
-(270, 1, '1623075325', 297, 147, 146);
+(273, 1, '1623232511', 302, 162, 0),
+(274, 1, '1623235645', 303, 161, 0),
+(275, 1, '1623235947', 304, 145, 0),
+(276, 1, '1623236079', 304, 150, 145);
 
 --
 -- Triggers `suka`
@@ -1378,7 +1261,7 @@ INSERT INTO `suka` (`id_suka`, `status`, `date`, `id_posting`, `id`, `id_tujuan`
 DELIMITER $$
 CREATE TRIGGER `after_penghafal_insert_like` AFTER INSERT ON `suka` FOR EACH ROW BEGIN
 INSERT INTO notification
-SET notif='like on your post',
+SET notif='Menyukai postingan anda',
 id_posting= new.id_posting,
 id = new.id,
 date = new.date,
@@ -1389,7 +1272,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `after_penghafal_update_like` AFTER UPDATE ON `suka` FOR EACH ROW BEGIN
 INSERT INTO notification
-SET notif='unlike on your post',
+SET notif='Tidak menyukai postingan anda',
 id_posting= new.id_posting,
 id = new.id,
 date = new.date,
@@ -1563,7 +1446,17 @@ INSERT INTO `trigger_user` (`no`, `id`, `name`, `email`, `role_id`, `aksi`, `tgl
 (142, 141, 'keeb', '', 0, 'Ada yang baru delete posting', '2021-05-30 16:47:32'),
 (143, 131, 'ADMIN - Zaki', 'jaki@gmail.com', 1, 'ADMIN - Zaki yang baru melakukan update profile menjadi ADMIN - Zakii', '2021-06-06 20:34:54'),
 (144, 141, 'tesk', '', 0, 'Ada yang baru delete posting', '2021-06-06 21:16:20'),
-(145, 131, 'ADMIN - Zakii', 'jaki@gmail.com', 1, 'ADMIN - Zakii yang baru melakukan update profile menjadi ADMIN - Zaki', '2021-06-06 21:57:09');
+(145, 131, 'ADMIN - Zakii', 'jaki@gmail.com', 1, 'ADMIN - Zakii yang baru melakukan update profile menjadi ADMIN - Zaki', '2021-06-06 21:57:09'),
+(146, 144, 'Yuk Baca Al Quran', '', 0, 'Ada yang baru delete posting', '2021-06-09 16:24:51'),
+(147, 144, 'yuk tunggu apalagi? Ngaji bareng aku deh', '', 0, 'Ada yang baru delete posting', '2021-06-09 16:24:51'),
+(148, 144, 'Al Muzammil 17 by Me, hehehe', '', 0, 'Ada yang baru delete posting', '2021-06-09 16:24:51'),
+(149, 144, '[OOT] Background Aplikasi MyVoQu Mantep ya', '', 0, 'Ada yang baru delete posting', '2021-06-09 16:24:51'),
+(150, 146, 'Subhanallah, asyik nya membaca Al Quran !!', '', 0, 'Ada yang baru delete posting', '2021-06-09 16:24:51'),
+(151, 146, 'Anak kecil aja udah jago baca Al Quran!', '', 0, 'Ada yang baru delete posting', '2021-06-09 16:24:51'),
+(152, 146, 'Free Palestine', '', 0, 'Ada yang baru delete posting', '2021-06-09 16:24:51'),
+(153, 146, 'Al Muzammil - 9', '', 0, 'Ada yang baru delete posting', '2021-06-09 16:24:51'),
+(154, 147, 'kaligrafi buatan nurdin memang bagus!', '', 0, 'Ada yang baru delete posting', '2021-06-09 16:24:51'),
+(155, 147, '', '', 0, 'Ada yang baru delete posting', '2021-06-09 16:24:51');
 
 -- --------------------------------------------------------
 
@@ -1624,27 +1517,27 @@ INSERT INTO `user` (`id`, `name`, `gender`, `email`, `image`, `passsword`, `role
 (131, 'ADMIN - Zaki', 'Male', 'jaki@gmail.com', 't128olv9kli61.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 1, 1, 1618314853, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (138, 'ADMIN - ABI', 'Male', 'abi@gmail.com', 'v.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 1, 1, 1618314853, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (144, 'Asep Sudasep', 'Male', 'asep@gmail.com', 'default_male.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 2, 1, 1622989228, 'online-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
-(145, 'Endar Parisian', 'Female', 'endar@gmail.com', 'default_female.png', '$2y$10$oogXwOXrzoc4KCq7vE2kA.yNzPQUpKulqF9L2kR4YBWhbcGZX06iq', 2, 0, 1622989284, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(145, 'Endar Parisian', 'Female', 'endar@gmail.com', 'default_female.png', '$2y$10$oogXwOXrzoc4KCq7vE2kA.yNzPQUpKulqF9L2kR4YBWhbcGZX06iq', 2, 1, 1622989284, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (146, 'Surya Nurhalimah', 'Male', 'surya@gmail.com', 'default_male.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 2, 1, 1622989334, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (147, 'Nurdin Bagus', 'Male', 'nurdin@gmail.com', 'default_male.png', '$2y$10$HMvOlhQToVs4TWLOUvbdsOiKS7QwppWm.jNriv8DdA5QYzarmHFXO', 2, 1, 1622989391, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
-(148, 'Bambang Sibambang', 'Male', 'bambang@gmail.com', 'default_male.png', '$2y$10$3SjuioySLZzEFsaB5/6.HerOCVae7xXsIMfdMkKKlTPusdJM/cAQW', 2, 0, 1622989430, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
-(149, 'Abizzy Al Tareq', 'Male', 'abizzy@gmail.com', 'default_male.png', '$2y$10$qBt7p6bai3KftmNlxjkMEe40gANj5M05JBYau.XAuXGJNcdXHDZy.', 2, 0, 1622989477, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
-(150, 'Surinem', 'Female', 'surinem@gmail.com', 'default_female.png', '$2y$10$lOgCUUE8OKxSqYsX2XKNBOKkK8FDvBGNtJUV9AKQZQFyTcuWdFAw2', 2, 0, 1622989504, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
-(151, 'Dea', 'Female', 'dea@gmail.com', 'default_female.png', '$2y$10$bQEIInl51NElKcoSBwEbL.rCcrZNjncL8VR9IMHDtn17tQMdvYgBS', 2, 1, 1622989521, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
-(152, 'Sheva', 'Female', 'sheva@gmail.com', 'default_female.png', '$2y$10$xjiTC3KBjsCrxRZeAUOTge3KfpCPW7NUOxSEwSEc8ZjRFtkZPViHS', 2, 1, 1622989558, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
-(153, 'Tera', 'Female', 'tera@gmail.com', 'default_female.png', '$2y$10$zZKe6FGdQjtFvYup7WrgkeLHvqmRdPEQUb9WHqerWOxi.u84f1Om.', 2, 1, 1622989581, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(148, 'Bambang Sibambang', 'Male', 'bambang@gmail.com', 'default_male.png', '$2y$10$3SjuioySLZzEFsaB5/6.HerOCVae7xXsIMfdMkKKlTPusdJM/cAQW', 2, 1, 1622989430, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(149, 'Abizzy Al Tareq', 'Male', 'abizzy@gmail.com', 'default_male.png', '$2y$10$qBt7p6bai3KftmNlxjkMEe40gANj5M05JBYau.XAuXGJNcdXHDZy.', 2, 1, 1622989477, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(150, 'Surinem', 'Female', 'surinem@gmail.com', 'default_female.png', '$2y$10$lOgCUUE8OKxSqYsX2XKNBOKkK8FDvBGNtJUV9AKQZQFyTcuWdFAw2', 2, 1, 1622989504, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(151, 'Dea', 'Female', 'dea@gmail.com', 'default_female.png', '$2y$10$bQEIInl51NElKcoSBwEbL.rCcrZNjncL8VR9IMHDtn17tQMdvYgBS', 2, 2, 1622989521, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(152, 'Sheva', 'Female', 'sheva@gmail.com', 'default_female.png', '$2y$10$xjiTC3KBjsCrxRZeAUOTge3KfpCPW7NUOxSEwSEc8ZjRFtkZPViHS', 2, 2, 1622989558, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(153, 'Tera', 'Female', 'tera@gmail.com', 'default_female.png', '$2y$10$zZKe6FGdQjtFvYup7WrgkeLHvqmRdPEQUb9WHqerWOxi.u84f1Om.', 2, 2, 1622989581, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (154, 'Sobaqam', 'Male', 'sobaqam@gmail.com', 'default_male.png', '$2y$10$muO67UKiiyb2eb9taxHrJuZC2Az6Je2Dt/vu84EehnBD/T9UCam22', 2, 1, 1622989608, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
-(155, 'Naam', 'Male', 'naam@gmail.com', 'default_male.png', '$2y$10$Xzd7UjTDftjL/awxNFipruAvvDhHRF1/IDoygBnGTrGgyJL66uWb2', 3, 0, 1622989789, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdbdd0b10d.png', 0),
-(156, 'Hayfa', 'Female', 'hayfa@gmail.com', 'default_female.png', '$2y$10$cuiseINQrQ.rB/Rb5FBX9OK1rOWiMydxVNPIPa8aHQRSb4eJE20oq', 3, 0, 1622989808, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdbf0cfeb7.png', 0),
-(157, 'Outemu', 'Male', 'outemu@gmail.com', 'default_male.png', '$2y$10$4VVUwAOovLOZSXZRrCYP1eKC/qsXu8Glw1HfjFUklTjv1/i0s73BC', 3, 0, 1622989831, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdc06e61d1.png', 0),
-(158, 'Gofar', 'Male', 'gofar@gmail.com', 'default_male.png', '$2y$10$qHYoYWrei4mQpKQjo3ibpuceqUSsZWze9VKXu/9OSTqdwSqFEU3Ry', 3, 0, 1622989900, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdc4c4e6f3.png', 0),
-(159, 'Qori', 'Male', 'qori@gmail.com', 'default_male.png', '$2y$10$bcW3p8iSFaCzceu1yUci0eKF/sE34Bc/RK12fcRz6YZXdYe9P2LYa', 3, 1, 1622989931, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdc6b7559f.png', 0),
-(160, 'Kailh', 'Male', 'kailh@gmail.com', 'default_male.png', '$2y$10$QbAJbH5pBfk.nxPxxglglehQjT4WhAYeGpTQK38DIvp58yeiiWSV.', 3, 0, 1622989960, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdc88e0096.jpeg', 0),
-(161, 'Artisan', 'Female', 'artisan@gmail.com', 'default_female.png', '$2y$10$7RjYCGM5va9xJsvV4dfwbuVK9zcOZ5ST8QZJKmH8RYXGmJA4v3ukq', 3, 1, 1622990006, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdcb68950e.png', 0),
-(162, 'Hipyo', 'Female', 'hipyo@gmail.com', 'default_female.png', '$2y$10$opcnZCSZgDsLvCfPMi950.fusqk.pyGeCGa9Jtd4S2vbjysOn/jgy', 3, 0, 1622990043, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdcdb7b4db.png', 0),
-(163, 'Avilla', 'Female', 'avilla@gmail.com', 'default_female.png', '$2y$10$j4Jenlp4YZAgNQcUCtEwZ.8te1I8mcWCnU8u5GNrBbhgYD3o2yROe', 3, 1, 1622990095, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdd0fe3065.png', 0),
-(164, 'Himalaya', 'Female', 'himalaya@gmail.com', 'default_female.png', '$2y$10$8RryDm8w0uOl/Hk0542eAeoqWugjzMvPPQzRNeKVyiXwFvPSG5vya', 3, 0, 1622990138, '', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdd3a1526e.jpg', 0),
-(165, 'Ustad Zaki', 'Male', 'zack.ridzi@gmail.com', 'default_male.png', '$2y$10$iThs4gPo8DLHzIH67y8/lu7096Zdmu0VIpbRI5/YhQix4GM85ATqO', 3, 1, 1622990210, 'online-dot', '0000-00-00', '', 'Hello World!', '', NULL, '60bcdd8287cac.png', 1);
+(155, 'Naam', 'Male', 'naam@gmail.com', 'default_male.png', '$2y$10$Xzd7UjTDftjL/awxNFipruAvvDhHRF1/IDoygBnGTrGgyJL66uWb2', 3, 0, 1622989789, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, 'Webinar Kumparan - Zaki Al Faridzi_6701184045.jpg', 0),
+(156, 'Hayfa', 'Female', 'hayfa@gmail.com', 'default_female.png', '$2y$10$cuiseINQrQ.rB/Rb5FBX9OK1rOWiMydxVNPIPa8aHQRSb4eJE20oq', 3, 0, 1622989808, '', '0000-00-00', '', 'Hello World!', '', NULL, 'Waketuplak Bedah PA_Zaki Al Faridzi_6701184045.png', 0),
+(157, 'Outemu', 'Male', 'outemu@gmail.com', 'default_male.png', '$2y$10$4VVUwAOovLOZSXZRrCYP1eKC/qsXu8Glw1HfjFUklTjv1/i0s73BC', 3, 0, 1622989831, '', '0000-00-00', '', 'Hello World!', '', NULL, 'Webinar Kumparan - Zaki Al Faridzi_6701184045.jpg', 0),
+(158, 'Gofar', 'Male', 'gofar@gmail.com', 'default_male.png', '$2y$10$qHYoYWrei4mQpKQjo3ibpuceqUSsZWze9VKXu/9OSTqdwSqFEU3Ry', 3, 0, 1622989900, '', '0000-00-00', '', 'Hello World!', '', NULL, 'Sesi5_Webinar MTO FRI - Zaki Al Faridzi_6701184045.jpg', 0),
+(159, 'Qori', 'Male', 'qori@gmail.com', 'default_male.png', '$2y$10$bcW3p8iSFaCzceu1yUci0eKF/sE34Bc/RK12fcRz6YZXdYe9P2LYa', 3, 2, 1622989931, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, 'Sesi3_Webinar MTO FRI - Zaki Al Faridzi_6701184045.png', 0),
+(160, 'Kailh', 'Male', 'kailh@gmail.com', 'default_male.png', '$2y$10$QbAJbH5pBfk.nxPxxglglehQjT4WhAYeGpTQK38DIvp58yeiiWSV.', 3, 0, 1622989960, '', '0000-00-00', '', 'Hello World!', '', NULL, 'Peserta Bedah PA_Zaki Al Faridzi_6701184045.png', 0),
+(161, 'Artisan', 'Female', 'artisan@gmail.com', 'default_female.png', '$2y$10$7RjYCGM5va9xJsvV4dfwbuVK9zcOZ5ST8QZJKmH8RYXGmJA4v3ukq', 3, 1, 1622990006, 'offline-dot', '0000-00-00', '', 'Hello World!', '', 'FITTELU', 'Sesi1_Webinar MTO FRI - Zaki Al Faridzi_6701184045.jpg', 1),
+(162, 'Hipyo', 'Female', 'hipyo@gmail.com', 'default_female.png', '$2y$10$opcnZCSZgDsLvCfPMi950.fusqk.pyGeCGa9Jtd4S2vbjysOn/jgy', 3, 1, 1622990043, 'offline-dot', '0000-00-00', '', 'Hello World!', '', 'HOTS', 'Sesi2Webinar MTO FRI - Zaki Al Faridzi_6701184045.jpg', 1),
+(163, 'Avilla', 'Female', 'avilla@gmail.com', 'default_female.png', '$2y$10$j4Jenlp4YZAgNQcUCtEwZ.8te1I8mcWCnU8u5GNrBbhgYD3o2yROe', 3, 2, 1622990095, '', '0000-00-00', '', 'Hello World!', '', NULL, 'Peserta Bedah PA_Zaki Al Faridzi_6701184045.png', 0),
+(164, 'Himalaya', 'Female', 'himalaya@gmail.com', 'default_female.png', '$2y$10$8RryDm8w0uOl/Hk0542eAeoqWugjzMvPPQzRNeKVyiXwFvPSG5vya', 3, 0, 1622990138, '', '0000-00-00', '', 'Hello World!', '', NULL, 'Sesi2Webinar MTO FRI - Zaki Al Faridzi_6701184045.jpg', 0),
+(165, 'Ustad Zaki', 'Male', 'zack.ridzi@gmail.com', 'default_male.png', '$2y$10$iThs4gPo8DLHzIH67y8/lu7096Zdmu0VIpbRI5/YhQix4GM85ATqO', 3, 1, 1622990210, 'offline-dot', '0000-00-00', '', 'Hello World!', '', 'HOTS', 'Webinar Kumparan - Zaki Al Faridzi_6701184045.jpg', 1);
 
 --
 -- Triggers `user`
@@ -1774,7 +1667,9 @@ INSERT INTO `user_token` (`id`, `email`, `token`, `date_created`) VALUES
 (103, 'surinem@gmail.com', 'cEex8CMk6VfodKgwTanFguGk+/WrP3ZbXhr54aHPO0U=', 1622989504),
 (104, 'dea@gmail.com', 'ujpmwpJA8FVudrr37LYsKcSti/l73Xn2QWh+CQAgI8E=', 1622989521),
 (105, 'sheva@gmail.com', 'VQdxQbQPA3eIF6uRuZxF/7ofAej5la1YJOtrs7YBcqs=', 1622989558),
-(106, 'tera@gmail.com', 'S5iKXX9C33sva9o+XruAPKDIpC6hChVGIywesX8RhPw=', 1622989581);
+(106, 'tera@gmail.com', 'S5iKXX9C33sva9o+XruAPKDIpC6hChVGIywesX8RhPw=', 1622989581),
+(109, 'hipyo@gmail.com', '/f28EsV3jvuGpEKTEFtUhDDmfccmAIiBZr4rK6hGwdU=', 1623232070),
+(110, 'artisan@gmail.com', 'LyZH7z7QI+tY+PS22NXL/aDpBGDd1mKGUimXdbH6viE=', 1623233091);
 
 --
 -- Indexes for dumped tables
@@ -1841,7 +1736,8 @@ ALTER TABLE `group_notif`
 ALTER TABLE `group_postingan`
   ADD PRIMARY KEY (`id_posting`),
   ADD KEY `id_group` (`id_group`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `FK3_gp_tugas` (`tugas`);
 
 --
 -- Indexes for table `grup`
@@ -1924,19 +1820,27 @@ ALTER TABLE `posting`
 -- Indexes for table `report`
 --
 ALTER TABLE `report`
-  ADD PRIMARY KEY (`id_report`);
+  ADD PRIMARY KEY (`id_report`),
+  ADD KEY `FKIDUSER-REPORT` (`id_user`),
+  ADD KEY `FKIDPOSTING-REPORT` (`id_posting`);
 
 --
 -- Indexes for table `report_hafalan`
 --
 ALTER TABLE `report_hafalan`
-  ADD PRIMARY KEY (`id_hafalan`) USING BTREE;
+  ADD PRIMARY KEY (`id_hafalan`) USING BTREE,
+  ADD KEY `FK1_report_idTugas` (`id_tugas`),
+  ADD KEY `FK2_report_idUser` (`id_user`),
+  ADD KEY `FK3_report_idGroup` (`id_group`);
 
 --
 -- Indexes for table `suka`
 --
 ALTER TABLE `suka`
-  ADD PRIMARY KEY (`id_suka`);
+  ADD PRIMARY KEY (`id_suka`),
+  ADD KEY `FKIDPOSTING-SUKA` (`id_posting`),
+  ADD KEY `FKIDUSER-SUKA` (`id`),
+  ADD KEY `FKIDUSERTUJUAN-SUKA` (`id_tujuan`);
 
 --
 -- Indexes for table `tasks`
@@ -1962,13 +1866,16 @@ ALTER TABLE `trigger_user`
 -- Indexes for table `tugas_hafalan`
 --
 ALTER TABLE `tugas_hafalan`
-  ADD PRIMARY KEY (`id_tugas`) USING BTREE;
+  ADD PRIMARY KEY (`id_tugas`) USING BTREE,
+  ADD KEY `FK1_idgroup` (`id_group`),
+  ADD KEY `FK2_idUser` (`id_user`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FKUROLE-USER` (`role_id`);
 
 --
 -- Indexes for table `user_role`
@@ -1990,7 +1897,7 @@ ALTER TABLE `user_token`
 -- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `chatall`
@@ -2002,7 +1909,7 @@ ALTER TABLE `chatall`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `dompet`
@@ -2014,7 +1921,7 @@ ALTER TABLE `dompet`
 -- AUTO_INCREMENT for table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `id_follow` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id_follow` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
 -- AUTO_INCREMENT for table `group_comment`
@@ -2032,7 +1939,7 @@ ALTER TABLE `group_information`
 -- AUTO_INCREMENT for table `group_notif`
 --
 ALTER TABLE `group_notif`
-  MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `group_postingan`
@@ -2044,7 +1951,7 @@ ALTER TABLE `group_postingan`
 -- AUTO_INCREMENT for table `grup`
 --
 ALTER TABLE `grup`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `hafalan`
@@ -2086,7 +1993,7 @@ ALTER TABLE `menu_item`
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `id_notification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=472;
+  MODIFY `id_notification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=495;
 
 --
 -- AUTO_INCREMENT for table `pengumuman`
@@ -2110,13 +2017,13 @@ ALTER TABLE `postgen`
 -- AUTO_INCREMENT for table `posting`
 --
 ALTER TABLE `posting`
-  MODIFY `id_posting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=300;
+  MODIFY `id_posting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=305;
 
 --
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `id_report` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `id_report` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 
 --
 -- AUTO_INCREMENT for table `report_hafalan`
@@ -2128,7 +2035,7 @@ ALTER TABLE `report_hafalan`
 -- AUTO_INCREMENT for table `suka`
 --
 ALTER TABLE `suka`
-  MODIFY `id_suka` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=271;
+  MODIFY `id_suka` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=277;
 
 --
 -- AUTO_INCREMENT for table `tasks`
@@ -2140,7 +2047,7 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT for table `trigger_user`
 --
 ALTER TABLE `trigger_user`
-  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
+  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
 
 --
 -- AUTO_INCREMENT for table `tugas_hafalan`
@@ -2164,7 +2071,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `user_token`
 --
 ALTER TABLE `user_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- Constraints for dumped tables
@@ -2205,6 +2112,7 @@ ALTER TABLE `group_information`
 -- Constraints for table `group_postingan`
 --
 ALTER TABLE `group_postingan`
+  ADD CONSTRAINT `FK3_gp_tugas` FOREIGN KEY (`tugas`) REFERENCES `tugas_hafalan` (`id_tugas`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_idGrup` FOREIGN KEY (`id_group`) REFERENCES `grup` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_idUser` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -2233,6 +2141,28 @@ ALTER TABLE `posting`
   ADD CONSTRAINT `fiduser` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `report`
+--
+ALTER TABLE `report`
+  ADD CONSTRAINT `FKIDPOSTING-REPORT` FOREIGN KEY (`id_posting`) REFERENCES `posting` (`id_posting`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FKIDUSER-REPORT` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `report_hafalan`
+--
+ALTER TABLE `report_hafalan`
+  ADD CONSTRAINT `FK1_report_idTugas` FOREIGN KEY (`id_tugas`) REFERENCES `tugas_hafalan` (`id_tugas`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK2_report_idUser` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK3_report_idGroup` FOREIGN KEY (`id_group`) REFERENCES `grup` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `suka`
+--
+ALTER TABLE `suka`
+  ADD CONSTRAINT `FKIDPOSTING-SUKA` FOREIGN KEY (`id_posting`) REFERENCES `posting` (`id_posting`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FKIDUSER-SUKA` FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `tasks`
 --
 ALTER TABLE `tasks`
@@ -2243,6 +2173,19 @@ ALTER TABLE `tasks`
 --
 ALTER TABLE `transaksi_topup_dompet`
   ADD CONSTRAINT `fk_user_topup` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tugas_hafalan`
+--
+ALTER TABLE `tugas_hafalan`
+  ADD CONSTRAINT `FK1_idgroup` FOREIGN KEY (`id_group`) REFERENCES `grup` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK2_idUser` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `FKUROLE-USER` FOREIGN KEY (`role_id`) REFERENCES `user_role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 DELIMITER $$
 --
