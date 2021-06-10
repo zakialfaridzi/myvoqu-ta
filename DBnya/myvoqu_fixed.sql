@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2021 at 12:57 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.4.19
+-- Generation Time: Jun 10, 2021 at 09:09 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -1021,7 +1021,18 @@ INSERT INTO `notification` (`id_notification`, `notif`, `date`, `id_posting`, `i
 (491, 'Tidak menyukai postingan anda', '1623235947', 304, 145, 0),
 (492, 'Mulai Mengikuti Anda.', '1623236069', 0, 150, 145),
 (493, 'Menyukai postingan anda', '1623236079', 304, 150, 145),
-(494, 'comment on your post: \"bismillah  :-)\"', '1623236093', 304, 150, 145);
+(494, 'comment on your post: \"bismillah  :-)\"', '1623236093', 304, 150, 145),
+(495, 'Menyukai postingan anda', '', 305, 144, 0),
+(496, 'Menyukai postingan anda', '', 306, 144, 0),
+(497, 'Menyukai postingan anda', '', 307, 144, 0),
+(498, 'Menyukai postingan anda', '', 308, 144, 0),
+(499, 'Menyukai postingan anda', '', 309, 144, 0),
+(500, 'Menyukai postingan anda', '', 310, 144, 0),
+(501, 'Menyukai postingan anda', '', 311, 144, 0),
+(502, 'Menyukai postingan anda', '', 312, 144, 0),
+(503, 'Menyukai postingan anda', '', 313, 144, 0),
+(504, 'Menyukai postingan anda', '', 314, 144, 0),
+(505, 'Menyukai postingan anda', '', 315, 144, 0);
 
 -- --------------------------------------------------------
 
@@ -1155,7 +1166,16 @@ CREATE TABLE `posting` (
 INSERT INTO `posting` (`id_posting`, `caption`, `id_user`, `name`, `fileName`, `html`, `date_post`) VALUES
 (302, 'bagus banget ya', 162, '', '60c08f5002a23.png', '<img src=http://localhost/myvoqu/assets_user/file_upload/60c08f5002a23.png alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 350px;\" />', '1623232336'),
 (303, 'Suaranya bagus sekali ya', 161, '', '60c09c2355eca.mp4', '<div class=\"video-wrapper\"><video class=\"post-video\" controls  width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/60c09c2355eca.mp4 type=\"video/mp4\"></video></div>', '1623235619'),
-(304, 'Aku mau bisa merdu seperti dia', 145, '', '60c09d644a8cc.mkv', '<div class=\"video-wrapper\"><video class=\"post-video\" controls  width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/60c09d644a8cc.mkv type=\"video/mp4\"></video></div>', '1623235940');
+(304, 'Aku mau bisa merdu seperti dia', 145, '', '60c09d644a8cc.mkv', '<div class=\"video-wrapper\"><video class=\"post-video\" controls  width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/60c09d644a8cc.mkv type=\"video/mp4\"></video></div>', '1623235940'),
+(305, 'ayo menghafalkan Al Quran', 144, '', '60c1a674764d0.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60c1a674764d0.jpg alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 350px;\" />', '1623303796'),
+(308, '', 144, '', '60c1a7232f7f8.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60c1a7232f7f8.jpg alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 350px;\" />', '1623303971'),
+(309, 'subhanallah', 144, '', '60c1a72a65a59.mp4', '<div class=\"video-wrapper\"><video class=\"post-video\" controls  width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/60c1a72a65a59.mp4 type=\"video/mp4\"></video></div>', '1623303978'),
+(310, '', 144, '', '60c1a732eee85.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60c1a732eee85.jpg alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 350px;\" />', '1623303986'),
+(311, '', 144, '', '60c1a7375e94a.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60c1a7375e94a.jpg alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 350px;\" />', '1623303991'),
+(312, '', 144, '', '60c1a73bdffd8.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60c1a73bdffd8.jpg alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 350px;\" />', '1623303995'),
+(313, '', 144, '', '60c1a75ab3229.mp4', '<div class=\"video-wrapper\"><video class=\"post-video\" controls  width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/60c1a75ab3229.mp4 type=\"video/mp4\"></video></div>', '1623304026'),
+(314, '', 144, '', '60c1a771545e6.mp4', '<div class=\"video-wrapper\"><video class=\"post-video\" controls  width=\"500\" height=\"500\"><source src=http://localhost/myvoqu/assets_user/file_upload/60c1a771545e6.mp4 type=\"video/mp4\"></video></div>', '1623304049'),
+(315, 'background MYVOQU', 144, '', '60c1a79001497.jpg', '<img src=http://localhost/myvoqu/assets_user/file_upload/60c1a79001497.jpg alt=\"post-image\"class=\"img-responsive post-image\" style=\"height: 350px;\" />', '1623304080');
 
 --
 -- Triggers `posting`
@@ -1207,7 +1227,16 @@ CREATE TABLE `report` (
 INSERT INTO `report` (`id_report`, `report`, `date`, `id_posting`, `id_user`) VALUES
 (131, 0, '', 302, 162),
 (132, 0, '', 303, 161),
-(133, 0, '', 304, 145);
+(133, 0, '', 304, 145),
+(134, 0, '', 305, 144),
+(137, 0, '', 308, 144),
+(138, 0, '', 309, 144),
+(139, 0, '', 310, 144),
+(140, 0, '', 311, 144),
+(141, 0, '', 312, 144),
+(142, 0, '', 313, 144),
+(143, 0, '', 314, 144),
+(144, 0, '', 315, 144);
 
 -- --------------------------------------------------------
 
@@ -1253,7 +1282,16 @@ INSERT INTO `suka` (`id_suka`, `status`, `date`, `id_posting`, `id`, `id_tujuan`
 (273, 1, '1623232511', 302, 162, 0),
 (274, 1, '1623235645', 303, 161, 0),
 (275, 1, '1623235947', 304, 145, 0),
-(276, 1, '1623236079', 304, 150, 145);
+(276, 1, '1623236079', 304, 150, 145),
+(277, 2, '', 305, 144, 0),
+(280, 2, '', 308, 144, 0),
+(281, 2, '', 309, 144, 0),
+(282, 2, '', 310, 144, 0),
+(283, 2, '', 311, 144, 0),
+(284, 2, '', 312, 144, 0),
+(285, 2, '', 313, 144, 0),
+(286, 2, '', 314, 144, 0),
+(287, 2, '', 315, 144, 0);
 
 --
 -- Triggers `suka`
@@ -1456,7 +1494,9 @@ INSERT INTO `trigger_user` (`no`, `id`, `name`, `email`, `role_id`, `aksi`, `tgl
 (152, 146, 'Free Palestine', '', 0, 'Ada yang baru delete posting', '2021-06-09 16:24:51'),
 (153, 146, 'Al Muzammil - 9', '', 0, 'Ada yang baru delete posting', '2021-06-09 16:24:51'),
 (154, 147, 'kaligrafi buatan nurdin memang bagus!', '', 0, 'Ada yang baru delete posting', '2021-06-09 16:24:51'),
-(155, 147, '', '', 0, 'Ada yang baru delete posting', '2021-06-09 16:24:51');
+(155, 147, '', '', 0, 'Ada yang baru delete posting', '2021-06-09 16:24:51'),
+(156, 144, 'Keren nih aplikasi', '', 0, 'Ada yang baru delete posting', '2021-06-10 12:45:17'),
+(157, 144, '', '', 0, 'Ada yang baru delete posting', '2021-06-10 12:46:04');
 
 -- --------------------------------------------------------
 
@@ -1516,7 +1556,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `name`, `gender`, `email`, `image`, `passsword`, `role_id`, `is_active`, `date_created`, `status`, `birthdate`, `city`, `bio`, `work`, `instansi`, `sertif`, `verified`) VALUES
 (131, 'ADMIN - Zaki', 'Male', 'jaki@gmail.com', 't128olv9kli61.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 1, 1, 1618314853, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (138, 'ADMIN - ABI', 'Male', 'abi@gmail.com', 'v.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 1, 1, 1618314853, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
-(144, 'Asep Sudasep', 'Male', 'asep@gmail.com', 'default_male.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 2, 1, 1622989228, 'online-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(144, 'Asep Sudasep', 'Male', 'asep@gmail.com', 'default_male.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 2, 1, 1622989228, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (145, 'Endar Parisian', 'Female', 'endar@gmail.com', 'default_female.png', '$2y$10$oogXwOXrzoc4KCq7vE2kA.yNzPQUpKulqF9L2kR4YBWhbcGZX06iq', 2, 1, 1622989284, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (146, 'Surya Nurhalimah', 'Male', 'surya@gmail.com', 'default_male.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 2, 1, 1622989334, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (147, 'Nurdin Bagus', 'Male', 'nurdin@gmail.com', 'default_male.png', '$2y$10$HMvOlhQToVs4TWLOUvbdsOiKS7QwppWm.jNriv8DdA5QYzarmHFXO', 2, 1, 1622989391, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
@@ -1993,7 +2033,7 @@ ALTER TABLE `menu_item`
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `id_notification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=495;
+  MODIFY `id_notification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=506;
 
 --
 -- AUTO_INCREMENT for table `pengumuman`
@@ -2017,13 +2057,13 @@ ALTER TABLE `postgen`
 -- AUTO_INCREMENT for table `posting`
 --
 ALTER TABLE `posting`
-  MODIFY `id_posting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=305;
+  MODIFY `id_posting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=316;
 
 --
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `id_report` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
+  MODIFY `id_report` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
 
 --
 -- AUTO_INCREMENT for table `report_hafalan`
@@ -2035,7 +2075,7 @@ ALTER TABLE `report_hafalan`
 -- AUTO_INCREMENT for table `suka`
 --
 ALTER TABLE `suka`
-  MODIFY `id_suka` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=277;
+  MODIFY `id_suka` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=288;
 
 --
 -- AUTO_INCREMENT for table `tasks`
@@ -2047,7 +2087,7 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT for table `trigger_user`
 --
 ALTER TABLE `trigger_user`
-  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
+  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
 
 --
 -- AUTO_INCREMENT for table `tugas_hafalan`
