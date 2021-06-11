@@ -49,6 +49,8 @@ class KelolaMentor extends CI_Controller
         $this->load->model('Admin_model');
         $detail = $this->Admin_model->detail_mentor($id);
         $data['detail'] = $detail;
+        $data['jumlahfollowers'] = $this->Admin_model->getJumlahFollowers($id);
+        $data['jumlahfollowing'] = $this->Admin_model->getJumlahFollowing($id);
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
         $data['allgroup'] = $this->Admin_model->detail_mentor2();
         $dats['judul'] = "Admin | Detil Data Mentor";

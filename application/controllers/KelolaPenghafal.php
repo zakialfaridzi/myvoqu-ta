@@ -85,11 +85,12 @@ class KelolaPenghafal extends CI_Controller
         $this->load->model('Admin_model');
         $detail = $this->Admin_model->detail_data($id);
         $data['detail'] = $detail;
+        $data['jumlahfollowers'] = $this->Admin_model->getJumlahFollowers($id);
+        $data['jumlahfollowing'] = $this->Admin_model->getJumlahFollowing($id);
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
 
         $dats['judul'] = "Admin | Detil Data Penghafal";
         $this->load->view('templates/header', $dats);
-
         $this->load->view('templates/sidebar', $dats);
         $this->load->view('admin/detail_penghafal', $data);
         $this->load->view('templates/footer');

