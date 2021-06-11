@@ -46,9 +46,13 @@
             class="profile-photo-md pull-left" />
         <div class="post-detail">
             <div class="user-info">
-                <h5><?php if ($pst->id == $this->session->userdata('id')): ?>
+                <h5><?php if ($pst->id == $this->session->userdata('id') and $pst->role_id == 3): ?>
+                    <a href="<?=base_url('profile/')?>"><?=$pst->name;?> </a> <a class="badge" style="background-color: deepskyblue;">Mentor</a>
+                    <?php elseif ($pst->id == $this->session->userdata('id') and $pst->role_id == 2): ?>
                     <a href="<?=base_url('profile/')?>"><?=$pst->name;?></a>
-                    <?php else: ?>
+                    <?php elseif ($pst->id != $this->session->userdata('id') and $pst->role_id == 3): ?>
+                    <a href="<?=base_url('friend/visitProfile/') . $pst->id_user;?>"><?=$pst->name; ?> </a> <a class="badge" style="background-color: deepskyblue;">Mentor</a>
+                    <?php elseif ($pst->id != $this->session->userdata('id') and $pst->role_id == 2): ?>
                     <a href="<?=base_url('friend/visitProfile/') . $pst->id_user;?>"><?=$pst->name;?></a>
                     <?php endif;?>
                 </h5>
