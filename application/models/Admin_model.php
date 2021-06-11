@@ -302,6 +302,12 @@ class Admin_model extends CI_model
         return $query;
     }
 
+    public function detail_postgen2($id)
+    {
+        $query = $this->db->query("SELECT * FROM postgen p join user u on p.id_user=u.id where p.id_posting = $id");
+        return $query->result();
+    }
+
     public function hapus_postgen($where)
     {
         $this->db->delete('postgen', $where);
