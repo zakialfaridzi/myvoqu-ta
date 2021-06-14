@@ -41,6 +41,7 @@ class KelolaUnggahanUmum extends CI_Controller
         $this->load->model('Admin_model');
         $detail = $this->Admin_model->detail_postgen($id);
         $data['post'] = $detail;
+        $data['post2'] = $this->Admin_model->detail_postgen2($id);
         $dats['mahasiswa'] = $this->Admin_model->profileAdmin();
         $dats['judul'] = "Admin | Detil Data Materi Umum";
         $this->load->view('templates/headerPostGen', $dats);
