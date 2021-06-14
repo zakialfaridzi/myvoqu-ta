@@ -2,7 +2,7 @@
     <div class="row">
 
         <div id="container">
-            <?php foreach ($otherUser as $au): ?>
+            <?php foreach ($otherUserMentor as $au): ?>
             <div class="col-md-6 col-sm-6">
                 <div class="friend-card">
                     <img src="<?=base_url('assets_user/');?>images/covers/default_group_cover.jpg" alt="profile-cover"
@@ -38,8 +38,8 @@
                             data-name="<?=$au->name;?>" id="showInfaqModal"><i class="fas fa-hand-holding-heart"></i>
                             Infaq</a>
 
-                        <button type=" button" class="btn btn-success">
-                            Testimoni <i class="fas fa-quote-right"></i></button>
+                        <!-- <button type=" button" class="btn btn-success">
+                            Testimoni <i class="fas fa-quote-right"></i></button> -->
 
 
 

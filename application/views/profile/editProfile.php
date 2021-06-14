@@ -76,16 +76,16 @@
 
                     <?php if ($i->gender == 'Male'): ?>
 
-                    <input type="radio" name="gender" checked id="gender" value="Male">Male
+                    <input type="radio" name="gender" checked id="gender" value="Male">Ikhwan
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="gender" id="gender" value="Female">Female
+                    <input type="radio" name="gender" id="gender" value="Female">Akhwat
                 </label>
                 <?php else: ?>
-                <input type="radio" name="gender" id="gender" value="Male">Male
+                <input type="radio" name="gender" id="gender" value="Male">Ikhwan
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="gender" checked id="gender" value="Female">Female
+                    <input type="radio" name="gender" checked id="gender" value="Female">Akhwat
                 </label>
                 <?php endif;?>
             </div>

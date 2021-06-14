@@ -114,7 +114,7 @@
 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nominal Pengisian</label>
-                                    <input type="number" class="form-control" placeholder="Masukan Nominal Pengisian"
+                                    <input type="text" class="form-control" placeholder="Masukan Nominal Pengisian"
                                         name="nominal_topup" id="nominal" required
                                         message="minimal top up adalah Rp10.000,00">
                                     <small style="color: red;display:none" id="errorMsg"><i>*minimal top up adalah
@@ -263,7 +263,11 @@
 
         <script>
         $("#nominal").keyup(function() {
-            if ($('#nominal').val() < 10000) {
+
+            var rupiah = $('#nominal').val();
+            var clean = rupiah.replace(/\D/g, '');
+
+            if (clean < 10000) {
                 $('#errorMsg').show();
                 $('#pay-button').hide();
             } else {

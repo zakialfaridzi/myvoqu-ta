@@ -19,12 +19,14 @@
 
                             <div style="margin-top: 0px;">
 
-                                <h5><a href="<?=base_url('friend/visitProfile/') . $au->id;?>"><?php if($au->role_id == 3) : ?>
-                                <h3 style="color: #6fb8df;"><?= $au->name; ?> <a class="badge" style="background-color: deepskyblue;">Mentor</a></h3>
-                                <?php else : ?>
-                                <h3 style="color: #6fb8df;"><?= $au->name; ?></h3>
-                                <?php endif ?></a></h5>
-                                
+                                <h5><a href="<?=base_url('friend/visitProfile/') . $au->id;?>"><?php if ($au->role_id == 3): ?>
+                                        <h3 style="color: #6fb8df;"><?=$au->name;?> <a class="badge"
+                                                style="background-color: deepskyblue;">Mentor</a></h3>
+                                        <?php else: ?>
+                                        <a><?=$au->name;?></a>
+                                        <?php endif?>
+                                    </a></h5>
+
                                 <p><?=$au->bio;?></p>
                             </div>
 

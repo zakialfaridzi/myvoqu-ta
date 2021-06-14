@@ -100,20 +100,20 @@ endforeach;?>
                             <div class="form-group">
                                 <img src="<?=base_url('assets_user/images/' . $us->image);?>" alt=""
                                     class="profile-photo-md" />
-                                <?php if ($this->uri->segment('2') == 'materi' && $this->session->userdata('role_id') == 3) { ?>
+                                <?php if ($this->uri->segment('2') == 'materi' && $this->session->userdata('role_id') == 3) {?>
                                 <h4>Buat Materi</h4><br>
-                                    <form action="<?= base_url('library/posting/') . $this->uri->segment('3'); ?>" method="post"
-                                    enctype="multipart/form-data">
-                                    <textarea cols="30" rows="1" class="form-control" placeholder="Ayat"
-                                        name="ayat" id="caption"></textarea>
+                                <form action="<?=base_url('library/posting/') . $this->uri->segment('3');?>"
+                                    method="post" enctype="multipart/form-data">
+                                    <textarea cols="30" rows="1" class="form-control" placeholder="Ayat" name="ayat"
+                                        id="caption"></textarea>
                                     <?=form_error('caption', '<small class="text-danger pl-3">', '</small>');?>
-                                <?php }else{ ?>
-                                <form action="<?=base_url('user/posting');?>" method="post"
-                                    enctype="multipart/form-data">
-                                    <textarea cols="30" rows="1" class="form-control" placeholder="Masukkan kata-kata"
-                                        name="caption" id="caption"></textarea>
-                                    <?=form_error('caption', '<small class="text-danger pl-3">', '</small>');?>
-                                <?php } ?>
+                                    <?php } else {?>
+                                    <form action="<?=base_url('user/posting');?>" method="post"
+                                        enctype="multipart/form-data">
+                                        <textarea cols="30" rows="1" class="form-control"
+                                            placeholder="Masukkan kata-kata" name="caption" id="caption"></textarea>
+                                        <?=form_error('caption', '<small class="text-danger pl-3">', '</small>');?>
+                                        <?php }?>
                             </div>
                         </div>
 
@@ -229,9 +229,9 @@ endforeach;?>
 
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Nominal Pengisian</label>
-                                        <input type="number" class="form-control"
-                                            placeholder="Masukan Nominal Pengisian" name="nominal_topup" id="nominal"
-                                            required message="minimal top up adalah Rp10.000,00">
+                                        <input type="text" class="form-control" placeholder="Masukan Nominal Pengisian"
+                                            name="nominal_topup" id="nominal" required
+                                            message="minimal top up adalah Rp10.000,00">
                                         <small style="color: red;display:none" id="errorMsg"><i>*minimal top up adalah
                                                 Rp10.000,00</i></small>
 
@@ -270,7 +270,13 @@ endforeach;?>
 
                 <script>
                 $("#nominal").keyup(function() {
-                    if ($('#nominal').val() < 10000) {
+
+
+
+                    var rupiah = $('#nominal').val();
+                    var clean = rupiah.replace(/\D/g, '');
+
+                    if (clean < 10000) {
                         $('#errorMsg').show();
                         $('#pay-button').hide();
                     } else {
