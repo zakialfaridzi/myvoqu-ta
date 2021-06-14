@@ -39,6 +39,9 @@
     <link rel="stylesheet" href="<?= base_url('assets_user/'); ?>css/font-awesome.min.css" />
     <link rel="stylesheet" href="<?= base_url('assets_user/'); ?>css/font-roboto.css" />
     <link rel="stylesheet" href="<?= base_url('assets_user/'); ?>css/select2.min.css" />
+    <link rel="stylesheet" href="<?= base_url('assets_user/'); ?>css/datatables.min.css" />
+    <link rel="stylesheet" href="<?= base_url('assets_user/'); ?>css/buttons.dataTables.min.css" />
+    <!-- <link rel="stylesheet" href="<?= base_url('assets_user/'); ?>css/buttons.bootstrap.min.css" /> -->
     <link href="<?= base_url('assets_user/'); ?>css/emoji.css" rel="stylesheet">
 
 

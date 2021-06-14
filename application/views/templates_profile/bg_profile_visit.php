@@ -12,7 +12,11 @@
                         <div class="profile-info">
                             <?php foreach ($info as $i) : ?>
                                 <img src="<?= base_url('assets_user/') ?>images/<?= $i->image; ?>" alt="" class="img-responsive profile-photo" />
+                                <?php if($i->role_id == 3) : ?>
+                                <h3 style="color: #6fb8df;"><?= $i->name; ?> (Mentor)</h3>
+                                <?php else : ?>
                                 <h3 style="color: #6fb8df;"><?= $i->name; ?></h3>
+                                <?php endif ?>
                                 <p class="text-muted"><?= $i->work; ?></p>
                         </div>
                     </div>

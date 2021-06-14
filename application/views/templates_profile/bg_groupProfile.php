@@ -24,7 +24,7 @@
 							<li><a href="<?= base_url('group/listAnggota') . "/" . $nama['id']; ?>" class="<?= $active; ?>">Anggota</a></li>
 							<li><a href="<?= base_url('group/info') . "/" . $nama['id']; ?>" class="<?= $active; ?>">Informasi</a></li>
 							<li><a href="<?= base_url('group/chatGroup/') . $nama['id']; ?>" class="<?= $active; ?>">Chat Group</a></li>
-							<li><a href="<?= base_url('./cc'); ?>" class="<?= $active; ?>">Quiz</a></li>
+							<li><a href="<?= base_url('./cc'); ?>" target="_blank" class="<?= $active; ?>">Quiz</a></li>
 
 							<?php if ($user['role_id'] == 3) { ?>
 								<li><a href="#" target="_blank" data-toggle="modal" data-target="#penugasan" class="<?= $active; ?>">Penugasan Hafalan</a></li>
@@ -74,6 +74,7 @@
 							<h4 class="modal-title">Penugasan Hafalan</h4>
 						</div>
 						<div class="modal-body" id="modal_view">
+							<p>Report Penugasan Hafalan <button class="btn btn-info" data-toggle="modal" data-target="#table-report-hafalan">Lihat</button></p>
 							<?php foreach ($hafalan as $key => $value) { ?>
 								<div class="list-group">
 									<a href="#" class="list-group-item list-group-item-action DetailPenugasan" id="DetailPenugasan" data-toggle="modal" data-target="#statistik" data-id="<?= $value->id_tugas ?>"><?= "Hafalan " . $value->nama_surah . " Ayat " . $value->from_ayat . "-" . $value->to_ayat ?></a>
@@ -105,6 +106,67 @@
 							<ul class="list-group" id="belum-setor">
 								<!-- <li class="list-group-item"><span class="pull-right" style="font-size: 1em; color: red;"><i class="fas fa-times-circle"></i></span>Namanya</li> -->
 							</ul>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default closeModalPenugasan" data-dismiss="modal">Tutup</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="table-report-hafalan" role="dialog">
+				<div class="modal-dialog modal-dialog-centered modal-md">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Laporan penugasan hafalan</h4>
+						</div>
+						<div class="modal-body" id="modal_view">
+							<div class="table-responsive">
+								<!-- <?php var_dump($reportHafalan) ?> -->
+								<table id="table_report" class="table table_report">
+									<thead>
+										<tr>
+											<?php
+											if ($columnReport != 'Tidak ada data') {
+												foreach ($columnReport->list_fields() as $key) {
+													if ($key == 'name') {
+														echo "<th>Nama Penghafal</th>";
+													} else { ?>
+														<th><?= str_replace("*", " ", $key); ?></th>
+													<?php } ?>
+											<?php
+												}
+											} else {
+											}
+											?>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										if ($reportHafalan != null) {
+											foreach ($reportHafalan as $traine) :
+												echo "<tr>";
+												$tds = get_object_vars($traine);
+												foreach ($tds as $property => $value) {
+													if ($traine->{$property} == '1') {
+														echo "<td><span style='font-size: 1em; color: green;'><i class='fas fa-check-circle'></i></span></td>";
+													} elseif ($traine->{$property} == '0') {
+														echo "<td><span style='font-size: 1em; color: red;'><i class='fas fa-times-circle'></i></span></td>";
+													} else {
+														echo sprintf("<td>%s</td>", $traine->{$property});
+													}
+												}
+												echo "</tr> ";
+											endforeach;
+										}else{
+											echo "<center>Belum ada penugasan</center>";
+										}
+										?>
+									</tbody>
+								</table>
+							</div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default closeModalPenugasan" data-dismiss="modal">Tutup</button>

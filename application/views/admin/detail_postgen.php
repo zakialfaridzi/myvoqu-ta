@@ -25,7 +25,13 @@
 				<tr>
 					<th>Keterangan (Caption)</th>
 					<td><?php echo $post->caption ?></td>
+				</tr
+				<?php foreach ($post2 as $p2): ?>
+				<tr>
+					<th>Nama Pengguna</th>
+					<td><?php echo $p2->name ?></td>
 				</tr>
+				<?php endforeach?>
 				<tr>
                     <th>Tanggal Unggah</th>
                     <td><?php echo date("Y-m-d H:i:s", strtotime('+5 hours', $post->date_post)); ?></td>

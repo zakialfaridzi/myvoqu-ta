@@ -181,7 +181,7 @@ class Group_model extends CI_Model
 
     public function getNotif($id)
     {
-        return $this->db->query('SELECT role_id, id_user, name, notif, date from group_notif g join user u on g.id_user=u.id where id_group = '. $id .' order by date desc limit 5')->result_array();
+        return $this->db->query('SELECT role_id, id_user, name, notif, date from group_notif g join user u on g.id_user=u.id where id_group = ' . $id . ' order by date desc limit 5')->result_array();
     }
 
     public function gethafalan($id)
@@ -191,22 +191,97 @@ class Group_model extends CI_Model
 
     public function getPostHafalan($id)
     {
-       $this->db->select('*');
-       $this->db->from('group_postingan');
-       $this->db->where('tugas is NOT NULL', NULL, FALSE);
-       $this->db->where('id_group', $id);
-       return $this->db->get();
+        $this->db->select('*');
+        $this->db->from('group_postingan');
+        $this->db->where('tugas is NOT NULL', NULL, FALSE);
+        $this->db->where('id_group', $id);
+        return $this->db->get();
     }
 
-    public function getStoredHafalan($id)
+    public function getStoredHafalan($idt, $idg)
     {
-        $this->db->select('a.id_user, u.name, gp.id_posting, rh.created_at');
+        $this->db->select('a.id_user, u.name, IFNULL((case when rh.id_tugas = ' . $idt . ' then 1 END), 0) assign');
         $this->db->from('anggota a');
         $this->db->join('user u', 'a.id_user=u.id', 'left');
         $this->db->join('report_hafalan rh', 'a.id_user=rh.id_user', 'left');
-        $this->db->join('group_postingan gp', 'a.id_user=gp.id_user', 'left');
-        $this->db->where('gp.tugas', $id);
+        $this->db->where('rh.id_group', $idg);
         return $this->db->get();
+    }
+
+    public function reportHafalan($idg)
+    {
+        $idTugas = $this->gethafalan($idg)->result();
+        $len = count($idTugas);
+        $i = 0;
+        foreach ($idTugas as $key => $value) {
+            if ($i == 0) {
+                if ($value->to_ayat == null) {
+                    $theTugas[] = "IFNULL((case when rh.id_tugas = $value->id_tugas then 1 END), 0) as '$value->nama_surah*Ayat*$value->from_ayat',";
+                } else {
+                    $theTugas[] = "IFNULL((case when rh.id_tugas = $value->id_tugas then 1 END), 0) as '$value->nama_surah*Ayat*$value->from_ayat-$value->to_ayat',";
+                }
+            } else if ($i == $len - 1) {
+                if ($value->to_ayat == null) {
+                    $theTugas[] = "IFNULL((case when rh.id_tugas = $value->id_tugas then 1 END), 0) as '$value->nama_surah*Ayat*$value->from_ayat'";
+                } else {
+                    $theTugas[] = "IFNULL((case when rh.id_tugas = $value->id_tugas then 1 END), 0) as '$value->nama_surah*Ayat*$value->from_ayat*-*$value->to_ayat'";
+                }
+            }
+            $i++;
+        }
+        if ($idTugas == null) {
+            $theTugas = null;
+            return $theTugas;
+        } else {
+            $this->db->select('u.name,');
+            for ($j = 0; $j < count($theTugas); $j++) {
+                $this->db->select($theTugas[$j]);
+                // $wew = $theTugas[$j];
+            }
+            $this->db->from('anggota a');
+            $this->db->join('user u', 'a.id_user=u.id', 'left');
+            $this->db->join('report_hafalan rh', 'a.id_user=rh.id_user', 'left');
+            $this->db->where('rh.id_group', $idg);
+            return $this->db->get()->result();
+        }
+    }
+
+    public function columnReport($idg)
+    {
+        $idTugas = $this->gethafalan($idg)->result();
+        $len = count($idTugas);
+        $i = 0;
+        foreach ($idTugas as $key => $value) {
+            if ($i == 0) {
+                if ($value->to_ayat == null) {
+                    $theTugas[] = "IFNULL((case when rh.id_tugas = $value->id_tugas then 1 END), 0) as '$value->nama_surah*Ayat*$value->from_ayat',";
+                } else {
+                    $theTugas[] = "IFNULL((case when rh.id_tugas = $value->id_tugas then 1 END), 0) as '$value->nama_surah*Ayat*$value->from_ayat-$value->to_ayat',";
+                }
+            } else if ($i == $len - 1) {
+                if ($value->to_ayat == null) {
+                    $theTugas[] = "IFNULL((case when rh.id_tugas = $value->id_tugas then 1 END), 0) as '$value->nama_surah*Ayat*$value->from_ayat'";
+                } else {
+                    $theTugas[] = "IFNULL((case when rh.id_tugas = $value->id_tugas then 1 END), 0) as '$value->nama_surah*Ayat*$value->from_ayat-$value->to_ayat'";
+                }
+            }
+            $i++;
+        }
+        if ($idTugas == null) {
+            $theTugas = 'Tidak ada data';
+            return $theTugas;
+        } else {
+            $this->db->select('u.name,');
+            for ($j = 0; $j < count($theTugas); $j++) {
+                $this->db->select($theTugas[$j]);
+                // $wew = $theTugas[$j];
+            }
+            $this->db->from('anggota a');
+            $this->db->join('user u', 'a.id_user=u.id', 'left');
+            $this->db->join('report_hafalan rh', 'a.id_user=rh.id_user', 'left');
+            $this->db->where('rh.id_group', $idg);
+            return $this->db->get();
+        }
     }
 
     public function getSukaById($id)

@@ -57,7 +57,7 @@ class User_model extends CI_model
 
     public function getPosting()
     {
-        return $this->db->query('SELECT distinct * FROM posting p join user u on(p.id_user = u.id) join follow f on(f.id_usertarget = u.id) where id_usertarget in (select id_usertarget from follow where id_userfollow = ' . $this->session->userdata('id') . '  and stat = 1 and role_id = 2) and id_userfollow = ' . $this->session->userdata('id') . ' or id_userfollow and id_usertarget = ' . $this->session->userdata('id') . ' and stat = 2 GROUP BY(id_posting) order by id_posting desc')->result();
+        return $this->db->query('SELECT distinct * FROM posting p join user u on(p.id_user = u.id) join follow f on(f.id_usertarget = u.id) where id_usertarget in (select id_usertarget from follow where id_userfollow = ' . $this->session->userdata('id') . '  and stat = 1) and id_userfollow = ' . $this->session->userdata('id') . ' or id_userfollow and id_usertarget = ' . $this->session->userdata('id') . ' and stat = 2 GROUP BY(id_posting) order by id_posting desc')->result();
     }
 
     // public function getPosting1()

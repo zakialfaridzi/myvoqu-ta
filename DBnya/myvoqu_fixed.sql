@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2021 at 09:09 AM
+-- Generation Time: Jun 11, 2021 at 02:26 AM
 -- Server version: 10.4.18-MariaDB
--- PHP Version: 7.3.27
+-- PHP Version: 7.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -290,7 +290,19 @@ INSERT INTO `comment` (`id_comment`, `comment`, `date`, `id_posting`, `id`, `id_
 (23, 'Estetik mun ceuk barudak ayenamah :lol:', '1623075306', 290, 147, 144),
 (24, 'Tarikan ah suarana, merdu ulah dilaun laun', '1623075400', 297, 147, 146),
 (25, 'Wariskeun kang suantena ka abdi', '1623075606', 292, 154, 144),
-(26, 'bismillah  :-)', '1623236093', 304, 150, 145);
+(26, 'bismillah  :-)', '1623236093', 304, 150, 145),
+(27, 'keren ya', '1623370731', 315, 147, 144),
+(28, 'Subhannallah', '1623370744', 314, 147, 144),
+(29, 'Semangat', '1623370755', 313, 147, 144),
+(30, 'Aestetik kalau kata anak jaman sekarang :lol:', '1623370780', 312, 147, 144),
+(31, 'Berbakat sekali pak', '1623370805', 311, 147, 144),
+(32, 'Wuihh seperti kapal  :gulp:', '1623370845', 310, 147, 144),
+(33, ' ;-) ;-)', '1623370880', 315, 146, 144),
+(34, 'Suaranya merdu :)', '1623370907', 314, 146, 144),
+(35, 'Iqro, Iqro, Iqro ;-)', '1623370955', 313, 146, 144),
+(36, 'Sajadahna sae :-)', '1623370979', 312, 146, 144),
+(37, 'My Voice of Alquran mempertemukan kita, allahuakbar! :cheese:', '1623371038', 315, 154, 144),
+(38, ' :-) :-) :-)', '1623371121', 315, 149, 144);
 
 --
 -- Triggers `comment`
@@ -501,7 +513,10 @@ INSERT INTO `follow` (`id_follow`, `stat`, `date`, `id_userfollow`, `id_usertarg
 (110, 1, '1623235797', 145, 161, 'Artisan', 'Hello World!', 'default_female.png'),
 (111, 1, '1623235829', 145, 162, 'Hipyo', 'Hello World!', 'default_female.png'),
 (112, 1, '1623235863', 145, 150, 'Surinem', 'Hello World!', 'default_female.png'),
-(113, 1, '1623236069', 150, 145, 'Endar Parisian', 'Hello World!', 'default_female.png');
+(113, 1, '1623236069', 150, 145, 'Endar Parisian', 'Hello World!', 'default_female.png'),
+(114, 1, '1623371093', 149, 144, 'Asep Sudasep', 'Hello World!', 'default_male.png'),
+(115, 1, '1623371099', 149, 154, 'Sobaqam', 'Hello World!', 'default_male.png'),
+(116, 1, '1623371100', 149, 148, 'Bambang Sibambang', 'Hello World!', 'default_male.png');
 
 --
 -- Triggers `follow`
@@ -1032,7 +1047,36 @@ INSERT INTO `notification` (`id_notification`, `notif`, `date`, `id_posting`, `i
 (502, 'Menyukai postingan anda', '', 312, 144, 0),
 (503, 'Menyukai postingan anda', '', 313, 144, 0),
 (504, 'Menyukai postingan anda', '', 314, 144, 0),
-(505, 'Menyukai postingan anda', '', 315, 144, 0);
+(505, 'Menyukai postingan anda', '', 315, 144, 0),
+(506, 'comment on your post: \"keren ya\"', '1623370731', 315, 147, 144),
+(507, 'Menyukai postingan anda', '1623370733', 315, 147, 144),
+(508, 'comment on your post: \"Subhannallah\"', '1623370744', 314, 147, 144),
+(509, 'Menyukai postingan anda', '1623370746', 314, 147, 144),
+(510, 'comment on your post: \"Semangat\"', '1623370755', 313, 147, 144),
+(511, 'Menyukai postingan anda', '1623370756', 313, 147, 144),
+(512, 'Menyukai postingan anda', '1623370766', 312, 147, 144),
+(513, 'comment on your post: \"Aestetik kalau kata anak jaman sekarang :lol:\"', '1623370780', 312, 147, 144),
+(514, 'comment on your post: \"Berbakat sekali pak\"', '1623370805', 311, 147, 144),
+(515, 'Menyukai postingan anda', '1623370807', 311, 147, 144),
+(516, 'Menyukai postingan anda', '1623370816', 310, 147, 144),
+(517, 'comment on your post: \"Wuihh seperti kapal  :gulp:\"', '1623370845', 310, 147, 144),
+(518, 'Menyukai postingan anda', '1623370874', 315, 146, 144),
+(519, 'comment on your post: \" ;-) ;-)\"', '1623370880', 315, 146, 144),
+(520, 'Menyukai postingan anda', '1623370891', 314, 146, 144),
+(521, 'comment on your post: \"Suaranya merdu :)\"', '1623370907', 314, 146, 144),
+(522, 'Menyukai postingan anda', '1623370916', 313, 146, 144),
+(523, 'comment on your post: \"Iqro, Iqro, Iqro ;-)\"', '1623370955', 313, 146, 144),
+(524, 'Menyukai postingan anda', '1623370963', 312, 146, 144),
+(525, 'comment on your post: \"Sajadahna sae :-)\"', '1623370979', 312, 146, 144),
+(526, 'Menyukai postingan anda', '1623371000', 315, 154, 144),
+(527, 'comment on your post: \"My Voice of Alquran mempertemukan kita, allahuakbar! :cheese:\"', '1623371038', 315, 154, 144),
+(528, 'Menyukai postingan anda', '1623371045', 314, 154, 144),
+(529, 'Tidak menyukai postingan anda', '1623371062', 315, 144, 0),
+(530, 'Mulai Mengikuti Anda.', '1623371093', 0, 149, 144),
+(531, 'Mulai Mengikuti Anda.', '1623371099', 0, 149, 154),
+(532, 'Mulai Mengikuti Anda.', '1623371100', 0, 149, 148),
+(533, 'Menyukai postingan anda', '1623371104', 315, 149, 144),
+(534, 'comment on your post: \" :-) :-) :-)\"', '1623371121', 315, 149, 144);
 
 -- --------------------------------------------------------
 
@@ -1291,7 +1335,20 @@ INSERT INTO `suka` (`id_suka`, `status`, `date`, `id_posting`, `id`, `id_tujuan`
 (284, 2, '', 312, 144, 0),
 (285, 2, '', 313, 144, 0),
 (286, 2, '', 314, 144, 0),
-(287, 2, '', 315, 144, 0);
+(287, 1, '1623371062', 315, 144, 0),
+(288, 1, '1623370733', 315, 147, 144),
+(289, 1, '1623370746', 314, 147, 144),
+(290, 1, '1623370756', 313, 147, 144),
+(291, 1, '1623370766', 312, 147, 144),
+(292, 1, '1623370807', 311, 147, 144),
+(293, 1, '1623370816', 310, 147, 144),
+(294, 1, '1623370874', 315, 146, 144),
+(295, 1, '1623370891', 314, 146, 144),
+(296, 1, '1623370916', 313, 146, 144),
+(297, 1, '1623370963', 312, 146, 144),
+(298, 1, '1623371000', 315, 154, 144),
+(299, 1, '1623371045', 314, 154, 144),
+(300, 1, '1623371104', 315, 149, 144);
 
 --
 -- Triggers `suka`
@@ -1561,7 +1618,7 @@ INSERT INTO `user` (`id`, `name`, `gender`, `email`, `image`, `passsword`, `role
 (146, 'Surya Nurhalimah', 'Male', 'surya@gmail.com', 'default_male.png', '$2y$10$xP4idTclGpLn6GTn6zGkQOs26IwtkyEm6xvR4cwPjyqdC1cvxVYZW', 2, 1, 1622989334, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (147, 'Nurdin Bagus', 'Male', 'nurdin@gmail.com', 'default_male.png', '$2y$10$HMvOlhQToVs4TWLOUvbdsOiKS7QwppWm.jNriv8DdA5QYzarmHFXO', 2, 1, 1622989391, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (148, 'Bambang Sibambang', 'Male', 'bambang@gmail.com', 'default_male.png', '$2y$10$3SjuioySLZzEFsaB5/6.HerOCVae7xXsIMfdMkKKlTPusdJM/cAQW', 2, 1, 1622989430, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
-(149, 'Abizzy Al Tareq', 'Male', 'abizzy@gmail.com', 'default_male.png', '$2y$10$qBt7p6bai3KftmNlxjkMEe40gANj5M05JBYau.XAuXGJNcdXHDZy.', 2, 1, 1622989477, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
+(149, 'Abizzy Al Tareq', 'Male', 'abizzy@gmail.com', 'default_male.png', '$2y$10$qBt7p6bai3KftmNlxjkMEe40gANj5M05JBYau.XAuXGJNcdXHDZy.', 2, 1, 1622989477, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (150, 'Surinem', 'Female', 'surinem@gmail.com', 'default_female.png', '$2y$10$lOgCUUE8OKxSqYsX2XKNBOKkK8FDvBGNtJUV9AKQZQFyTcuWdFAw2', 2, 1, 1622989504, 'offline-dot', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (151, 'Dea', 'Female', 'dea@gmail.com', 'default_female.png', '$2y$10$bQEIInl51NElKcoSBwEbL.rCcrZNjncL8VR9IMHDtn17tQMdvYgBS', 2, 2, 1622989521, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
 (152, 'Sheva', 'Female', 'sheva@gmail.com', 'default_female.png', '$2y$10$xjiTC3KBjsCrxRZeAUOTge3KfpCPW7NUOxSEwSEc8ZjRFtkZPViHS', 2, 2, 1622989558, '', '0000-00-00', '', 'Hello World!', '', NULL, '', 0),
@@ -1949,7 +2006,7 @@ ALTER TABLE `chatall`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `dompet`
@@ -1961,7 +2018,7 @@ ALTER TABLE `dompet`
 -- AUTO_INCREMENT for table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `id_follow` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `id_follow` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
 -- AUTO_INCREMENT for table `group_comment`
@@ -2033,7 +2090,7 @@ ALTER TABLE `menu_item`
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `id_notification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=506;
+  MODIFY `id_notification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=535;
 
 --
 -- AUTO_INCREMENT for table `pengumuman`
@@ -2075,7 +2132,7 @@ ALTER TABLE `report_hafalan`
 -- AUTO_INCREMENT for table `suka`
 --
 ALTER TABLE `suka`
-  MODIFY `id_suka` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=288;
+  MODIFY `id_suka` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=301;
 
 --
 -- AUTO_INCREMENT for table `tasks`

@@ -39,6 +39,7 @@
 					<li role="presentation" class="active"><a href="#">Postingan</a></li>
 					<li role="presentation"><a href="<?= base_url('group/inGroupSetoran/').$this->uri->segment('3') ?>">Setoran</a></li>
 				</ul>
+				<!-- <?php var_dump($reportHafalan) ?> -->
 				<?php foreach ($hafalan as $key => $value) { ?>
 					<div class="alert alert-info" role="alert">
 						Tugas hafalan surah
@@ -58,8 +59,8 @@
 								?>
 								>Setor Hafalan</button>
 							<?php }elseif ($this->session->userdata('role_id') == 3) { ?>
-                                <button class="btn btn-warning pull-right lihatSetoran" data-toggle="modal" data-target="#listSetoran" data-idu="<?= $this->session->userdata('id') ?>" data-nama_surah="<?= $value->nama_surah ?>" data-ayat1="<?= $value->from_ayat ?>" data-ayat2="<?= $value->to_ayat ?>" data-idg="<?= $value->id_group ?>" data-idt="<?= $value->id_tugas ?>">
-                                Lihat Setoran</button>
+                                <!-- <button class="btn btn-warning pull-right lihatSetoran" data-toggle="modal" data-target="#listSetoran" data-idu="<?= $this->session->userdata('id') ?>" data-nama_surah="<?= $value->nama_surah ?>" data-ayat1="<?= $value->from_ayat ?>" data-ayat2="<?= $value->to_ayat ?>" data-idg="<?= $value->id_group ?>" data-idt="<?= $value->id_tugas ?>" hidden>
+                                Lihat Setoran</button> -->
                             <?php } ?>
 						<?php } else { ?>
 							<?php if ($this->session->userdata('role_id') == 2) { ?>
@@ -73,8 +74,8 @@
 								?>
 								>Setor Hafalan</button>
 							<?php } ?>
-						<?php } ?>
-
+						<?php } $date = date_create($value->created_at); ?>
+					<p><?='pada ' . date_format($date,"d-m-Y") ?></p>
 					</div>
 				<?php } ?>
 				<?= $this->session->flashdata('message'); ?>
@@ -149,8 +150,6 @@
 
 				<!-- Post Content
                 ================================================= -->
-
-
 				<div class="modal fade" id="setorHafalan" role="dialog">
 					<div class="modal-dialog">
 						<!-- Modal content-->

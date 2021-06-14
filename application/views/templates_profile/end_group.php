@@ -64,13 +64,19 @@
 
 <!-- Scripts
     ================================================= -->
-<script src="<?= base_url('assets_user/') ?>js/jquery-3.1.1.min.js"></script>
+    <script src="<?= base_url('assets_user/') ?>js/jquery-3.1.1.min.js" defer></script>
+    <script src="<?= base_url('assets_user/') ?>js/datatables.min.js" defer></script>
+    <script src="<?= base_url('assets_user/') ?>js/jquery.dataTables.min.js" defer></script>
+    <script src="<?= base_url('assets_user/') ?>js/dataTables.buttons.min.js" defer></script>
+<script src="<?= base_url('assets_user/') ?>js/jszip.min.js" defer></script>
+<script src="<?= base_url('assets_user/') ?>js/vfs_fonts.js" defer></script>
+<script src="<?= base_url('assets_user/') ?>js/pdfmake.min.js" defer></script>
 <script src="<?= base_url('assets_user/') ?>js/bootstrap.min.js"></script>
 <script src="<?= base_url('assets_user/') ?>js/jquery.sticky-kit.min.js"></script>
 <script src="<?= base_url('assets_user/') ?>js/jquery.scrollbar.min.js"></script>
 <script src="<?= base_url('assets_user/') ?>js/script.js"></script>
 <script src="<?= base_url('assets_user/') ?>js/select2.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"> -->
 
 </script>
@@ -121,6 +127,15 @@
     });
 
     $(document).ready(function() {
+    $('#table_report').DataTable( {
+        dom: 'B',
+        buttons: [
+            'excel'
+        ]
+    } );
+} );
+
+    $(document).ready(function() {
         $(".setorBtn").click(function() {
             // console.log($(this).data('nama_surah'));
             $('form #nama_surah').val($(this).data('nama_surah'));
@@ -136,45 +151,23 @@
     $(".DetailPenugasan").click(function() {
         var id = $(this).data('id');
         var idg = this.href.substring(this.href.lastIndexOf('/') + 1);
-        var url = "<?= base_url('Group/getData/postHafalan/'); ?>" + id;
+        var url = "<?= base_url('Group/getData/postHafalan/'); ?>" + id + '/' + idg;
         var url2 = "<?= base_url('Group/getData/anggota/'); ?>" + idg;
         $.get(url, function(data) {
             store = JSON.parse(data);
-            $.get(url2, function(data2) {
-                store2 = JSON.parse(data2);
-                for (let i = 0; i < store2.length; i++) {
-                    if (store2[i].id_user == store[i].id_user) {
-                        $('#sudah-setor').append(`<li class="list-group-item">${store2[i].name}<span class="pull-right" style="font-size: 1em; color: green;"><i class="fas fa-check-circle"></i></span></li>`);
-                    } else {
-                        $('#belum-setor').append(`<li class="list-group-item">${store2[i].name}</li>`);
-                    }
+            console.log(store);
+            for (let i = 0; i < store.length; i++) {
+                if (store[i].assign == 1) {
+                    $('#sudah-setor').append(`<li class="list-group-item">${store[i].name}<span class="pull-right" style="font-size: 1em; color: green;"><i class="fas fa-check-circle"></i></span></li>`);
+                } else {
+                    $('#belum-setor').append(`<li class="list-group-item">${store[i].name}<span class="pull-right" style="font-size: 1em; color: red;"><i class="fas fa-times-circle"></i></span></li>`);
                 }
-            });
+            }
         });
-        // console.log(store);
     });
     $(".closeModalPenugasan").click(function() {
         $('#sudah-setor').html(' ');
-    });
-
-    $(document).ready(function() {
-        $(".lihatSetoran").click(function() {
-            // console.log($(this).data('nama_surah'));
-            var id = $(this).data('idt');
-            var idg = $(this).data('idg');
-            var urlPosting = "<?= base_url('Group/getIdposting/'); ?>" + idg;
-            var url = "<?= base_url('Group/getData/postHafalan/'); ?>" + id;
-            $.get(url, function(data) {
-                store = JSON.parse(data);
-                // console.log(store);
-                for (let i = 0; i < store.length; i++) {
-                $('#stored-name').append(`<a href="${urlPosting+'/'+store[i].id_posting}" id='close-listSetoran' class="list-group-item">${store[i].name}</a>`);
-                }
-            });
-        });
-    });
-    $("#close-listSetoran").click(function() {
-        $('#stored-name').html(' ');
+        $('#belum-setor').html(' ');
     });
 </script>
 

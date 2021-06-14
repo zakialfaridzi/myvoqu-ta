@@ -58,8 +58,8 @@
 								?>
 								>Setor Hafalan</button>
 							<?php }elseif ($this->session->userdata('role_id') == 3) { ?>
-                                <button class="btn btn-warning pull-right lihatSetoran" data-toggle="modal" data-target="#listSetoran" data-idu="<?= $this->session->userdata('id') ?>" data-nama_surah="<?= $value->nama_surah ?>" data-ayat1="<?= $value->from_ayat ?>" data-ayat2="<?= $value->to_ayat ?>" data-idg="<?= $value->id_group ?>" data-idt="<?= $value->id_tugas ?>">
-                                Lihat Setoran</button>
+                                <!-- <button class="btn btn-warning pull-right lihatSetoran" data-toggle="modal" data-target="#listSetoran" data-idu="<?= $this->session->userdata('id') ?>" data-nama_surah="<?= $value->nama_surah ?>" data-ayat1="<?= $value->from_ayat ?>" data-ayat2="<?= $value->to_ayat ?>" data-idg="<?= $value->id_group ?>" data-idt="<?= $value->id_tugas ?>" hidden>
+                                Lihat Setoran</button> -->
                             <?php } ?>
 						<?php } else { ?>
 							<?php if ($this->session->userdata('role_id') == 2) { ?>
