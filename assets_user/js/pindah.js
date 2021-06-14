@@ -16,11 +16,7 @@ keyword.addEventListener("click", function () {
 		}
 	};
 
-<<<<<<< HEAD
 	xhr.open("GET", "http://localhost/myvoqu/profile/editProfileImage", true);
-=======
-	xhr.open('GET', 'http://e0f75e7b3bc2.ap.ngrok.io/myvoqu/profile/editProfileImage', true);
->>>>>>> 266bbb437a273587ff13abf70b06c69e27a5cf87
 	xhr.send();
 });
 

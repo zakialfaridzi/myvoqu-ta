@@ -64,13 +64,13 @@
 
 <!-- Scripts
     ================================================= -->
-    <script src="<?= base_url('assets_user/') ?>js/jquery-3.1.1.min.js"></script>
-    <script src="<?= base_url('assets_user/') ?>js/datatables.min.js"></script>
+    <script src="<?= base_url('assets_user/') ?>js/jquery-3.1.1.min.js" defer></script>
+    <script src="<?= base_url('assets_user/') ?>js/datatables.min.js" defer></script>
     <script src="<?= base_url('assets_user/') ?>js/jquery.dataTables.min.js" defer></script>
     <script src="<?= base_url('assets_user/') ?>js/dataTables.buttons.min.js" defer></script>
-<script src="<?= base_url('assets_user/') ?>js/jszip.min.js" ></script>
-<script src="<?= base_url('assets_user/') ?>js/vfs_fonts.js" ></script>
-<script src="<?= base_url('assets_user/') ?>js/pdfmake.min.js" ></script>
+<script src="<?= base_url('assets_user/') ?>js/jszip.min.js" defer></script>
+<script src="<?= base_url('assets_user/') ?>js/vfs_fonts.js" defer></script>
+<script src="<?= base_url('assets_user/') ?>js/pdfmake.min.js" defer></script>
 <script src="<?= base_url('assets_user/') ?>js/bootstrap.min.js"></script>
 <script src="<?= base_url('assets_user/') ?>js/jquery.sticky-kit.min.js"></script>
 <script src="<?= base_url('assets_user/') ?>js/jquery.scrollbar.min.js"></script>
