@@ -151,6 +151,10 @@ class Group extends CI_Controller
         $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
         $data['postgen'] = $this->User_model->getPostgen();
         $data['pengumuman'] = $this->User_model->getPengumuman();
+        $data['hafalan'] = $this->Group_model->gethafalan($id)->result();
+        $data['postHafalan'] = $this->Group_model->getPostHafalan($id)->result();
+        $data['reportHafalan'] = $this->Group_model->reportHafalan($id);
+        $data['columnReport'] = $this->Group_model->columnReport($id);
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -200,6 +204,10 @@ class Group extends CI_Controller
         $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
         $data['postgen'] = $this->User_model->getPostgen();
         $data['pengumuman'] = $this->User_model->getPengumuman();
+        $data['hafalan'] = $this->Group_model->gethafalan($id)->result();
+        $data['postHafalan'] = $this->Group_model->getPostHafalan($id)->result();
+        $data['reportHafalan'] = $this->Group_model->reportHafalan($id);
+        $data['columnReport'] = $this->Group_model->columnReport($id);
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -233,10 +241,10 @@ class Group extends CI_Controller
         }
     }
 
-    public function getData($type, $id)
+    public function getData($type, $id, $idg = null)
     {
         if ($type == 'postHafalan') {
-            $data = $this->Group_model->getStoredHafalan($id)->result();
+            $data = $this->Group_model->getStoredHafalan($id, $idg)->result();
             echo json_encode($data);
         }elseif ($type == "anggota") {
             $data = $this->Group_model->getAnggotaGroup($id);
@@ -261,6 +269,9 @@ class Group extends CI_Controller
         $data['pengumuman'] = $this->User_model->getPengumuman();
         $data['hafalan'] = $this->Group_model->gethafalan($id)->result();
         $data['postHafalan'] = $this->Group_model->getPostHafalan($id)->result();
+        // $data['reportHafalan'] = $this->Group_model->reportHafalan($id);
+        $data['reportHafalan'] = $this->Group_model->reportHafalan($id);
+        $data['columnReport'] = $this->Group_model->columnReport($id);
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
         } elseif ($data['user']['role_id'] == 1) {
@@ -296,6 +307,8 @@ class Group extends CI_Controller
         $data['pengumuman'] = $this->User_model->getPengumuman();
         $data['hafalan'] = $this->Group_model->gethafalan($id)->result();
         $data['postHafalan'] = $this->Group_model->getPostHafalan($id)->result();
+        $data['reportHafalan'] = $this->Group_model->reportHafalan($id);
+        $data['columnReport'] = $this->Group_model->columnReport($id);
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
         } elseif ($data['user']['role_id'] == 1) {
@@ -330,6 +343,10 @@ class Group extends CI_Controller
         $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
         $data['postgen'] = $this->User_model->getPostgen();
         $data['pengumuman'] = $this->User_model->getPengumuman();
+        $data['hafalan'] = $this->Group_model->gethafalan($id)->result();
+        $data['postHafalan'] = $this->Group_model->getPostHafalan($id)->result();
+        $data['reportHafalan'] = $this->Group_model->reportHafalan($id);
+        $data['columnReport'] = $this->Group_model->columnReport($id);
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -367,6 +384,10 @@ class Group extends CI_Controller
         $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
         $data['postgen'] = $this->User_model->getPostgen();
         $data['pengumuman'] = $this->User_model->getPengumuman();
+        $data['hafalan'] = $this->Group_model->gethafalan($id)->result();
+        $data['postHafalan'] = $this->Group_model->getPostHafalan($id)->result();
+        $data['reportHafalan'] = $this->Group_model->reportHafalan($id);
+        $data['columnReport'] = $this->Group_model->columnReport($id);
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -406,6 +427,10 @@ class Group extends CI_Controller
         $data['postgen'] = $this->User_model->getPostgen();
         $data['pengumuman'] = $this->User_model->getPengumuman();
         $data['nama_user'] = $this->db->get_where('user', ['id' => $this->session->userdata('id')])->row_array();
+        $data['hafalan'] = $this->Group_model->gethafalan($id)->result();
+        $data['postHafalan'] = $this->Group_model->getPostHafalan($id)->result();
+        $data['reportHafalan'] = $this->Group_model->reportHafalan($id);
+        $data['columnReport'] = $this->Group_model->columnReport($id);
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -531,6 +556,10 @@ class Group extends CI_Controller
         $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
         $data['postgen'] = $this->User_model->getPostgen();
         $data['pengumuman'] = $this->User_model->getPengumuman();
+        $data['hafalan'] = $this->Group_model->gethafalan($id)->result();
+        $data['postHafalan'] = $this->Group_model->getPostHafalan($id)->result();
+        $data['reportHafalan'] = $this->Group_model->reportHafalan($id);
+        $data['columnReport'] = $this->Group_model->columnReport($id);
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -774,6 +803,10 @@ class Group extends CI_Controller
         $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
         $data['postgen'] = $this->User_model->getPostgen();
         $data['pengumuman'] = $this->User_model->getPengumuman();
+        $data['hafalan'] = $this->Group_model->gethafalan($id)->result();
+        $data['postHafalan'] = $this->Group_model->getPostHafalan($id)->result();
+        $data['reportHafalan'] = $this->Group_model->reportHafalan($id);
+        $data['columnReport'] = $this->Group_model->columnReport($id);
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
