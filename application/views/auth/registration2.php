@@ -35,7 +35,7 @@
                 <div class="form-group">
                     <input type="password" class="form-control form-control-user" id="password1" name="password1"
                         placeholder="Password">
-
+                    <?=form_error('password1', '<small class="text-danger pl-3">', '</small>');?>
                 </div>
 
                 <div class="form-group">

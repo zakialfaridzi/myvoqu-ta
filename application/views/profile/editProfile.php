@@ -64,7 +64,7 @@
                 <div class="form-group col-xs-12">
                     <label for="exampleInputEmail1">Tanggal Lahir</label>
                     <input type="date" class="form-control" id="date" name="date" aria-describedby="emailHelp"
-                        value="<?=$i->birthdate;?>" autocomplete="off">
+                        value="<?=$i->birthdate;?>" autocomplete="off" max="2005-12-12">
 
                 </div>
             </div>

@@ -23,6 +23,7 @@
                                 <textarea cols="30" rows="1" class="form-control" placeholder="Masukkan kata-kata"
                                     name="caption" id="caption"></textarea>
                                 <?=form_error('caption', '<small class="text-danger pl-3">', '</small>');?>
+                                <small class="text-danger"><i>*Maksimal ukuran file adalah 15mb</i></small>
                         </div>
 
 
@@ -105,7 +106,8 @@
 
 
                                 <div class="alert alert-info alert-dismissible show" role="alert">
-                                    Minimal pengisian wallet adalah <strong>Rp10.0000,00</strong>
+                                    Minimal pengisian wallet adalah
+                                    <strong>Rp<?=number_format(10000, 2, ',', '.')?></strong>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>

@@ -156,9 +156,22 @@ class User extends CI_Controller
         $eror = $_FILES['file']['error'];
         $tmpName = $_FILES['file']['tmp_name'];
 
+        if ($ukuranFile > 15000000) {
+            $this->session->set_flashdata('mm', '<div class="alert alert-danger alert-dismissible show" role="alert">
+			Ukuran file terlalu besar
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+			</div>');
+
+            redirect('user');
+
+            return false;
+        }
+
         if ($eror === 4) {
             $this->session->set_flashdata('mm', '<div class="alert alert-danger alert-dismissible show" role="alert">
-      	Pilih foto atau video terlebih dahulu!
+      	Pilih foto atau video terlebih dahulu
       	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
       	</button>
