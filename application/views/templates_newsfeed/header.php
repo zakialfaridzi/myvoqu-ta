@@ -23,35 +23,51 @@
                     <?php endforeach;?>
                 </div>
                 <!--profile card ends-->
+
+
                 <div>
                     <ul class="nav-news-feed">
 
-                        <li><i class="far fa-bell" style="color: tomato;"></i>
+                        <li
+                            <?=$this->uri->segment(1) == "notifikasi" ? "style='background-color: #bee4f3; border-radius: 200px; padding: 10px;'" : "";?>>
+                            <i class="far fa-bell" style="color: tomato;"></i>
                             <div><a href="<?=base_url('notifikasi')?>">Notifikasi</a></div>
                         </li>
 
-                        <li><i class="fas fa-book-reader" style="color: burlywood;"></i>
+                        <li
+                            <?=$this->uri->segment(1) == "library" ? "style='background-color: #bee4f3; border-radius: 200px; padding: 10px;'" : "";?>>
+                            <i class="fas fa-book-reader" style="color: burlywood;"></i>
                             <div><a href="<?=base_url('library')?>">Material Pembelajaran</a></div>
                         </li>
 
-                        <li><i class="fas fa-search" style="color: peachpuff;"></i>
+                        <li
+                            <?=$this->uri->segment(1) == "friend" ? "style='background-color: #bee4f3; border-radius: 200px; padding: 10px;'" : "";?>>
+                            <i class="fas fa-search" style="color: peachpuff;"></i>
                             <div><a href="<?=base_url('friend')?>">Temukan Teman</a></div>
                         </li>
 
-                        <li><i class="fas fa-users" style="color: royalblue;"></i>
+                        <li
+                            <?=$this->uri->segment(1) == "group" ? "style='background-color: #bee4f3; border-radius: 200px; padding: 10px;'" : "";?>>
+                            <i class="fas fa-users" style="color: royalblue;"></i>
                             <div><a href="<?=base_url('group')?>">Grup</a></div>
                         </li>
 
-                        <li><i class="fas fa-comments" style="color: yellowgreen;"></i>
+                        <li
+                            <?=$this->uri->segment(1) == "chat" ? "style='background-color: #bee4f3; border-radius: 200px; padding: 10px;'" : "";?>>
+                            <i class="fas fa-comments" style="color: yellowgreen;"></i>
                             <div><a href="<?=base_url('chat/index');?>">Pesan</a></div>
                         </li>
 
-                        <li><i class="fas fa-comment-dots" style="color: black;"></i>
+                        <li
+                            <?=$this->uri->segment(1) == "Chatall" ? "style='background-color: #bee4f3; border-radius: 200px; padding: 10px;'" : "";?>>
+                            <i class="fas fa-comment-dots" style="color: black;"></i>
                             <div><a href="<?=base_url('Chatall/');?>">Ngobrol Dengan Semua Pengguna</a>
                             </div>
                         </li>
 
-                        <li><i class="fa fa-video text-muted" style="color: black;"></i>
+                        <li
+                            <?=$this->uri->segment(1) == "Colab" ? "style='background-color: #bee4f3; border-radius: 200px; padding: 10px;'" : "";?>>
+                            <i class="fa fa-video text-muted" style="color: black;"></i>
                             <div><a href="<?=base_url('Colab/');?>">Kolaborasi</a></div>
                         </li>
 
@@ -63,13 +79,19 @@
                             <ul class="online-users list-inline">
                                 <?php foreach ($otherUser as $ou):
     if ($ou->role_id != 1) {?>
+
                                 <li>
+                                    <font style="color: #6fb8df;"><?=substr($ou->name, 0, 5) . "...."?></font>
                                     <a href="newsfeed-messages.html" title="<?=$ou->name;?>"><img
                                             src="<?=base_url('assets_user/images/' . $ou->image);?>" alt="user"
                                             class="img-responsive profile-photo" /><span class="<?=$ou->status;?>"
                                             id="keyword"></span>
                                     </a>
+
+
+
                                 </li>
+
                                 <?php }
 endforeach;?>
 

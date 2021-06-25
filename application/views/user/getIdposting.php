@@ -144,15 +144,27 @@ echo $str;
 
 
                 <?php else: ?>
-                <br>
-                <form
-                    action="<?=base_url('user/deleteComment/') . $cmt->id_comment . "/" . $this->uri->segment('3');?>">
-                    <button style="text-decoration:none; color:red; border:none; background-color:#fff; opacity:70%;"
-                        onclick="if (!confirm('Apakah anda yakin akan menghapus komentar ini?')) { return false }">
-                        Hapus!
-                    </button>
+                <br> &nbsp;&nbsp;&nbsp;
 
-                </form>
+
+                <a href="<?=base_url('user/deleteComment/') . $cmt->id_comment . "/" . $this->uri->segment('3');?>">
+                    <button style="text-decoration:none; color:red; border:none; background-color:#F8F8F8; opacity:70%;"
+                        onclick="if (!confirm('Apakah anda yakin akan menghapus komentar ini?')) { return false }">
+                        <i class="fas fa-trash"></i> hapus
+                    </button>
+                </a>
+                &nbsp;&nbsp;&nbsp;
+
+
+                <a>
+                    <button class="editKomen"
+                        style="text-decoration:none; color:#00ff40; border:none; background-color:#F8F8F8; opacity:1.0;"
+                        data-comment="<?=$cmt->comment?>" data-id="<?=$cmt->id_comment?>">
+                        <i class="fas fa-pen-alt"></i> edit
+                    </button>
+                </a>
+
+
                 <?php endif;?>
 
             </div>
@@ -160,18 +172,38 @@ echo $str;
 
             <?php endforeach;?>
             <?php echo smiley_js(); ?>
-            <form method="post" action="<?=base_url('User/commentPost') . "/" . $this->uri->segment('3');?>">
+            <form method="post" action="<?=base_url('User/commentPost') . "/" . $this->uri->segment('3');?>"
+                id="formAction">
                 <div class="post-comment">
                     <img src="<?=base_url('assets_user/');?>images/<?=$pst->image;?>" alt="" class="profile-photo-sm" />
-                    <input type="text" name="comment" id="comment" class="form-control" placeholder="Post a comment">
+
+                    <input type="text" name="comment" id="comment" class="form-control" placeholder="Post a comment"
+                        style="display: block;" autofocus autocomplete="off" maxlength="50">
+
+                    <?=form_error('comment', '<small class="text-danger pl-3">', '</small>');?>
+
                     <input type="hidden" name="id_posting" value="<?=$pst->id_posting;?>">
                     <input type="hidden" name="id_user" value="<?=$pst->id_user;?>">
                     <input type="hidden" name="notifComment" value="Comment on your post.">
                     <input type="hidden" name="id" value="<?=$this->session->userdata('id');?>">
+
                     <input type="submit" class="btn-primary"
-                        style="height: 45px; margin-top: -2px; margin-left: 10px; margin-right: -10px;background-color: #6fb8df;"
-                        value="Kirim">
+                        style="height: 45px; margin-top: -2px; margin-left: 10px; margin-right: -10px;background-color: #6fb8df;display: block;"
+                        value="Kirim" id="kirim">
+
+
+
+
+                    <input type="submit" class="btn-primary"
+                        style="height: 45px; margin-top: -2px; margin-left: 10px; margin-right: -10px;background-color: #6fb8df;display: none;"
+                        value="Ubah" id="ubah">
+
+                    <input type="hidden" name="idkomen" id="idkomen">
+
+
             </form>
+
+
 
 
         </div>
@@ -187,6 +219,38 @@ echo $str;
 
 
 </div>
+
+<script>
+$(".editKomen").on('click', function(e) {
+
+    // alert("hai")
+    // $('#kirim').css('display:none');
+    e.preventDefault();
+    $('#ubah').show();
+    $('#editComment').show();
+    $('#kirim').hide();
+    // $('#comment').hide();
+
+    var komen = $(this).data('comment');
+    var idKomen = $(this).data('id');
+
+
+    // alert(idKomen);
+
+    $('#comment').val(komen);
+    $('#idkomen').val(idKomen);
+
+
+    document.getElementById('formAction').action = '<?=base_url('user/ubahKomen')?>';
+
+
+
+
+
+
+});
+</script>
+
 
 <script type="text/javascript">
 if (self == top) {
