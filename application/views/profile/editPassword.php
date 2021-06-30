@@ -12,10 +12,7 @@
 
             <?=$this->session->flashdata('message')?>
 
-            <?=form_error('password2', '<div class="alert alert-danger alert-dismissible show" role="alert">', '<button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>');?>
+
 
             <form name="update-pass" id="education" class="form-inline" method="post"
                 action="<?=base_url('Profile/editPassword')?>">
@@ -35,7 +32,7 @@
                         <input class="form-control input-group-lg" type="password" name="password2"
                             title="Masukkan password" placeholder="Konfirmasi password" />
 
-
+                        <?=form_error('password2', '<small class="text-danger pl-3">', '</small>');?>
 
                     </div>
 

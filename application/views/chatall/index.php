@@ -108,7 +108,8 @@ x.style.display = "none";
     height: 50vh;
     overflow-x: hidden;
     padding: 10px;
-    background-image: url('https://i.pinimg.com/originals/40/39/e0/4039e0f1ef08b7b965bacb4641a7af49.jpg');
+    background-image: url('https://farm9.static.flickr.com/8051/29738694291_2fecf830ee_b.jpg');
+
     /* background-size: ; */
 }
 

@@ -23,35 +23,51 @@
                     <?php endforeach;?>
                 </div>
                 <!--profile card ends-->
+
+
                 <div>
                     <ul class="nav-news-feed">
 
-                        <li><i class="far fa-bell" style="color: tomato;"></i>
+                        <li
+                            <?=$this->uri->segment(1) == "notifikasi" ? "style='background-color: #bee4f3; border-radius: 200px; padding: 10px;'" : "";?>>
+                            <i class="far fa-bell" style="color: tomato;"></i>
                             <div><a href="<?=base_url('notifikasi')?>">Notifikasi</a></div>
                         </li>
 
-                        <li><i class="fas fa-book-reader" style="color: burlywood;"></i>
+                        <li
+                            <?=$this->uri->segment(1) == "library" ? "style='background-color: #bee4f3; border-radius: 200px; padding: 10px;'" : "";?>>
+                            <i class="fas fa-book-reader" style="color: burlywood;"></i>
                             <div><a href="<?=base_url('library')?>">Material Pembelajaran</a></div>
                         </li>
 
-                        <li><i class="fas fa-search" style="color: peachpuff;"></i>
+                        <li
+                            <?=$this->uri->segment(1) == "friend" ? "style='background-color: #bee4f3; border-radius: 200px; padding: 10px;'" : "";?>>
+                            <i class="fas fa-search" style="color: peachpuff;"></i>
                             <div><a href="<?=base_url('friend')?>">Temukan Teman</a></div>
                         </li>
 
-                        <li><i class="fas fa-users" style="color: royalblue;"></i>
+                        <li
+                            <?=$this->uri->segment(1) == "group" ? "style='background-color: #bee4f3; border-radius: 200px; padding: 10px;'" : "";?>>
+                            <i class="fas fa-users" style="color: royalblue;"></i>
                             <div><a href="<?=base_url('group')?>">Grup</a></div>
                         </li>
 
-                        <li><i class="fas fa-comments" style="color: yellowgreen;"></i>
+                        <li
+                            <?=$this->uri->segment(1) == "chat" ? "style='background-color: #bee4f3; border-radius: 200px; padding: 10px;'" : "";?>>
+                            <i class="fas fa-comments" style="color: yellowgreen;"></i>
                             <div><a href="<?=base_url('chat/index');?>">Pesan</a></div>
                         </li>
 
-                        <li><i class="fas fa-comment-dots" style="color: black;"></i>
+                        <li
+                            <?=$this->uri->segment(1) == "Chatall" ? "style='background-color: #bee4f3; border-radius: 200px; padding: 10px;'" : "";?>>
+                            <i class="fas fa-comment-dots" style="color: black;"></i>
                             <div><a href="<?=base_url('Chatall/');?>">Ngobrol Dengan Semua Pengguna</a>
                             </div>
                         </li>
 
-                        <li><i class="fa fa-video text-muted" style="color: black;"></i>
+                        <li
+                            <?=$this->uri->segment(1) == "Colab" ? "style='background-color: #bee4f3; border-radius: 200px; padding: 10px;'" : "";?>>
+                            <i class="fa fa-video text-muted" style="color: black;"></i>
                             <div><a href="<?=base_url('Colab/');?>">Kolaborasi</a></div>
                         </li>
 
@@ -63,13 +79,19 @@
                             <ul class="online-users list-inline">
                                 <?php foreach ($otherUser as $ou):
     if ($ou->role_id != 1) {?>
+
                                 <li>
+                                    <font style="color: #6fb8df;"><?=substr($ou->name, 0, 5) . "...."?></font>
                                     <a href="newsfeed-messages.html" title="<?=$ou->name;?>"><img
                                             src="<?=base_url('assets_user/images/' . $ou->image);?>" alt="user"
                                             class="img-responsive profile-photo" /><span class="<?=$ou->status;?>"
                                             id="keyword"></span>
                                     </a>
+
+
+
                                 </li>
+
                                 <?php }
 endforeach;?>
 
@@ -100,20 +122,21 @@ endforeach;?>
                             <div class="form-group">
                                 <img src="<?=base_url('assets_user/images/' . $us->image);?>" alt=""
                                     class="profile-photo-md" />
-                                <?php if ($this->uri->segment('2') == 'materi' && $this->session->userdata('role_id') == 3) { ?>
+                                <?php if ($this->uri->segment('2') == 'materi' && $this->session->userdata('role_id') == 3) {?>
                                 <h4>Buat Materi</h4><br>
-                                    <form action="<?= base_url('library/posting/') . $this->uri->segment('3'); ?>" method="post"
-                                    enctype="multipart/form-data">
-                                    <textarea cols="30" rows="1" class="form-control" placeholder="Ayat"
-                                        name="ayat" id="caption"></textarea>
+                                <form action="<?=base_url('library/posting/') . $this->uri->segment('3');?>"
+                                    method="post" enctype="multipart/form-data">
+                                    <textarea cols="30" rows="1" class="form-control" placeholder="Ayat" name="ayat"
+                                        id="caption"></textarea>
                                     <?=form_error('caption', '<small class="text-danger pl-3">', '</small>');?>
-                                <?php }else{ ?>
-                                <form action="<?=base_url('user/posting');?>" method="post"
-                                    enctype="multipart/form-data">
-                                    <textarea cols="30" rows="1" class="form-control" placeholder="Masukkan kata-kata"
-                                        name="caption" id="caption"></textarea>
-                                    <?=form_error('caption', '<small class="text-danger pl-3">', '</small>');?>
-                                <?php } ?>
+                                    <?php } else {?>
+                                    <form action="<?=base_url('user/posting');?>" method="post"
+                                        enctype="multipart/form-data">
+                                        <textarea cols="30" rows="1" class="form-control"
+                                            placeholder="Masukkan kata-kata" name="caption" id="caption"></textarea>
+                                        <?=form_error('caption', '<small class="text-danger pl-3">', '</small>');?>
+                                        <?php }?>
+                                        <small class="text-danger"><i>*Maksimal ukuran file adalah 15mb</i></small>
                             </div>
                         </div>
 
@@ -127,6 +150,7 @@ endforeach;?>
                                         </label>
                                         <input type="file" id="file-input-gambar" style="display: none;" name="file"
                                             multiple onchange="GetFileSizeNameAndType()">
+
                                     </li>
                                 </ul>
                                 <button class="btn btn-primary pull-right"
@@ -220,7 +244,7 @@ endforeach;?>
 
 
                                     <div class="alert alert-warning alert-dismissible show" role="alert">
-                                        Minimal pengisian wallet adalah <strong>Rp10.0000,00</strong>
+                                        Minimal pengisian wallet adalah <strong>Rp10.000,00</strong>
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -229,9 +253,9 @@ endforeach;?>
 
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Nominal Pengisian</label>
-                                        <input type="number" class="form-control"
-                                            placeholder="Masukan Nominal Pengisian" name="nominal_topup" id="nominal"
-                                            required message="minimal top up adalah Rp10.000,00">
+                                        <input type="text" class="form-control" placeholder="Masukan Nominal Pengisian"
+                                            name="nominal_topup" id="nominal" required
+                                            message="minimal top up adalah Rp10.000,00">
                                         <small style="color: red;display:none" id="errorMsg"><i>*minimal top up adalah
                                                 Rp10.000,00</i></small>
 
@@ -270,7 +294,13 @@ endforeach;?>
 
                 <script>
                 $("#nominal").keyup(function() {
-                    if ($('#nominal').val() < 10000) {
+
+
+
+                    var rupiah = $('#nominal').val();
+                    var clean = rupiah.replace(/\D/g, '');
+
+                    if (clean < 10000) {
                         $('#errorMsg').show();
                         $('#pay-button').hide();
                     } else {

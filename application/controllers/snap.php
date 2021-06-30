@@ -41,8 +41,13 @@ class Snap extends CI_Controller
     public function token()
     {
 
-        $nominal = $this->input->post('nominal');
+        $nominal_ = $this->input->post('nominal');
         $email = $this->input->post('email');
+
+        // var_dump($nominal);die();
+
+        $nominal = preg_replace('/\D/', '', $nominal_);
+        // echo $clean;
 
         // Required
         $transaction_details = array(
