@@ -200,6 +200,7 @@ class Group_model extends CI_Model
 
     public function getStoredHafalan($idt, $idg)
     {
+        $this->db->distinct();
         $this->db->select('a.id_user, u.name, IFNULL((case when rh.id_tugas = ' . $idt . ' then 1 END), 0) assign');
         $this->db->from('anggota a');
         $this->db->join('user u', 'a.id_user=u.id', 'left');

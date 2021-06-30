@@ -803,10 +803,10 @@ class Group extends CI_Controller
         $data['saldo_dompet'] = $this->db->get_where('dompet', ['id_user' => $this->session->userdata('id')])->row_array();
         $data['postgen'] = $this->User_model->getPostgen();
         $data['pengumuman'] = $this->User_model->getPengumuman();
-        $data['hafalan'] = $this->Group_model->gethafalan($id)->result();
-        $data['postHafalan'] = $this->Group_model->getPostHafalan($id)->result();
-        $data['reportHafalan'] = $this->Group_model->reportHafalan($id);
-        $data['columnReport'] = $this->Group_model->columnReport($id);
+        $data['hafalan'] = $this->Group_model->gethafalan($idg)->result();
+        $data['postHafalan'] = $this->Group_model->getPostHafalan($idg)->result();
+        $data['reportHafalan'] = $this->Group_model->reportHafalan($idg);
+        $data['columnReport'] = $this->Group_model->columnReport($idg);
 
         if (empty($data['user']['email'])) {
             $this->sessionLogin();
@@ -851,22 +851,22 @@ class Group extends CI_Controller
         //   'id' => $this->input->post('id')
         // );
         $this->Group_model->addComment($data);
+        $idp = $this->input->post('id_posting');
         //$this->Group_model->addNotification($data2);
-        redirect("group/getIdposting/" . $id);
+        redirect("group/getIdposting/" . $id . '/'. $idp);
     }
 
-    public function deleteComment($id)
+    public function deleteComment($id, $idg, $idp)
     {
         $this->Group_model->deleteComment($id);
         //$this->Group_model->deleteNotification();
-
-        $this->session->set_flashdata('nn', '<div class="alert alert-success alert-dismissible show" role="alert">
-      Komentar berhasil dihapus.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-      </button>
-  		</div>');
-        redirect("group/getIdposting/" . $id);
+    //     $this->session->set_flashdata('nn', '<div class="alert alert-success alert-dismissible show" role="alert">
+    //   Komentar berhasil dihapus.
+    //   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    //       <span aria-hidden="true">&times;</span>
+    //   </button>
+  	// 	</div>');
+        redirect("group/getIdposting/" . $idg . '/'. $idp);
     }
 
     public function updatePhoto($id)

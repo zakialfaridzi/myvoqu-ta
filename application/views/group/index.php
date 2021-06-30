@@ -1,8 +1,8 @@
-<div class="row mt-3">
+<div class="row mt-3" style="margin-bottom: 1rem;">
     <?php if ($user['role_id'] == 3) { ?>
         <div class="col-md-3" style="float: right;">
             <!-- <a href="<?= base_url(); ?>group/tambahGroup" class="btn btn-success">Create Group +</a> -->
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Buat Group</button>
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Buat Grup Baru</button>
         </div>
     <?php } ?>
 </div>
@@ -66,7 +66,7 @@ if ($this->session->userdata['role_id'] == 3) { ?>
                         <small class="form-text text-danger"><?= form_error('Deskripsi'); ?></small>
                         <input type="text" name="image" id="image" value="default.png" hidden>
                     </div>
-                </div>
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
                 <button type="submit" class="btn btn-info">Submit</button>
