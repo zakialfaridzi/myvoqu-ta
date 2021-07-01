@@ -43,6 +43,7 @@
         <link rel="stylesheet" href="<?=base_url('assets_user/');?>css/buttons.dataTables.min.css" />
         <!-- <link rel="stylesheet" href="<?=base_url('assets_user/');?>css/buttons.bootstrap.min.css" /> -->
         <link href="<?=base_url('assets_user/');?>css/emoji.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
 
 
 

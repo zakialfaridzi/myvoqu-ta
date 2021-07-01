@@ -12,17 +12,19 @@ if ($this->session->userdata['role_id'] == 3) { ?>
         <?php foreach ($allgroup as $group) :
             if ($group['owner'] == $this->session->userdata['id']) {
         ?>
-                <div class="col-md-4 col-sm-6" style="float: left;">
-                    <div class="card" style="width: 18rem;">
-                        <img src="<?= base_url() . 'assets/img/group/' . $group['image'] ?>" class="card-img-top" alt="profile-cover" style="height: 160px; width: 180px;">
-                        <div class="card-body">
-                            <div class="friend-info" style="padding: 1rem;">
-                                <h5><a href="<?= base_url(); ?>group/inGroup/<?= $group['id']; ?>" class="profile-link"><?= $group['nama']; ?></a></h5>
-                                <p><?= $group['deskripsi']; ?></p>
+                <a href="<?= base_url(); ?>group/inGroup/<?= $group['id']; ?>">
+                    <div class="col-md-4 col-sm-6" style="float: left; margin-bottom: 1rem;">
+                        <div class="card" style="width: 18rem;">
+                            <img src="<?= base_url() . 'assets/img/group/' . $group['image'] ?>" class="card-img-top" alt="profile-cover" style="height: 160px; width: 180px;">
+                            <div class="card-body">
+                                <div class="friend-info" style="padding: 1rem;">
+                                    <h5 class="profile-link"><?= $group['nama']; ?></h5>
+                                    <p><?= $group['deskripsi']; ?></p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
         <?php }
         endforeach; ?>
     </div>

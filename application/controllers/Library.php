@@ -113,8 +113,18 @@ class Library extends CI_Controller
                 'ayat' => $this->input->post('ayat', true),
                 'suratke' => $this->input->post('suratke', true),
             ];
-            $this->Materi_model->tambahSurat($datasurat);
-            redirect('Library');
+            // $this->Materi_model->tambahSurat($datasurat)
+            if ($this->db->insert('katmateri', $datasurat)) {
+                redirect('Library');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger ">
+            Folder surat sudah ada
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+                redirect('Library');
+            }
         }
     }
 
@@ -153,7 +163,7 @@ class Library extends CI_Controller
             $this->load->library('pagination');
             //config
             $config['base_url'] = 'http://localhost/myvoqu/library/materi/' . $id;
-            $config['total_rows'] = $this->Materi_model->countMateri($idm);
+            $config['total_rows'] = $this->Materi_model->countMateri($id);
             $config['per_page'] = 4;
 
             //style
@@ -187,7 +197,8 @@ class Library extends CI_Controller
             //inisialisasi pagination
             $this->pagination->initialize($config);
             $data['start'] = $this->uri->segment('4');
-            $data['materi'] = $this->Materi_model->getAllMateri($idm, $config['per_page'], $data['start']);
+            $data['materi'] = $this->Materi_model->getAllMateri($id, $config['per_page'], $data['start']);
+            $data['titleMateri'] = $this->Materi_model->getTitleMateri($id)->row();
             $this->load->view('templates_newsfeed/topbar', $data);
             $this->load->view('templates_newsfeed/header', $data);
             $this->load->view('library/materi', $data);
@@ -202,7 +213,9 @@ class Library extends CI_Controller
             // $this->materi($idm);
             redirect('library/materi/' . $idm);
         } else {
-            $ayat = htmlspecialchars($this->input->post('ayat', true));
+            $ayat1 = htmlspecialchars($this->input->post('fromAyat', true));
+            $ayat2 = htmlspecialchars($this->input->post('toAyat', true));
+            $nama_surah = htmlspecialchars($this->input->post('nama_surah', true));
             $id_user = htmlspecialchars($this->input->post('id_user', true));
             $nama_mentor = htmlspecialchars($this->input->post('ustad', true));
             $fileName = $this->_uploadFile($idm);
@@ -218,14 +231,23 @@ class Library extends CI_Controller
                 $html .= $fileName . ' alt="post-image"';
                 $html .= 'class="img-responsive post-image" />';
             }
-            $data = [
-                'nama' => $ayat,
-                'id_surat' => $idm,
-                'id_user' => $id_user,
-                'fileName' => $fileName,
-                'html' => $html,
-            ];
-
+            if ($ayat2 != null) {
+                $data = [
+                    'nama' => $nama_surah . ' Ayat ' . $ayat1 . ' - ' . $ayat2,
+                    'id_surat' => $idm,
+                    'id_user' => $id_user,
+                    'fileName' => $fileName,
+                    'html' => $html,
+                ];
+            } else {
+                $data = [
+                    'nama' => $nama_surah . ' Ayat ' . $ayat1,
+                    'id_surat' => $idm,
+                    'id_user' => $id_user,
+                    'fileName' => $fileName,
+                    'html' => $html,
+                ];
+            }
             //siapkan token
             $this->session->set_flashdata('message', '<small> br</small>');
             $this->db->insert('materi', $data);
@@ -284,5 +306,33 @@ class Library extends CI_Controller
         move_uploaded_file($tmpName, 'assets_user/file_upload/' . $namaFilesBaru);
 
         return $namaFilesBaru;
+    }
+
+    public function postComment()
+    {
+        $data = [
+            'id_materi' => $this->input->post('id_materi'),
+            'comment' => $this->input->post('comment'),
+            'id_user' => $this->input->post('id_user')
+        ];
+        $this->Materi_model->addMateriComment($data);
+    }
+
+    public function getKomen($idmp)
+    {
+        $data = $this->Materi_model->getCommentMateri($idmp);
+        echo json_encode($data);
+    }
+
+    public function deleteComment()
+    {
+        $idmk = $this->input->post('id_komen');
+        $this->Materi_model->hapusKomen($idmk);
+    }
+
+    public function hapusMateri($idm, $ids)
+    {
+        $this->Materi_model->deleteMateri($idm);
+        redirect('Library/materi/' . $ids);
     }
 }

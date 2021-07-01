@@ -120,28 +120,33 @@ endforeach;?>
                     <div class="row">
                         <div class="col-md-7 col-sm-7">
                             <div class="form-group">
-                                <img src="<?=base_url('assets_user/images/' . $us->image);?>" alt=""
-                                    class="profile-photo-md" />
+                                <img src="<?=base_url('assets_user/images/' . $us->image);?>" alt=""class="profile-photo-md" />
                                 <?php if ($this->uri->segment('2') == 'materi' && $this->session->userdata('role_id') == 3) {?>
-                                <h4>Buat Materi</h4><br>
-                                <form action="<?=base_url('library/posting/') . $this->uri->segment('3');?>"
-                                    method="post" enctype="multipart/form-data">
-                                    <textarea cols="30" rows="1" class="form-control" placeholder="Ayat" name="ayat"
-                                        id="caption"></textarea>
-                                    <?=form_error('caption', '<small class="text-danger pl-3">', '</small>');?>
-                                    <?php } else {?>
-                                    <form action="<?=base_url('user/posting');?>" method="post"
-                                        enctype="multipart/form-data">
-                                        <textarea cols="30" rows="1" class="form-control"
-                                            placeholder="Masukkan kata-kata" name="caption" id="caption"></textarea>
-                                        <?=form_error('caption', '<small class="text-danger pl-3">', '</small>');?>
-                                        <?php }?>
-                                        <small class="text-danger"><i>*Maksimal ukuran file adalah 15mb</i></small>
+                                    <h4>Posting materi <?= $titleMateri->nama ?></h4><br>
+                                    <form action="<?=base_url('library/posting/') . $this->uri->segment('3');?>" method="post" enctype="multipart/form-data">
+                                    <!-- <textarea cols="30" rows="1" class="form-control" placeholder="Ayat" name="ayat" id="caption"></textarea> -->
+                                    <label for="fromAyat">Ayat ke</label>
+                                    <select name="fromAyat" class="form-control" id="list-ayat" data-ayat="<?= $titleMateri->ayat ?>" required>
+                                        <option selected disabled>Pilih Ayat</option>
+                                        <?php $i = 0; while($i < $titleMateri->ayat) { $i++; ?>
+                                            <option value="<?= $i; ?>"><?= $i; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                    <label for="toAyat">Sampai Ayat : (Opsional) </label>
+                                    <select name="toAyat" class="form-control" id="list-ayat2">
+                                        <!-- <option value="Internet Explorer"> -->
+                                    </select>
+                                    <input type="text" value="<?= $titleMateri->nama ?>" name="nama_surah" hidden>
+                                <?=form_error('caption', '<small class="text-danger pl-3">', '</small>');?>
+                                <?php } else {?>
+                                    <form action="<?=base_url('user/posting');?>" method="post" enctype="multipart/form-data">
+                                        <textarea cols="30" rows="1" class="form-control" placeholder="Masukkan kata-kata" name="caption" id="caption"></textarea>
+                                <?=form_error('caption', '<small class="text-danger pl-3">', '</small>');?>
+                                <?php }?>
+                                    <small class="text-danger"><i>*Maksimal ukuran file adalah 15mb</i></small>
                             </div>
                         </div>
-
                         <div class="col-md-5 col-sm-5">
-
                             <div class="tools">
                                 <ul class="publishing-tools list-inline">
                                     <li class="nav-item">

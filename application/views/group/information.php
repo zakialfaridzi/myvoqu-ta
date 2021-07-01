@@ -71,7 +71,7 @@
                                     <label for="nama">Nama Surah</label>
                                     <input type="text" name="nama" class="form-control" id="nama_surah" placeholder="Pilih Surah Contoh : Al-Fatihah" list="list-surah" required>
                                     <datalist id="list-surah">
-                                        
+
                                     </datalist>
                                     <small class="form-text text-danger"><?= form_error('nama'); ?></small>
                                     <label for="fromAyat">Ayat ke</label>
@@ -83,6 +83,9 @@
                                         <!-- <option value="Internet Explorer"> -->
                                     </select>
                                     <small class="form-text text-danger"><?= form_error('ayat'); ?></small>
+                                    <label for="catatan">Batas pengumpulan</label>
+                                    <input type="date" name="deadline" class="form-control" id="deadline" title="Harus diisi" required>
+                                    <small class="form-text text-danger"><?= form_error('deadline'); ?></small>
                                     <label for="catatan">Catatan</label>
                                     <input type="text" name="catatan" class="form-control" id="catatan" placeholder="(Opsional) Tambahkan Catatan">
                                     <small class="form-text text-danger"><?= form_error('catatan'); ?></small>
@@ -111,7 +114,7 @@
                             <div class="form-group">
                                 <form action="<?= base_url('user/posting'); ?>" method="post" enctype="multipart/form-data">
                                     <input type="text" value="<?= $this->session->userdata('id'); ?>" name="iduser" id="iduser" hidden>
-                                    <textarea cols="30" rows="3" class="form-control" placeholder="Write the information" name="informasi" id="informasi" required></textarea>
+                                    <textarea cols="30" rows="3" class="form-control" placeholder="Ketik informasi disini" name="informasi" id="informasi" required oninvalid="this.setCustomValidity('Informasi tidak boleh kosong')" oninput="this.setCustomValidity('')"></textarea>
                                     <?= form_error('caption', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                     </div>

@@ -246,7 +246,7 @@ class Group extends CI_Controller
         if ($type == 'postHafalan') {
             $data = $this->Group_model->getStoredHafalan($id, $idg)->result();
             echo json_encode($data);
-        }elseif ($type == "anggota") {
+        } elseif ($type == "anggota") {
             $data = $this->Group_model->getAnggotaGroup($id);
             echo json_encode($data);
         }
@@ -512,7 +512,8 @@ class Group extends CI_Controller
                     "from_ayat" => $this->input->post('fromAyat', true),
                     "to_ayat" => $this->input->post('toAyat', true),
                     'catatan' => $this->input->post('catatan', true),
-                    'id_user' => $this->input->post('iduser', true)
+                    'id_user' => $this->input->post('iduser', true),
+                    'deadline' => $this->input->post('deadline', true)
                 ];
                 $this->Group_model->addInfo('tugas_hafalan', $datainfo);
                 redirect('group/info/' . $idg);
@@ -676,16 +677,16 @@ class Group extends CI_Controller
                 }
                 if ($ayat2 != null) {
                     $data = [
-                        'caption' => 'Setoran surah '. $surah . ' ayat '. $ayat . '-' . $ayat2,
+                        'caption' => 'Setoran surah ' . $surah . ' ayat ' . $ayat . '-' . $ayat2,
                         'id_group' => $idg,
                         'id_user' => $id_user,
                         'fileName' => $fileName,
                         'html' => $html,
                         'tugas' => $id_tugas
                     ];
-                }else{
+                } else {
                     $data = [
-                        'caption' => 'Setoran surah '. $surah . ' ayat '. $ayat,
+                        'caption' => 'Setoran surah ' . $surah . ' ayat ' . $ayat,
                         'id_group' => $idg,
                         'id_user' => $id_user,
                         'fileName' => $fileName,
@@ -733,7 +734,7 @@ class Group extends CI_Controller
         // }
         if ($eror === 4) {
             $this->session->set_flashdata('mm', '<div class="alert alert-danger alert-dismissible show" role="alert">
-			Chose an image or video first!
+			Silahkan Pilih foto atau Video terlebih dahulu
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
@@ -853,20 +854,20 @@ class Group extends CI_Controller
         $this->Group_model->addComment($data);
         $idp = $this->input->post('id_posting');
         //$this->Group_model->addNotification($data2);
-        redirect("group/getIdposting/" . $id . '/'. $idp);
+        redirect("group/getIdposting/" . $id . '/' . $idp);
     }
 
     public function deleteComment($id, $idg, $idp)
     {
         $this->Group_model->deleteComment($id);
         //$this->Group_model->deleteNotification();
-    //     $this->session->set_flashdata('nn', '<div class="alert alert-success alert-dismissible show" role="alert">
-    //   Komentar berhasil dihapus.
-    //   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    //       <span aria-hidden="true">&times;</span>
-    //   </button>
-  	// 	</div>');
-        redirect("group/getIdposting/" . $idg . '/'. $idp);
+        //     $this->session->set_flashdata('nn', '<div class="alert alert-success alert-dismissible show" role="alert">
+        //   Komentar berhasil dihapus.
+        //   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        //       <span aria-hidden="true">&times;</span>
+        //   </button>
+        // 	</div>');
+        redirect("group/getIdposting/" . $idg . '/' . $idp);
     }
 
     public function updatePhoto($id)
@@ -932,7 +933,7 @@ class Group extends CI_Controller
 
         if ($eror === 4) {
             $this->session->set_flashdata('mm', '<div class="alert alert-danger alert-dismissible show" role="alert">
-				Chose an image or video first!
+                Silahkan Pilih foto atau Video terlebih dahulu
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>

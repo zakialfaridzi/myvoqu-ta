@@ -64,10 +64,10 @@
 
 <!-- Scripts
     ================================================= -->
-    <script src="<?= base_url('assets_user/') ?>js/jquery-3.1.1.min.js" defer></script>
-    <script src="<?= base_url('assets_user/') ?>js/datatables.min.js" defer></script>
-    <script src="<?= base_url('assets_user/') ?>js/jquery.dataTables.min.js" defer></script>
-    <script src="<?= base_url('assets_user/') ?>js/dataTables.buttons.min.js" defer></script>
+<script src="<?= base_url('assets_user/') ?>js/jquery-3.1.1.min.js" defer></script>
+<script src="<?= base_url('assets_user/') ?>js/datatables.min.js" defer></script>
+<script src="<?= base_url('assets_user/') ?>js/jquery.dataTables.min.js" defer></script>
+<script src="<?= base_url('assets_user/') ?>js/dataTables.buttons.min.js" defer></script>
 <script src="<?= base_url('assets_user/') ?>js/jszip.min.js" defer></script>
 <script src="<?= base_url('assets_user/') ?>js/vfs_fonts.js" defer></script>
 <script src="<?= base_url('assets_user/') ?>js/pdfmake.min.js" defer></script>
@@ -76,11 +76,28 @@
 <script src="<?= base_url('assets_user/') ?>js/jquery.scrollbar.min.js"></script>
 <script src="<?= base_url('assets_user/') ?>js/script.js"></script>
 <script src="<?= base_url('assets_user/') ?>js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"> -->
 
 </script>
 <script type="text/javascript">
+    $(function() {
+        var dtToday = new Date();
+
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+
+        var maxDate = year + '-' + month + '-' + day;
+        // alert(maxDate);
+        $('#deadline').attr('min', maxDate);
+    });
     $(document).ready(function() {
         $("#nama_surah").on("input", function() {
             var options = {};
@@ -127,13 +144,13 @@
     });
 
     $(document).ready(function() {
-    $('#table_report').DataTable( {
-        dom: 'B',
-        buttons: [
-            'excel'
-        ]
-    } );
-} );
+        $('#table_report').DataTable({
+            dom: 'B',
+            buttons: [
+                'excel'
+            ]
+        });
+    });
 
     $(document).ready(function() {
         $(".setorBtn").click(function() {
