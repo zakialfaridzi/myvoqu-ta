@@ -429,4 +429,12 @@ class User_model extends CI_model
         return $this->db->query("SELECT * FROM `transaksi_topup_dompet` WHERE status_code = 200 AND id_user ='$id' ORDER BY transaction_time DESC")->row_array();
     }
 
+    public function updateKomen($data, $idKomen)
+    {
+        $this->db->set($data);
+        $this->db->where('id_comment', $idKomen);
+        // $this->db->where('id_usertarget', $this->input->post('id_usertarget'));
+        $this->db->update('comment');
+    }
+
 }

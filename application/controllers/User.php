@@ -156,9 +156,22 @@ class User extends CI_Controller
         $eror = $_FILES['file']['error'];
         $tmpName = $_FILES['file']['tmp_name'];
 
+        if ($ukuranFile > 15000000) {
+            $this->session->set_flashdata('mm', '<div class="alert alert-danger alert-dismissible show" role="alert">
+			Ukuran file terlalu besar
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+			</div>');
+
+            redirect('user');
+
+            return false;
+        }
+
         if ($eror === 4) {
             $this->session->set_flashdata('mm', '<div class="alert alert-danger alert-dismissible show" role="alert">
-      	Pilih foto atau video terlebih dahulu!
+      	Pilih foto atau video terlebih dahulu
       	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
       	</button>
@@ -236,16 +249,40 @@ class User extends CI_Controller
 
     public function commentPost($id)
     {
-        $data = array(
-            'id_comment' => '',
-            'comment' => htmlspecialchars($this->input->post('comment')),
-            'date' => time(),
-            'id_posting' => $this->input->post('id_posting'),
-            'id' => $this->input->post('id'),
-            'id_tujuan' => $this->input->post('id_user'),
-        );
-        $this->User_model->addComment($data);
-        redirect("user/getIdposting/" . $id);
+
+        $this->form_validation->set_rules('comment', 'Comment', 'trim|required', [
+            'required' => 'Komentar tidak boleh kosong',
+
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('nn', '<div class="alert alert-danger alert-dismissible show" role="alert">
+			<strong>Maaf!</strong> komentar tidak boleh kosong.
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+				</div>');
+            redirect("user/getIdposting/" . $this->input->post('id_posting'));
+        } else {
+
+            $data = array(
+                'id_comment' => '',
+                'comment' => htmlspecialchars($this->input->post('comment')),
+                'date' => time(),
+                'id_posting' => $this->input->post('id_posting'),
+                'id' => $this->input->post('id'),
+                'id_tujuan' => $this->input->post('id_user'),
+            );
+            $this->User_model->addComment($data);
+
+            $this->session->set_flashdata('nn', '<div class="alert alert-success alert-dismissible show" role="alert">
+      <strong>Selamat!</strong> komentar berhasil ditambahkan.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  		</div>');
+            redirect("user/getIdposting/" . $id);
+        }
     }
 
     public function deleteComment($id, $idpost)
@@ -311,7 +348,7 @@ class User extends CI_Controller
         );
         $this->User_model->addReport($data);
         $this->session->set_flashdata('message', '<div class="alert alert-success ">
-           Success Report Post
+           Berhasil melaporkan postingan
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -375,6 +412,30 @@ class User extends CI_Controller
             $this->load->view('user/getIdposting', $data);
             $this->load->view('templates_newsfeed/footer');
         }
+    }
+
+    public function ubahKomen()
+    {
+
+        $komen = $this->input->post('comment');
+        $id = $this->input->post('idkomen');
+        $idPosting = $this->input->post('id_posting');
+
+        $data = [
+            'comment' => $komen,
+        ];
+
+        $this->User_model->updateKomen($data, $id);
+
+        $this->session->set_flashdata('nn', '<div class="alert alert-success alert-dismissible show" role="alert">
+      <strong>Selamat!</strong> komentar berhasil diperbarui.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  		</div>');
+
+        redirect('user/getIdposting/' . $idPosting);
+
     }
 
     public function getIdpostgen($id)

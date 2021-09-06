@@ -320,7 +320,10 @@ class Profile extends CI_Controller
     public function editBasic()
     {
 
-        $this->form_validation->set_rules('email', 'Email', 'trim|valid_email');
+        $this->form_validation->set_rules('email', 'Email', 'trim|valid_email', [
+            'valid_email' => 'Email tidak valid',
+        ]);
+
         if ($this->session->userdata('role_id') == 3) {
             $this->form_validation->set_rules('instansi', 'Instansi', 'required|min_length[1]|max_length[15]');
         }
@@ -417,13 +420,15 @@ class Profile extends CI_Controller
         $data['on_s'] = 'active';
         $data['on_p'] = '';
 
-        $this->form_validation->set_rules('password1', 'Paassword', 'trim|required|min_length[3]|matches[password2]', [
-            'matches' => '',
-            'min_length' => '',
+        $this->form_validation->set_rules('password1', 'Paassword', 'trim|required|min_length[3]', [
+            // 'matches' => '',
+            'min_length' => 'Password terlalu pendek',
+            'required' => 'Password tidak boleh kosong',
         ]);
         $this->form_validation->set_rules('password2', 'Repeat Paassword', 'trim|required|min_length[3]|matches[password1]', [
-            'matches' => 'Password Tidak Sama!!',
-            'min_length' => 'Password Terlalu Pendek!',
+            'matches' => 'Password tidak cocok',
+            'min_length' => 'Password terlalu pendek',
+            'required' => 'Password tidak boleh kosong',
         ]);
 
         if ($this->form_validation->run() == false) {
@@ -549,31 +554,46 @@ class Profile extends CI_Controller
         //   return $file_baru;
         // }
 
-        if ($eror === 4) {
-            $this->session->set_flashdata('mm', '<div class="alert alert-danger alert-dismissible show" role="alert">
-      Chose an image or video first!
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-      </button>
-  		</div>');
+        //8000000 = 8Mb
 
-            redirect('user');
+        if ($ukuranFile > 5000000) {
+            $this->session->set_flashdata('mm', '<div class="alert alert-danger alert-dismissible show" role="alert">
+			Ukuran gambar terlalu besar
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+				</div>');
+
+            redirect('profile/editPhoto');
 
             return false;
         }
 
-        $ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'jfif', 'mp4', 'flv', 'mkv'];
-        $ekstensiGambar = explode('.', $namaFiles);
-        $ekstensiGambar = strtolower(end($ekstensiGambar));
-        if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+        if ($eror === 4) {
             $this->session->set_flashdata('mm', '<div class="alert alert-danger alert-dismissible show" role="alert">
-      Your uploaded file, is not image or video!
+      Pilih foto terlebih dahulu
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
       </button>
   		</div>');
 
-            redirect('user');
+            redirect('profile/editPhoto');
+
+            return false;
+        }
+
+        $ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'jfif'];
+        $ekstensiGambar = explode('.', $namaFiles);
+        $ekstensiGambar = strtolower(end($ekstensiGambar));
+        if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+            $this->session->set_flashdata('mm', '<div class="alert alert-danger alert-dismissible show" role="alert">
+      Yang anda pilih bukan gambar
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  		</div>');
+
+            redirect('profile/editPhoto');
             return false;
         }
 

@@ -23,6 +23,7 @@
                                 <textarea cols="30" rows="1" class="form-control" placeholder="Masukkan kata-kata"
                                     name="caption" id="caption"></textarea>
                                 <?=form_error('caption', '<small class="text-danger pl-3">', '</small>');?>
+                                <small class="text-danger"><i>*Maksimal ukuran file adalah 15mb</i></small>
                         </div>
 
 
@@ -105,7 +106,8 @@
 
 
                                 <div class="alert alert-info alert-dismissible show" role="alert">
-                                    Minimal pengisian wallet adalah <strong>Rp10.0000,00</strong>
+                                    Minimal pengisian wallet adalah
+                                    <strong>Rp<?=number_format(10000, 2, ',', '.')?></strong>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -114,7 +116,7 @@
 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nominal Pengisian</label>
-                                    <input type="number" class="form-control" placeholder="Masukan Nominal Pengisian"
+                                    <input type="text" class="form-control" placeholder="Masukan Nominal Pengisian"
                                         name="nominal_topup" id="nominal" required
                                         message="minimal top up adalah Rp10.000,00">
                                     <small style="color: red;display:none" id="errorMsg"><i>*minimal top up adalah
@@ -263,7 +265,11 @@
 
         <script>
         $("#nominal").keyup(function() {
-            if ($('#nominal').val() < 10000) {
+
+            var rupiah = $('#nominal').val();
+            var clean = rupiah.replace(/\D/g, '');
+
+            if (clean < 10000) {
                 $('#errorMsg').show();
                 $('#pay-button').hide();
             } else {

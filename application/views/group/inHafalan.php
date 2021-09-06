@@ -39,7 +39,11 @@
 					<li role="presentation"><a href="<?= base_url('group/inGroup/').$this->uri->segment('3') ?>">Postingan</a></li>
 					<li role="presentation" class="active"><a href="#">Setoran</a></li>
 				</ul>
-				<?php foreach ($hafalan as $key => $value) { ?>
+				<?php foreach ($hafalan as $key => $value) { 
+					$date_now = time();
+					$dete_batas = strtotime($value->deadline);
+					if ($date_now < $dete_batas) { 
+				?>
 					<div class="alert alert-info" role="alert">
 						Tugas hafalan surah
 						<?= $value->nama_surah ?>
@@ -73,10 +77,10 @@
 								?>
 								>Setor Hafalan</button>
 							<?php } ?>
-						<?php } ?>
-
+						<?php } $date = date_create($value->created_at); $deadline = date_create($value->deadline); ?>
+					<p><?='ditugaskan pada ' . date_format($date,"d-m").' batas pengumpulan '. date_format($deadline,"d-m") ?></p>
 					</div>
-				<?php } ?>
+				<?php } } ?>
 				<?= $this->session->flashdata('message'); ?>
 				<!-- Post Content
                 ================================================= -->

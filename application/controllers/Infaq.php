@@ -54,7 +54,8 @@ class Infaq extends CI_Controller
         $data['colorSearch'] = 'black';
         $data['allUser'] = $this->User_model->getUserData();
         $data['user'] = $this->User_model->getUser();
-        $data['otherUser'] = $this->User_model->getMentorData();
+        $data['otherUserMentor'] = $this->User_model->getMentorData();
+        $data['otherUser'] = $this->User_model->getOherUserData();
         $data['allotherUser'] = $this->User_model->getallOtherUserData();
         $data['title'] = 'Home';
         $data['allUsers'] = $this->User_model->viewAllUsers();
@@ -76,6 +77,7 @@ class Infaq extends CI_Controller
           </div>');
             redirect('admin');
         } else {
+
             $this->load->view('templates_newsfeed/topbar', $data);
             $this->load->view('templates_newsfeed/header', $data);
             $this->load->view('infaq/index', $data);

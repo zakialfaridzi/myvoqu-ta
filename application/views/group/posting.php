@@ -29,22 +29,17 @@
                         <img src="<?= base_url('assets_user/'); ?>images/<?= $pst->image; ?>" alt="user" class="profile-photo-md pull-left" />
                         <div class="post-detail">
                             <div class="user-info">
-                                <h5><a href="timeline.html" class="profile-link"><?= $pst->name; ?></a> <span class="following">following</span></h5>
+                                <h5><a href="<?=base_url('friend/visitProfile/') . $pst->id_user;?>" class="profile-link"><?= $pst->name; ?></a></h5>
                                 <p class="text-muted">Diupload pada <?= $pst->date_post; ?></p>
                             </div>
-                            <?php foreach ($suka as $sk) : ?>
+                            <!-- <?php foreach ($suka as $sk) : ?>
                                 <?php foreach ($sukaa as $sk2) : ?>
-                                    <!--?php if ($sk->status == null or $sk->jumlahsuka == 0 or $sk->jumlahsuka == null or $sk->id == null) : ?>
-                                        <div class="reaction">
-                                            <a class="btn text-blue">
-                                                <button class="icon ion-thumbsup" style="opacity : 70% ; border : 0;" name="like1"> like </button> 0</a>
-                                        </div> -->
                                     <?php if ($sk2->id == $this->session->userdata('id') and $sk2->status == 2) : ?>
                                         <div class="reaction">
                                             <form method="post" action="<?= base_url('User/updateSuka') . "/" . $this->uri->segment('3'); ?>">
                                                 <input type="hidden" name="id_suka" value="<?= $sk2->id_suka; ?>">
                                                 <input type="hidden" name="id_posting" value="<?= $pst->id_posting; ?>">
-                                                <input type="hidden" name="notifsuka" value="Like on your post.">
+                                                <input type="hidden" name="notifsuka" value="Menyukasi Postingan anda">
                                                 <input type="hidden" name="id" value="<?= $this->session->userdata('id'); ?>">
                                                 <a class="btn text-blue">
                                                     <button class="icon ion-thumbsup" style="border : 0;" name="like2"> like </button> <?= $sk->jumlahsuka; ?></a>
@@ -56,7 +51,7 @@
                                                 <input type="hidden" name="id_suka" value="<?= $sk2->id_suka; ?>">
                                                 <input type="hidden" name="jumlahsuka" value="<?= $sk->jumlahsuka; ?>">
                                                 <input type="hidden" name="id_posting" value="<?= $pst->id_posting; ?>">
-                                                <input type="hidden" name="notifsuka" value="Like on your post.">
+                                                <input type="hidden" name="notifsuka" value="Menyukasi Postingan anda">
                                                 <input type="hidden" name="id" value="<?= $this->session->userdata('id'); ?>">
                                                 <a class="btn text-blue">
                                                     <button class="icon ion-thumbsup" style="border : 0;" name="unlike"> liked </button> <?= $sk->jumlahsuka; ?></a>
@@ -68,7 +63,7 @@
                                                 <input type="hidden" name="id_suka" value="<?= $sk2->id_suka; ?>">
                                                 <input type="hidden" name="jumlahsuka" value="<?= $sk->jumlahsuka; ?>">
                                                 <input type="hidden" name="id_posting" value="<?= $pst->id_posting; ?>">
-                                                <input type="hidden" name="notifsuka" value="Like on your post.">
+                                                <input type="hidden" name="notifsuka" value="Menyukasi Postingan anda">
                                                 <input type="hidden" name="id" value="<?= $this->session->userdata('id'); ?>">
                                                 <a class="btn text-blue">
                                                     <button class="icon ion-thumbsup" style=" border : 0;" name="like2"> Like </button> <?= $sk->jumlahsuka; ?></a>
@@ -76,7 +71,7 @@
                                         </div>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
-                            <?php endforeach; ?>
+                            <?php endforeach; ?> -->
                             <div class="line-divider"></div>
                             <div class="post-text">
                                 <p><?= $pst->caption; ?> </p>
@@ -101,7 +96,7 @@
                             <?php foreach ($comment as $cmt) : ?>
                                 <div class="post-comment">
                                     <img src="<?= base_url('assets_user/images/') . $cmt->image; ?>" alt="" class="profile-photo-sm" />
-                                    <p><a href="timeline.html" class="profile-link"> <?= $cmt->name; ?> </a> <br>
+                                    <p><a href="<?=base_url('friend/visitProfile/') . $cmt->id;?>" class="profile-link"> <?= $cmt->name; ?> </a> <br>
                                         <?php
                                         $str = $cmt->comment;
                                         $str = parse_smileys($str, base_url() . 'assets/smileys/');
@@ -111,10 +106,10 @@
                                     <?php if ($cmt->id != $this->session->userdata('id')) : ?>
                                     <?php else : ?>
                                         <br>
-                                        <form method="POST" action="<?= base_url('Group/deleteComment') . "/" . $cmt->id_comment; ?>">
+                                        <form method="POST" action="<?= base_url('Group/deleteComment') . "/" . $cmt->id_comment . '/' . $this->uri->segment('3') . '/' . $this->uri->segment('4') ?>">
                                             <div style="float: right;">
                                                 <button type="submit" style="border: 0; color: red; background-color: whitesmoke;">
-                                                    Delete
+                                                    Hapus
                                                 </button>
                                             </div>
                                         </form>

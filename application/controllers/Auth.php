@@ -28,8 +28,13 @@ class Auth extends CI_Controller
         // /asdadas
         //sadasdas
 
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-        $this->form_validation->set_rules('password', 'Password', 'trim|required');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email', [
+            'required' => 'Email tidak boleh kosong',
+            'valid_email' => 'Email tidak valid',
+        ]);
+        $this->form_validation->set_rules('password', 'Password', 'trim|required', [
+            'required' => 'Password tidak boleh kosong',
+        ]);
 
         if ($this->form_validation->run() == false) {
 
@@ -55,39 +60,55 @@ class Auth extends CI_Controller
         if ($user) {
             // jika aktif
 
+            //cek role
+
             if ($user['is_active'] == 1) {
 
-                //cek password
-                if (password_verify($password, $user['passsword'])) {
-
-                    $data = [
-                        'email' => $user['email'],
-                        'role_id' => $user['role_id'],
-                        'id' => $user['id'],
-                        'gender' => $user['gender'],
-                        'image' => $user['image'],
-                    ];
-
-                    $this->session->set_userdata($data);
-
-                    if ($user['role_id'] == 1) {
-
-                        redirect('admin');
-                    } else {
-                        $this->db->set('status', 'online-dot');
-                        $this->db->where('email', $email);
-                        $this->db->update('user');
-                        redirect('user');
-                    }
-                } else {
+                //cek role
+                if ($user['role_id'] == 3 && $user['verified'] == 0) {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-            Password Salah!
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>');
+					Akun berlum terverifikasi!
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+					</div>');
 
                     redirect('auth');
+                } else {
+
+                    //cek password
+                    if (password_verify($password, $user['passsword'])) {
+
+                        $data = [
+                            'email' => $user['email'],
+                            'role_id' => $user['role_id'],
+                            'id' => $user['id'],
+                            'gender' => $user['gender'],
+                            'image' => $user['image'],
+                        ];
+
+                        $this->session->set_userdata($data);
+
+                        if ($user['role_id'] == 1) {
+
+                            redirect('admin');
+                        } else {
+
+                            $this->db->set('status', 'online-dot');
+                            $this->db->where('email', $email);
+                            $this->db->update('user');
+                            redirect('user');
+                        }
+                    } else {
+                        $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					Password Salah!
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+					</div>');
+
+                        redirect('auth');
+                    }
                 }
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -122,16 +143,27 @@ class Auth extends CI_Controller
             redirect('user');
         }
 
-        $this->form_validation->set_rules('name', 'Name', 'required|trim');
+        $this->form_validation->set_rules('name', 'Name', 'required|trim', [
+            'required' => 'Nama Lengkap tidak boleh kosong',
+        ]);
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
-            'is_unique' => 'Email ini sudah ada!',
+            'is_unique' => 'Email sudah terdaftar',
+            'required' => 'Email tidak boleh kosong',
+            'valid_email' => 'Email tidak valid',
         ]);
-        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', [
-            'matches' => 'Password Tidak Sama!!',
-            'min_length' => 'Password Terlalu Pendek!',
+        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]', [
+            // 'matches' => 'Password tidak cocok',
+            'min_length' => 'Password harus lebih dari 3 karakter',
+            'required' => 'Password tidak boleh kosong',
         ]);
-        $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
-        $this->form_validation->set_rules('gender', 'Gender', 'required');
+        $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]', [
+            'matches' => 'Password tidak cocok',
+            'min_length' => 'Password harus lebih dari 3 karakter',
+            'required' => 'Password tidak boleh kosong',
+        ]);
+        $this->form_validation->set_rules('gender', 'Gender', 'required', [
+            'required' => 'Jenis Kelamin tidak boleh kosong',
+        ]);
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'User Registration';
@@ -317,7 +349,10 @@ class Auth extends CI_Controller
             redirect('auth');
         }
 
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email', [
+            'required' => 'Email tidak boleh kosong',
+
+        ]);
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Forgot Password';
@@ -330,25 +365,36 @@ class Auth extends CI_Controller
 
             if ($user) {
 
-                $token = base64_encode(random_bytes(32));
-                $user_token = [
-                    'email' => $email,
-                    'token' => $token,
-                    'date_created' => time(),
-                ];
+                if ($user['is_active'] == 1) {
 
-                $this->db->insert('user_token', $user_token);
-                $this->_sendEmail($token, 'forgot');
-                $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                    $token = base64_encode(random_bytes(32));
+                    $user_token = [
+                        'email' => $email,
+                        'token' => $token,
+                        'date_created' => time(),
+                    ];
+
+                    $this->db->insert('user_token', $user_token);
+                    $this->_sendEmail($token, 'forgot');
+                    $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
                Tolong cek email kamu untuk reset password!
                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                    <span aria-hidden="true">&times;</span>
                  </button>
                </div>');
-                redirect('auth/forgotPassword');
+                    redirect('auth/forgotPassword');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					Email belum aktif!
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					  </button>
+					</div>');
+                    redirect('auth/forgotPassword');
+                }
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-               Email belum aktif!
+               Email belum terdaftar!
                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                    <span aria-hidden="true">&times;</span>
                  </button>
@@ -401,13 +447,15 @@ class Auth extends CI_Controller
             redirect('auth');
         }
 
-        $this->form_validation->set_rules('password1', 'Paassword', 'trim|required|min_length[3]|matches[password2]', [
-            'matches' => '',
-            'min_length' => '',
+        $this->form_validation->set_rules('password1', 'Paassword', 'trim|required|min_length[3]', [
+            // 'matches' => '',
+            'min_length' => 'Password harus lebih dari 3 karakter',
+            'requried' => 'Password tidak boleh kosong',
         ]);
         $this->form_validation->set_rules('password2', 'Repeat Paassword', 'trim|required|min_length[3]|matches[password1]', [
-            'matches' => 'Password Tidak Sama!!',
-            'min_length' => 'Password Terlalu Pendek!',
+            'matches' => 'Password tidak cocok',
+            'min_length' => 'Password harus lebih dari 3 karakter!',
+            'requried' => 'Password tidak boleh kosong',
         ]);
 
         if ($this->form_validation->run() == false) {

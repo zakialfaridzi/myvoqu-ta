@@ -200,6 +200,22 @@ class Chat extends CI_Controller
 
     public function kirimPesan($id)
     {
+
+        $this->form_validation->set_rules('isi_pesan', 'Isi Pesan', 'trim|required', [
+
+            'requried' => 'Password tidak boleh kosong',
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger ">
+			Kolom pesan tidak boleh kosong.
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>');
+            redirect('Chat/chat2/' . $id);
+        }
+
         $data = array(
             'id_pesan' => '',
             'id_penerima' => $id,
