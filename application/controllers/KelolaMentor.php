@@ -263,8 +263,8 @@ class KelolaMentor extends CI_Controller
         $config = [
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_user' => 'voqumy@gmail.com',
-            'smtp_pass' => 'voqumy123',
+            'smtp_user' => 'leoleopold555@gmail.com',
+            'smtp_pass' => 'planetocean5',
             'smtp_port' => 465,
             'mailtype' => 'html',
             'charset' => 'utf-8',
@@ -272,7 +272,7 @@ class KelolaMentor extends CI_Controller
         ];
 
         $this->email->initialize($config);
-        $this->email->from('unregistered30@gmail.com', 'Admin MyVoQu');
+        $this->email->from('leoleopold555@gmail.com', 'Admin MyVoQu');
         $this->email->to($mail);
 
         $this->email->subject('Account Verification');

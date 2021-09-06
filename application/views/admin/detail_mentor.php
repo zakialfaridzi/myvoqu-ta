@@ -34,10 +34,10 @@
                     <th>Grup yang diajar</th>
 					<td>
                     <?php foreach ($allgroup as $group): if ($group['owner'] == $detail->id) {?>
-												        <ul>
-												            <li><?=$group['nama'];?></li>
-												        </ul>
-												    <?php }
+																										        <ul>
+																										            <li><?=$group['nama'];?></li>
+																										        </ul>
+																										    <?php }
 endforeach;?>
                     </td>
                 </tr>
@@ -100,6 +100,18 @@ endforeach;?>
                 <tr>
                     <th>Sertifikat</th>
                     <td><img src="<?php echo base_url(); ?>assets/foto/<?php echo $detail->sertif; ?>" width="150" height="150"></td>
+                </tr>
+                <tr>
+                    <th>Tanggal Sertifikat</th>
+                    <?php if ($detail->sertif_date == "0000-00-00" || null): ?>
+                        <td>
+                            <?php echo "- -"; ?>
+                        </td>
+                    <?php else: ?>
+                        <td>
+                            <?php echo date("d-m-Y", strtotime($detail->sertif_date)); ?>
+                        </td>
+                    <?php endif;?>
                 </tr>
             </table>
             <a href="<?php echo base_url('KelolaMentor'); ?>" class="btn btn-primary">Kembali</a>

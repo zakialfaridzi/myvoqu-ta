@@ -43,6 +43,7 @@ class UnggahMateriUmum extends CI_Controller
             'html' => $html,
             'date_post' => time(),
             'id_user' => $id_user,
+            'state' => 0,
         ];
 
         //siapkan token
@@ -52,7 +53,7 @@ class UnggahMateriUmum extends CI_Controller
         $this->Admin_model->addPostGen($data);
 
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible show" role="alert">
-        Unggahan Materi Umum <strong>Berhasil</strong> Di Unggah
+        Unggahan Materi Umum <strong>Berhasil</strong> Ditampilkan, Silahkan Terbitkan Di Halaman Kelola Unggah Materi Umum
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>

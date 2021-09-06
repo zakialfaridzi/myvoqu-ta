@@ -36,6 +36,18 @@ class KelolaUnggahanUmum extends CI_Controller
         redirect('KelolaUnggahanUmum');
     }
 
+    public function PublishPostGen($id)
+    {
+        $this->Admin_model->publish_postgen($id);
+        $this->session->set_flashdata('message', '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+      Data Unggahan <strong>Berhasil</strong> Di Terbitkan
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>');
+        redirect('KelolaUnggahanUmum');
+    }
+
     public function detailPostingGen($id)
     {
         $this->load->model('Admin_model');

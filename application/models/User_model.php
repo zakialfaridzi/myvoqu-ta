@@ -382,7 +382,7 @@ class User_model extends CI_model
 
     public function getPostgen()
     {
-        return $this->db->query('SELECT * FROM postgen p join user u on(p.id_user = u.id) order by p.id_posting desc limit 3')->result();
+        return $this->db->query('SELECT * FROM postgen p join user u on(p.id_user = u.id) where p.state=1 order by p.date_post desc limit 3')->result();
     }
 
     public function getPengumuman()

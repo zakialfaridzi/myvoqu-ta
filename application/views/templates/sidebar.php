@@ -36,7 +36,11 @@ echo $mhs->name
                               </p>
                           </a>
                       </li>
-                      <li class="nav-item has-treeview">
+
+                      <li class="nav-item has-treeview <?php
+$res = (($this->uri->segment(1) == 'KelolaPenghafal') || ($this->uri->segment(1) == 'KelolaMentor') || ($this->uri->segment(1) == 'KelolaUnggahan') || ($this->uri->segment(1) == 'KelolaUnggahanUmum') || ($this->uri->segment(1) == 'KelolaGrup'));
+echo $res ? 'menu-open' : ''?>
+">
                           <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-list-alt"></i>
                               <p>

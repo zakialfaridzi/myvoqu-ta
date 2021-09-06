@@ -313,6 +313,17 @@ class Admin_model extends CI_model
         $this->db->delete('postgen', $where);
     }
 
+    public function publish_postgen($id)
+    {
+        $data = array(
+            'state' => '1',
+            'date_post' => time(),
+        );
+
+        $this->db->where('id_posting', $id);
+        $this->db->update('postgen', $data);
+    }
+
     // public function edit_postgen($where)
     // {
     //     return $this->db->get_where('postgen', $where);
@@ -366,7 +377,9 @@ class Admin_model extends CI_model
     public function tampil_todo()
     {
         $id = $this->session->userdata('id');
-        return $this->db->get_where('tasks', ['id_user' => $id])->result();
+        $this->db->order_by("id", "desc");
+        $query = $this->db->get_where('tasks', ['id_user' => $id]);
+        return $query->result();
     }
 
     public function tambah_todo()
@@ -436,7 +449,7 @@ class Admin_model extends CI_model
 
     public function tampil_pengumuman()
     {
-        $data = $this->db->query('select p.id,p.isi_pengumuman,p.datepost,u.name from pengumuman p join user u on p.id_user=u.id')->result();
+        $data = $this->db->query('select p.id,p.isi_pengumuman,p.datepost,u.name from pengumuman p join user u on p.id_user=u.id order by id desc')->result();
         return $data;
     }
 

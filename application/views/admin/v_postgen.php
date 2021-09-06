@@ -42,8 +42,8 @@
 						<th>Keterangan (Caption)</th>
 						<th>Nama Pengguna</th>
 						<th>Tanggal Unggah</th>
-						<th colspan="2">
-							Aksi
+						<th colspan="3">
+							<center>Aksi</center>
 						</th>
 					</tr>
 					<?php $no = 1;
@@ -66,6 +66,15 @@ if (strpos($u->html, $word) !== false): ?>
 						<td><?php echo $u->caption ?></td>
 						<td><?php echo $u->name ?></td>
 						<td><?php echo date("Y-m-d H:i:s", strtotime('+5 hours', $u->date_post)); ?></td>
+						<?php if ($u->state != 1): ?>
+						<td onclick="return confirm('Terbitkan unggahan?');">
+							<?php echo anchor('KelolaUnggahanUmum/PublishPostGen/' . $u->id_posting, '<div class="btn btn-primary btn-sm"><i class="fa fa-check"></i> Terbitkan</div>') ?>
+						</td>
+						<?php else: ?>
+						<td>
+							<?php echo anchor('KelolaUnggahanUmum/PublishPostGen/' . $u->id_posting, '<div class="d-none"><i class="fa fa-check"></i> G Hidden</div>') ?>
+						</td>
+						<?php endif;?>
 						<td>
 							<?php echo anchor('KelolaUnggahanUmum/detailPostingGen/' . $u->id_posting, '<div class="btn btn-info btn-sm"><i class="fa fa-search-plus"></i> Detil</div>') ?>
 						</td>

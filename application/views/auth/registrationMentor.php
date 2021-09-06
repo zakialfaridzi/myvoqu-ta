@@ -34,15 +34,6 @@
                     <?=form_error('email', '<small class="text-danger pl-3">', '</small>');?>
                 </div>
 
-                <div class="input-group">
-
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="file" name="file">
-                        <label class="custom-file-label" for="file-input-gambar">Upload Bukti Ustad/Ustadzah</label>
-                    </div>
-                </div>
-
-
 
                 <div class="form-group">
                     <input type="password" class="form-control form-control-user" id="password1" name="password1"
@@ -55,14 +46,22 @@
                     <?=form_error('password2', '<small class="text-danger pl-3">', '</small>');?>
                 </div>
 
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="file" name="file">
+                        <label class="custom-file-label" for="file-input-gambar">Upload Bukti Ustad/Ustadzah</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Tanggal Sertifikat</label>
+                    <input type="date" class="form-control" id="date" name="date" autocomplete="off" placeholder="Tanggal Lahir">
+                </div>
+
                 <div class="form-group">
                     <input type="checkbox" class="custom-control-input" id="customControlInline" onclick="myFunction()">
                     <label class="custom-control-label" for="customControlInline">Tampillkan Semua Password</label>
                 </div>
-
-
-
-
 
                 <div class="form-button">
                     <button id="submit" type="submit" class="ibtn">Register</button>

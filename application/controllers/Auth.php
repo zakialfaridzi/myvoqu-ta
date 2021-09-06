@@ -63,9 +63,9 @@ class Auth extends CI_Controller
                     $data = [
                         'email' => $user['email'],
                         'role_id' => $user['role_id'],
-                        'id' => $user['id'], 
+                        'id' => $user['id'],
                         'gender' => $user['gender'],
-                        'image' => $user['image']
+                        'image' => $user['image'],
                     ];
 
                     $this->session->set_userdata($data);
@@ -468,6 +468,7 @@ class Auth extends CI_Controller
             $this->load->view('templates/auth_footer2');
         } else {
             $email = $this->input->post('email', true);
+            $sertifdate = htmlspecialchars($this->input->post('date', true));
             $fileName = $this->_uploadSertif();
             $data = [
                 'name' => htmlspecialchars($this->input->post('name', true)),
@@ -480,6 +481,7 @@ class Auth extends CI_Controller
                 'date_created' => time(),
                 'bio' => 'Hello World!',
                 'sertif' => $fileName,
+                'sertif_date' => $sertifdate,
             ];
 
             $this->db->insert('user', $data);
